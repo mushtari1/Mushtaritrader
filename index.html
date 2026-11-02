@@ -29,7 +29,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 40px; }
     
-    /* CENTERED ROYAL HEADER WITH LOGO */
     header {
       display: flex;
       flex-direction: column;
@@ -73,11 +72,11 @@
     }
     .header-actions {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-top: 8px;
     }
     .live-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -88,9 +87,12 @@
     .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .btn {
-      background: var(--gold); color: #000; border: none; padding: 6px 14px;
-      border-radius: 6px; font-weight: 700; font-size: 0.78rem; cursor: pointer;
+      background: var(--gold); color: #000; border: none; padding: 7px 12px;
+      border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
     }
+    .btn-tg { background: #0088cc; color: #fff; }
+    .btn-ig { background: linear-seed(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); background: #e1306c; color: #fff; }
 
     .container { max-width: 1440px; margin: 0 auto; padding: 15px; }
 
@@ -100,7 +102,6 @@
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
     }
 
-    /* LIVE SIGNAL CARDS (6 CARDS GRID: GOLD, SILVER, GOLD PKR, SILVER PKR, BTC, ETH) */
     .signal-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 14px; margin-bottom: 20px;
@@ -110,9 +111,7 @@
       border-radius: 10px; padding: 14px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
-    .sig-card.pkr-card {
-      border-color: rgba(245, 158, 11, 0.45);
-    }
+    .sig-card.pkr-card { border-color: rgba(245, 158, 11, 0.45); }
     .sig-header {
       display: flex; justify-content: space-between; align-items: center;
       margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
@@ -136,7 +135,6 @@
     .lvl-box strong { font-size: 0.9rem; font-variant-numeric: tabular-nums; }
     .sig-note { font-size: 0.74rem; color: var(--muted); margin-top: 4px; border-left: 2px solid var(--gold); padding-left: 8px; }
 
-    /* Layout Grids */
     .top-grid {
       display: grid; grid-template-columns: 1.35fr 1fr; gap: 15px; margin-bottom: 18px;
     }
@@ -200,10 +198,9 @@
     </script>
   </div>
 
-  <!-- 2. CENTERED HEADER WITH MUSHTARI TRADER EMBLEM LOGO -->
+  <!-- 2. CENTERED HEADER WITH LOGO & SOCIAL / APP BUTTONS -->
   <header>
     <div class="logo-wrap">
-      <!-- If logo.png is uploaded to repo, it uses it; otherwise renders the exact Golden Candlesticks + Planet Emblem -->
       <img src="logo.png" alt="Mushtari Trader Logo" onerror="this.style.display='none'; document.getElementById('fallback-emblem').style.display='block';">
       <svg id="fallback-emblem" style="display:none;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -214,13 +211,10 @@
           </linearGradient>
         </defs>
         <rect width="200" height="200" rx="32" fill="#090e1a"/>
-        <!-- Outer & Inner Golden Rings -->
         <circle cx="100" cy="100" r="86" fill="none" stroke="url(#goldGrad)" stroke-width="5"/>
         <circle cx="100" cy="100" r="64" fill="none" stroke="url(#goldGrad)" stroke-width="2.5"/>
-        <!-- Planet Mushtari (Jupiter) with Ring -->
         <circle cx="72" cy="70" r="13" fill="url(#goldGrad)"/>
         <ellipse cx="72" cy="70" rx="25" ry="6" fill="none" stroke="url(#goldGrad)" stroke-width="3" transform="rotate(-22 72 70)"/>
-        <!-- Bullish Candlesticks -->
         <line x1="65" y1="102" x2="65" y2="145" stroke="url(#goldGrad)" stroke-width="2.5"/>
         <rect x="60" y="112" width="10" height="24" rx="1.5" fill="url(#goldGrad)"/>
         <line x1="85" y1="88" x2="85" y2="140" stroke="url(#goldGrad)" stroke-width="2.5"/>
@@ -229,10 +223,8 @@
         <rect x="100" y="78" width="10" height="36" rx="1.5" fill="url(#goldGrad)"/>
         <line x1="125" y1="58" x2="125" y2="120" stroke="url(#goldGrad)" stroke-width="2.5"/>
         <rect x="120" y="66" width="10" height="34" rx="1.5" fill="url(#goldGrad)"/>
-        <!-- Upward Breakout Arrow -->
         <path d="M52 138 L88 105 L104 117 L144 74" fill="none" stroke="#fde68a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
         <polygon points="148,70 132,72 145,86" fill="#fde68a"/>
-        <!-- Text Labels -->
         <text x="100" y="31" fill="url(#goldGrad)" font-size="13.5" font-weight="800" text-anchor="middle" letter-spacing="1.5">MUSHTARI TRADER</text>
         <text x="100" y="177" fill="url(#goldGrad)" font-size="10.5" font-weight="700" text-anchor="middle" letter-spacing="1.2">AL-IRTIQAA CAPITAL</text>
       </svg>
@@ -245,21 +237,24 @@
 
     <div class="header-actions">
       <span id="clock" style="color:var(--muted); font-size:0.78rem; font-weight:600;"></span>
-      <span class="live-badge"><span class="dot"></span> SPOT + PKR BULLION LIVE</span>
-      <button class="btn" onclick="document.body.classList.toggle('astra-mode')">Light / Dark</button>
+      <span class="live-badge"><span class="dot"></span> LIVE</span>
+      <a href="https://t.me/AapkaTelegramChannelLink" target="_blank" class="btn btn-tg">📢 Telegram</a>
+      <a href="https://www.instagram.com/mushtaritrader?exln=bW81dDl2N2lkdHhl" target="_blank" class="btn btn-ig">📸 Instagram</a>
+      <a href="app-release.apk" download class="btn">📥 Download App</a>
+      <button class="btn" onclick="document.body.classList.toggle('astra-mode')">Light/Dark</button>
     </div>
   </header>
 
   <div class="container">
 
-    <!-- 3. LIVE ALGORITHMIC SIGNALS: GOLD, SILVER, GOLD IN PKR, SILVER IN PKR, BTC & ETH -->
+    <!-- 3. LIVE ALGORITHMIC SIGNALS -->
     <div class="section-label">
       <span>🎯 Live SMC Signals & Pakistan Bullion Rates (Gold, Silver, PKR Tola, BTC & ETH)</span>
       <span id="usdpkr-display" style="color:var(--green); font-size:0.76rem;">● Synced with Live Spot & USD/PKR</span>
     </div>
     <div class="signal-grid">
 
-      <!-- 1. GOLD (USD) SIGNAL CARD -->
+      <!-- GOLD (USD) -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -279,7 +274,7 @@
         </div>
       </div>
 
-      <!-- 2. SILVER (USD) SIGNAL CARD -->
+      <!-- SILVER (USD) -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -299,7 +294,7 @@
         </div>
       </div>
 
-      <!-- 3. GOLD IN PKR (PAKISTAN 24K BULLION) CARD -->
+      <!-- GOLD IN PKR -->
       <div class="sig-card pkr-card">
         <div>
           <div class="sig-header">
@@ -319,7 +314,7 @@
         </div>
       </div>
 
-      <!-- 4. SILVER IN PKR (PAKISTAN 24K CHANDI) CARD -->
+      <!-- SILVER IN PKR -->
       <div class="sig-card pkr-card">
         <div>
           <div class="sig-header">
@@ -339,7 +334,7 @@
         </div>
       </div>
 
-      <!-- 5. BITCOIN SIGNAL CARD -->
+      <!-- BITCOIN -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -359,7 +354,7 @@
         </div>
       </div>
 
-      <!-- 6. ETHEREUM SIGNAL CARD -->
+      <!-- ETHEREUM -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -381,7 +376,7 @@
 
     </div>
 
-    <!-- 4. MAIN TERMINAL GRID: LIVE CHART + MULTI-ASSET WATCHLIST -->
+    <!-- 4. CHARTS & QUOTES -->
     <div class="top-grid">
       
       <div class="card" style="height: 520px; display:flex; flex-direction:column;">
@@ -480,7 +475,7 @@
 
     </div>
 
-    <!-- 5. HOURLY AUTO-UPDATING BREAKING NEWS + ECONOMIC CALENDAR -->
+    <!-- 5. NEWS & CALENDAR -->
     <div class="section-label">
       <span>📰 Hourly Live Breaking News & High-Impact USD Economic Calendar</span>
       <span style="color:var(--muted); font-size:0.75rem;">Auto-Refreshes Every Hour</span>
@@ -580,7 +575,7 @@
 
   </div>
 
-  <!-- UNIFIED SPOT GOLD, SILVER, PKR BULLION, BTC & ETH SIGNAL ENGINE -->
+  <!-- SCRIPT ENGINE -->
   <script>
     setInterval(() => {
       const now = new Date();
@@ -697,7 +692,7 @@
           updatePkrBullion('XAU', spotXau, 12.00, stXau);
         }
         const resAg = await fetch('https://api.gold-api.com/price/XAG');
-        const dataAg = await res.json();
+        const dataAg = await resAg.json();
         if (dataAg && dataAg.price) {
           spotXag = parseFloat(dataAg.price);
           const stXag = updateSignalCard('XAG', spotXag, spotXag * 1.012, spotXag * 0.988, 2, 0.35);
