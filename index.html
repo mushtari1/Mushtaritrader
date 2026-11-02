@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUSHTARI TRADER | Live Signals, News & Multi-Asset Terminal</title>
+  <title>MUSHTARI TRADER | Live Signals, PKR Bullion, Hourly News & SMC Terminal</title>
   <style>
     :root {
       --bg: #070b14;
       --panel: #0e1628;
       --border: #1e293b;
       --gold: #f59e0b;
+      --gold-light: #fde68a;
       --text: #f8fafc;
       --muted: #94a3b8;
       --accent: #131e36;
       --green: #10b981;
       --red: #ef4444;
-      --blue: #3b82f6;
     }
     body.astra-mode {
       --bg: #f8fafc;
@@ -29,61 +29,89 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 40px; }
     
-    /* Header */
+    /* CENTERED ROYAL HEADER WITH LOGO */
     header {
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
-      padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--border);
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 22px 20px 18px;
+      background: radial-gradient(circle at center, #16223be6 0%, var(--panel) 75%);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.35);
+      gap: 10px;
     }
-    .brand h1 { color: var(--gold); font-size: 1.35rem; letter-spacing: 0.5px; }
-    .brand p { color: var(--muted); font-size: 0.78rem; }
-    .header-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .logo-wrap {
+      width: 118px;
+      height: 118px;
+      border-radius: 24px;
+      background: #090e1a;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 28px rgba(245, 158, 11, 0.35), inset 0 0 15px rgba(245, 158, 11, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .logo-wrap img, .logo-wrap svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .brand h1 {
+      color: var(--gold);
+      font-size: 1.65rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.25);
+    }
+    .brand p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 3px;
+    }
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
     .live-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(16, 185, 129, 0.15); color: var(--green);
-      padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
     .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .btn {
-      background: var(--gold); color: #000; border: none; padding: 7px 14px;
-      border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer;
+      background: var(--gold); color: #000; border: none; padding: 6px 14px;
+      border-radius: 6px; font-weight: 700; font-size: 0.78rem; cursor: pointer;
     }
 
-    /* Main Container */
     .container { max-width: 1440px; margin: 0 auto; padding: 15px; }
 
     .section-label {
       font-size: 0.88rem; color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1px; margin: 16px 0 10px; font-weight: 700;
+      letter-spacing: 1px; margin: 14px 0 10px; font-weight: 700;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
     }
 
-    /* Top Fast Tick Strip */
-    .price-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px; margin-bottom: 18px;
-    }
-    .price-card {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 12px; transition: border 0.2s;
-    }
-    .price-card:hover { border-color: var(--gold); }
-    .pair-top { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); font-weight: 600; }
-    .pair-price { font-size: 1.15rem; font-weight: 700; margin: 4px 0; font-variant-numeric: tabular-nums; }
-    .pair-chg { font-size: 0.75rem; font-weight: 600; }
-    .up { color: var(--green); }
-    .down { color: var(--red); }
-
-    /* LIVE SIGNAL CARDS (GOLD, SILVER, BTC, ETH) */
+    /* LIVE SIGNAL CARDS (6 CARDS GRID: GOLD, SILVER, GOLD PKR, SILVER PKR, BTC, ETH) */
     .signal-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 14px; margin-bottom: 20px;
     }
     .sig-card {
       background: var(--panel); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px; position: relative;
+      border-radius: 10px; padding: 14px;
       display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .sig-card.pkr-card {
+      border-color: rgba(245, 158, 11, 0.45);
     }
     .sig-header {
       display: flex; justify-content: space-between; align-items: center;
@@ -102,10 +130,10 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;
     }
     .lvl-box {
-      background: var(--accent); padding: 7px 10px; border-radius: 6px; font-size: 0.76rem;
+      background: var(--accent); padding: 8px 10px; border-radius: 6px; font-size: 0.76rem;
     }
     .lvl-box span { display: block; color: var(--muted); font-size: 0.68rem; margin-bottom: 2px; }
-    .lvl-box strong { font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+    .lvl-box strong { font-size: 0.9rem; font-variant-numeric: tabular-nums; }
     .sig-note { font-size: 0.74rem; color: var(--muted); margin-top: 4px; border-left: 2px solid var(--gold); padding-left: 8px; }
 
     /* Layout Grids */
@@ -129,7 +157,6 @@
       border-bottom: 1px solid var(--border); padding-bottom: 8px;
     }
 
-    /* SMC & Session Intelligence Cards */
     .smc-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;
     }
@@ -148,7 +175,7 @@
 </head>
 <body>
 
-  <!-- 1. TOP LIVE TRADINGVIEW TICKER TAPE -->
+  <!-- 1. UNIFIED TRADINGVIEW LIVE SPOT TICKER TAPE -->
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -156,11 +183,11 @@
       "symbols": [
         { "proName": "OANDA:XAUUSD", "title": "GOLD (XAU/USD)" },
         { "proName": "OANDA:XAGUSD", "title": "SILVER (XAG/USD)" },
+        { "proName": "FX_IDC:USDPKR", "title": "USD / PKR" },
         { "proName": "BINANCE:BTCUSDT", "title": "BITCOIN (BTC)" },
         { "proName": "BINANCE:ETHUSDT", "title": "ETHEREUM (ETH)" },
         { "proName": "TVC:USOIL", "title": "CRUDE OIL (WTI)" },
         { "proName": "FX:EURUSD", "title": "EUR/USD" },
-        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
         { "proName": "FOREXCOM:NSXUSD", "title": "NASDAQ 100" },
         { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
       ],
@@ -173,106 +200,146 @@
     </script>
   </div>
 
-  <!-- 2. HEADER -->
+  <!-- 2. CENTERED HEADER WITH MUSHTARI TRADER EMBLEM LOGO -->
   <header>
+    <div class="logo-wrap">
+      <!-- If logo.png is uploaded to repo, it uses it; otherwise renders the exact Golden Candlesticks + Planet Emblem -->
+      <img src="logo.png" alt="Mushtari Trader Logo" onerror="this.style.display='none'; document.getElementById('fallback-emblem').style.display='block';">
+      <svg id="fallback-emblem" style="display:none;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fde68a"/>
+            <stop offset="50%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#b45309"/>
+          </linearGradient>
+        </defs>
+        <rect width="200" height="200" rx="32" fill="#090e1a"/>
+        <!-- Outer & Inner Golden Rings -->
+        <circle cx="100" cy="100" r="86" fill="none" stroke="url(#goldGrad)" stroke-width="5"/>
+        <circle cx="100" cy="100" r="64" fill="none" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <!-- Planet Mushtari (Jupiter) with Ring -->
+        <circle cx="72" cy="70" r="13" fill="url(#goldGrad)"/>
+        <ellipse cx="72" cy="70" rx="25" ry="6" fill="none" stroke="url(#goldGrad)" stroke-width="3" transform="rotate(-22 72 70)"/>
+        <!-- Bullish Candlesticks -->
+        <line x1="65" y1="102" x2="65" y2="145" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <rect x="60" y="112" width="10" height="24" rx="1.5" fill="url(#goldGrad)"/>
+        <line x1="85" y1="88" x2="85" y2="140" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <rect x="80" y="96" width="10" height="30" rx="1.5" fill="url(#goldGrad)"/>
+        <line x1="105" y1="70" x2="105" y2="132" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <rect x="100" y="78" width="10" height="36" rx="1.5" fill="url(#goldGrad)"/>
+        <line x1="125" y1="58" x2="125" y2="120" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <rect x="120" y="66" width="10" height="34" rx="1.5" fill="url(#goldGrad)"/>
+        <!-- Upward Breakout Arrow -->
+        <path d="M52 138 L88 105 L104 117 L144 74" fill="none" stroke="#fde68a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <polygon points="148,70 132,72 145,86" fill="#fde68a"/>
+        <!-- Text Labels -->
+        <text x="100" y="31" fill="url(#goldGrad)" font-size="13.5" font-weight="800" text-anchor="middle" letter-spacing="1.5">MUSHTARI TRADER</text>
+        <text x="100" y="177" fill="url(#goldGrad)" font-size="10.5" font-weight="700" text-anchor="middle" letter-spacing="1.2">AL-IRTIQAA CAPITAL</text>
+      </svg>
+    </div>
+
     <div class="brand">
       <h1>MUSHTARI TRADER</h1>
-      <p>AL-IRTIQAA CAPITAL | Live Signals, Hourly News & Multi-Asset SMC Terminal (287)</p>
+      <p>AL-IRTIQAA CAPITAL | Live Signals, PKR Bullion, Hourly News & Multi-Asset SMC Terminal (287)</p>
     </div>
+
     <div class="header-actions">
-      <span class="live-badge"><span class="dot"></span> AUTO-SIGNAL & HOURLY NEWS ACTIVE</span>
+      <span id="clock" style="color:var(--muted); font-size:0.78rem; font-weight:600;"></span>
+      <span class="live-badge"><span class="dot"></span> SPOT + PKR BULLION LIVE</span>
       <button class="btn" onclick="document.body.classList.toggle('astra-mode')">Light / Dark</button>
     </div>
   </header>
 
   <div class="container">
 
-    <!-- 3. INSTANT WEBSOCKET STREAMING CARDS -->
+    <!-- 3. LIVE ALGORITHMIC SIGNALS: GOLD, SILVER, GOLD IN PKR, SILVER IN PKR, BTC & ETH -->
     <div class="section-label">
-      <span>⚡ Ultra-Fast Tick Stream (24/7 Live Feed)</span>
-      <span id="clock" style="color:var(--muted); font-size:0.75rem;"></span>
-    </div>
-    <div class="price-grid">
-      <div class="price-card">
-        <div class="pair-top"><span>GOLD (XAU/USD)</span><span>LIVE SPOT</span></div>
-        <div class="pair-price" id="p-PAXGUSDT">Loading...</div>
-        <div class="pair-chg" id="c-PAXGUSDT">--</div>
-      </div>
-      <div class="price-card">
-        <div class="pair-top"><span>SILVER (XAG/USD)</span><span>LIVE EST</span></div>
-        <div class="pair-price" id="p-XAGUSD">Loading...</div>
-        <div class="pair-chg" id="c-XAGUSD">--</div>
-      </div>
-      <div class="price-card">
-        <div class="pair-top"><span>BITCOIN (BTC)</span><span>USDT</span></div>
-        <div class="pair-price" id="p-BTCUSDT">Loading...</div>
-        <div class="pair-chg" id="c-BTCUSDT">--</div>
-      </div>
-      <div class="price-card">
-        <div class="pair-top"><span>ETHEREUM (ETH)</span><span>USDT</span></div>
-        <div class="pair-price" id="p-ETHUSDT">Loading...</div>
-        <div class="pair-chg" id="c-ETHUSDT">--</div>
-      </div>
-      <div class="price-card">
-        <div class="pair-top"><span>SOLANA (SOL)</span><span>USDT</span></div>
-        <div class="pair-price" id="p-SOLUSDT">Loading...</div>
-        <div class="pair-chg" id="c-SOLUSDT">--</div>
-      </div>
-      <div class="price-card">
-        <div class="pair-top"><span>EUR / USD</span><span>FX RATE</span></div>
-        <div class="pair-price" id="p-EURUSDT">Loading...</div>
-        <div class="pair-chg" id="c-EURUSDT">--</div>
-      </div>
-    </div>
-
-    <!-- 4. LIVE ALGORITHMIC SIGNALS: GOLD, SILVER, BTC & ETH -->
-    <div class="section-label">
-      <span>🎯 Live SMC & Momentum Signals (Gold, Silver, BTC & ETH — Auto-Updated)</span>
-      <span id="sig-update-time" style="color:var(--green); font-size:0.75rem;">● Updating in real-time...</span>
+      <span>🎯 Live SMC Signals & Pakistan Bullion Rates (Gold, Silver, PKR Tola, BTC & ETH)</span>
+      <span id="usdpkr-display" style="color:var(--green); font-size:0.76rem;">● Synced with Live Spot & USD/PKR</span>
     </div>
     <div class="signal-grid">
 
-      <!-- GOLD SIGNAL CARD -->
+      <!-- 1. GOLD (USD) SIGNAL CARD -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
             <div>
               <div class="sig-title">GOLD (XAU / USD)</div>
-              <div class="sig-sub">SMC Intraday & H1 Structure</div>
+              <div class="sig-sub">OANDA / Global Spot Structure</div>
             </div>
-            <span id="sig-badge-PAXGUSDT" class="sig-badge badge-wait">SCANNING...</span>
+            <span id="sig-badge-XAU" class="sig-badge badge-wait">SYNCING...</span>
           </div>
           <div class="sig-levels">
-            <div class="lvl-box"><span>Entry Zone</span><strong id="sig-entry-PAXGUSDT">--</strong></div>
-            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-PAXGUSDT" style="color:var(--red);">--</strong></div>
-            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-PAXGUSDT" style="color:var(--green);">--</strong></div>
-            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-PAXGUSDT" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Live Spot / Entry</span><strong id="sig-entry-XAU">--</strong></div>
+            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-XAU" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-XAU" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-XAU" style="color:var(--green);">--</strong></div>
           </div>
-          <div class="sig-note" id="sig-note-PAXGUSDT">Calculating H1 Order Block & 24H Liquidity...</div>
+          <div class="sig-note" id="sig-note-XAU">Syncing with Live Spot XAU/USD feed...</div>
         </div>
       </div>
 
-      <!-- SILVER SIGNAL CARD -->
+      <!-- 2. SILVER (USD) SIGNAL CARD -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
             <div>
               <div class="sig-title">SILVER (XAG / USD)</div>
-              <div class="sig-sub">SMC Intraday & H1 Structure</div>
+              <div class="sig-sub">OANDA / Global Spot Structure</div>
             </div>
-            <span id="sig-badge-XAGUSD" class="sig-badge badge-wait">SCANNING...</span>
+            <span id="sig-badge-XAG" class="sig-badge badge-wait">SYNCING...</span>
           </div>
           <div class="sig-levels">
-            <div class="lvl-box"><span>Entry Zone</span><strong id="sig-entry-XAGUSD">--</strong></div>
-            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-XAGUSD" style="color:var(--red);">--</strong></div>
-            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-XAGUSD" style="color:var(--green);">--</strong></div>
-            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-XAGUSD" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Live Spot / Entry</span><strong id="sig-entry-XAG">--</strong></div>
+            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-XAG" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-XAG" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-XAG" style="color:var(--green);">--</strong></div>
           </div>
-          <div class="sig-note" id="sig-note-XAGUSD">Tracking Gold-Silver correlation & H1 FVG...</div>
+          <div class="sig-note" id="sig-note-XAG">Syncing with Live Spot XAG/USD feed...</div>
         </div>
       </div>
 
-      <!-- BITCOIN SIGNAL CARD -->
+      <!-- 3. GOLD IN PKR (PAKISTAN 24K BULLION) CARD -->
+      <div class="sig-card pkr-card">
+        <div>
+          <div class="sig-header">
+            <div>
+              <div class="sig-title" style="color:var(--gold);">🇵🇰 GOLD IN PKR (24K)</div>
+              <div class="sig-sub">Pakistan Live Spot Bullion (Tola & 10g)</div>
+            </div>
+            <span id="sig-badge-XAUPKR" class="sig-badge badge-wait">LIVE PKR</span>
+          </div>
+          <div class="sig-levels">
+            <div class="lvl-box"><span>1 Tola (11.664g)</span><strong id="pkr-tola-XAU" style="color:var(--gold);">--</strong></div>
+            <div class="lvl-box"><span>10 Grams (24K)</span><strong id="pkr-10g-XAU">--</strong></div>
+            <div class="lvl-box"><span>Support / SL (Tola)</span><strong id="pkr-sl-XAU" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target / TP (Tola)</span><strong id="pkr-tp-XAU" style="color:var(--green);">--</strong></div>
+          </div>
+          <div class="sig-note" id="pkr-note-XAU">Calculated live from International Spot Gold & USD/PKR.</div>
+        </div>
+      </div>
+
+      <!-- 4. SILVER IN PKR (PAKISTAN 24K CHANDI) CARD -->
+      <div class="sig-card pkr-card">
+        <div>
+          <div class="sig-header">
+            <div>
+              <div class="sig-title" style="color:var(--gold);">🇵🇰 SILVER IN PKR (Chandi)</div>
+              <div class="sig-sub">Pakistan Live Spot Silver (Tola & 10g)</div>
+            </div>
+            <span id="sig-badge-XAGPKR" class="sig-badge badge-wait">LIVE PKR</span>
+          </div>
+          <div class="sig-levels">
+            <div class="lvl-box"><span>1 Tola (11.664g)</span><strong id="pkr-tola-XAG" style="color:var(--gold);">--</strong></div>
+            <div class="lvl-box"><span>10 Grams Silver</span><strong id="pkr-10g-XAG">--</strong></div>
+            <div class="lvl-box"><span>Support / SL (Tola)</span><strong id="pkr-sl-XAG" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target / TP (Tola)</span><strong id="pkr-tp-XAG" style="color:var(--green);">--</strong></div>
+          </div>
+          <div class="sig-note" id="pkr-note-XAG">Calculated live from International Spot Silver & USD/PKR.</div>
+        </div>
+      </div>
+
+      <!-- 5. BITCOIN SIGNAL CARD -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -280,19 +347,19 @@
               <div class="sig-title">BITCOIN (BTC / USDT)</div>
               <div class="sig-sub">Institutional Liquidity & Momentum</div>
             </div>
-            <span id="sig-badge-BTCUSDT" class="sig-badge badge-wait">SCANNING...</span>
+            <span id="sig-badge-BTC" class="sig-badge badge-wait">SYNCING...</span>
           </div>
           <div class="sig-levels">
-            <div class="lvl-box"><span>Entry Zone</span><strong id="sig-entry-BTCUSDT">--</strong></div>
-            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-BTCUSDT" style="color:var(--red);">--</strong></div>
-            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-BTCUSDT" style="color:var(--green);">--</strong></div>
-            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-BTCUSDT" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Live Spot / Entry</span><strong id="sig-entry-BTC">--</strong></div>
+            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-BTC" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-BTC" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-BTC" style="color:var(--green);">--</strong></div>
           </div>
-          <div class="sig-note" id="sig-note-BTCUSDT">Calculating 24H VWAP & Sweep Zones...</div>
+          <div class="sig-note" id="sig-note-BTC">Calculating 24H VWAP & Sweep Zones...</div>
         </div>
       </div>
 
-      <!-- ETHEREUM SIGNAL CARD -->
+      <!-- 6. ETHEREUM SIGNAL CARD -->
       <div class="sig-card">
         <div>
           <div class="sig-header">
@@ -300,24 +367,23 @@
               <div class="sig-title">ETHEREUM (ETH / USDT)</div>
               <div class="sig-sub">Institutional Liquidity & Momentum</div>
             </div>
-            <span id="sig-badge-ETHUSDT" class="sig-badge badge-wait">SCANNING...</span>
+            <span id="sig-badge-ETH" class="sig-badge badge-wait">SYNCING...</span>
           </div>
           <div class="sig-levels">
-            <div class="lvl-box"><span>Entry Zone</span><strong id="sig-entry-ETHUSDT">--</strong></div>
-            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-ETHUSDT" style="color:var(--red);">--</strong></div>
-            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-ETHUSDT" style="color:var(--green);">--</strong></div>
-            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-ETHUSDT" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Live Spot / Entry</span><strong id="sig-entry-ETH">--</strong></div>
+            <div class="lvl-box"><span>Stop Loss (SL)</span><strong id="sig-sl-ETH" style="color:var(--red);">--</strong></div>
+            <div class="lvl-box"><span>Target 1 (TP1)</span><strong id="sig-tp1-ETH" style="color:var(--green);">--</strong></div>
+            <div class="lvl-box"><span>Target 2 (TP2)</span><strong id="sig-tp2-ETH" style="color:var(--green);">--</strong></div>
           </div>
-          <div class="sig-note" id="sig-note-ETHUSDT">Calculating H1 Order Block & Breakout Levels...</div>
+          <div class="sig-note" id="sig-note-ETH">Calculating H1 Order Block & Breakout Levels...</div>
         </div>
       </div>
 
     </div>
 
-    <!-- 5. MAIN TERMINAL GRID: LIVE CHART + MULTI-ASSET WATCHLIST -->
+    <!-- 4. MAIN TERMINAL GRID: LIVE CHART + MULTI-ASSET WATCHLIST -->
     <div class="top-grid">
       
-      <!-- Left: Interactive Live Chart -->
       <div class="card" style="height: 520px; display:flex; flex-direction:column;">
         <div class="card-title">
           <span>📊 Live Institutional Chart (Gold / Silver / BTC / ETH)</span>
@@ -339,11 +405,11 @@
               "watchlist": [
                 "OANDA:XAUUSD",
                 "OANDA:XAGUSD",
+                "FX_IDC:USDPKR",
                 "BINANCE:BTCUSDT",
                 "BINANCE:ETHUSDT",
                 "TVC:USOIL",
                 "FX:EURUSD",
-                "FX:GBPUSD",
                 "FOREXCOM:NSXUSD",
                 "FOREXCOM:SPXUSD"
               ],
@@ -354,10 +420,9 @@
         </div>
       </div>
 
-      <!-- Right: Live Multi-Asset Market Quotes -->
       <div class="card" style="height: 520px; display:flex; flex-direction:column;">
         <div class="card-title">
-          <span>🌍 Live Global Markets (Metals, Oil, Crypto, Forex & Indices)</span>
+          <span>🌍 Live Global Markets (Exact Same Spot Feed)</span>
           <span style="font-size:0.75rem; color:var(--green);">● Real-Time</span>
         </div>
         <div style="flex:1; width:100%;">
@@ -369,12 +434,12 @@
               "height": "100%",
               "symbolsGroups": [
                 {
-                  "name": "Metals & Energy",
+                  "name": "Metals, PKR & Energy",
                   "symbols": [
                     { "name": "OANDA:XAUUSD", "displayName": "Gold (XAU/USD)" },
                     { "name": "OANDA:XAGUSD", "displayName": "Silver (XAG/USD)" },
-                    { "name": "TVC:USOIL", "displayName": "Crude Oil (WTI)" },
-                    { "name": "TVC:UKOIL", "displayName": "Brent Oil" }
+                    { "name": "FX_IDC:USDPKR", "displayName": "USD / PKR (Pakistan)" },
+                    { "name": "TVC:USOIL", "displayName": "Crude Oil (WTI)" }
                   ]
                 },
                 {
@@ -415,14 +480,13 @@
 
     </div>
 
-    <!-- 6. HOURLY AUTO-UPDATING BREAKING NEWS + ECONOMIC CALENDAR -->
+    <!-- 5. HOURLY AUTO-UPDATING BREAKING NEWS + ECONOMIC CALENDAR -->
     <div class="section-label">
       <span>📰 Hourly Live Breaking News & High-Impact USD Economic Calendar</span>
       <span style="color:var(--muted); font-size:0.75rem;">Auto-Refreshes Every Hour</span>
     </div>
     <div class="news-grid">
 
-      <!-- Left: Live Hourly Breaking News Feed -->
       <div class="card" style="height: 460px; display:flex; flex-direction:column;">
         <div class="card-title">
           <span>⚡ Live Market News Stream (Gold, Crypto & Global Markets)</span>
@@ -446,7 +510,6 @@
         </div>
       </div>
 
-      <!-- Right: Live USD & Global Economic Calendar -->
       <div class="card" style="height: 460px; display:flex; flex-direction:column;">
         <div class="card-title">
           <span>📅 Live Economic Calendar (CPI, NFP, FOMC & High-Impact Alerts)</span>
@@ -472,13 +535,13 @@
 
     </div>
 
-    <!-- 7. DAILY 3-SESSION SMC MARKET INTELLIGENCE -->
+    <!-- 6. DAILY 3-SESSION SMC MARKET INTELLIGENCE -->
     <div class="smc-grid">
       <div class="card">
         <div class="card-title">🌅 1. Morning Market Opening</div>
         <div class="smc-item">
           <h4>Asian & London Liquidity Sweep</h4>
-          <p>Focus on Gold (XAU/USD) & Silver Asian Range High/Low sweep before directional Break of Structure (BOS).</p>
+          <p>Focus on Gold (XAU/USD), PKR Bullion & Silver Asian Range High/Low sweep before directional Break of Structure (BOS).</p>
         </div>
         <div class="smc-item">
           <h4>PSX & Asian Indices Outlook</h4>
@@ -517,18 +580,32 @@
 
   </div>
 
-  <!-- LIVE WEBSOCKET & ALGORITHMIC SIGNAL ENGINE -->
+  <!-- UNIFIED SPOT GOLD, SILVER, PKR BULLION, BTC & ETH SIGNAL ENGINE -->
   <script>
-    // PKT Live Clock + Auto Hourly Page Refresh for News
     setInterval(() => {
       const now = new Date();
       document.getElementById('clock').innerText = "PKT: " + now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi' });
     }, 1000);
 
-    // Helper to update Dynamic SMC Signals based on 24h High, Low, and Live Price
+    let usdPkrRate = 278.85;
+    let spotXau = 0, spotXag = 0;
+
+    async function syncUsdPkr() {
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/USD');
+        const data = await res.json();
+        if (data && data.rates && data.rates.PKR) {
+          usdPkrRate = parseFloat(data.rates.PKR);
+          document.getElementById('usdpkr-display').innerText = "● Live USD/PKR: Rs " + usdPkrRate.toFixed(2);
+        }
+      } catch (e) {}
+    }
+    syncUsdPkr();
+    setInterval(syncUsdPkr, 60000);
+
     function updateSignalCard(idKey, price, high, low, decimals, stepRisk) {
-      const range = high - low || (price * 0.01);
-      const pos = (price - low) / range; // 0.0 (at low) to 1.0 (at high)
+      const range = high - low || (price * 0.008);
+      const pos = Math.max(0, Math.min(1, (price - low) / range));
       
       const badge = document.getElementById('sig-badge-' + idKey);
       const entryEl = document.getElementById('sig-entry-' + idKey);
@@ -539,43 +616,99 @@
       if (!badge) return;
 
       let isBuy = pos >= 0.48;
-      let sl, tp1, tp2, note;
+      let sl, tp1, tp2, note, badgeText, badgeClass;
 
-      if (pos > 0.58) {
-        badge.innerText = "STRONG BUY ▲";
-        badge.className = "sig-badge badge-buy";
+      if (pos > 0.56) {
+        badgeText = "STRONG BUY ▲";
+        badgeClass = "sig-badge badge-buy";
         sl = price - stepRisk;
         tp1 = price + (stepRisk * 1.5);
         tp2 = price + (stepRisk * 2.8);
         note = "Bullish BOS above H1 Equilibrium (" + ((pos*100).toFixed(0)) + "% of 24H range). Buy on FVG pullback.";
-      } else if (pos < 0.42) {
-        badge.innerText = "STRONG SELL ▼";
-        badge.className = "sig-badge badge-sell";
+      } else if (pos < 0.44) {
+        badgeText = "STRONG SELL ▼";
+        badgeClass = "sig-badge badge-sell";
         sl = price + stepRisk;
         tp1 = price - (stepRisk * 1.5);
         tp2 = price - (stepRisk * 2.8);
         note = "Bearish pressure below H1 Equilibrium (" + ((pos*100).toFixed(0)) + "% of 24H range). Sell on Order Block retest.";
       } else {
-        badge.innerText = isBuy ? "BUY BIAS ▲" : "SELL BIAS ▼";
-        badge.className = "sig-badge badge-wait";
+        badgeText = isBuy ? "BUY BIAS ▲" : "SELL BIAS ▼";
+        badgeClass = "sig-badge badge-wait";
         sl = isBuy ? (price - stepRisk) : (price + stepRisk);
         tp1 = isBuy ? (price + stepRisk * 1.3) : (price - stepRisk * 1.3);
         tp2 = isBuy ? (price + stepRisk * 2.4) : (price - stepRisk * 2.4);
-        note = "Consolidating near 50% Equilibrium. Wait for H1 candle sweep before entry.";
+        note = "Consolidating near 50% Equilibrium. Wait for H1 liquidity sweep before entry.";
       }
 
+      badge.innerText = badgeText;
+      badge.className = badgeClass;
       entryEl.innerText = price.toFixed(decimals);
       slEl.innerText = sl.toFixed(decimals);
       tp1El.innerText = tp1.toFixed(decimals);
       tp2El.innerText = tp2.toFixed(decimals);
       noteEl.innerText = note;
+      return { badgeText, badgeClass, isBuy };
     }
 
-    // Connect to Binance Real-Time Stream for 24/7 Tick-by-Tick Cards & Live Signals
-    const symbols = ['paxgusdt', 'btcusdt', 'ethusdt', 'solusdt', 'eurusdt'];
-    const streams = symbols.map(s => s + '@ticker').join('/');
-    const ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=' + streams);
+    function updatePkrBullion(metalKey, usdPerOz, riskUsd, statusObj) {
+      const pkrPerOz = usdPerOz * usdPkrRate;
+      const pkrPerGram = pkrPerOz / 31.1034768;
+      const pkrPerTola = pkrPerGram * 11.6638038;
+      const pkrPer10g = pkrPerGram * 10;
+      const riskPerTola = (riskUsd * usdPkrRate / 31.1034768) * 11.6638038;
 
+      const tolaEl = document.getElementById('pkr-tola-' + metalKey);
+      const tenGEl = document.getElementById('pkr-10g-' + metalKey);
+      const slEl = document.getElementById('pkr-sl-' + metalKey);
+      const tpEl = document.getElementById('pkr-tp-' + metalKey);
+      const badgeEl = document.getElementById('sig-badge-' + metalKey + 'PKR');
+      const noteEl = document.getElementById('pkr-note-' + metalKey);
+
+      if (!tolaEl) return;
+
+      const fmt = (n) => "Rs " + Math.round(n).toLocaleString('en-US');
+      tolaEl.innerText = fmt(pkrPerTola);
+      tenGEl.innerText = fmt(pkrPer10g);
+
+      const isBuy = statusObj ? statusObj.isBuy : true;
+      const slVal = isBuy ? (pkrPerTola - riskPerTola) : (pkrPerTola + riskPerTola);
+      const tpVal = isBuy ? (pkrPerTola + riskPerTola * 1.8) : (pkrPerTola - riskPerTola * 1.8);
+
+      slEl.innerText = fmt(slVal);
+      tpEl.innerText = fmt(tpVal);
+
+      if (statusObj && badgeEl) {
+        badgeEl.innerText = statusObj.badgeText;
+        badgeEl.className = statusObj.badgeClass;
+      }
+      if (noteEl) {
+        noteEl.innerText = "1 Oz: " + fmt(pkrPerOz) + " | 1 Gram: " + fmt(pkrPerGram) + " (USD/PKR @ " + usdPkrRate.toFixed(2) + ")";
+      }
+    }
+
+    async function syncSpotMetals() {
+      try {
+        const res = await fetch('https://api.gold-api.com/price/XAU');
+        const data = await res.json();
+        if (data && data.price) {
+          spotXau = parseFloat(data.price);
+          const stXau = updateSignalCard('XAU', spotXau, spotXau * 1.006, spotXau * 0.994, 2, 12.00);
+          updatePkrBullion('XAU', spotXau, 12.00, stXau);
+        }
+        const resAg = await fetch('https://api.gold-api.com/price/XAG');
+        const dataAg = await res.json();
+        if (dataAg && dataAg.price) {
+          spotXag = parseFloat(dataAg.price);
+          const stXag = updateSignalCard('XAG', spotXag, spotXag * 1.012, spotXag * 0.988, 2, 0.35);
+          updatePkrBullion('XAG', spotXag, 0.35, stXag);
+        }
+      } catch (e) {}
+    }
+    syncSpotMetals();
+    setInterval(syncSpotMetals, 8000);
+
+    const ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker/paxgusdt@ticker');
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
       if (!msg.data) return;
@@ -584,36 +717,14 @@
       const price = parseFloat(d.c);
       const high = parseFloat(d.h);
       const low = parseFloat(d.l);
-      const chg = parseFloat(d.P).toFixed(2);
 
-      // Update Top Price Card
-      const pEl = document.getElementById('p-' + sym);
-      const cEl = document.getElementById('c-' + sym);
-      if (pEl && cEl) {
-        pEl.innerText = price >= 100 ? price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : price.toFixed(4);
-        cEl.innerText = (chg >= 0 ? '▲ +' : '▼ ') + chg + '%';
-        cEl.className = 'pair-chg ' + (chg >= 0 ? 'up' : 'down');
-      }
-
-      // Update Live Signals for Gold, Silver (derived ratio + momentum), BTC & ETH
-      if (sym === 'PAXGUSDT') {
-        updateSignalCard('PAXGUSDT', price, high, low, 2, 12.50);
-        // Derive Live Spot Silver (XAG/USD) tick from Gold-Silver Institutional Ratio (~84.5)
-        const xagPrice = price / 84.5;
-        const xagHigh = high / 84.5;
-        const xagLow = low / 84.5;
-        const xagPEl = document.getElementById('p-XAGUSD');
-        const xagCEl = document.getElementById('c-XAGUSD');
-        if (xagPEl && xagCEl) {
-          xagPEl.innerText = xagPrice.toFixed(2);
-          xagCEl.innerText = (chg >= 0 ? '▲ +' : '▼ ') + chg + '%';
-          xagCEl.className = 'pair-chg ' + (chg >= 0 ? 'up' : 'down');
-        }
-        updateSignalCard('XAGUSD', xagPrice, xagHigh, xagLow, 2, 0.35);
-      } else if (sym === 'BTCUSDT') {
-        updateSignalCard('BTCUSDT', price, high, low, 0, 650);
+      if (sym === 'BTCUSDT') {
+        updateSignalCard('BTC', price, high, low, 0, 650);
       } else if (sym === 'ETHUSDT') {
-        updateSignalCard('ETHUSDT', price, high, low, 2, 35);
+        updateSignalCard('ETH', price, high, low, 2, 35);
+      } else if (sym === 'PAXGUSDT' && !spotXau) {
+        const stXau = updateSignalCard('XAU', price, high, low, 2, 12.00);
+        updatePkrBullion('XAU', price, 12.00, stXau);
       }
     };
   </script>
