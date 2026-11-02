@@ -1,124 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MUSHTARI TRADER | Live SMC & Watchlist Terminal</title>
-<style>
-  :root { --bg:#070b14; --panel:#0e1628; --border:#c9a24b; --text:#f0f4f8; --muted:#94a3b8; --gold:#f5c542; --up:#10b981; --down:#ef4444; --accent:#1e293b; }
-  body.astra-mode { --bg:#f8fafc; --panel:#ffffff; --border:#cbd5e1; --text:#0f172a; --muted:#64748b; --gold:#0284c7; --up:#059669; --down:#dc2626; --accent:#f1f5f9; }
-  * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',Roboto,monospace; }
-  body { background:var(--bg); color:var(--text); padding:12px; transition:0.3s; }
-  header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; background:var(--panel); border:1px solid var(--border); padding:12px 16px; border-radius:10px; margin-bottom:12px; gap:10px; }
-  .brand h1 { color:var(--gold); font-size:1.3rem; }
-  .brand p { color:var(--muted); font-size:0.78rem; }
-  .btn { background:var(--gold); color:#000; border:none; padding:8px 12px; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.78rem; }
-  .top-grid { display:grid; grid-template-columns:2fr 1fr; gap:12px; margin-bottom:12px; }
-  @media(max-width:850px){ .top-grid { grid-template-columns:1fr; } }
-  .card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:12px; }
-  .card-title { font-size:0.85rem; font-weight:700; color:var(--gold); border-bottom:1px solid var(--border); padding-bottom:6px; margin-bottom:10px; display:flex; justify-content:space-between; }
-  .smc-item { background:var(--accent); padding:8px 10px; border-radius:6px; border-left:3px solid var(--gold); font-size:0.8rem; margin-bottom:8px; }
-  .smc-item h4 { color:var(--gold); margin-bottom:3px; }
-  .watchlist-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:8px; margin-bottom:12px; }
-  .asset-card { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:8px 10px; cursor:pointer; }
-  .asset-top { display:flex; justify-content:space-between; font-size:0.72rem; color:var(--muted); }
-  .asset-price { font-size:1.05rem; font-weight:700; margin:4px 0; }
-  .up { color:var(--up); } .down { color:var(--down); }
-  .news-list { list-style:none; display:grid; gap:6px; font-size:0.8rem; }
-  .news-list li { background:var(--accent); padding:8px 10px; border-radius:6px; border-left:3px solid var(--gold); }
-  footer { text-align:center; font-size:0.75rem; color:var(--muted); padding:10px; border-top:1px solid var(--border); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSHTARI TRADER | Live SMC & Multi-Asset Terminal</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #0e1628;
+      --border: #1e293b;
+      --gold: #f59e0b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #131e36;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+    body.astra-mode {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --border: #cbd5e1;
+      --gold: #d97706;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #f1f5f9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 40px; }
+    
+    /* Header */
+    header {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .brand h1 { color: var(--gold); font-size: 1.35rem; letter-spacing: 0.5px; }
+    .brand p { color: var(--muted); font-size: 0.78rem; }
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(16, 185, 129, 0.15); color: var(--green);
+      padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+    .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .btn {
+      background: var(--gold); color: #000; border: none; padding: 7px 14px;
+      border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer;
+    }
+
+    /* Main Container */
+    .container { max-width: 1400px; margin: 0 auto; padding: 15px; }
+
+    /* Live Streaming Price Strip (Instant WebSockets + Tickers) */
+    .section-label {
+      font-size: 0.85rem; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 1px; margin: 12px 0 8px; font-weight: 700;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .price-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 10px; margin-bottom: 18px;
+    }
+    .price-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 12px; transition: border 0.2s;
+    }
+    .price-card:hover { border-color: var(--gold); }
+    .pair-top { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+    .pair-price { font-size: 1.15rem; font-weight: 700; margin: 4px 0; font-variant-numeric: tabular-nums; }
+    .pair-chg { font-size: 0.75rem; font-weight: 600; }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+
+    /* Layout Grid for Terminal */
+    .top-grid {
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 15px; margin-bottom: 18px;
+    }
+    @media(max-width: 950px) { .top-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; overflow: hidden;
+    }
+    .card-title {
+      font-size: 0.9rem; font-weight: 700; color: var(--gold);
+      margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border); padding-bottom: 8px;
+    }
+
+    /* SMC & Session Intelligence Cards */
+    .smc-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;
+    }
+    .smc-item {
+      background: var(--accent); padding: 10px 12px; border-radius: 7px;
+      margin-bottom: 8px; border-left: 3px solid var(--gold);
+    }
+    .smc-item h4 { font-size: 0.85rem; margin-bottom: 4px; color: var(--text); }
+    .smc-item p { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+    
+    footer {
+      text-align: center; color: var(--muted); font-size: 0.75rem;
+      margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="brand">
-    <h1>MUSHTARI TRADER مشتری ٹریڈر</h1>
-    <p>Lead Trader: Muhammad Afroz | Astrology Meets SMC Logic (Abjad 287) | Karachi</p>
+
+  <!-- 1. TOP LIVE TRADINGVIEW TICKER TAPE (ALL PAIRS) -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "OANDA:XAUUSD", "title": "GOLD (XAU/USD)" },
+        { "proName": "OANDA:XAGUSD", "title": "SILVER (XAG/USD)" },
+        { "proName": "BINANCE:BTCUSDT", "title": "BITCOIN (BTC)" },
+        { "proName": "BINANCE:ETHUSDT", "title": "ETHEREUM (ETH)" },
+        { "proName": "TVC:USOIL", "title": "CRUDE OIL (WTI)" },
+        { "proName": "FX:EURUSD", "title": "EUR/USD" },
+        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+        { "proName": "FOREXCOM:NSXUSD", "title": "NASDAQ 100" },
+        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": false,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
   </div>
-  <button class="btn" onclick="document.body.classList.toggle('astra-mode')">SWITCH THEME (GOLD / ASTRA)</button>
-</header>
-<div class="top-grid">
-  <div class="card" style="height:360px;">
-    <div class="card-title"><span id="chart-label">LIVE CHART — XAUUSD</span><span>Tap any rate card below</span></div>
-    <div id="tv_chart" style="height:300px;"></div>
+
+  <!-- 2. HEADER -->
+  <header>
+    <div class="brand">
+      <h1>MUSHTARI TRADER</h1>
+      <p>AL-IRTIQAA CAPITAL | Live Multi-Asset SMC & Market Intelligence Terminal</p>
+    </div>
+    <div class="header-actions">
+      <span class="live-badge"><span class="dot"></span> LIVE STREAM ACTIVE</span>
+      <button class="btn" onclick="document.body.classList.toggle('astra-mode')">Light / Dark</button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 3. INSTANT WEBSOCKET STREAMING CARDS (GOLD, SILVER, BTC, ETH, SOL, PAXG) -->
+    <div class="section-label">
+      <span>⚡ Ultra-Fast Tick Stream (24/7 Live Feed)</span>
+      <span id="clock" style="color:var(--muted); font-size:0.75rem;"></span>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="pair-top"><span>GOLD (XAU/USD)</span><span>SPOT/PERP</span></div>
+        <div class="pair-price" id="p-PAXGUSDT">Loading...</div>
+        <div class="pair-chg" id="c-PAXGUSDT">--</div>
+      </div>
+      <div class="price-card">
+        <div class="pair-top"><span>BITCOIN (BTC)</span><span>USDT</span></div>
+        <div class="pair-price" id="p-BTCUSDT">Loading...</div>
+        <div class="pair-chg" id="c-BTCUSDT">--</div>
+      </div>
+      <div class="price-card">
+        <div class="pair-top"><span>ETHEREUM (ETH)</span><span>USDT</span></div>
+        <div class="pair-price" id="p-ETHUSDT">Loading...</div>
+        <div class="pair-chg" id="c-ETHUSDT">--</div>
+      </div>
+      <div class="price-card">
+        <div class="pair-top"><span>SOLANA (SOL)</span><span>USDT</span></div>
+        <div class="pair-price" id="p-SOLUSDT">Loading...</div>
+        <div class="pair-chg" id="c-SOLUSDT">--</div>
+      </div>
+      <div class="price-card">
+        <div class="pair-top"><span>EUR / USD</span><span>FX RATE</span></div>
+        <div class="pair-price" id="p-EURUSDT">Loading...</div>
+        <div class="pair-chg" id="c-EURUSDT">--</div>
+      </div>
+      <div class="price-card">
+        <div class="pair-top"><span>GBP / USD</span><span>FX RATE</span></div>
+        <div class="pair-price" id="p-GBPUSDT">Loading...</div>
+        <div class="pair-chg" id="c-GBPUSDT">--</div>
+      </div>
+    </div>
+
+    <!-- 4. MAIN TERMINAL GRID: LIVE CHART + MULTI-ASSET WATCHLIST (METALS, OIL, FOREX, INDICES) -->
+    <div class="top-grid">
+      
+      <!-- Left: Interactive Live Chart (Switch any symbol) -->
+      <div class="card" style="height: 520px; display:flex; flex-direction:column;">
+        <div class="card-title">
+          <span>📊 Live Institutional Chart (Gold / All Pairs)</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Click symbol in Watchlist or top-left to switch</span>
+        </div>
+        <div style="flex:1; width:100%;" id="tv_chart_container">
+          <div class="tradingview-widget-container" style="height:100%;width:100%">
+            <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+            {
+              "autosize": true,
+              "symbol": "OANDA:XAUUSD",
+              "interval": "15",
+              "timezone": "Asia/Karachi",
+              "theme": "dark",
+              "style": "1",
+              "locale": "en",
+              "allow_symbol_change": true,
+              "watchlist": [
+                "OANDA:XAUUSD",
+                "OANDA:XAGUSD",
+                "TVC:USOIL",
+                "BINANCE:BTCUSDT",
+                "BINANCE:ETHUSDT",
+                "FX:EURUSD",
+                "FX:GBPUSD",
+                "FX:USDJPY",
+                "FOREXCOM:NSXUSD",
+                "FOREXCOM:SPXUSD"
+              ],
+              "support_host": "https://www.tradingview.com"
+            }
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live Multi-Asset Market Quotes (Metals, Oil, Forex, Indices) -->
+      <div class="card" style="height: 520px; display:flex; flex-direction:column;">
+        <div class="card-title">
+          <span>🌍 Live Global Markets (Metals, Oil, Forex & Indices)</span>
+          <span style="font-size:0.75rem; color:var(--green);">● Real-Time</span>
+        </div>
+        <div style="flex:1; width:100%;">
+          <div class="tradingview-widget-container" style="height:100%;width:100%">
+            <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+            {
+              "width": "100%",
+              "height": "100%",
+              "symbolsGroups": [
+                {
+                  "name": "Metals & Energy",
+                  "symbols": [
+                    { "name": "OANDA:XAUUSD", "displayName": "Gold (XAU/USD)" },
+                    { "name": "OANDA:XAGUSD", "displayName": "Silver (XAG/USD)" },
+                    { "name": "TVC:USOIL", "displayName": "Crude Oil (WTI)" },
+                    { "name": "TVC:UKOIL", "displayName": "Brent Oil" }
+                  ]
+                },
+                {
+                  "name": "Crypto Futures",
+                  "symbols": [
+                    { "name": "BINANCE:BTCUSDT", "displayName": "Bitcoin (BTC/USDT)" },
+                    { "name": "BINANCE:ETHUSDT", "displayName": "Ethereum (ETH/USDT)" },
+                    { "name": "BINANCE:SOLUSDT", "displayName": "Solana (SOL/USDT)" }
+                  ]
+                },
+                {
+                  "name": "Forex Majors",
+                  "symbols": [
+                    { "name": "FX:EURUSD", "displayName": "EUR / USD" },
+                    { "name": "FX:GBPUSD", "displayName": "GBP / USD" },
+                    { "name": "FX:USDJPY", "displayName": "USD / JPY" },
+                    { "name": "FX:AUDUSD", "displayName": "AUD / USD" }
+                  ]
+                },
+                {
+                  "name": "Global Indices",
+                  "symbols": [
+                    { "name": "FOREXCOM:NSXUSD", "displayName": "Nasdaq 100" },
+                    { "name": "FOREXCOM:SPXUSD", "displayName": "S&P 500" },
+                    { "name": "TVC:NI225", "displayName": "Nikkei 225 (Japan)" },
+                    { "name": "TVC:HSI", "displayName": "Hang Seng (China)" }
+                  ]
+                }
+              ],
+              "showSymbolLogo": true,
+              "isTransparent": true,
+              "colorTheme": "dark",
+              "locale": "en"
+            }
+            </script>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 5. DAILY 3-SESSION SMC MARKET INTELLIGENCE -->
+    <div class="smc-grid">
+      <div class="card">
+        <div class="card-title">🌅 1. Morning Market Opening</div>
+        <div class="smc-item">
+          <h4>Asian & London Liquidity Sweep</h4>
+          <p>Focus on Gold (XAU/USD) & Major Forex pairs Asian Range High/Low sweep before directional Break of Structure (BOS).</p>
+        </div>
+        <div class="smc-item">
+          <h4>PSX & Regional Index Outlook</h4>
+          <p>Track KSE-100, Nikkei 225 & Chinese market opening momentum Alongside Crude Oil supply zones.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🗽 2. NYC Session Opening</div>
+        <div class="smc-item">
+          <h4>US Equity & Gold High-Impact Zone</h4>
+          <p>NY Killzone (5:30 PM – 8:30 PM PKT): Watch Nasdaq 100, S&P 500 & XAU/USD Fair Value Gaps (FVG) and Order Blocks.</p>
+        </div>
+        <div class="smc-item">
+          <h4>Crypto & Silver Volatility</h4>
+          <p>BTC/USDT & XAG/USD institutional volume injection at Wall Street opening bell.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🌙 3. Evening Market Closing</div>
+        <div class="smc-item">
+          <h4>Daily Candle Closure & Liquidity</h4>
+          <p>Review Daily High/Low rejection wicks across Gold, Crude Oil & US Indices for next-day bias.</p>
+        </div>
+        <div class="smc-item">
+          <h4>Mushtari Hour & Risk Discipline</h4>
+          <p>Protect capital, trail stop-loss to breakeven on swing positions, and log daily confluence setups.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © 2026 MUSHTARI TRADER | AL-IRTIQAA CAPITAL — Official Live Multi-Asset Terminal (mushtaritrader.com)
+    </footer>
+
   </div>
-  <div class="card">
-    <div class="card-title"><span>SMC SETUPS (ENTRY / TP / SL)</span><span>287 RULE</span></div>
-    <div class="smc-item"><h4>GOLD (XAUUSD) — $3,911.49</h4><p>Buy: $3,892–$3,900 | <span class="up">TP: $3,928 / $3,948</span> | <span class="down">SL: $3,880</span></p></div>
-    <div class="smc-item"><h4>SILVER (XAGUSD) — $50.04</h4><p>Buy: $49.55–$49.80 | <span class="up">TP: $50.65 / $51.20</span> | <span class="down">SL: $49.15</span></p></div>
-    <div class="smc-item"><h4>BITCOIN (BTCUSDT) — $78,431.87</h4><p>Buy: $77,800–$78,150 | <span class="up">TP: $79,500 / $80,800</span> | <span class="down">SL: $77,100</span></p></div>
-    <div class="smc-item"><h4>MUSHTARI SA'AT RULE</h4><p>Abjad 287 & Mushtari Sa'at me Pukhraj/Yaqoot ke sath pullback par entry lein.</p></div>
-  </div>
-</div>
-<div class="card" style="margin-bottom:12px;">
-  <div class="card-title"><span>LIVE WATCHLIST RATES</span><span>Tap card to open chart</span></div>
-  <div class="watchlist-grid" id="watchlist"></div>
-</div>
-<div class="card">
-  <div class="card-title"><span>6 LINKED MARKET NEWS (ROMAN URDU)</span><span>TradingView Live</span></div>
-  <ul class="news-list">
-    <li><b>1. Gold & Silver Rebound:</b> Gold $3,911.49 (+0.92%) aur Silver $50.04 (+2.33%) par aa gaye; 24K Tola Rs. 410,000.</li>
-    <li><b>2. WTI Crude Oil:</b> Supply risk se WTI Oil $102.49 (+2.08%) ke high bullish zone me mazboot.</li>
-    <li><b>3. DXY & PKR Pairs:</b> DXY 101.917, EURUSD 1.1170, GBPUSD 1.3391 aur USDPKR Rs. 276.67 par steady.</li>
-    <li><b>4. Asian Markets:</b> China SSE 3,617.82 (+0.52%) green open, Japan Nikkei 63,120.93 (-0.27%).</li>
-    <li><b>5. US Market & Bonds:</b> US10Y 4.941%, NDX 28,384.85, SPX 7,578.48, NVDA $204.64, AAPL $344.63.</li>
-    <li><b>6. PSX & Crypto:</b> KSE-100 (166,409.25), OGDC (306.78), FFC (559.49) aur BTC ($78,431.87) par focus.</li>
-  </ul>
-</div>
-<footer>www.mushtaritrader.com | @mushtaritrader | Contact: 03251556666 | Karachi, Pakistan</footer>
-<script src="https://s3.tradingview.com/tv.js"></script>
-<script>
-const assets = [
-  {cat:"Metals",name:"Gold (XAUUSD)",tv:"OANDA:XAUUSD",price:3911.49,chg:"+0.92%",up:true,p:"$"},
-  {cat:"Metals",name:"Gold 24K Tola",tv:"OANDA:XAUUSD",price:410000,chg:"-1.79%",up:false,p:"Rs."},
-  {cat:"Metals",name:"Silver (XAGUSD)",tv:"OANDA:XAGUSD",price:50.04,chg:"+2.33%",up:true,p:"$"},
-  {cat:"Metals",name:"Silver Tola",tv:"OANDA:XAGUSD",price:5310,chg:"-0.25%",up:false,p:"Rs."},
-  {cat:"Oil",name:"WTI Crude Oil",tv:"TVC:USOIL",price:102.49,chg:"+2.08%",up:true,p:"$"},
-  {cat:"Forex",name:"DXY Index",tv:"TVC:DXY",price:101.917,chg:"+0.04%",up:true,p:""},
-  {cat:"Forex",name:"EUR/USD",tv:"FX:EURUSD",price:1.1170,chg:"+0.10%",up:true,p:""},
-  {cat:"Forex",name:"GBP/USD",tv:"FX:GBPUSD",price:1.3391,chg:"0.00%",up:true,p:""},
-  {cat:"PKR",name:"USD/PKR",tv:"FX_IDC:USDPKR",price:276.67,chg:"+0.03%",up:true,p:"Rs."},
-  {cat:"PKR",name:"GBP/PKR",tv:"FX_IDC:GBPPKR",price:370.49,chg:"+0.02%",up:true,p:"Rs."},
-  {cat:"PKR",name:"CAD/PKR",tv:"FX_IDC:CADPKR",price:198.00,chg:"+0.02%",up:true,p:"Rs."},
-  {cat:"PKR",name:"EUR/PKR",tv:"FX_IDC:EURPKR",price:309.04,chg:"+0.06%",up:true,p:"Rs."},
-  {cat:"PKR",name:"AUD/PKR",tv:"FX_IDC:AUDPKR",price:194.49,chg:"-0.01%",up:false,p:"Rs."},
-  {cat:"Crypto",name:"BTC/USDT",tv:"BINANCE:BTCUSDT",price:78431.87,chg:"+0.15%",up:true,p:"$"},
-  {cat:"Crypto",name:"BTC.D",tv:"CRYPTOCAP:BTC.D",price:60.47,chg:"+0.24%",up:true,p:"",s:"%"},
-  {cat:"Crypto",name:"ETH/USDT",tv:"BINANCE:ETHUSDT",price:2258.37,chg:"+0.10%",up:true,p:"$"},
-  {cat:"Crypto",name:"SOL/USDT",tv:"BINANCE:SOLUSDT",price:93.34,chg:"-0.45%",up:false,p:"$"},
-  {cat:"Crypto",name:"LINK/USDT",tv:"BINANCE:LINKUSDT",price:11.625,chg:"+1.16%",up:true,p:"$"},
-  {cat:"Crypto",name:"DOT/USDT",tv:"BINANCE:DOTUSDT",price:0.9468,chg:"+0.35%",up:true,p:"$"},
-  {cat:"US",name:"Nasdaq 100",tv:"NASDAQ:NDX",price:28384.85,chg:"-3.46%",up:false,p:""},
-  {cat:"US",name:"S&P 500",tv:"SP:SPX",price:7578.48,chg:"-1.84%",up:false,p:""},
-  {cat:"US",name:"Dow Jones",tv:"TVC:DJI",price:51766.87,chg:"-1.10%",up:false,p:""},
-  {cat:"US",name:"QQQ ETF",tv:"NASDAQ:QQQ",price:692.74,chg:"+0.33%",up:true,p:"$"},
-  {cat:"US",name:"NVIDIA",tv:"NASDAQ:NVDA",price:204.64,chg:"-4.22%",up:false,p:"$"},
-  {cat:"US",name:"Apple",tv:"NASDAQ:AAPL",price:344.63,chg:"-1.23%",up:false,p:"$"},
-  {cat:"Bonds",name:"US 10Y Yield",tv:"TVC:US10Y",price:4.941,chg:"-0.06%",up:false,p:"",s:"%"},
-  {cat:"PSX",name:"KSE-100",tv:"PSX:KSE100",price:166409.25,chg:"-0.47%",up:false,p:""},
-  {cat:"PSX",name:"PSO",tv:"PSX:PSO",price:355.44,chg:"-1.46%",up:false,p:"Rs."},
-  {cat:"PSX",name:"FFC",tv:"PSX:FFC",price:559.49,chg:"-0.28%",up:false,p:"Rs."},
-  {cat:"PSX",name:"OGDC",tv:"PSX:OGDC",price:306.78,chg:"+0.19%",up:true,p:"Rs."},
-  {cat:"PSX",name:"LUCK",tv:"PSX:LUCK",price:391.38,chg:"-1.42%",up:false,p:"Rs."},
-  {cat:"PSX",name:"HUBC",tv:"PSX:HUBC",price:193.18,chg:"-0.44%",up:false,p:"Rs."},
-  {cat:"Asia",name:"China SSE",tv:"SSE:000001",price:3617.82,chg:"+0.52%",up:true,p:""},
-  {cat:"Asia",name:"Nikkei 225",tv:"TVC:NI225",price:63120.93,chg:"-0.27%",up:false,p:""}
-];
-document.getElementById('watchlist').innerHTML = assets.map((a,i)=>`
-  <div class="asset-card" onclick="loadChart('${a.tv}','${a.name}')">
-    <div class="asset-top"><span>${a.cat}</span><span class="${a.up?'up':'down'}">${a.chg}</span></div>
-    <div class="asset-price" id="p-${i}">${a.p}${a.price.toLocaleString()}${a.s||''}</div>
-    <div style="font-size:0.75rem;font-weight:600;">${a.name}</div>
-  </div>`).join('');
-function loadChart(s,n){
-  document.getElementById('chart-label').innerText="LIVE CHART — "+n;
-  new TradingView.widget({autosize:true,symbol:s,interval:"15",timezone:"Asia/Karachi",theme:document.body.classList.contains('astra-mode')?"light":"dark",style:"1",locale:"en",container_id:"tv_chart"});
-}
-loadChart("OANDA:XAUUSD","Gold (XAUUSD)");
-setInterval(()=>{
-  const i=Math.floor(Math.random()*assets.length), el=document.getElementById('p-'+i);
-  if(el){ assets[i].price=+(assets[i].price+(Math.random()-0.48)*(assets[i].price*0.0004)).toFixed(assets[i].price<10?4:2); el.innerText=assets[i].p+assets[i].price.toLocaleString()+(assets[i].s||''); }
-},1800);
-</script>
+
+  <!-- LIVE WEBSOCKET SCRIPT FOR INSTANT TICK UPDATES -->
+  <script>
+    // PKT Live Clock
+    setInterval(() => {
+      const now = new Date();
+      document.getElementById('clock').innerText = "PKT: " + now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi' });
+    }, 1000);
+
+    // Connect to Binance Real-Time Stream for 24/7 Tick-by-Tick Cards
+    const symbols = ['paxgusdt', 'btcusdt', 'ethusdt', 'solusdt', 'eurusdt', 'gbpusdt'];
+    const streams = symbols.map(s => s + '@ticker').join('/');
+    const ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=' + streams);
+
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if (!msg.data) return;
+      const d = msg.data;
+      const sym = d.s; // e.g., BTCUSDT
+      const price = parseFloat(d.c);
+      const chg = parseFloat(d.P).toFixed(2);
+
+      const pEl = document.getElementById('p-' + sym);
+      const cEl = document.getElementById('c-' + sym);
+      if (pEl && cEl) {
+        pEl.innerText = price >= 100 ? price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : price.toFixed(4);
+        cEl.innerText = (chg >= 0 ? '▲ +' : '▼ ') + chg + '%';
+        cEl.className = 'pair-chg ' + (chg >= 0 ? 'up' : 'down');
+      }
+    };
+  </script>
 </body>
 </html>
