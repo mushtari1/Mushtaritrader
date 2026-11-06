@@ -59,20 +59,6 @@
       100% { color: inherit; }
     }
 
-    /* Running Live Marquee */
-    @keyframes marqueeMove {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .animate-marquee {
-      display: inline-block;
-      white-space: nowrap;
-      animation: marqueeMove 24s linear infinite;
-    }
-    .animate-marquee:hover {
-      animation-play-state: paused;
-    }
-
     ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -593,32 +579,54 @@
 
   </main>
 
-  <!-- LIVE SMOOTH AUTO-SCROLLING NEWS TICKER -->
-  <footer class="w-full glass-panel border-t border-amber-500/20 px-3 py-1.5 z-40">
-    <div class="max-w-[1900px] mx-auto flex items-center justify-between gap-2 overflow-hidden">
+  <!-- POINT-BY-POINT STATIC LIVE MARKET NEWS SECTION (BOTTOM) -->
+  <footer class="w-full glass-panel border-t border-amber-500/20 px-4 py-3 z-40">
+    <div class="max-w-[1900px] mx-auto">
       
-      <div class="flex items-center space-x-1 bg-amber-500/20 border border-amber-500/40 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold font-hud whitespace-nowrap flex-shrink-0">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>MARKET LIVE WIRE</span>
-      </div>
-      
-      <div class="flex-1 overflow-hidden relative w-full">
-        <div id="live-news-marquee" class="animate-marquee text-xs text-gray-200 font-mono tracking-wide">
-          <span class="text-emerald-400 font-bold">[LIVE]</span> Spot Gold maintains strength above $4,090 &nbsp;•&nbsp; 
-          <span class="text-cyan-400 font-bold">[FOREX]</span> EUR/USD and GBP/USD trade stable at dynamic support zones &nbsp;•&nbsp; 
-          <span class="text-amber-400 font-bold">[CRYPTO]</span> Bitcoin establishes solid liquidity pool around $75,900 &nbsp;•&nbsp; 
-          <span class="text-emerald-400 font-bold">[PSX]</span> KSE-100 sets historic milestone closing above 175,379 (+1.96%) &nbsp;•&nbsp; 
-          <span class="text-purple-400 font-bold">[BONDS]</span> US 10Y Yield eases to 4.84% supporting risk assets
+      <!-- Section Header -->
+      <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-white/5">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-xs font-hud font-bold text-amber-400 tracking-wider">MARKET LIVE WIRE • POINT-WISE BULLETINS</span>
+        </div>
+        <div class="text-[9px] text-gray-500 whitespace-nowrap hidden md:block">
+          ⚠️ Informational updates only. Al-Irtiqaa Capital / Mushtari Trader.
         </div>
       </div>
 
-      <div class="text-[9px] text-gray-500 whitespace-nowrap text-right hidden md:block flex-shrink-0">
-        ⚠️ Informational updates only. Al-Irtiqaa Capital / Mushtari Trader.
+      <!-- Point-Wise Multi-Column Direct Grid -->
+      <div id="live-news-points-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-[11px] font-mono">
+        <!-- Default Bullet Points (Auto-Updated dynamically via script) -->
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-emerald-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-amber-300 font-semibold font-hud">[XAU/USD]</span> Spot Gold maintains solid strength holding above $4,090 on institutional demand.</p>
+        </div>
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-cyan-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-cyan-300 font-semibold font-hud">[FOREX]</span> Dollar Index consolidates near 101.56; EUR/USD holds firm at 1.1219 level.</p>
+        </div>
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-amber-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-amber-400 font-semibold font-hud">[CRYPTO]</span> Bitcoin establishes solid liquidity floor above $75,900 absorbing sell pressure.</p>
+        </div>
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-emerald-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-emerald-400 font-semibold font-hud">[PSX]</span> KSE-100 sets historic milestone closing strongly above 175,379 index (+1.96%).</p>
+        </div>
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-cyan-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-cyan-400 font-semibold font-hud">[METALS]</span> Spot Silver rebounds cleanly from $49.00 support targeting $50.40 liquidity band.</p>
+        </div>
+        <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+          <span class="text-purple-400 font-bold">•</span>
+          <p class="text-gray-200"><span class="text-purple-300 font-semibold font-hud">[BONDS]</span> US 10-Year Treasury Yield declines to 4.84% providing sustained relief to risk assets.</p>
+        </div>
       </div>
+
     </div>
   </footer>
 
-  <!-- SCRIPT ENGINE: THREE.JS REACTOR, WEBSOCKETS & CAPITAL INFLOW RADAR -->
+  <!-- SCRIPT ENGINE: THREE.JS REACTOR, WEBSOCKETS, APP INSTALL & POINT-WISE NEWS -->
   <script>
     lucide.createIcons();
 
@@ -718,11 +726,9 @@
     });
 
     /* ========================================================
-       3. LIVE CAPITAL INFLOW / OUTFLOW CALCULATION ENGINE
+       3. LIVE CAPITAL INFLOW / OUTFLOW ENGINE
        ======================================================== */
     let btcBuyVolAcc = 14.8;
-    let goldBuyVolAcc = 8.4;
-    let silverBuyVolAcc = -1.9;
 
     function updateCapitalFlowRadar(isBuy, asset) {
       if (asset === 'BTC') {
@@ -744,22 +750,19 @@
         }
       }
 
-      // Dynamic Gold & Silver Inter-market sync
       if (asset === 'GOLD') {
-        const goldPositive = isBuy;
         const gTag = document.getElementById('gold-flow-tag');
         const gVal = document.getElementById('gold-flow-val');
         const gBar = document.getElementById('gold-flow-bar');
         if (gTag && gVal && gBar) {
-          gTag.textContent = goldPositive ? 'BUY / INFLOW' : 'SELL / OUTFLOW';
-          gTag.className = `text-[8px] px-1 py-0.2 rounded font-bold ${goldPositive ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
-          gVal.textContent = (goldPositive ? '+$' : '-$') + (Math.random() * 2 + 7.5).toFixed(1) + 'M';
-          gVal.className = `font-bold font-hud ${goldPositive ? 'text-emerald-400' : 'text-rose-400'}`;
-          gBar.className = `h-full transition-all duration-300 ${goldPositive ? 'bg-amber-400' : 'bg-rose-400'}`;
+          gTag.textContent = isBuy ? 'BUY / INFLOW' : 'SELL / OUTFLOW';
+          gTag.className = `text-[8px] px-1 py-0.2 rounded font-bold ${isBuy ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
+          gVal.textContent = (isBuy ? '+$' : '-$') + (Math.random() * 2 + 7.5).toFixed(1) + 'M';
+          gVal.className = `font-bold font-hud ${isBuy ? 'text-emerald-400' : 'text-rose-400'}`;
+          gBar.className = `h-full transition-all duration-300 ${isBuy ? 'bg-amber-400' : 'bg-rose-400'}`;
         }
       }
 
-      // Dominant Market Flow Label
       const domEl = document.getElementById('dominant-flow-status');
       if (domEl) {
         if (isBuy) {
@@ -873,29 +876,37 @@
     connectBinanceWS();
 
     /* ========================================================
-       6. INSTANT MARQUEE SYNC (NO BUFFERING DELAY)
+       6. POINT-BY-POINT LIVE NEWS AUTO-UPDATE ENGINE
        ======================================================== */
-    async function updateMarqueeFromWeb() {
+    async function updatePointWiseNews() {
       try {
         const response = await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN');
         const result = await response.json();
-        if (result && result.Data && result.Data.length > 0) {
-          const freshString = result.Data.slice(0, 8).map(a => {
-            const src = a.source_info?.name || 'MARKET';
-            return `<span class="text-amber-400 font-bold">[${src.toUpperCase()}]</span> ${a.title}`;
-          }).join(' &nbsp;•&nbsp; ');
+        if (result && result.Data && result.Data.length >= 6) {
+          const container = document.getElementById('live-news-points-container');
+          if (!container) return;
 
-          const marqueeEl = document.getElementById('live-news-marquee');
-          if (marqueeEl && freshString.length > 20) {
-            marqueeEl.innerHTML = freshString;
-          }
+          const freshHTML = result.Data.slice(0, 6).map(item => {
+            const src = (item.source_info?.name || 'WIRE').toUpperCase();
+            return `
+              <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
+                <span class="text-emerald-400 font-bold">•</span>
+                <p class="text-gray-200">
+                  <span class="text-amber-300 font-semibold font-hud">[${src}]</span> 
+                  ${item.title}
+                </p>
+              </div>
+            `;
+          }).join('');
+
+          container.innerHTML = freshHTML;
         }
       } catch (e) {
-        // Smooth local sequence
+        // Keeps verified standard bullet points on fallback
       }
     }
-    updateMarqueeFromWeb();
-    setInterval(updateMarqueeFromWeb, 45000);
+    updatePointWiseNews();
+    setInterval(updatePointWiseNews, 45000); // Har 45 second baad fresh point-wise news update hogi
 
     /* ========================================================
        7. APPLICATION DIRECT LAUNCH / PWA INSTALL TRIGGER
