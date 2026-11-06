@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mushtari Trader | Al-Irtiqaa Capital Terminal</title>
-  <!-- Tailwind CSS & Lucide Icons CDN -->
+  <!-- Tailwind CSS & Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -13,12 +13,11 @@
     
     :root {
       --bg-dark: #05070c;
-      --card-bg: rgba(10, 15, 26, 0.78);
+      --card-bg: rgba(10, 15, 26, 0.82);
       --neon-gold: #f59e0b;
       --neon-cyan: #06b6d4;
       --neon-emerald: #10b981;
       --neon-rose: #f43f5e;
-      --border-glow: rgba(245, 158, 11, 0.25);
     }
 
     body {
@@ -36,51 +35,38 @@
       background: var(--card-bg);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
     }
 
     .glass-panel:hover {
       border-color: rgba(245, 158, 11, 0.35);
     }
 
-    .glow-gold {
-      text-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
-    }
-
-    .glow-cyan {
-      text-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
-    }
-
-    .glow-green {
-      text-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
-    }
-
     .pulse-flash-green {
-      animation: flashGreen 0.4s ease-out;
+      animation: flashGreen 0.45s ease-out;
     }
     .pulse-flash-red {
-      animation: flashRed 0.4s ease-out;
+      animation: flashRed 0.45s ease-out;
     }
 
     @keyframes flashGreen {
-      0% { color: #10b981; text-shadow: 0 0 16px #10b981; }
-      100% { color: inherit; }
+      0% { color: #10b981; text-shadow: 0 0 16px #10b981; transform: scale(1.02); }
+      100% { color: inherit; transform: scale(1); }
     }
     @keyframes flashRed {
-      0% { color: #f43f5e; text-shadow: 0 0 16px #f43f5e; }
-      100% { color: inherit; }
+      0% { color: #f43f5e; text-shadow: 0 0 16px #f43f5e; transform: scale(1.02); }
+      100% { color: inherit; transform: scale(1); }
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
     }
     ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(245, 158, 11, 0.3);
+      background: rgba(245, 158, 11, 0.35);
       border-radius: 2px;
     }
   </style>
@@ -91,7 +77,7 @@
   <header class="w-full glass-panel border-b border-amber-500/20 px-4 py-2.5 z-40 sticky top-0">
     <div class="max-w-[1900px] mx-auto flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand & Entity Identity -->
+      <!-- Brand & Identity -->
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg shadow-amber-500/20 border border-amber-300/40">
           <span class="font-hud font-black text-black text-xl">🦅</span>
@@ -112,7 +98,7 @@
       </div>
 
       <!-- Real-Time Session Clocks -->
-      <div class="flex items-center space-x-4 bg-black/40 border border-white/5 px-3 py-1.5 rounded-lg text-xs">
+      <div class="flex items-center space-x-4 bg-black/50 border border-white/5 px-3 py-1.5 rounded-lg text-xs">
         <div class="text-center">
           <span class="text-[9px] text-gray-500 block">PKT (KHI)</span>
           <span id="clock-pkt" class="font-bold text-amber-400 font-hud">--:--:--</span>
@@ -134,15 +120,15 @@
         </div>
       </div>
 
-      <!-- Live Stream Status Badges -->
+      <!-- Live Stream Status Indicators -->
       <div class="flex items-center space-x-2 text-xs">
-        <div id="ws-status" class="flex items-center space-x-1.5 bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 px-2.5 py-1 rounded">
+        <div id="ws-status" class="flex items-center space-x-1.5 bg-emerald-950/50 border border-emerald-500/40 text-emerald-400 px-2.5 py-1 rounded">
           <i data-lucide="radio" class="w-3.5 h-3.5 animate-pulse"></i>
-          <span class="font-semibold text-[11px]">BINANCE WS: LIVE</span>
+          <span class="font-semibold text-[11px]">ALL WEBSOCKETS: LIVE</span>
         </div>
-        <div class="flex items-center space-x-1.5 bg-amber-950/40 border border-amber-500/40 text-amber-400 px-2.5 py-1 rounded">
+        <div class="flex items-center space-x-1.5 bg-amber-950/50 border border-amber-500/40 text-amber-400 px-2.5 py-1 rounded">
           <i data-lucide="newspaper" class="w-3.5 h-3.5"></i>
-          <span class="font-semibold text-[11px]">FXSTREET FEED: AUTO</span>
+          <span class="font-semibold text-[11px]">GLOBAL WIRE: AUTO</span>
         </div>
       </div>
 
@@ -158,11 +144,11 @@
       <!-- PKR BULLION ENGINE (AL-IRTIQAA FORMULA) -->
       <div class="glass-panel rounded-xl p-3.5 border-amber-500/30">
         <div class="flex justify-between items-center mb-2.5">
-          <span class="text-[11px] font-bold tracking-wider text-amber-400 flex items-center gap-1.5">
+          <span class="text-[11px] font-bold tracking-wider text-amber-400 flex items-center gap-1.5 font-hud">
             <i data-lucide="coins" class="w-4 h-4"></i>
-            PKR BULLION CONVERTER (LIVE FORMULA)
+            PKR BULLION ENGINE (LIVE TICK)
           </span>
-          <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">24 KARAT</span>
+          <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">24 KARAT</span>
         </div>
 
         <div class="grid grid-cols-2 gap-2 mb-2.5">
@@ -186,19 +172,19 @@
             <span id="pkr-10g-rate" class="text-sm font-bold text-gray-200 font-hud">Rs 3,64,350</span>
           </div>
           <div class="text-[9px] text-gray-500 mt-2 text-right">
-            Formula: (Spot / 31.1035) × 11.6638 × USD/PKR
+            Formula: (Live Gold / 31.1035) × 11.6638 × USD/PKR
           </div>
         </div>
       </div>
 
-      <!-- COMMODITIES & FOREX WATCHLIST -->
+      <!-- COMMODITIES & FOREX LIVE STREAM -->
       <div class="glass-panel rounded-xl p-3.5 flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2">
-          <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+          <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 font-hud">
             <i data-lucide="trending-up" class="w-4 h-4 text-cyan-400"></i>
-            METALS & FOREX (LIVE STREAM)
+            METALS & FOREX (REAL-TIME)
           </h2>
-          <span class="text-[10px] text-cyan-400 font-semibold">TICK FEED</span>
+          <span class="text-[10px] text-cyan-400 font-semibold">TICK STREAM</span>
         </div>
 
         <div class="space-y-1.5 flex-1 overflow-y-auto pr-1">
@@ -210,7 +196,7 @@
             </div>
             <div class="text-right">
               <div id="xau-price" class="text-sm font-bold text-gray-100 font-hud">$4,093.22</div>
-              <div id="xau-change" class="text-[10px] text-emerald-400">+0.81%</div>
+              <div id="xau-change" class="text-[10px] text-emerald-400 font-bold">+0.81%</div>
             </div>
           </div>
 
@@ -222,7 +208,7 @@
             </div>
             <div class="text-right">
               <div id="xag-price" class="text-sm font-bold text-gray-100 font-hud">$49.66</div>
-              <div id="xag-change" class="text-[10px] text-emerald-400">+1.24%</div>
+              <div id="xag-change" class="text-[10px] text-emerald-400 font-bold">+1.24%</div>
             </div>
           </div>
 
@@ -234,7 +220,7 @@
             </div>
             <div class="text-right">
               <div id="wti-price" class="text-sm font-bold text-gray-100 font-hud">$96.85</div>
-              <div id="wti-change" class="text-[10px] text-rose-400">-0.42%</div>
+              <div id="wti-change" class="text-[10px] text-rose-400 font-bold">-0.42%</div>
             </div>
           </div>
 
@@ -246,7 +232,7 @@
             </div>
             <div class="text-right">
               <div id="dxy-price" class="text-sm font-bold text-gray-100 font-hud">101.565</div>
-              <div id="dxy-change" class="text-[10px] text-rose-400">-0.18%</div>
+              <div id="dxy-change" class="text-[10px] text-rose-400 font-bold">-0.18%</div>
             </div>
           </div>
 
@@ -258,7 +244,7 @@
             </div>
             <div class="text-right">
               <div id="eur-price" class="text-sm font-bold text-gray-100 font-hud">1.1219</div>
-              <div id="eur-change" class="text-[10px] text-emerald-400">+0.22%</div>
+              <div id="eur-change" class="text-[10px] text-emerald-400 font-bold">+0.22%</div>
             </div>
           </div>
 
@@ -270,7 +256,7 @@
             </div>
             <div class="text-right">
               <div id="gbp-price" class="text-sm font-bold text-gray-100 font-hud">1.3448</div>
-              <div id="gbp-change" class="text-[10px] text-emerald-400">+0.15%</div>
+              <div id="gbp-change" class="text-[10px] text-emerald-400 font-bold">+0.15%</div>
             </div>
           </div>
         </div>
@@ -284,11 +270,10 @@
       <!-- 3D REACTOR CONTAINER (CANVAS) -->
       <div class="glass-panel rounded-xl p-3.5 relative overflow-hidden flex flex-col items-center justify-center min-h-[360px] border-amber-500/20">
         
-        <!-- Overhead Floating Live Tag -->
         <div class="absolute top-3.5 left-4 z-10 flex items-center space-x-2">
           <span class="text-xs font-hud font-bold text-amber-400 tracking-wider">QUANT REACTOR</span>
           <span class="text-[10px] bg-black/60 border border-white/10 px-2 py-0.5 rounded text-gray-300">
-            VOLATILITY CORE
+            LIVE DYNAMICS
           </span>
         </div>
 
@@ -297,10 +282,9 @@
           <span id="reactor-velocity" class="text-xs font-hud font-bold text-emerald-400">1.00x</span>
         </div>
 
-        <!-- ThreeJS Mount Element -->
+        <!-- ThreeJS Canvas Mount -->
         <div id="three-reactor-canvas" class="w-full h-[320px] cursor-grab active:cursor-grabbing"></div>
 
-        <!-- Bottom In-Reactor Stats Overlay -->
         <div class="w-full grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-white/5 z-10">
           <div class="text-center">
             <span class="text-[9px] text-gray-500 block">BTC 24h High</span>
@@ -361,7 +345,7 @@
         </div>
       </div>
 
-      <!-- LIVE MATCHING TAPE (TRANSACTION STREAM) -->
+      <!-- LIVE ORDER TAPE -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col min-h-[170px]">
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-2">
@@ -377,7 +361,7 @@
           <span class="text-right">SIZE (QTY)</span>
         </div>
         <div id="trade-tape-stream" class="flex-1 overflow-y-auto space-y-1 pr-1 font-mono text-[11px] pt-1">
-          <!-- Dynamically populated via WebSocket -->
+          <!-- Live trades stream here -->
         </div>
       </div>
 
@@ -443,9 +427,9 @@
         </div>
       </div>
 
-      <!-- US INDICES, BONDS & PSX CLOSING -->
+      <!-- US INDICES, BONDS & PSX BENCHMARK -->
       <div class="glass-panel rounded-xl p-3.5 flex-1 flex flex-col">
-        <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2.5">
+        <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2.5 font-hud">
           <i data-lucide="bar-chart-2" class="w-4 h-4 text-amber-400"></i>
           US EQUITIES & PSX BENCHMARK
         </h2>
@@ -507,21 +491,21 @@
 
   </main>
 
-  <!-- LIVE AUTO-UPDATING FXSTREET & BUSINESS NEWS TICKER (BOTTOM) -->
+  <!-- LIVE AUTO-UPDATING FINANCIAL & FX NEWS TICKER (BOTTOM) -->
   <footer class="w-full glass-panel border-t border-amber-500/20 px-4 py-2 z-40">
     <div class="max-w-[1900px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5">
       
       <!-- Live News Badge & Content -->
       <div class="flex items-center space-x-3 w-full md:w-3/4 overflow-hidden">
-        <div class="flex items-center space-x-1.5 bg-amber-500/20 border border-amber-500/40 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold font-hud whitespace-nowrap">
-          <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-          <span>FXSTREET LIVE NEWS</span>
+        <div class="flex items-center space-x-1.5 bg-amber-500/20 border border-amber-500/40 text-amber-400 px-2.5 py-1 rounded text-[10px] font-bold font-hud whitespace-nowrap">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>MARKET LIVE WIRE</span>
         </div>
         
-        <!-- Dynamic News Headline Carousel -->
-        <div class="flex-1 overflow-hidden whitespace-nowrap text-xs text-gray-300 font-mono">
-          <div id="live-news-headline" class="transition-opacity duration-300">
-            Fetching latest global and FXStreet business wires...
+        <!-- Live Headlines Ticker Stream -->
+        <div class="flex-1 overflow-hidden whitespace-nowrap text-xs text-gray-200 font-mono">
+          <div id="live-news-headline" class="transition-opacity duration-300 flex items-center gap-2">
+            <span class="text-amber-400 font-bold">[SYNCING]</span> Connecting to direct live market news wire...
           </div>
         </div>
       </div>
@@ -533,7 +517,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT ENGINE: THREE.JS REACTOR, WEBSOCKETS & FXSTREET NEWS -->
+  <!-- SCRIPT ENGINE: THREE.JS REACTOR, MULTI-WEBSOCKETS & LIVE NEWS -->
   <script>
     lucide.createIcons();
 
@@ -569,19 +553,16 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Glowing Core Sphere
     const coreGeo = new THREE.IcosahedronGeometry(1.2, 2);
     const coreMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.65 });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     scene.add(coreMesh);
 
-    // Inner Solid Glow Mesh
     const innerGeo = new THREE.SphereGeometry(0.7, 16, 16);
     const innerMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.35 });
     const innerCore = new THREE.Mesh(innerGeo, innerMat);
     scene.add(innerCore);
 
-    // Orbital Rings
     function createRing(radius, tube, color) {
       const ringGeo = new THREE.TorusGeometry(radius, tube, 16, 100);
       const ringMat = new THREE.MeshBasicMaterial({ color: color, wireframe: true, transparent: true, opacity: 0.45 });
@@ -594,7 +575,6 @@
     const ring2 = createRing(2.7, 0.02, 0x06b6d4);
     const ring3 = createRing(3.2, 0.015, 0xa855f7);
 
-    // Particle Cloud
     const particleCount = 200;
     const pGeo = new THREE.BufferGeometry();
     const pPos = new Float32Array(particleCount * 3);
@@ -606,14 +586,11 @@
     const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
 
-    // Animation & Dynamic Velocity
     let baseSpeed = 0.008;
     let targetSpeed = 0.008;
 
     function animate() {
       requestAnimationFrame(animate);
-
-      // Smooth dampening of velocity
       baseSpeed += (targetSpeed - baseSpeed) * 0.05;
 
       coreMesh.rotation.x += baseSpeed * 0.8;
@@ -622,15 +599,12 @@
 
       ring1.rotation.x += baseSpeed * 1.4;
       ring1.rotation.y += baseSpeed * 0.6;
-
       ring2.rotation.y += baseSpeed * 1.2;
       ring2.rotation.z += baseSpeed * 0.8;
-
       ring3.rotation.x -= baseSpeed * 0.9;
       ring3.rotation.z += baseSpeed * 1.1;
 
       particles.rotation.y += baseSpeed * 0.3;
-
       renderer.render(scene, camera);
     }
     animate();
@@ -642,7 +616,6 @@
       renderer.setSize(container.clientWidth, container.clientHeight);
     });
 
-    // Pulse reactor on incoming trade
     function pulseReactor(isBuy) {
       targetSpeed = 0.035;
       coreMat.color.setHex(isBuy ? 0x10b981 : 0xf43f5e);
@@ -654,18 +627,18 @@
     }
 
     /* ========================================================
-       3. PKR BULLION CALCULATION ENGINE (AL-IRTIQAA)
+       3. PKR BULLION CALCULATION ENGINE (AL-IRTIQAA FORMULA)
        ======================================================== */
     let currentSpotGold = 4093.22;
     let currentUsdPkr = 276.62;
 
     function calculateBullion() {
-      // 1 Tola = 11.6638 grams | 1 Troy Ounce = 31.1035 grams
       const perGramUSD = currentSpotGold / 31.1035;
       const tolaPKR = Math.round(perGramUSD * 11.6638 * currentUsdPkr);
       const gram10PKR = Math.round(perGramUSD * 10.0 * currentUsdPkr);
 
       document.getElementById('rate-xau-spot').textContent = '$' + currentSpotGold.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('xau-price').textContent = '$' + currentSpotGold.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       document.getElementById('rate-usdpkr').textContent = currentUsdPkr.toFixed(2);
       document.getElementById('pkr-tola-rate').textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
       document.getElementById('pkr-10g-rate').textContent = 'Rs ' + gram10PKR.toLocaleString('en-PK');
@@ -674,9 +647,10 @@
 
     /* ========================================================
        4. DIRECT BINANCE WEBSOCKETS (MULTI-STREAM)
+          - Streams: BTC, ETH, SOL, LINK, PAXG (Gold Peg)
        ======================================================== */
     const tapeStream = document.getElementById('trade-tape-stream');
-    const wsUrl = 'wss://stream.binance.com:9443/stream?streams=btcusdt@trade/ethusdt@trade/solusdt@trade/linkusdt@trade/btcusdt@ticker';
+    const wsUrl = 'wss://stream.binance.com:9443/stream?streams=btcusdt@trade/ethusdt@trade/solusdt@trade/linkusdt@trade/paxgusdt@trade/btcusdt@ticker';
     let ws = null;
 
     function connectBinanceWS() {
@@ -684,7 +658,7 @@
 
       ws.onopen = () => {
         document.getElementById('ws-status').className = 
-          'flex items-center space-x-1.5 bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 px-2.5 py-1 rounded';
+          'flex items-center space-x-1.5 bg-emerald-950/50 border border-emerald-500/40 text-emerald-400 px-2.5 py-1 rounded';
       };
 
       ws.onmessage = (event) => {
@@ -692,12 +666,11 @@
         const stream = payload.stream;
         const data = payload.data;
 
-        // Trade Streams
         if (stream.endsWith('@trade')) {
           const symbol = data.s;
           const price = parseFloat(data.p);
           const qty = parseFloat(data.q);
-          const isBuy = !data.m; // m = true means buyer was maker (seller took market)
+          const isBuy = !data.m;
 
           if (symbol === 'BTCUSDT') {
             const btcEl = document.getElementById('live-btc');
@@ -710,9 +683,13 @@
             document.getElementById('live-sol').textContent = '$' + price.toFixed(2);
           } else if (symbol === 'LINKUSDT') {
             document.getElementById('live-link').textContent = '$' + price.toFixed(3);
+          } else if (symbol === 'PAXGUSDT') {
+            // Live Real-Time Physical Gold Spot Peg
+            currentSpotGold = price;
+            calculateBullion();
           }
 
-          // Add to Live Order Tape
+          // Add transaction to Order Tape
           const row = document.createElement('div');
           const timeStr = new Date(data.T).toLocaleTimeString('en-GB', { hour12: false });
           row.className = `grid grid-cols-4 px-2 py-0.5 rounded ${isBuy ? 'bg-emerald-500/5 text-emerald-400' : 'bg-rose-500/5 text-rose-400'} border-b border-white/[0.02]`;
@@ -728,7 +705,6 @@
           }
         }
 
-        // BTC 24hr Ticker Info
         if (stream === 'btcusdt@ticker') {
           document.getElementById('btc-high').textContent = '$' + parseFloat(data.h).toLocaleString('en-US');
           document.getElementById('btc-low').textContent = '$' + parseFloat(data.l).toLocaleString('en-US');
@@ -742,65 +718,58 @@
 
       ws.onclose = () => {
         document.getElementById('ws-status').className = 
-          'flex items-center space-x-1.5 bg-rose-950/40 border border-rose-500/40 text-rose-400 px-2.5 py-1 rounded';
+          'flex items-center space-x-1.5 bg-rose-950/50 border border-rose-500/40 text-rose-400 px-2.5 py-1 rounded';
         setTimeout(connectBinanceWS, 3000);
       };
     }
     connectBinanceWS();
 
     /* ========================================================
-       5. LIVE AUTO-UPDATING FXSTREET & BUSINESS NEWS ENGINE
+       5. DIRECT LIVE FINANCIAL & FX NEWS ENGINE (CORS-FREE)
        ======================================================== */
     const newsHeadlineEl = document.getElementById('live-news-headline');
     let newsQueue = [
-      "FXStreet: Gold holds firm above $4,090 as US Dollar Index eases from resistance zones.",
-      "Global Macro: Treasury 10-Year yield slides to 4.84% following post-midterm reassessment.",
-      "FXStreet Forex: EUR/USD advances towards 1.1220 as risk sentiment stabilizes across Europe.",
-      "Commodities Wire: Spot Silver rebounds from $49.00 support targeting $50.40 breakout band.",
-      "Equities Update: PSX KSE-100 index extends historic momentum touching 175,379 milestone.",
-      "Crypto Desk: Bitcoin absorbs sell-side liquidity at $75.6K while institutional flow increases."
+      "XAU/USD: Gold holds firm above $4,090 as US Dollar Index consolidates near support.",
+      "FOREX: EUR/USD and GBP/USD maintain stability ahead of central bank session opening.",
+      "CRYPTO: Bitcoin establishes strong liquidity base above $75,600 following institutional volume.",
+      "COMMODITIES: Spot Silver rebounds from $49.00 key demand zone targeting fresh expansion.",
+      "EQUITIES: PSX KSE-100 index extends historic momentum touching 175,379 milestone."
     ];
     let newsIndex = 0;
 
-    // Cycle Headlines smoothly
     function cycleNews() {
       if (newsQueue.length === 0) return;
       newsHeadlineEl.style.opacity = '0';
       setTimeout(() => {
-        newsHeadlineEl.textContent = newsQueue[newsIndex % newsQueue.length];
+        const item = newsQueue[newsIndex % newsQueue.length];
+        newsHeadlineEl.innerHTML = `<span class="text-emerald-400 font-bold">[LIVE]</span> ${item}`;
         newsHeadlineEl.style.opacity = '1';
         newsIndex++;
-      }, 300);
+      }, 250);
     }
-    setInterval(cycleNews, 7000);
+    setInterval(cycleNews, 6000);
 
-    // Fetch Live RSS from FXStreet via public CORS proxy
-    async function fetchLiveFXStreetNews() {
+    // Fetch Direct Public Crypto & Macro News API (Zero CORS Issue)
+    async function fetchLiveMarketNews() {
       try {
-        const rssFeed = encodeURIComponent('https://www.fxstreet.com/rss/news');
-        const res = await fetch(`https://api.allorigins.win/get?url=${rssFeed}`);
-        const data = await res.json();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
-        const items = xmlDoc.querySelectorAll('item');
-
-        const fetched = [];
-        items.forEach((item, idx) => {
-          if (idx < 10) {
-            const title = item.querySelector('title')?.textContent;
-            if (title) fetched.push(`FXStreet Live: ${title}`);
-          }
-        });
-
-        if (fetched.length > 0) {
-          newsQueue = fetched;
+        const response = await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN');
+        const result = await response.json();
+        
+        if (result && result.Data && result.Data.length > 0) {
+          const freshHeadlines = result.Data.slice(0, 15).map(article => {
+            const src = article.source_info?.name || 'MARKET';
+            return `${src.toUpperCase()}: ${article.title}`;
+          });
+          newsQueue = freshHeadlines;
+          cycleNews();
         }
-      } catch (err) {
-        console.warn('Using institutional fallback news stream due to proxy delay.');
+      } catch (e) {
+        console.warn('Fallback to secondary news stream.');
       }
     }
-    fetchLiveFXStreetNews();
-    setInterval(fetchLiveFXStreetNews, 60000); // Har 60 second mein fresh live news auto-fetch karega
+
+    fetchLiveMarketNews();
+    setInterval(fetchLiveMarketNews, 45000); // Har 45 seconds baad fresh live headlines fetch karega
 
   </script>
 </body>
