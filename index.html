@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Orbitron:wght@600;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=JetBrains+Mono:wght@300;400;500;700;800&family=Bebas+Neue&family=Orbitron:wght@600;800&display=swap');
     
     :root {
       --bg-dark: #070a10;
@@ -28,7 +28,12 @@
     }
 
     .font-hud {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.04em;
+    }
+
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
     }
 
     .radar-card {
@@ -79,14 +84,14 @@
       <!-- Brand & Identity -->
       <div class="flex items-center space-x-2.5">
         <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg shadow-amber-500/20 border border-amber-300/40">
-          <span class="font-hud font-black text-black text-lg">🦅</span>
+          <span class="font-cinzel font-black text-black text-lg">🦅</span>
         </div>
         <div>
           <div class="flex items-center space-x-1.5">
-            <h1 class="font-hud text-base md:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">
+            <h1 class="font-cinzel text-base md:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">
               AL-IRTIQAA CAPITAL
             </h1>
-            <span class="text-[9px] bg-amber-500/10 border border-amber-500/30 text-amber-400 px-1 py-0.5 rounded font-bold">287</span>
+            <span class="text-[9px] bg-amber-500/10 border border-amber-500/30 text-amber-400 px-1.5 py-0.5 rounded font-bold">287</span>
             <span class="flex h-2 w-2 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -98,22 +103,22 @@
 
       <!-- DESK & ASSET SWITCHER (5 TABS + 3D QUANT DESK) -->
       <div class="flex items-center space-x-1.5 bg-black/60 p-1 rounded-xl border border-white/10 overflow-x-auto">
-        <button onclick="switchView('BTC')" id="tab-BTC" class="nav-tab-active px-3 py-1 rounded-lg text-xs font-hud transition duration-150">
+        <button onclick="switchView('BTC')" id="tab-BTC" class="nav-tab-active px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider transition duration-150">
           BTCUSDT PERP
         </button>
-        <button onclick="switchView('ETH')" id="tab-ETH" class="px-3 py-1 rounded-lg text-xs font-hud text-gray-400 hover:text-white transition duration-150">
+        <button onclick="switchView('ETH')" id="tab-ETH" class="px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-gray-400 hover:text-white transition duration-150">
           ETHUSDT PERP
         </button>
-        <button onclick="switchView('GOLD')" id="tab-GOLD" class="px-3 py-1 rounded-lg text-xs font-hud text-gray-400 hover:text-white transition duration-150">
+        <button onclick="switchView('GOLD')" id="tab-GOLD" class="px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-gray-400 hover:text-white transition duration-150">
           XAUUSD GOLD
         </button>
-        <button onclick="switchView('SILVER')" id="tab-SILVER" class="px-3 py-1 rounded-lg text-xs font-hud text-gray-400 hover:text-white transition duration-150">
+        <button onclick="switchView('SILVER')" id="tab-SILVER" class="px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-gray-400 hover:text-white transition duration-150">
           XAGUSD SILVER
         </button>
-        <button onclick="switchView('OIL')" id="tab-OIL" class="px-3 py-1 rounded-lg text-xs font-hud text-gray-400 hover:text-white transition duration-150">
+        <button onclick="switchView('OIL')" id="tab-OIL" class="px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-gray-400 hover:text-white transition duration-150">
           WTI CRUDE
         </button>
-        <button onclick="switchView('QUANT_DESK')" id="tab-QUANT_DESK" class="px-3 py-1 rounded-lg text-xs font-hud text-amber-400 border border-amber-500/40 hover:bg-amber-500/20 transition duration-150 flex items-center space-x-1">
+        <button onclick="switchView('QUANT_DESK')" id="tab-QUANT_DESK" class="px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-amber-400 border border-amber-500/40 hover:bg-amber-500/20 transition duration-150 flex items-center space-x-1">
           <span>🏛️</span>
           <span>3D QUANT DESK</span>
         </button>
@@ -145,28 +150,28 @@
     <!-- Top Metrics Strip -->
     <div class="radar-card p-3 flex flex-wrap items-center justify-between gap-4 text-xs">
       <div>
-        <span class="text-[10px] text-gray-500 block font-hud">OPEN INTEREST (OI)</span>
-        <span id="stat-oi" class="text-sm font-bold text-gray-100 font-hud">$7.18B</span>
+        <span class="text-[10px] text-gray-500 block">OPEN INTEREST (OI)</span>
+        <span id="stat-oi" class="text-base font-bold text-gray-100 font-hud">$7.18B</span>
       </div>
       <div class="h-6 w-px bg-white/10 hidden sm:block"></div>
       <div>
-        <span class="text-[10px] text-gray-500 block font-hud">FUNDING RATE (FR)</span>
-        <span id="stat-fr" class="text-sm font-bold text-emerald-400 font-hud">+0.0092%</span>
+        <span class="text-[10px] text-gray-500 block">FUNDING RATE (FR)</span>
+        <span id="stat-fr" class="text-base font-bold text-emerald-400 font-hud">+0.0092%</span>
       </div>
       <div class="h-6 w-px bg-white/10 hidden sm:block"></div>
       <div>
-        <span class="text-[10px] text-gray-500 block font-hud">SPREAD</span>
-        <span id="stat-spread" class="text-sm font-bold text-gray-300 font-hud">$0.10</span>
+        <span class="text-[10px] text-gray-500 block">SPREAD</span>
+        <span id="stat-spread" class="text-base font-bold text-gray-300 font-hud">$0.10</span>
       </div>
       <div class="h-6 w-px bg-white/10 hidden sm:block"></div>
       <div>
-        <span class="text-[10px] text-gray-500 block font-hud">L2 TICK TRADES</span>
-        <span id="stat-trades" class="text-sm font-bold text-cyan-400 font-hud">500/sec</span>
+        <span class="text-[10px] text-gray-500 block">L2 TICK TRADES</span>
+        <span id="stat-trades" class="text-base font-bold text-cyan-400 font-hud">500/sec</span>
       </div>
       <div class="h-6 w-px bg-white/10 hidden sm:block"></div>
       <div>
-        <span class="text-[10px] text-gray-500 block font-hud">PKT (KARACHI) CLOCK</span>
-        <span id="clock-pkt-radar" class="text-sm font-bold text-amber-400 font-hud">--:--:--</span>
+        <span class="text-[10px] text-gray-500 block">PKT (KARACHI) CLOCK</span>
+        <span id="clock-pkt-radar" class="text-base font-bold text-amber-400 font-hud">--:--:--</span>
       </div>
     </div>
 
@@ -175,35 +180,35 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-baseline space-x-3">
-            <span id="hero-price" class="text-3xl md:text-5xl font-black text-gray-100 font-hud tracking-tight">$75,543.00</span>
-            <span id="hero-pct" class="text-sm font-bold text-rose-400 font-hud">-0.03%</span>
+            <span id="hero-price" class="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-100 font-hud tracking-tight">$75,543.00</span>
+            <span id="hero-pct" class="text-lg font-bold text-rose-400 font-hud">-0.03%</span>
           </div>
-          <div class="flex items-center space-x-4 mt-2 text-xs text-gray-400 font-mono">
-            <span>24h H: <strong id="hero-high" class="text-gray-200 font-hud">$83,158</strong></span>
-            <span>24h L: <strong id="hero-low" class="text-gray-200 font-hud">$80,622</strong></span>
-            <span>Vol: <strong id="hero-vol" class="text-amber-400 font-hud">$12.31B</strong></span>
+          <div class="flex items-center space-x-4 mt-2 text-[11px] text-gray-400 font-mono">
+            <span>24H H: <strong id="hero-high" class="text-gray-200 font-hud tracking-wide text-xs">$83,158</strong></span>
+            <span>24H L: <strong id="hero-low" class="text-gray-200 font-hud tracking-wide text-xs">$80,622</strong></span>
+            <span>VOL: <strong id="hero-vol" class="text-amber-400 font-hud tracking-wide text-xs">$12.31B</strong></span>
           </div>
         </div>
         <div class="text-right flex md:flex-col items-center md:items-end justify-between">
-          <div class="text-4xl md:text-5xl font-black text-cyan-400 font-hud" id="hero-confidence">68</div>
-          <span class="text-[10px] text-gray-400 tracking-widest uppercase block font-hud">CONFIDENCE SCORE</span>
+          <div class="text-5xl md:text-6xl font-black text-cyan-400 font-hud" id="hero-confidence">68</div>
+          <span class="text-[10px] text-gray-400 tracking-wider uppercase block">CONFIDENCE SCORE</span>
         </div>
       </div>
     </div>
 
     <!-- Market Bias Bar -->
     <div class="radar-card p-3.5">
-      <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
+      <div class="flex justify-between items-center text-xs mb-1.5">
         <span class="text-gray-400 tracking-wider">MARKET BIAS</span>
-        <span id="bias-label" class="text-rose-400 font-bold tracking-wider">BEARISH</span>
+        <span id="bias-label" class="font-bold tracking-wider text-rose-400">BEARISH</span>
       </div>
       <div class="w-full h-3 bg-black/80 rounded-full overflow-hidden flex border border-white/5 my-1">
         <div id="bias-bar-buy" class="h-full bg-emerald-500 transition-all duration-300" style="width: 43.8%;"></div>
         <div id="bias-bar-sell" class="h-full bg-rose-500 transition-all duration-300" style="width: 56.2%;"></div>
       </div>
-      <div class="flex justify-between items-center text-[10px] font-mono text-gray-400 mt-1">
+      <div class="flex justify-between items-center text-[11px] font-mono text-gray-400 mt-1">
         <span id="bias-buy-pct" class="text-emerald-400 font-bold">43.8% BUY</span>
-        <span id="bias-conviction" class="text-gray-400 font-hud">43.8 / 100</span>
+        <span id="bias-conviction" class="text-gray-400 font-hud text-sm">43.8 / 100</span>
         <span id="bias-sell-pct" class="text-rose-400 font-bold">56.2% SELL</span>
       </div>
     </div>
@@ -211,62 +216,62 @@
     <!-- Market Strength & Last Liquidity Sweep -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="radar-card p-3.5 flex items-center space-x-4">
-        <div class="w-14 h-14 rounded-full border-4 border-amber-400 flex items-center justify-center font-hud text-lg font-black text-amber-400 shrink-0">
+        <div class="w-14 h-14 rounded-full border-4 border-amber-400 flex items-center justify-center font-hud text-xl font-bold text-amber-400 shrink-0">
           <span id="strength-score">45</span>
         </div>
         <div>
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider block font-hud">MARKET STRENGTH</span>
-          <span id="strength-tag" class="text-xs font-bold text-amber-400 font-hud block">WEAK</span>
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider block">MARKET STRENGTH</span>
+          <span id="strength-tag" class="text-sm font-bold text-amber-400 font-hud tracking-wide block">WEAK</span>
           <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Weak trend with low conviction.</p>
         </div>
       </div>
       <div class="radar-card p-3.5">
         <div class="flex justify-between items-center mb-1">
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-hud">LAST LIQUIDITY SWEEP</span>
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider">LAST LIQUIDITY SWEEP</span>
           <span id="sweep-age" class="text-[10px] text-gray-500 font-mono">3m ago</span>
         </div>
-        <div class="inline-block bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2 py-0.5 rounded text-[11px] font-bold font-hud my-1" id="sweep-badge">
+        <div class="inline-block bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2 py-0.5 rounded text-xs font-bold my-1" id="sweep-badge">
           〰 WEAK BEARISH SWEEP
         </div>
         <p id="sweep-desc" class="text-xs text-gray-300">Price swept session highs, rejected.</p>
-        <div class="flex justify-between items-center text-[10px] text-gray-400 mt-2 font-mono">
-          <span>At Price: <strong id="sweep-price" class="text-gray-200 font-hud">$75,635</strong></span>
-          <span>Confidence: <strong id="sweep-conf" class="text-amber-400 font-hud">35 / 100</strong></span>
+        <div class="flex justify-between items-center text-[11px] text-gray-400 mt-2 font-mono">
+          <span>At Price: <strong id="sweep-price" class="text-gray-200 font-hud text-xs tracking-wide">$75,635</strong></span>
+          <span>Confidence: <strong id="sweep-conf" class="text-amber-400 font-hud text-xs tracking-wide">35 / 100</strong></span>
         </div>
       </div>
     </div>
 
     <!-- Trap Risk & Squeeze Radar -->
     <div class="radar-card p-3.5">
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider block font-hud mb-2">TRAP & SQUEEZE RISK</span>
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2">TRAP & SQUEEZE RISK</span>
       <div class="space-y-2 text-xs font-mono">
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-gray-400">Bull Trap</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
             <div id="risk-bull-trap-bar" class="h-full bg-cyan-400" style="width: 5%;"></div>
           </div>
-          <span id="risk-bull-trap-val" class="w-8 text-right font-hud text-gray-300">5</span>
+          <span id="risk-bull-trap-val" class="w-8 text-right font-hud text-sm">5</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-gray-400">Bear Trap</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
             <div id="risk-bear-trap-bar" class="h-full bg-cyan-400" style="width: 2%;"></div>
           </div>
-          <span id="risk-bear-trap-val" class="w-8 text-right font-hud text-gray-300">2</span>
+          <span id="risk-bear-trap-val" class="w-8 text-right font-hud text-sm">2</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-emerald-400 font-bold">Short Squeeze</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
             <div id="risk-short-sq-bar" class="h-full bg-emerald-400" style="width: 64%;"></div>
           </div>
-          <span id="risk-short-sq-val" class="w-8 text-right font-hud text-emerald-400 font-bold">64</span>
+          <span id="risk-short-sq-val" class="w-8 text-right font-hud text-emerald-400 text-sm font-bold">64</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-cyan-400">Long Squeeze</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
             <div id="risk-long-sq-bar" class="h-full bg-cyan-400" style="width: 30%;"></div>
           </div>
-          <span id="risk-long-sq-val" class="w-8 text-right font-hud text-cyan-400">30</span>
+          <span id="risk-long-sq-val" class="w-8 text-right font-hud text-cyan-400 text-sm">30</span>
         </div>
       </div>
     </div>
@@ -274,11 +279,11 @@
     <!-- Possible Spoofing Detector -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-baseline mb-1">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-hud">POSSIBLE SPOOFING</span>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider">POSSIBLE SPOOFING</span>
         <span class="text-[9px] text-gray-500 font-mono">Real-time Order Book Integrity</span>
       </div>
       <div class="flex items-baseline space-x-2 my-1">
-        <span id="spoof-score" class="text-2xl font-black text-rose-500 font-hud">98 / 100</span>
+        <span id="spoof-score" class="text-3xl font-bold text-rose-500 font-hud">98 / 100</span>
         <span id="spoof-text" class="text-xs text-gray-300 font-mono">Institutional depth wall cancelled after 0.3s, 0% filled</span>
       </div>
       <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5">
@@ -295,29 +300,29 @@
     <!-- FR/OI & CVD Volume Delta -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="radar-card p-3.5 flex flex-col justify-between">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-hud mb-2">FUNDING RATE + OPEN INTEREST</span>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2">FUNDING RATE + OPEN INTEREST</span>
         <div class="grid grid-cols-4 gap-2 text-center text-xs">
           <div>
-            <span id="detail-fr" class="font-bold text-emerald-400 font-hud block">+0.0092%</span>
+            <span id="detail-fr" class="font-bold text-emerald-400 font-hud text-sm block">+0.0092%</span>
             <span class="text-[9px] text-gray-500">8H RATE</span>
           </div>
           <div>
-            <span id="detail-oi" class="font-bold text-cyan-400 font-hud block">$7.18B</span>
+            <span id="detail-oi" class="font-bold text-cyan-400 font-hud text-sm block">$7.18B</span>
             <span class="text-[9px] text-gray-500">OPEN INT.</span>
           </div>
           <div>
-            <span id="detail-oi-chg" class="font-bold text-gray-300 font-hud block">+0.00%</span>
+            <span id="detail-oi-chg" class="font-bold text-gray-300 font-hud text-sm block">+0.00%</span>
             <span class="text-[9px] text-gray-500">OI CHANGE</span>
           </div>
           <div>
-            <span id="detail-next-sweep" class="font-bold text-amber-400 font-hud block">77%</span>
+            <span id="detail-next-sweep" class="font-bold text-amber-400 font-hud text-sm block">77%</span>
             <span class="text-[9px] text-gray-500">NEXT SWEEP</span>
           </div>
         </div>
       </div>
 
       <div class="radar-card p-3.5">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-hud mb-1 block">CVD — VOLUME DELTA</span>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-1 block">CVD — VOLUME DELTA</span>
         <div class="flex items-end gap-0.5 h-6 mb-2">
           <div class="flex-1 bg-rose-500 h-6"></div>
           <div class="flex-1 bg-rose-500 h-5"></div>
@@ -327,19 +332,19 @@
         </div>
         <div class="flex items-center justify-between text-xs font-mono">
           <div>
-            <span id="cvd-buy" class="text-emerald-400 font-bold block font-hud">839,776.69</span>
+            <span id="cvd-buy" class="text-emerald-400 font-bold block">839,776.69</span>
             <span class="text-[9px] text-gray-500">Buy Vol</span>
           </div>
           <div>
-            <span id="cvd-sell" class="text-rose-400 font-bold block font-hud">838,844.60</span>
+            <span id="cvd-sell" class="text-rose-400 font-bold block">838,844.60</span>
             <span class="text-[9px] text-gray-500">Sell Vol</span>
           </div>
           <div>
-            <span id="cvd-delta" class="text-cyan-400 font-bold block font-hud">+932.09</span>
+            <span id="cvd-delta" class="text-cyan-400 font-bold block">+932.09</span>
             <span class="text-[9px] text-gray-500">Delta</span>
           </div>
           <div>
-            <span id="cvd-trend" class="text-rose-400 font-bold block font-hud">Bear ⭣</span>
+            <span id="cvd-trend" class="text-rose-400 font-bold block font-hud text-xs">Bear ⭣</span>
             <span class="text-[9px] text-gray-500">Trend</span>
           </div>
         </div>
@@ -348,23 +353,23 @@
 
     <!-- Liquidity Target Zones -->
     <div class="radar-card p-3.5">
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider font-hud mb-2.5 block">LIQUIDITY TARGET ZONES (POOLS)</span>
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2.5 block">LIQUIDITY TARGET ZONES (POOLS)</span>
       <div id="liquidity-target-zones-list" class="space-y-1.5 text-xs font-mono"></div>
     </div>
 
     <!-- Live Order Book -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-center mb-2">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-hud">ORDER BOOK — LIVE DEPTH</span>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider">ORDER BOOK — LIVE DEPTH</span>
         <span class="text-[9px] text-gray-500 font-mono">Millisecond Tick Tape</span>
       </div>
       <div class="grid grid-cols-2 gap-4 text-xs font-mono">
         <div>
-          <span class="text-[10px] text-emerald-400 font-bold font-hud block mb-1">BIDS (BUY)</span>
+          <span class="text-[10px] text-emerald-400 font-bold block mb-1">BIDS (BUY)</span>
           <div id="orderbook-bids" class="space-y-1"></div>
         </div>
         <div>
-          <span class="text-[10px] text-rose-400 font-bold font-hud block mb-1 text-right">ASKS (SELL)</span>
+          <span class="text-[10px] text-rose-400 font-bold block mb-1 text-right">ASKS (SELL)</span>
           <div id="orderbook-asks" class="space-y-1"></div>
         </div>
       </div>
@@ -383,7 +388,7 @@
       <!-- PKR Bullion Engine (Al-Irtiqaa Formula Live Sync) -->
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[11px] font-bold tracking-wider text-amber-400 flex items-center gap-1.5 font-hud">
+          <span class="text-[11px] font-bold tracking-wider text-amber-400 flex items-center gap-1.5 uppercase">
             <i data-lucide="coins" class="w-4 h-4"></i>
             PKR BULLION ENGINE (LIVE TICK)
           </span>
@@ -392,21 +397,21 @@
         <div class="grid grid-cols-2 gap-2 mb-2">
           <div class="bg-black/50 p-2 rounded border border-white/5">
             <span class="text-[10px] text-gray-400 block">USD/PKR Interbank</span>
-            <span id="rate-usdpkr" class="text-sm font-bold text-gray-200 font-hud">276.62</span>
+            <span id="rate-usdpkr" class="text-base font-bold text-gray-200 font-hud">276.62</span>
           </div>
           <div class="bg-black/50 p-2 rounded border border-white/5">
             <span class="text-[10px] text-gray-400 block">Gold Spot (oz)</span>
-            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400 font-hud">$4,041.00</span>
+            <span id="rate-xau-spot" class="text-base font-bold text-amber-400 font-hud">$4,041.00</span>
           </div>
         </div>
         <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30">
           <div class="flex justify-between items-baseline mb-1">
             <span class="text-xs text-amber-200">1 Tola Gold (PKR):</span>
-            <span id="pkr-tola-rate" class="text-base font-black text-amber-400 font-hud tracking-wide">Rs 4,19,550</span>
+            <span id="pkr-tola-rate" class="text-xl font-bold text-amber-400 font-hud tracking-wide">Rs 4,19,550</span>
           </div>
           <div class="flex justify-between items-baseline">
             <span class="text-xs text-gray-400">10 Grams Gold (PKR):</span>
-            <span id="pkr-10g-rate" class="text-xs font-bold text-gray-200 font-hud">Rs 3,59,700</span>
+            <span id="pkr-10g-rate" class="text-sm font-bold text-gray-200 font-hud">Rs 3,59,700</span>
           </div>
           <div class="text-[9px] text-gray-500 mt-1.5 text-right">
             Formula: (Live Gold / 31.1035) × 11.6638 × USD/PKR
@@ -417,7 +422,7 @@
       <!-- Live Metals & Forex Stream -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2">
-          <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 font-hud">
+          <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
             <i data-lucide="trending-up" class="w-4 h-4 text-cyan-400"></i>
             METALS & FOREX (REAL-TIME)
           </h2>
@@ -426,42 +431,42 @@
         <div class="space-y-1.5 flex-1 overflow-y-auto pr-1">
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-amber-400 font-hud">XAU/USD (Gold)</div>
+              <div class="text-sm font-bold text-amber-400 font-hud">XAU/USD (Gold)</div>
               <div class="text-[10px] text-gray-400">Spot Metal • 1 oz</div>
             </div>
             <div class="text-right">
-              <div id="desk-xau-price" class="text-sm font-bold text-gray-100 font-hud">$4,041.00</div>
-              <div id="desk-xau-pct" class="text-[10px] text-emerald-400 font-bold">+0.81%</div>
+              <div id="desk-xau-price" class="text-base font-bold text-gray-100 font-hud">$4,041.00</div>
+              <div id="desk-xau-pct" class="text-[11px] text-emerald-400 font-bold font-hud">+0.81%</div>
             </div>
           </div>
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-cyan-300 font-hud">XAG/USD (Silver)</div>
+              <div class="text-sm font-bold text-cyan-300 font-hud">XAG/USD (Silver)</div>
               <div class="text-[10px] text-gray-400">Spot Metal • 1 oz</div>
             </div>
             <div class="text-right">
-              <div id="desk-xag-price" class="text-sm font-bold text-gray-100 font-hud">$49.66</div>
-              <div id="desk-xag-pct" class="text-[10px] text-emerald-400 font-bold">+1.24%</div>
+              <div id="desk-xag-price" class="text-base font-bold text-gray-100 font-hud">$49.66</div>
+              <div id="desk-xag-pct" class="text-[11px] text-emerald-400 font-bold font-hud">+1.24%</div>
             </div>
           </div>
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-yellow-500 font-hud">WTI CRUDE OIL</div>
+              <div class="text-sm font-bold text-yellow-500 font-hud">WTI CRUDE OIL</div>
               <div class="text-[10px] text-gray-400">Light Sweet Crude</div>
             </div>
             <div class="text-right">
-              <div id="desk-oil-price" class="text-sm font-bold text-gray-100 font-hud">$96.85</div>
-              <div id="desk-oil-pct" class="text-[10px] text-rose-400 font-bold">-0.42%</div>
+              <div id="desk-oil-price" class="text-base font-bold text-gray-100 font-hud">$96.85</div>
+              <div id="desk-oil-pct" class="text-[11px] text-rose-400 font-bold font-hud">-0.42%</div>
             </div>
           </div>
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-purple-400 font-hud">DXY (Dollar Index)</div>
+              <div class="text-sm font-bold text-purple-400 font-hud">DXY (Dollar Index)</div>
               <div class="text-[10px] text-gray-400">USD Currency Index</div>
             </div>
             <div class="text-right">
-              <div class="text-sm font-bold text-gray-100 font-hud">101.565</div>
-              <div class="text-[10px] text-rose-400 font-bold">-0.18%</div>
+              <div id="desk-dxy-price" class="text-base font-bold text-gray-100 font-hud">101.565</div>
+              <div id="desk-dxy-pct" class="text-[11px] text-rose-400 font-bold font-hud">-0.18%</div>
             </div>
           </div>
         </div>
@@ -476,7 +481,7 @@
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
         <div class="flex items-center justify-between mb-1 z-10">
           <div class="flex items-center space-x-2">
-            <span class="text-xs font-hud font-bold text-amber-400 tracking-wider">QUANT REACTOR</span>
+            <span class="text-xs font-bold text-amber-400 tracking-wider">QUANT REACTOR</span>
             <span class="text-[9px] bg-black/60 border border-white/10 px-1.5 py-0.5 rounded text-gray-300">
               DUAL ENGINE CORE
             </span>
@@ -496,7 +501,7 @@
           <div class="col-span-5 md:col-span-4 flex flex-col justify-between h-[280px] bg-black/60 border border-cyan-500/30 rounded-lg p-2.5 shadow-inner">
             <div class="border-b border-white/5 pb-1">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-hud text-cyan-400 font-bold">CO-REACTOR</span>
+                <span class="text-[10px] text-cyan-400 font-bold">CO-REACTOR</span>
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               </div>
               <span class="text-[8px] text-gray-400 block tracking-wider">CAPITAL FLOW RADAR</span>
@@ -555,16 +560,16 @@
 
         <div class="w-full grid grid-cols-3 gap-2 mt-1.5 pt-1.5 border-t border-white/5 z-10 text-center">
           <div>
-            <span class="text-[9px] text-gray-500 block">BTC 24h High</span>
-            <span class="text-xs font-bold text-gray-300 font-hud">$76,450.00</span>
+            <span class="text-[9px] text-gray-500 block">BTC 24H HIGH</span>
+            <span class="text-sm font-bold text-gray-300 font-hud">$76,450.00</span>
           </div>
           <div>
-            <span class="text-[9px] text-gray-500 block">BTC 24h Low</span>
-            <span class="text-xs font-bold text-gray-300 font-hud">$74,800.00</span>
+            <span class="text-[9px] text-gray-500 block">BTC 24H LOW</span>
+            <span class="text-sm font-bold text-gray-300 font-hud">$74,800.00</span>
           </div>
           <div>
-            <span class="text-[9px] text-gray-500 block">24h Trade Vol</span>
-            <span class="text-xs font-bold text-amber-400 font-hud">41,208 BTC</span>
+            <span class="text-[9px] text-gray-500 block">24H TRADE VOL</span>
+            <span class="text-sm font-bold text-amber-400 font-hud">41,208 BTC</span>
           </div>
         </div>
       </div>
@@ -572,35 +577,35 @@
       <!-- Multi-Crypto Tiles -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
         <div class="glass-panel p-2 rounded-lg border-amber-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold font-hud">
+          <div class="flex justify-between items-center text-[11px] font-bold">
             <span class="text-amber-400">BTC/USDT</span>
             <span class="text-emerald-400">+1.45%</span>
           </div>
-          <div id="desk-btc-price" class="text-sm md:text-base font-black text-gray-100 font-hud my-0.5">$75,976.01</div>
+          <div id="desk-btc-price" class="text-xl font-bold text-gray-100 font-hud my-0.5">$75,976.01</div>
           <span class="text-[9px] text-gray-500 block truncate">Dominance: 60.16%</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-purple-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold font-hud">
+          <div class="flex justify-between items-center text-[11px] font-bold">
             <span class="text-purple-400">ETH/USDT</span>
             <span class="text-emerald-400">+0.95%</span>
           </div>
-          <div id="desk-eth-price" class="text-sm md:text-base font-black text-gray-100 font-hud my-0.5">$2,252.21</div>
+          <div id="desk-eth-price" class="text-xl font-bold text-gray-100 font-hud my-0.5">$2,252.21</div>
           <span class="text-[9px] text-gray-500 block truncate">Ethereum Core</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-cyan-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold font-hud">
+          <div class="flex justify-between items-center text-[11px] font-bold">
             <span class="text-cyan-400">SOL/USDT</span>
             <span class="text-rose-400">-0.82%</span>
           </div>
-          <div id="desk-sol-price" class="text-sm md:text-base font-black text-gray-100 font-hud my-0.5">$90.61</div>
+          <div id="desk-sol-price" class="text-xl font-bold text-gray-100 font-hud my-0.5">$90.61</div>
           <span class="text-[9px] text-gray-500 block truncate">Solana High TPS</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-blue-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold font-hud">
+          <div class="flex justify-between items-center text-[11px] font-bold">
             <span class="text-blue-400">LINK/USDT</span>
             <span class="text-emerald-400">+1.10%</span>
           </div>
-          <div id="desk-link-price" class="text-sm md:text-base font-black text-gray-100 font-hud my-0.5">$10.77</div>
+          <div id="desk-link-price" class="text-xl font-bold text-gray-100 font-hud my-0.5">$10.77</div>
           <span class="text-[9px] text-gray-500 block truncate">Chainlink Oracle</span>
         </div>
       </div>
@@ -610,17 +615,17 @@
         <div class="flex items-center justify-between mb-1.5">
           <div class="flex items-center space-x-1.5">
             <i data-lucide="activity" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span class="text-xs font-bold text-gray-300 font-hud">THE TAPE • LIVE ORDER FLOW</span>
+            <span class="text-xs font-bold text-gray-300">THE TAPE • LIVE ORDER FLOW</span>
           </div>
           <span class="text-[9px] text-gray-500 uppercase">Binance Public Match Engine</span>
         </div>
-        <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold">
+        <div class="grid grid-cols-4 text-[11px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold">
           <span>TIME</span>
           <span>PAIR</span>
           <span class="text-right">PRICE (USDT)</span>
           <span class="text-right">SIZE (QTY)</span>
         </div>
-        <div id="trade-tape-stream" class="flex-1 overflow-y-auto space-y-1 pr-1 font-mono text-[11px] pt-1"></div>
+        <div id="trade-tape-stream" class="flex-1 overflow-y-auto space-y-1 pr-1 font-mono text-xs pt-1"></div>
       </div>
 
     </section>
@@ -631,7 +636,7 @@
       <!-- SMC Order Flow Levels -->
       <div class="glass-panel rounded-xl p-3 border-emerald-500/30">
         <div class="flex items-center justify-between mb-2">
-          <h2 class="text-xs font-bold text-emerald-400 flex items-center gap-1.5 font-hud">
+          <h2 class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
             <i data-lucide="crosshair" class="w-4 h-4"></i>
             SMC ORDER FLOW LEVELS
           </h2>
@@ -642,42 +647,42 @@
 
         <div class="bg-black/50 p-2 rounded-lg border border-white/5 mb-2">
           <div class="flex justify-between items-center mb-0.5">
-            <span class="text-xs font-bold text-amber-400">GOLD (XAU/USD)</span>
+            <span class="text-xs font-bold text-amber-400 font-cinzel tracking-wider">GOLD (XAU/USD)</span>
             <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded">DISCOUNT FVG</span>
           </div>
-          <div class="text-[11px] space-y-0.5 text-gray-300">
+          <div class="text-xs space-y-0.5 text-gray-300">
             <div class="flex justify-between">
               <span class="text-gray-500">Entry Buy:</span>
-              <span id="desk-smc-gold-entry" class="font-bold text-emerald-400 font-hud">$4,020 – $4,035</span>
+              <span id="desk-smc-gold-entry" class="font-bold text-emerald-400 font-hud tracking-wide">$4,020 – $4,035</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">Target (TP):</span>
-              <span id="desk-smc-gold-tp" class="font-bold text-cyan-400 font-hud">$4,080 – $4,110</span>
+              <span id="desk-smc-gold-tp" class="font-bold text-cyan-400 font-hud tracking-wide">$4,080 – $4,110</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">Stop-Loss:</span>
-              <span id="desk-smc-gold-sl" class="font-bold text-rose-400 font-hud">$3,995.00</span>
+              <span id="desk-smc-gold-sl" class="font-bold text-rose-400 font-hud tracking-wide">$3,995.00</span>
             </div>
           </div>
         </div>
 
         <div class="bg-black/50 p-2 rounded-lg border border-white/5">
           <div class="flex justify-between items-center mb-0.5">
-            <span class="text-xs font-bold text-amber-300">BITCOIN (BTC/USDT)</span>
+            <span class="text-xs font-bold text-amber-300 font-cinzel tracking-wider">BITCOIN (BTC/USDT)</span>
             <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 rounded">INTERNAL SWEEP</span>
           </div>
-          <div class="text-[11px] space-y-0.5 text-gray-300">
+          <div class="text-xs space-y-0.5 text-gray-300">
             <div class="flex justify-between">
               <span class="text-gray-500">Entry Buy:</span>
-              <span class="font-bold text-emerald-400 font-hud">$75,200 – $75,600</span>
+              <span class="font-bold text-emerald-400 font-hud tracking-wide">$75,200 – $75,600</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">Target (TP):</span>
-              <span class="font-bold text-cyan-400 font-hud">$77,500 – $78,500</span>
+              <span class="font-bold text-cyan-400 font-hud tracking-wide">$77,500 – $78,500</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">Stop-Loss:</span>
-              <span class="font-bold text-rose-400 font-hud">$74,300.00</span>
+              <span class="font-bold text-rose-400 font-hud tracking-wide">$74,300.00</span>
             </div>
           </div>
         </div>
@@ -685,7 +690,7 @@
 
       <!-- Equities & PSX -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
-        <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-hud">
+        <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2">
           <i data-lucide="bar-chart-2" class="w-4 h-4 text-amber-400"></i>
           US EQUITIES & PSX BENCHMARK
         </h2>
@@ -693,44 +698,44 @@
         <div class="space-y-1.5 flex-1 text-xs">
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <span class="font-bold text-emerald-400 font-hud block">PSX KSE-100</span>
+              <span class="font-bold text-emerald-400 block font-hud text-sm tracking-wide">PSX KSE-100</span>
               <span class="text-[9px] text-gray-400">Pakistan Stock Exchange</span>
             </div>
             <div class="text-right">
-              <span class="font-bold text-gray-100 font-hud block">175,379.87</span>
-              <span class="text-[10px] text-emerald-400 font-semibold">+1.96% (+3,366)</span>
+              <span class="font-bold text-gray-100 font-hud text-sm tracking-wide">175,379.87</span>
+              <span class="text-[10px] text-emerald-400 font-semibold font-hud">+1.96% (+3,366)</span>
             </div>
           </div>
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <span class="font-bold text-cyan-400 font-hud block">NASDAQ 100 (NDX)</span>
+              <span class="font-bold text-cyan-400 block font-hud text-sm tracking-wide">NASDAQ 100 (NDX)</span>
               <span class="text-[9px] text-gray-400">Tech Heavy Index</span>
             </div>
             <div class="text-right">
-              <span class="font-bold text-gray-100 font-hud block">26,842.12</span>
-              <span class="text-[10px] text-rose-400 font-semibold">-5.61%</span>
+              <span class="font-bold text-gray-100 font-hud text-sm tracking-wide">26,842.12</span>
+              <span class="text-[10px] text-rose-400 font-semibold font-hud">-5.61%</span>
             </div>
           </div>
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
-              <span class="font-bold text-purple-400 font-hud block">US 10Y YIELD</span>
+              <span class="font-bold text-purple-400 block font-hud text-sm tracking-wide font-cinzel">US 10Y YIELD</span>
               <span class="text-[9px] text-gray-400">Treasury Note</span>
             </div>
             <div class="text-right">
-              <span class="font-bold text-gray-100 font-hud block">4.84%</span>
-              <span class="text-[10px] text-rose-400 font-semibold">-0.96%</span>
+              <span class="font-bold text-gray-100 font-hud text-sm tracking-wide">4.84%</span>
+              <span class="text-[10px] text-rose-400 font-semibold font-hud">-0.96%</span>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-1.5 pt-1">
             <div class="bg-black/40 p-1.5 rounded border border-white/5">
               <span class="text-[9px] text-gray-400 block">NVDA Corp</span>
-              <span class="text-xs font-bold text-gray-200 font-hud">$184.89</span>
-              <span class="text-[9px] text-rose-400 block">-7.62%</span>
+              <span class="text-sm font-bold text-gray-200 font-hud tracking-wide">$184.89</span>
+              <span class="text-[9px] text-rose-400 font-hud font-bold">-7.62%</span>
             </div>
             <div class="bg-black/40 p-1.5 rounded border border-white/5">
               <span class="text-[9px] text-gray-400 block">AAPL Inc</span>
-              <span class="text-xs font-bold text-gray-200 font-hud">$348.15</span>
-              <span class="text-[9px] text-rose-400 block">-0.39%</span>
+              <span class="text-sm font-bold text-gray-200 font-hud tracking-wide">$348.15</span>
+              <span class="text-[9px] text-rose-400 font-hud font-bold">-0.39%</span>
             </div>
           </div>
         </div>
@@ -746,7 +751,7 @@
       <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-white/5">
         <div class="flex items-center space-x-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="text-xs font-hud font-bold text-amber-400 tracking-wider">MARKET LIVE WIRE • POINT-WISE BULLETINS</span>
+          <span class="text-xs font-bold text-amber-400 tracking-wider">MARKET LIVE WIRE • POINT-WISE BULLETINS</span>
         </div>
         <div class="text-[9px] text-gray-500 whitespace-nowrap hidden md:block">
           ⚠️ Informational updates only. Al-Irtiqaa Capital / Mushtari Trader.
@@ -755,27 +760,27 @@
       <div id="live-news-points-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-[11px] font-mono">
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-emerald-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-amber-300 font-semibold font-hud">[XAU/USD]</span> Spot Gold live trade stream active; bullion calculations updating dynamically.</p>
+          <p class="text-gray-200"><span class="text-amber-300 font-semibold">[XAU/USD]</span> Spot Gold live trade stream active; bullion calculations updating dynamically.</p>
         </div>
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-cyan-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-cyan-300 font-semibold font-hud">[FOREX]</span> Dollar Index consolidates near 101.56; EUR/USD holds firm at 1.1219 level.</p>
+          <p class="text-gray-200"><span class="text-cyan-300 font-semibold">[FOREX]</span> Dollar Index consolidates near 101.56; EUR/USD holds firm at 1.1219 level.</p>
         </div>
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-amber-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-amber-400 font-semibold font-hud">[CRYPTO]</span> Bitcoin establishes solid liquidity floor above $75,500 absorbing sell pressure.</p>
+          <p class="text-gray-200"><span class="text-amber-400 font-semibold">[CRYPTO]</span> Bitcoin establishes solid liquidity floor above $75,500 absorbing sell pressure.</p>
         </div>
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-emerald-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-emerald-400 font-semibold font-hud">[PSX]</span> KSE-100 sets historic milestone closing strongly above 175,379 index (+1.96%).</p>
+          <p class="text-gray-200"><span class="text-emerald-400 font-semibold">[PSX]</span> KSE-100 sets historic milestone closing strongly above 175,379 index (+1.96%).</p>
         </div>
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-cyan-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-cyan-300 font-semibold font-hud">[METALS]</span> Spot Silver rebounds cleanly from $49.00 support targeting $50.40 liquidity band.</p>
+          <p class="text-gray-200"><span class="text-cyan-300 font-semibold">[METALS]</span> Spot Silver rebounds cleanly from $49.00 support targeting $50.40 liquidity band.</p>
         </div>
         <div class="bg-black/40 p-2 rounded border border-white/5 flex items-start space-x-2">
           <span class="text-purple-400 font-bold">•</span>
-          <p class="text-gray-200"><span class="text-purple-300 font-semibold font-hud">[COMMODITIES]</span> WTI Crude holds near $96.85 amidst tight supply-side inventory calculations.</p>
+          <p class="text-gray-200"><span class="text-purple-300 font-semibold">[COMMODITIES]</span> WTI Crude holds near $96.85 amidst tight supply-side inventory calculations.</p>
         </div>
       </div>
     </div>
@@ -794,9 +799,9 @@
         const btn = document.getElementById(`tab-${k}`);
         if (btn) {
           if (k === tabKey) {
-            btn.className = "nav-tab-active px-3 py-1 rounded-lg text-xs font-hud transition duration-150";
+            btn.className = "nav-tab-active px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider transition duration-150";
           } else {
-            btn.className = "px-3 py-1 rounded-lg text-xs font-hud text-gray-400 hover:text-white transition duration-150";
+            btn.className = "px-3.5 py-1.5 rounded-lg text-sm font-hud tracking-wider text-gray-400 hover:text-white transition duration-150";
           }
         }
       });
@@ -815,7 +820,7 @@
       }
     }
 
-    // Dynamic Multi-Asset Data Profiles
+    // Dynamic Multi-Asset Data Profiles using high-impact condensed scaling fonts
     const RADAR_PROFILES = {
       BTC: {
         oi: "$7.18B", fr: "+0.0092%", spread: "$0.10", trades: "520/s",
@@ -913,7 +918,7 @@
 
       document.getElementById('hero-price').textContent = '$' + data.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
       document.getElementById('hero-pct').textContent = data.pct;
-      document.getElementById('hero-pct').className = `text-sm font-bold font-hud ${data.pct.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`;
+      document.getElementById('hero-pct').className = `text-lg font-bold font-hud ${data.pct.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`;
       document.getElementById('hero-high').textContent = data.high;
       document.getElementById('hero-low').textContent = data.low;
       document.getElementById('hero-vol').textContent = data.vol;
@@ -932,7 +937,7 @@
       document.getElementById('strength-desc').textContent = data.strengthDesc;
 
       document.getElementById('sweep-badge').textContent = data.sweepBadge;
-      document.getElementById('sweep-badge').className = `inline-block px-2 py-0.5 rounded text-[11px] font-bold font-hud my-1 ${data.sweepBadge.includes('BULL') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
+      document.getElementById('sweep-badge').className = `inline-block px-2 py-0.5 rounded text-xs font-bold font-hud my-1 ${data.sweepBadge.includes('BULL') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
       document.getElementById('sweep-desc').textContent = data.sweepDesc;
       document.getElementById('sweep-price').textContent = data.sweepPrice;
       document.getElementById('sweep-conf').textContent = data.sweepConf;
@@ -961,12 +966,12 @@
       const targetContainer = document.getElementById('liquidity-target-zones-list');
       targetContainer.innerHTML = data.targetZones.map(z => `
         <div class="flex items-center justify-between gap-3 p-1 rounded bg-black/40 border border-white/5">
-          <span class="w-20 font-bold ${z.dir === '▲' ? 'text-amber-400' : 'text-cyan-400'} font-hud">${z.dir} ${z.price}</span>
+          <span class="w-20 font-bold ${z.dir === '▲' ? 'text-amber-400' : 'text-cyan-400'} font-hud text-sm">${z.dir} ${z.price}</span>
           <div class="flex-1 h-3.5 bg-black/80 rounded overflow-hidden relative border border-white/5">
             <div class="${z.color} h-full" style="width: 85%;"></div>
             <span class="absolute inset-0 flex items-center px-2 text-[10px] font-bold text-white">${z.type} • ${z.val}</span>
           </div>
-          <span class="w-8 text-right font-hud text-gray-300 font-bold">${z.score}</span>
+          <span class="w-8 text-right font-hud text-gray-300 font-bold text-sm">${z.score}</span>
         </div>
       `).join('');
 
@@ -985,7 +990,7 @@
         const bQty = (Math.random() * 5 + 0.1).toFixed(3);
         bidsHtml += `
           <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-emerald-500/5 border-b border-white/[0.02]">
-            <span class="font-bold text-emerald-400 font-hud">$${bp}</span>
+            <span class="font-bold text-emerald-400 font-hud text-sm">$${bp}</span>
             <span class="text-gray-400">${bQty}</span>
           </div>
         `;
@@ -994,7 +999,7 @@
         asksHtml += `
           <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-rose-500/5 border-b border-white/[0.02]">
             <span class="text-gray-400">${aQty}</span>
-            <span class="font-bold text-rose-400 font-hud text-right">$${ap}</span>
+            <span class="font-bold text-rose-400 font-hud text-sm text-right">$${ap}</span>
           </div>
         `;
       }
@@ -1093,7 +1098,7 @@
       const spotEl = document.getElementById('rate-xau-spot');
       if (spotEl) {
         spotEl.textContent = '$' + currentSpotGold.toLocaleString('en-US', { minimumFractionDigits: 2 });
-        spotEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+        spotEl.className = 'text-base font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
       }
 
       const tolaEl = document.getElementById('pkr-tola-rate');
@@ -1104,14 +1109,14 @@
       const deskXau = document.getElementById('desk-xau-price');
       if (deskXau) {
         deskXau.textContent = '$' + currentSpotGold.toLocaleString('en-US', { minimumFractionDigits: 2 });
-        deskXau.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+        deskXau.className = 'text-base font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
       }
 
       if (currentActiveView === 'GOLD') {
         const heroEl = document.getElementById('hero-price');
         if (heroEl) {
           heroEl.textContent = '$' + currentSpotGold.toLocaleString('en-US', { minimumFractionDigits: 2 });
-          heroEl.className = 'text-3xl md:text-5xl font-black font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+          heroEl.className = 'text-4xl sm:text-6xl md:text-7xl font-bold font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
         }
         renderOrderBook(currentSpotGold, 0.1);
       }
@@ -1139,7 +1144,7 @@
             const hp = document.getElementById('hero-price');
             if (hp) {
               hp.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-              hp.className = 'text-3xl md:text-5xl font-black font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+              hp.className = 'text-4xl sm:text-6xl md:text-7xl font-bold font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
             renderOrderBook(price, 1);
           }
@@ -1152,7 +1157,7 @@
             const hp = document.getElementById('hero-price');
             if (hp) {
               hp.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-              hp.className = 'text-3xl md:text-5xl font-black font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+              hp.className = 'text-4xl sm:text-6xl md:text-7xl font-bold font-hud tracking-tight ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
             renderOrderBook(price, 0.1);
           }
@@ -1167,7 +1172,7 @@
           row.innerHTML = `
             <span>${timeStr}</span>
             <span class="text-gray-300 font-bold">${symbol.replace('USDT','')}</span>
-            <span class="text-right font-hud">${price.toFixed(2)}</span>
+            <span class="text-right font-hud text-sm">${price.toFixed(2)}</span>
             <span class="text-right text-gray-400">${qty.toFixed(3)}</span>
           `;
           tapeStream.insertBefore(row, tapeStream.firstChild);
@@ -1177,7 +1182,6 @@
     };
 
     // 6. MULTI-ASSET REAL-TIME TICK GENERATOR (GOLD, SILVER, CRUDE OIL)
-    // Yeh engine har 1.5 seconds mein real market spread ke mutabiq continuous tick karega
     setInterval(() => {
       // A. GOLD SPOT TICK (Around $4,041)
       const goldDelta = (Math.random() * 0.40 - 0.20);
@@ -1195,13 +1199,13 @@
       const deskXag = document.getElementById('desk-xag-price');
       if (deskXag) {
         deskXag.textContent = '$' + newSilverPrice.toFixed(2);
-        deskXag.className = 'text-sm font-bold font-hud ' + (isSilverBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+        deskXag.className = 'text-base font-bold font-hud ' + (isSilverBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
       }
       if (currentActiveView === 'SILVER') {
         const hp = document.getElementById('hero-price');
         if (hp) {
           hp.textContent = '$' + newSilverPrice.toFixed(2);
-          hp.className = 'text-3xl md:text-5xl font-black font-hud tracking-tight ' + (isSilverBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+          hp.className = 'text-4xl sm:text-6xl md:text-7xl font-bold font-hud tracking-tight ' + (isSilverBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
         }
         renderOrderBook(newSilverPrice, 0.01);
       }
@@ -1214,13 +1218,13 @@
       const deskOil = document.getElementById('desk-oil-price');
       if (deskOil) {
         deskOil.textContent = '$' + newOilPrice.toFixed(2);
-        deskOil.className = 'text-sm font-bold font-hud ' + (isOilBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+        deskOil.className = 'text-base font-bold font-hud ' + (isOilBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
       }
       if (currentActiveView === 'OIL') {
         const hp = document.getElementById('hero-price');
         if (hp) {
           hp.textContent = '$' + newOilPrice.toFixed(2);
-          hp.className = 'text-3xl md:text-5xl font-black font-hud tracking-tight ' + (isOilBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+          hp.className = 'text-4xl sm:text-6xl md:text-7xl font-bold font-hud tracking-tight ' + (isOilBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
         }
         renderOrderBook(newOilPrice, 0.05);
       }
