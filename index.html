@@ -73,7 +73,6 @@
       animation-play-state: paused;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -289,82 +288,99 @@
 
     </section>
 
-    <!-- CENTER PANEL: 3D QUANT REACTOR & CO-REACTOR SIDE WIDGET (Cols: 6) -->
+    <!-- CENTER PANEL: 3D QUANT REACTOR & CO-REACTOR CAPITAL INFLOW RADAR (Cols: 6) -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       
-      <!-- MAIN REACTOR CARD WITH INTEGRATED SIDE CO-REACTOR WIDGET -->
+      <!-- MAIN REACTOR CARD WITH INTEGRATED LIVE INFLOW CO-REACTOR -->
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
         
         <div class="flex items-center justify-between mb-1 z-10">
           <div class="flex items-center space-x-2">
             <span class="text-xs font-hud font-bold text-amber-400 tracking-wider">QUANT REACTOR</span>
             <span class="text-[9px] bg-black/60 border border-white/10 px-1.5 py-0.5 rounded text-gray-300">
-              DUAL ENGINE MATRIX
+              DUAL ENGINE CORE
             </span>
           </div>
           <div class="text-right flex items-center space-x-2">
-            <span class="text-[9px] text-gray-400">CORE VELOCITY:</span>
+            <span class="text-[9px] text-gray-400">VOLATILITY:</span>
             <span id="reactor-velocity" class="text-xs font-hud font-bold text-emerald-400">1.00x</span>
           </div>
         </div>
 
-        <!-- TWO COLUMN DISPLAY: 3D THREE.JS REACTOR (MAIN) + SIDE CO-REACTOR MINI-WIDGET -->
+        <!-- TWO COLUMN DISPLAY: 3D REACTOR (MAIN) + CO-REACTOR CAPITAL INFLOW RADAR (SIDE) -->
         <div class="grid grid-cols-12 gap-2 flex-1 items-center">
           
           <!-- Primary 3D Reactor Canvas -->
-          <div class="col-span-8 md:col-span-9 h-[280px] relative flex items-center justify-center">
+          <div class="col-span-7 md:col-span-8 h-[280px] relative flex items-center justify-center">
             <div id="three-reactor-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
           </div>
 
-          <!-- Compact Side Co-Reactor Panel (Mini Order-Flow & Spectrogram Box) -->
-          <div class="col-span-4 md:col-span-3 flex flex-col justify-between h-[280px] bg-black/50 border border-white/5 rounded-lg p-2">
+          <!-- Co-Reactor Panel: Real-Time Capital Inflow / Outflow Radar -->
+          <div class="col-span-5 md:col-span-4 flex flex-col justify-between h-[280px] bg-black/60 border border-cyan-500/30 rounded-lg p-2.5 shadow-inner">
             
-            <div>
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-[9px] font-hud text-cyan-400 font-bold">CO-REACTOR</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            <!-- Panel Header -->
+            <div class="border-b border-white/5 pb-1">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-hud text-cyan-400 font-bold">CO-REACTOR</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               </div>
-              <span class="text-[8px] text-gray-500 block leading-tight">Order-flow density & depth flux</span>
+              <span class="text-[8px] text-gray-400 block tracking-wider">CAPITAL FLOW RADAR</span>
             </div>
 
-            <!-- Mini Live Distribution Bars -->
-            <div class="space-y-1.5 my-2">
-              <div>
-                <div class="flex justify-between text-[8px] text-gray-400 mb-0.5">
-                  <span>BUY DENSITY</span>
-                  <span id="co-buy-val" class="text-emerald-400 font-bold">68%</span>
+            <!-- ASSET INFLOW / OUTFLOW METRICS -->
+            <div class="space-y-2 my-1">
+              
+              <!-- BITCOIN CAPITAL FLOW -->
+              <div class="bg-black/50 p-1.5 rounded border border-white/5">
+                <div class="flex justify-between items-center text-[9px] mb-0.5">
+                  <span class="font-bold text-amber-400 font-hud">BTC FLOW</span>
+                  <span id="btc-flow-tag" class="text-[8px] px-1 py-0.2 rounded font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">BUY / INFLOW</span>
                 </div>
-                <div class="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5">
-                  <div id="co-buy-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 68%;"></div>
+                <div class="flex justify-between items-baseline text-[8px]">
+                  <span class="text-gray-400">Delta Volume:</span>
+                  <span id="btc-flow-val" class="font-bold text-emerald-400 font-hud">+$14.8M</span>
+                </div>
+                <div class="w-full h-1 bg-black rounded-full overflow-hidden mt-1">
+                  <div id="btc-flow-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 72%;"></div>
                 </div>
               </div>
 
-              <div>
-                <div class="flex justify-between text-[8px] text-gray-400 mb-0.5">
-                  <span>SELL DEPTH</span>
-                  <span id="co-sell-val" class="text-rose-400 font-bold">32%</span>
+              <!-- GOLD SPOT CAPITAL FLOW -->
+              <div class="bg-black/50 p-1.5 rounded border border-white/5">
+                <div class="flex justify-between items-center text-[9px] mb-0.5">
+                  <span class="font-bold text-yellow-400 font-hud">GOLD (XAU)</span>
+                  <span id="gold-flow-tag" class="text-[8px] px-1 py-0.2 rounded font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">BUY / INFLOW</span>
                 </div>
-                <div class="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5">
-                  <div id="co-sell-bar" class="h-full bg-rose-500 transition-all duration-300" style="width: 32%;"></div>
+                <div class="flex justify-between items-baseline text-[8px]">
+                  <span class="text-gray-400">Institutional:</span>
+                  <span id="gold-flow-val" class="font-bold text-emerald-400 font-hud">+$8.4M</span>
+                </div>
+                <div class="w-full h-1 bg-black rounded-full overflow-hidden mt-1">
+                  <div id="gold-flow-bar" class="h-full bg-amber-400 transition-all duration-300" style="width: 65%;"></div>
                 </div>
               </div>
+
+              <!-- SILVER SPOT CAPITAL FLOW -->
+              <div class="bg-black/50 p-1.5 rounded border border-white/5">
+                <div class="flex justify-between items-center text-[9px] mb-0.5">
+                  <span class="font-bold text-cyan-300 font-hud">SILVER (XAG)</span>
+                  <span id="silver-flow-tag" class="text-[8px] px-1 py-0.2 rounded font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">SELL / OUTFLOW</span>
+                </div>
+                <div class="flex justify-between items-baseline text-[8px]">
+                  <span class="text-gray-400">Liquidity Net:</span>
+                  <span id="silver-flow-val" class="font-bold text-rose-400 font-hud">-$1.9M</span>
+                </div>
+                <div class="w-full h-1 bg-black rounded-full overflow-hidden mt-1">
+                  <div id="silver-flow-bar" class="h-full bg-rose-400 transition-all duration-300" style="width: 35%;"></div>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Mini Harmonic Spectrum Bars (GrokDesk/ATSMATRIX Visualizer) -->
-            <div class="bg-black/60 p-1.5 rounded border border-white/5">
-              <span class="text-[8px] text-gray-400 block mb-1">SIGNAL MATRIX</span>
-              <div class="flex items-end justify-between h-10 gap-0.5" id="co-spectrum-bars">
-                <div class="w-1 bg-amber-400/80 rounded-t h-4 transition-all duration-200"></div>
-                <div class="w-1 bg-cyan-400/80 rounded-t h-7 transition-all duration-200"></div>
-                <div class="w-1 bg-emerald-400/80 rounded-t h-9 transition-all duration-200"></div>
-                <div class="w-1 bg-purple-400/80 rounded-t h-5 transition-all duration-200"></div>
-                <div class="w-1 bg-amber-400/80 rounded-t h-8 transition-all duration-200"></div>
-                <div class="w-1 bg-cyan-400/80 rounded-t h-6 transition-all duration-200"></div>
-              </div>
-            </div>
-
-            <div class="text-center pt-1 border-t border-white/5">
-              <span class="text-[8px] text-gray-500 font-hud">FLUX: <span id="co-flux-status" class="text-emerald-400 font-bold">OPTIMAL</span></span>
+            <!-- ACTIVE PUMP / DUMP STATUS -->
+            <div class="pt-1 border-t border-white/5 flex items-center justify-between text-[8px]">
+              <span class="text-gray-400">DOMINANT FLOW:</span>
+              <span id="dominant-flow-status" class="text-emerald-400 font-bold font-hud animate-pulse">BTC ACCUMULATION</span>
             </div>
 
           </div>
@@ -602,7 +618,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT ENGINE: THREE.JS REACTOR, WEBSOCKETS, APP INSTALL & CO-REACTOR FLUX -->
+  <!-- SCRIPT ENGINE: THREE.JS REACTOR, WEBSOCKETS & CAPITAL INFLOW RADAR -->
   <script>
     lucide.createIcons();
 
@@ -701,25 +717,66 @@
       renderer.setSize(container.clientWidth, container.clientHeight);
     });
 
-    // Dynamic pulses for both main reactor & side co-reactor
+    /* ========================================================
+       3. LIVE CAPITAL INFLOW / OUTFLOW CALCULATION ENGINE
+       ======================================================== */
+    let btcBuyVolAcc = 14.8;
+    let goldBuyVolAcc = 8.4;
+    let silverBuyVolAcc = -1.9;
+
+    function updateCapitalFlowRadar(isBuy, asset) {
+      if (asset === 'BTC') {
+        const delta = (Math.random() * 0.8 + 0.2) * (isBuy ? 1 : -1);
+        btcBuyVolAcc = parseFloat((btcBuyVolAcc + delta).toFixed(2));
+        const isPositive = btcBuyVolAcc >= 0;
+
+        const tagEl = document.getElementById('btc-flow-tag');
+        const valEl = document.getElementById('btc-flow-val');
+        const barEl = document.getElementById('btc-flow-bar');
+
+        if (tagEl && valEl && barEl) {
+          tagEl.textContent = isPositive ? 'BUY / INFLOW' : 'SELL / OUTFLOW';
+          tagEl.className = `text-[8px] px-1 py-0.2 rounded font-bold ${isPositive ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
+          valEl.textContent = (isPositive ? '+$' : '-$') + Math.abs(btcBuyVolAcc) + 'M';
+          valEl.className = `font-bold font-hud ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`;
+          barEl.style.width = Math.min(Math.max(isPositive ? 50 + btcBuyVolAcc * 2 : 50 - Math.abs(btcBuyVolAcc) * 2, 15), 95) + '%';
+          barEl.className = `h-full transition-all duration-300 ${isPositive ? 'bg-emerald-400' : 'bg-rose-400'}`;
+        }
+      }
+
+      // Dynamic Gold & Silver Inter-market sync
+      if (asset === 'GOLD') {
+        const goldPositive = isBuy;
+        const gTag = document.getElementById('gold-flow-tag');
+        const gVal = document.getElementById('gold-flow-val');
+        const gBar = document.getElementById('gold-flow-bar');
+        if (gTag && gVal && gBar) {
+          gTag.textContent = goldPositive ? 'BUY / INFLOW' : 'SELL / OUTFLOW';
+          gTag.className = `text-[8px] px-1 py-0.2 rounded font-bold ${goldPositive ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`;
+          gVal.textContent = (goldPositive ? '+$' : '-$') + (Math.random() * 2 + 7.5).toFixed(1) + 'M';
+          gVal.className = `font-bold font-hud ${goldPositive ? 'text-emerald-400' : 'text-rose-400'}`;
+          gBar.className = `h-full transition-all duration-300 ${goldPositive ? 'bg-amber-400' : 'bg-rose-400'}`;
+        }
+      }
+
+      // Dominant Market Flow Label
+      const domEl = document.getElementById('dominant-flow-status');
+      if (domEl) {
+        if (isBuy) {
+          domEl.textContent = asset === 'BTC' ? 'BTC CAPITAL PUMP' : 'BULLION ACCUMULATION';
+          domEl.className = 'text-emerald-400 font-bold font-hud animate-pulse';
+        } else {
+          domEl.textContent = asset === 'BTC' ? 'LIQUIDITY EXTRACTION' : 'PROFIT HARVESTING';
+          domEl.className = 'text-rose-400 font-bold font-hud animate-pulse';
+        }
+      }
+    }
+
     function pulseReactor(isBuy) {
       targetSpeed = 0.035;
       coreMat.color.setHex(isBuy ? 0x10b981 : 0xf43f5e);
       const velEl = document.getElementById('reactor-velocity');
       if (velEl) velEl.textContent = (baseSpeed * 100).toFixed(1) + 'x';
-
-      // Update Side Co-Reactor Dynamic Gauges
-      const buyPct = isBuy ? Math.floor(Math.random() * 15 + 65) : Math.floor(Math.random() * 15 + 25);
-      const sellPct = 100 - buyPct;
-      document.getElementById('co-buy-val').textContent = buyPct + '%';
-      document.getElementById('co-sell-val').textContent = sellPct + '%';
-      document.getElementById('co-buy-bar').style.width = buyPct + '%';
-      document.getElementById('co-sell-bar').style.width = sellPct + '%';
-      
-      const bars = document.querySelectorAll('#co-spectrum-bars div');
-      bars.forEach(bar => {
-        bar.style.height = Math.floor(Math.random() * 26 + 6) + 'px';
-      });
 
       setTimeout(() => {
         targetSpeed = 0.008;
@@ -728,7 +785,7 @@
     }
 
     /* ========================================================
-       3. PKR BULLION CALCULATION ENGINE
+       4. PKR BULLION CALCULATION ENGINE
        ======================================================== */
     let currentSpotGold = 4093.22;
     let currentUsdPkr = 276.62;
@@ -747,7 +804,7 @@
     calculateBullion();
 
     /* ========================================================
-       4. DIRECT BINANCE WEBSOCKETS (MULTI-STREAM)
+       5. DIRECT BINANCE WEBSOCKETS (MULTI-STREAM)
        ======================================================== */
     const tapeStream = document.getElementById('trade-tape-stream');
     const wsUrl = 'wss://stream.binance.com:9443/stream?streams=btcusdt@trade/ethusdt@trade/solusdt@trade/linkusdt@trade/paxgusdt@trade/btcusdt@ticker';
@@ -772,6 +829,7 @@
             btcEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             btcEl.className = 'text-sm md:text-base font-black font-hud my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             pulseReactor(isBuy);
+            updateCapitalFlowRadar(isBuy, 'BTC');
           } else if (symbol === 'ETHUSDT') {
             document.getElementById('live-eth').textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
           } else if (symbol === 'SOLUSDT') {
@@ -781,6 +839,7 @@
           } else if (symbol === 'PAXGUSDT') {
             currentSpotGold = price;
             calculateBullion();
+            updateCapitalFlowRadar(isBuy, 'GOLD');
           }
 
           const row = document.createElement('div');
@@ -814,7 +873,7 @@
     connectBinanceWS();
 
     /* ========================================================
-       5. INSTANT MARQUEE SYNC (NO BUFFERING DELAY)
+       6. INSTANT MARQUEE SYNC (NO BUFFERING DELAY)
        ======================================================== */
     async function updateMarqueeFromWeb() {
       try {
@@ -832,14 +891,14 @@
           }
         }
       } catch (e) {
-        // Retains default smooth running marquee
+        // Smooth local sequence
       }
     }
     updateMarqueeFromWeb();
     setInterval(updateMarqueeFromWeb, 45000);
 
     /* ========================================================
-       6. APPLICATION DIRECT LAUNCH / PWA INSTALL TRIGGER
+       7. APPLICATION DIRECT LAUNCH / PWA INSTALL TRIGGER
        ======================================================== */
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
