@@ -97,9 +97,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
-  <!-- ========================================================
-       TOP GLOBAL BOLD DISCLAIMER STRIP
-       ======================================================== -->
+  <!-- TOP GLOBAL BOLD DISCLAIMER STRIP -->
   <div class="w-full bg-gradient-to-r from-amber-950/90 via-black to-amber-950/90 border-b border-amber-500/40 px-3 py-2 text-center shadow-lg sticky top-0 z-50">
     <p class="text-[11px] sm:text-xs md:text-sm font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
@@ -177,13 +175,11 @@
     </div>
   </header>
 
-  <!-- ========================================================
-       PAGE 1: LIQUIDITY RADAR VIEW
-       ======================================================== -->
+  <!-- PAGE 1: LIQUIDITY RADAR VIEW -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 block">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • RADAR TERMINAL: REAL-TIME SYNCHRONIZED ORDER FLOW & LIQUIDITY MATRIX
+        • RADAR TERMINAL: REAL-TIME INSTITUTIONAL FLOW & LIVE ORDER SYNCHRONIZATION
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
@@ -236,7 +232,7 @@
       </div>
     </div>
 
-    <!-- Live Synchronized Buyers vs Sellers Bias Bar -->
+    <!-- Live Buyers vs Sellers Bias Bar -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
         <span class="text-gray-400 tracking-wider font-mono">LIVE BUYERS VS SELLERS BIAS</span>
@@ -253,70 +249,7 @@
       </div>
     </div>
 
-    <!-- Market Strength & Last Sweep -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <div class="radar-card p-3.5 flex items-center space-x-4">
-        <div class="w-14 h-14 rounded-full border-4 border-emerald-400 flex items-center justify-center font-hud text-xl font-bold text-emerald-400 shrink-0">
-          <span id="strength-score">78</span>
-        </div>
-        <div>
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider block font-mono">MARKET STRENGTH</span>
-          <span id="strength-tag" class="text-sm font-bold text-emerald-400 font-hud tracking-wide block">STRONG</span>
-          <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Bullish volume absorption confirmed on multi-asset matrix.</p>
-        </div>
-      </div>
-      <div class="radar-card p-3.5">
-        <div class="flex justify-between items-center mb-1">
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">LAST LIQUIDITY SWEEP</span>
-          <span id="sweep-age" class="text-[10px] text-gray-500 font-hud">Real-time</span>
-        </div>
-        <div class="inline-block bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-xs font-bold font-hud my-1" id="sweep-badge">
-          ⚡ INTERNAL SWEEP CONFIRMED
-        </div>
-        <p id="sweep-desc" class="text-xs text-gray-300">Continuous sub-second depth parsing active.</p>
-        <div class="flex justify-between items-center text-xs text-gray-400 mt-2 font-hud">
-          <span>At Price: <strong id="sweep-price" class="text-gray-200">Active</strong></span>
-          <span>Confidence: <strong id="sweep-conf" class="text-amber-400">88 / 100</strong></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trap Risk & Squeeze Radar (Live Sync) -->
-    <div class="radar-card p-3.5 font-hud">
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2 font-mono">TRAP & SQUEEZE RISK</span>
-      <div class="space-y-2 text-xs">
-        <div class="flex items-center justify-between gap-3">
-          <span class="w-28 text-gray-400 font-mono">Bull Trap</span>
-          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-bull-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 4%;"></div>
-          </div>
-          <span id="risk-bull-trap-val" class="w-8 text-right font-bold text-gray-300">4</span>
-        </div>
-        <div class="flex items-center justify-between gap-3">
-          <span class="w-28 text-gray-400 font-mono">Bear Trap</span>
-          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-bear-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 2%;"></div>
-          </div>
-          <span id="risk-bear-trap-val" class="w-8 text-right font-bold text-gray-300">2</span>
-        </div>
-        <div class="flex items-center justify-between gap-3">
-          <span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span>
-          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-short-sq-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 72%;"></div>
-          </div>
-          <span id="risk-short-sq-val" class="w-8 text-right font-bold text-emerald-400">72</span>
-        </div>
-        <div class="flex items-center justify-between gap-3">
-          <span class="w-28 text-cyan-400 font-mono">Long Squeeze</span>
-          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-long-sq-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 18%;"></div>
-          </div>
-          <span id="risk-long-sq-val" class="w-8 text-right font-bold text-cyan-400">18</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Possible Spoofing Detector Card (Live Synchronized) -->
+    <!-- Possible Spoofing Detector Card -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-baseline mb-1">
         <span class="text-[10px] text-gray-400 uppercase tracking-wider font-mono">POSSIBLE SPOOFING DETECTOR</span>
@@ -347,39 +280,16 @@
       </div>
       <div id="asset-news-container" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px] font-mono"></div>
     </div>
-
-    <!-- Target Zones & Order Book -->
-    <div class="radar-card p-3.5 font-hud">
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2.5 block font-mono">LIQUIDITY TARGET ZONES (POOLS)</span>
-      <div id="liquidity-target-zones-list" class="space-y-1.5 text-xs"></div>
-    </div>
-
-    <div class="radar-card p-3.5 font-hud">
-      <div class="flex justify-between items-center mb-2 font-mono">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider">ORDER BOOK — LIVE DEPTH</span>
-        <span class="text-[9px] text-gray-500">Millisecond Stream</span>
-      </div>
-      <div class="grid grid-cols-2 gap-4 text-xs">
-        <div>
-          <span class="text-[11px] text-emerald-400 font-bold block mb-1">BIDS (BUY)</span>
-          <div id="orderbook-bids" class="space-y-1"></div>
-        </div>
-        <div>
-          <span class="text-[11px] text-rose-400 font-bold block mb-1 text-right">ASKS (SELL)</span>
-          <div id="orderbook-asks" class="space-y-1"></div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <!-- ========================================================
-       PAGE 2: COMPLETE ORIGINAL 3D QUANT DESK LAYOUT
+       PAGE 2: COMPLETE 3D QUANT REACTOR DESK
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     
     <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • 3D QUANT DESK: SOLAR JUPITER ENGINE, LUNAR ASTRO CYCLE & MULTI-ASSET MATRICES [287]
+        • 3D QUANT DESK: SOLAR JUPITER ENGINE, LUNAR ASTRO CYCLE & GLOBAL INDICES [287]
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
@@ -473,7 +383,7 @@
 
     </section>
 
-    <!-- CENTER COLUMN (6 COLS): JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW, MULTI TILES, & THE TAPE -->
+    <!-- CENTER COLUMN (6 COLS): JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW & HEATMAPS -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       
       <!-- 3D Reactor & Co-Reactor Matrix -->
@@ -547,7 +457,7 @@
         </div>
       </div>
 
-      <!-- Live Multi-Crypto Tiles (BTC, ETH, SOL, LINK) -->
+      <!-- Live Multi-Crypto Tiles -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
         <div class="glass-panel p-2 rounded-lg border-amber-500/30">
           <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span id="desk-btc-pct" class="text-emerald-400">+1.45%</span></div>
@@ -571,9 +481,7 @@
         </div>
       </div>
 
-      <!-- ========================================================
-           EXPANDED DESK: XAU GOLD HEATMAP | THE TAPE | SHIB HEATMAP
-           ======================================================== -->
+      <!-- XAU GOLD HEATMAP | THE TAPE | SHIB HEATMAP -->
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px] w-full">
         <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
           <div class="flex items-center space-x-2">
@@ -584,7 +492,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <!-- LEFT (3 COLS): DYNAMIC XAU (GOLD) LIQUIDITY HEATMAP -->
+          <!-- LEFT: XAU (GOLD) LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU (GOLD) HEATMAP</span>
@@ -594,7 +502,7 @@
             <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Demand Floor: Discount FVG</div>
           </div>
 
-          <!-- CENTER (6 COLS): THE TAPE (MATCH ENGINE) -->
+          <!-- CENTER: THE TAPE -->
           <div class="md:col-span-6 flex flex-col justify-between bg-black/40 rounded-lg p-1.5 border border-white/5">
             <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
               <span>TIME</span>
@@ -605,7 +513,7 @@
             <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
           </div>
 
-          <!-- RIGHT (3 COLS): SHIB INU (SHIB) LIQUIDITY HEATMAP -->
+          <!-- RIGHT: SHIB INU (SHIB) LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-orange-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-orange-400 font-hud">SHIB HEATMAP</span>
@@ -619,7 +527,7 @@
 
     </section>
 
-    <!-- RIGHT COLUMN (3 COLS): SMC ZONES, EQUITIES & PSX BENCHMARK -->
+    <!-- RIGHT COLUMN (3 COLS): SMC ZONES, EQUITIES, GLOBAL MARKETS & PSX -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       
       <!-- SMC Order Flow Levels -->
@@ -653,57 +561,74 @@
         </div>
       </div>
 
-      <!-- Equities, Metals & PSX -->
+      <!-- ========================================================
+           GLOBAL STOCK MARKETS & INDICES MATRIX
+           (S&P 500, DOW JONES, CHINA SHANGHAI, TOKYO NIKKEI, PSX)
+           ======================================================== -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
         <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-mono">
-          <i data-lucide="bar-chart-2" class="w-4 h-4 text-amber-400"></i>
-          US EQUITIES & METALS BENCHMARK
+          <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
+          GLOBAL STOCK MARKETS & INDICES
         </h2>
 
         <div class="space-y-1.5 flex-1 text-xs font-hud">
+          <!-- S&P 500 -->
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-cyan-400 block text-xs">S&P 500 (SPX)</span>
+              <span class="text-[9px] text-gray-400 font-mono">US 500 Large Caps</span>
+            </div>
+            <div class="text-right">
+              <span id="market-spx-price" class="font-bold text-gray-100 block text-xs">7,382.40</span>
+              <span id="market-spx-pct" class="text-[10px] text-emerald-400 font-semibold">+0.32%</span>
+            </div>
+          </div>
+
+          <!-- Dow Jones -->
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-amber-400 block text-xs">DOW JONES (DJI)</span>
+              <span class="text-[9px] text-gray-400 font-mono">Wall Street 30 Industrial</span>
+            </div>
+            <div class="text-right">
+              <span id="market-dji-price" class="font-bold text-gray-100 block text-xs">51,390.00</span>
+              <span id="market-dji-pct" class="text-[10px] text-emerald-400 font-semibold">+0.15%</span>
+            </div>
+          </div>
+
+          <!-- China Stock Market (Shanghai Composite) -->
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-rose-400 block text-xs">CHINA SHANGHAI (SSEC)</span>
+              <span class="text-[9px] text-gray-400 font-mono">Shanghai Stock Exchange</span>
+            </div>
+            <div class="text-right">
+              <span id="market-ssec-price" class="font-bold text-gray-100 block text-xs">3,649.18</span>
+              <span id="market-ssec-pct" class="text-[10px] text-rose-400 font-semibold">-1.19%</span>
+            </div>
+          </div>
+
+          <!-- Tokyo Stock Market (Nikkei 225) -->
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-purple-400 block text-xs">TOKYO NIKKEI 225 (N225)</span>
+              <span class="text-[9px] text-gray-400 font-mono">Tokyo Stock Exchange (JPX)</span>
+            </div>
+            <div class="text-right">
+              <span id="market-n225-price" class="font-bold text-gray-100 block text-xs">57,434.77</span>
+              <span id="market-n225-pct" class="text-[10px] text-rose-400 font-semibold">-5.96%</span>
+            </div>
+          </div>
+
+          <!-- PSX KSE-100 -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-emerald-400 block text-xs">PSX KSE-100</span>
               <span class="text-[9px] text-gray-400 font-mono">Pakistan Stock Exchange</span>
             </div>
             <div class="text-right">
-              <span class="font-bold text-gray-100 block text-xs">173,886.68</span>
+              <span id="market-psx-price" class="font-bold text-gray-100 block text-xs">173,886.68</span>
               <span class="text-[10px] text-rose-400 font-semibold">-0.85%</span>
-            </div>
-          </div>
-
-          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-cyan-400 block text-xs">NASDAQ 100</span>
-              <span class="text-[9px] text-gray-400 font-mono">Tech Heavy NDX</span>
-            </div>
-            <div class="text-right">
-              <span class="font-bold text-gray-100 block text-xs">26,962.30</span>
-              <span class="text-[10px] text-emerald-400 font-semibold">+0.44%</span>
-            </div>
-          </div>
-
-          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-purple-400 block text-xs font-cinzel">US 10Y YIELD</span>
-              <span class="text-[9px] text-gray-400 font-mono">Treasury Benchmark</span>
-            </div>
-            <div class="text-right">
-              <span class="font-bold text-gray-100 block text-xs">4.855%</span>
-              <span class="text-[10px] text-gray-300 font-semibold">Hold</span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-1.5 pt-1">
-            <div class="bg-black/40 p-1.5 rounded border border-white/5">
-              <span class="text-[9px] text-gray-400 block font-mono">NVDA Corp</span>
-              <span class="text-xs font-bold text-gray-200 block">$186.64</span>
-              <span class="text-[9px] text-emerald-400 font-bold">+2.78%</span>
-            </div>
-            <div class="bg-black/40 p-1.5 rounded border border-white/5">
-              <span class="text-[9px] text-gray-400 block font-mono">AAPL Inc</span>
-              <span class="text-xs font-bold text-gray-200 block">$342.37</span>
-              <span class="text-[9px] text-rose-400 font-bold">-0.52%</span>
             </div>
           </div>
         </div>
@@ -760,7 +685,11 @@
       silver: 49.78,
       shib: 0.0000046,
       oil: 90.42,
-      dxy: 101.565
+      dxy: 101.565,
+      spx: 7382.40,
+      dji: 51390.00,
+      ssec: 3649.18,
+      n225: 57434.77
     };
 
     // Live Synchronized Order-Flow Dynamic State
@@ -772,7 +701,6 @@
       OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42 }
     };
 
-    // Live Synchronizer Function (Pushes ticks to Bias, Confidence, Spoofing & Strength)
     function syncLiveOrderFlowMetrics(asset, isBuy, volumeDelta) {
       const dyn = assetDynamics[asset];
       if (!dyn) return;
@@ -1282,7 +1210,7 @@
       animate();
     }
 
-    // PLANETARY HOURS ENGINE (CHALDEAN ORDER) [CITE: 6]
+    // PLANETARY HOURS ENGINE (CHALDEAN ORDER)
     const CHALDEAN_PLANETS = [
       { name: "Saturn", symbol: "♄", color: "#94a3b8" },
       { name: "Jupiter", symbol: "♃", color: "#f59e0b" },
@@ -1462,17 +1390,21 @@
               spotEl.textContent = '$' + price.toFixed(2);
               spotEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
+            const deskGoldEl = document.getElementById('desk-xau-price');
+            if (deskGoldEl) {
+              deskGoldEl.textContent = '$' + price.toFixed(2);
+              deskGoldEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
+            if (currentActiveView === 'GOLD') {
+              const hEl = document.getElementById('hero-price');
+              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            }
             const tolaPKR = Math.round((price / 31.1035) * 11.6638 * 276.62);
             const g10PKR = Math.round((price / 31.1035) * 10 * 276.62);
             const tolaEl = document.getElementById('pkr-tola-rate');
             if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
             const gEl = document.getElementById('pkr-10g-rate');
             if (gEl) gEl.textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
-
-            if (currentActiveView === 'GOLD') {
-              const hEl = document.getElementById('hero-price');
-              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            }
 
             updateDualFlows('GOLD', isBuy, qty * (price / 50000));
             syncLiveOrderFlowMetrics('GOLD', isBuy, qty * 0.1);
@@ -1496,7 +1428,7 @@
     }
     initWebSocket();
 
-    // High frequency ticks (Silver, Oil, SHIB, DXY + Dynamic flow)
+    // High frequency ticks (Silver, Oil, SHIB, DXY, S&P 500, Dow Jones, Shanghai, Nikkei)
     setInterval(() => {
       const sDelta = (Math.random() * 0.04 - 0.02);
       const isSBuy = sDelta >= 0;
@@ -1513,9 +1445,29 @@
       if (deskOil) deskOil.textContent = '$' + currentPrices.oil.toFixed(2);
       syncLiveOrderFlowMetrics('OIL', isOBuy, 0.15);
 
-      // Micro SHIB tick for Heatmap
       const shibDelta = (Math.random() * 0.00000004 - 0.00000002);
       currentPrices.shib = parseFloat((currentPrices.shib + shibDelta).toFixed(8));
+
+      // Global Indices Live Micro-Pulsing
+      const spxDelta = (Math.random() * 1.6 - 0.8);
+      currentPrices.spx = parseFloat((currentPrices.spx + spxDelta).toFixed(2));
+      const elSpx = document.getElementById('market-spx-price');
+      if (elSpx) elSpx.textContent = currentPrices.spx.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+      const djiDelta = (Math.random() * 4.0 - 2.0);
+      currentPrices.dji = parseFloat((currentPrices.dji + djiDelta).toFixed(2));
+      const elDji = document.getElementById('market-dji-price');
+      if (elDji) elDji.textContent = currentPrices.dji.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+      const ssecDelta = (Math.random() * 0.4 - 0.2);
+      currentPrices.ssec = parseFloat((currentPrices.ssec + ssecDelta).toFixed(2));
+      const elSsec = document.getElementById('market-ssec-price');
+      if (elSsec) elSsec.textContent = currentPrices.ssec.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+      const n225Delta = (Math.random() * 8.0 - 4.0);
+      currentPrices.n225 = parseFloat((currentPrices.n225 + n225Delta).toFixed(2));
+      const elN225 = document.getElementById('market-n225-price');
+      if (elN225) elN225.textContent = currentPrices.n225.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
       updateHeatmaps();
     }, 1200);
