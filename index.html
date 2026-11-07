@@ -78,7 +78,7 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
   <!-- ========================================================
-       TOP GLOBAL BOLD DISCLAIMER STRIP (HAR PAGE PAR TOP PAR)
+       TOP GLOBAL BOLD DISCLAIMER STRIP
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-amber-950/90 via-black to-amber-950/90 border-b border-amber-500/40 px-3 py-2 text-center shadow-lg sticky top-0 z-50">
     <p class="text-[11px] sm:text-xs md:text-sm font-extrabold uppercase tracking-wide text-amber-300 font-hud">
@@ -157,7 +157,6 @@
        ======================================================== -->
   <main id="view-radar" class="max-w-[1900px] w-full mx-auto p-3.5 space-y-3 flex-1">
     
-    <!-- Top Radar Internal Notice Header -->
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
         • RADAR TERMINAL DISCLAIMER: ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. NOT RESPONSIBLE FOR ANY LOSS AND PROFIT.
@@ -565,22 +564,131 @@
         </div>
       </div>
 
-      <!-- Live Order Tape Feed -->
-      <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[160px]">
-        <div class="flex items-center justify-between mb-1.5 font-mono">
-          <div class="flex items-center space-x-1.5">
-            <i data-lucide="activity" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span class="text-xs font-bold text-gray-300">THE TAPE • LIVE ORDER FLOW</span>
+      <!-- ========================================================
+           FULL-WIDTH EXPANDED DESK:
+           LEFT: BTC HEATMAP | CENTER: THE TAPE | RIGHT: GOLD HEATMAP
+           ======================================================== -->
+      <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px]">
+        <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
+            <span class="text-xs font-bold text-gray-200">INSTITUTIONAL LIQUIDITY HEATMAPS & LIVE ORDER TAPE</span>
           </div>
-          <span class="text-[9px] text-gray-500 uppercase">Binance Public Match Engine</span>
+          <span class="text-[9px] text-gray-400 uppercase">Binance Public Match Engine • Sub-Second Ticks</span>
         </div>
-        <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
-          <span>TIME</span>
-          <span>PAIR</span>
-          <span class="text-right">PRICE (USDT)</span>
-          <span class="text-right">SIZE (QTY)</span>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1">
+          
+          <!-- LEFT (3 COLS): BTC LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-amber-400 font-hud">BTC LIQUIDITY HEATMAP</span>
+              <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 rounded">POOLS</span>
+            </div>
+            <div class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1">
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$76,800 (Short Liq)</span>
+                  <span class="text-amber-400 font-bold">$142M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-full" style="width: 88%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$76,400 (Ask Shelf)</span>
+                  <span class="text-amber-300 font-bold">$96M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-amber-400 h-full" style="width: 65%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$75,200 (Long Liq)</span>
+                  <span class="text-emerald-400 font-bold">$185M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full" style="width: 95%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$74,600 (Bid Floor)</span>
+                  <span class="text-cyan-400 font-bold">$110M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-cyan-400 h-full" style="width: 74%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">
+              Dominant Hunt: Buy-Side ($76.8k)
+            </div>
+          </div>
+
+          <!-- CENTER (6 COLS): THE TAPE (MATCH ENGINE) -->
+          <div class="md:col-span-6 flex flex-col justify-between bg-black/40 rounded-lg p-1.5 border border-white/5">
+            <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
+              <span>TIME</span>
+              <span>PAIR</span>
+              <span class="text-right">PRICE (USDT)</span>
+              <span class="text-right">SIZE (QTY)</span>
+            </div>
+            <div id="trade-tape-stream" class="h-[155px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
+          </div>
+
+          <!-- RIGHT (3 COLS): GOLD (XAU) LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU LIQUIDITY HEATMAP</span>
+              <span class="text-[8px] bg-yellow-500/20 text-yellow-200 px-1 rounded">ZONES</span>
+            </div>
+            <div class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1">
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$4,085 (Sell Stop Hunt)</span>
+                  <span class="text-rose-400 font-bold">$210M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-gradient-to-r from-rose-500 to-amber-500 h-full" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$4,075 (FVG Imbalance)</span>
+                  <span class="text-yellow-400 font-bold">$145M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-yellow-400 h-full" style="width: 72%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$4,028 (Discount FVG)</span>
+                  <span class="text-emerald-400 font-bold">$190M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-emerald-400 h-full" style="width: 86%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[9px] text-gray-400">
+                  <span>$4,005 (Major Demand)</span>
+                  <span class="text-cyan-400 font-bold">$260M</span>
+                </div>
+                <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+                  <div class="bg-cyan-400 h-full" style="width: 98%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">
+              Institutional Base: $4,028 FVG
+            </div>
+          </div>
+
         </div>
-        <div id="trade-tape-stream" class="flex-1 overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
       </div>
 
     </section>
@@ -699,7 +807,7 @@
 
   </main>
 
-  <!-- FOOTER WIRE WITH NOTICE -->
+  <!-- FOOTER WIRE -->
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 z-40 mt-4">
     <div class="max-w-[1900px] mx-auto">
       <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-white/5">
@@ -1247,7 +1355,6 @@
     let baseDxy = 101.565;
 
     setInterval(() => {
-      // Silver (XAG/USD) Live Pulse
       const sDelta = (Math.random() * 0.06 - 0.03);
       const isSBuy = sDelta >= 0;
       baseSilver = parseFloat((baseSilver + sDelta).toFixed(2));
@@ -1276,7 +1383,6 @@
         renderOrderBook(baseSilver, 0.01);
       }
 
-      // WTI Crude Oil Live Pulse
       const oDelta = (Math.random() * 0.08 - 0.04);
       const isOBuy = oDelta >= 0;
       baseOil = parseFloat((baseOil + oDelta).toFixed(2));
@@ -1297,7 +1403,6 @@
         renderOrderBook(baseOil, 0.05);
       }
 
-      // DXY Dollar Index Live Pulse
       const dDelta = (Math.random() * 0.01 - 0.005);
       baseDxy = parseFloat((baseDxy + dDelta).toFixed(3));
       const deskDxy = document.getElementById('desk-dxy-price');
