@@ -97,7 +97,9 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
-  <!-- TOP GLOBAL BOLD DISCLAIMER STRIP -->
+  <!-- ========================================================
+       TOP GLOBAL BOLD DISCLAIMER STRIP
+       ======================================================== -->
   <div class="w-full bg-gradient-to-r from-amber-950/90 via-black to-amber-950/90 border-b border-amber-500/40 px-3 py-2 text-center shadow-lg sticky top-0 z-50">
     <p class="text-[11px] sm:text-xs md:text-sm font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
@@ -156,7 +158,7 @@
         </button>
       </div>
 
-      <!-- APP BUTTONS -->
+      <!-- SOCIAL & APP -->
       <div class="flex items-center space-x-2 text-xs">
         <a href="https://instagram.com/mushtritrader" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center space-x-1 bg-pink-950/40 border border-pink-500/30 text-pink-300 px-2 py-1 rounded text-[11px]">
           <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-400"></i>
@@ -181,7 +183,7 @@
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 block">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • RADAR TERMINAL: REAL-TIME INSTITUTIONAL FLOW & LIVE ORDER SYNCHRONIZATION
+        • RADAR TERMINAL: REAL-TIME SYNCHRONIZED ORDER FLOW & LIQUIDITY MATRIX
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
@@ -213,7 +215,7 @@
       </div>
     </div>
 
-    <!-- Hero Card -->
+    <!-- Hero Price & Confidence Score -->
     <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -234,7 +236,7 @@
       </div>
     </div>
 
-    <!-- Market Bias Live Bar (Green vs Red Moving dynamically) -->
+    <!-- Live Synchronized Buyers vs Sellers Bias Bar -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
         <span class="text-gray-400 tracking-wider font-mono">LIVE BUYERS VS SELLERS BIAS</span>
@@ -279,7 +281,7 @@
       </div>
     </div>
 
-    <!-- Trap Risk & Squeeze Radar (Live Synchronized) -->
+    <!-- Trap Risk & Squeeze Radar (Live Sync) -->
     <div class="radar-card p-3.5 font-hud">
       <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2 font-mono">TRAP & SQUEEZE RISK</span>
       <div class="space-y-2 text-xs">
@@ -335,7 +337,7 @@
       <span class="text-[9px] text-gray-500 block font-mono">⚠️ Real-time streaming active. Sub-second tick parsing.</span>
     </div>
 
-    <!-- Asset-Specific News -->
+    <!-- Dedicated Asset News Below Spoofing -->
     <div class="radar-card p-3.5 border-l-4 border-amber-500">
       <div class="flex items-center justify-between mb-2">
         <span id="asset-news-heading" class="text-xs font-bold text-amber-400 font-hud uppercase tracking-wider">
@@ -398,17 +400,17 @@
           </div>
           <div class="bg-black/50 p-2 rounded border border-white/5">
             <span class="text-[10px] text-gray-400 block font-mono">Gold Spot (oz)</span>
-            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$4,064.50</span>
+            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$4,070.68</span>
           </div>
         </div>
         <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30">
           <div class="flex justify-between items-baseline mb-1">
             <span class="text-xs text-amber-200 font-mono">1 Tola Gold (PKR):</span>
-            <span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 4,21,800</span>
+            <span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 4,22,450</span>
           </div>
           <div class="flex justify-between items-baseline">
             <span class="text-xs text-gray-400 font-mono">10 Grams (PKR):</span>
-            <span id="pkr-10g-rate" class="text-xs font-bold text-gray-200">Rs 3,61,620</span>
+            <span id="pkr-10g-rate" class="text-xs font-bold text-gray-200">Rs 3,62,180</span>
           </div>
         </div>
       </div>
@@ -570,7 +572,7 @@
       </div>
 
       <!-- ========================================================
-           EXPANDED DESK: BTC HEATMAP | THE TAPE | SHIB HEATMAP
+           EXPANDED DESK: XAU GOLD HEATMAP | THE TAPE | SHIB HEATMAP
            ======================================================== -->
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px] w-full">
         <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
@@ -582,14 +584,14 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <!-- LEFT (3 COLS): DYNAMIC BTC LIQUIDITY HEATMAP -->
-          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
+          <!-- LEFT (3 COLS): DYNAMIC XAU (GOLD) LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-bold text-amber-400 font-hud">BTC HEATMAP</span>
-              <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 rounded animate-pulse">LIVE POOLS</span>
+              <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU (GOLD) HEATMAP</span>
+              <span class="text-[8px] bg-yellow-500/20 text-yellow-200 px-1 rounded animate-pulse">LIVE ZONES</span>
             </div>
-            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
-            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Target Hunt: Buy-Side</div>
+            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Demand Floor: Discount FVG</div>
           </div>
 
           <!-- CENTER (6 COLS): THE TAPE (MATCH ENGINE) -->
@@ -745,23 +747,23 @@
   </footer>
 
   <!-- ========================================================
-       SCRIPT ENGINE: LIVE SYNCHRONIZATION FOR ALL PANELS
+       SCRIPT ENGINE: MASTER SYNCHRONIZATION FOR ALL PANELS
        ======================================================== -->
   <script>
-    // State Prices
+    // Asset Prices State
     let currentPrices = {
       btc: 75942.92,
       eth: 2252.21,
       sol: 90.61,
       link: 10.77,
-      gold: 4064.50,
+      gold: 4070.68,
       silver: 49.78,
-      shib: 0.0000185,
+      shib: 0.0000046,
       oil: 90.42,
       dxy: 101.565
     };
 
-    // Dynamic Live Order-Flow State per Asset
+    // Live Synchronized Order-Flow Dynamic State
     let assetDynamics = {
       BTC: { buyPct: 62.4, sellPct: 37.6, confidence: 84, conviction: 74.2, spoof: 98, bullTrap: 4, bearTrap: 2, shortSq: 72, longSq: 18 },
       ETH: { buyPct: 58.4, sellPct: 41.6, confidence: 74, conviction: 62.5, spoof: 42, bullTrap: 12, bearTrap: 4, shortSq: 78, longSq: 18 },
@@ -770,7 +772,7 @@
       OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42 }
     };
 
-    // Live Synchronizer Function (Pushes real-time ticks to Bias, Confidence & Spoofing)
+    // Live Synchronizer Function (Pushes ticks to Bias, Confidence, Spoofing & Strength)
     function syncLiveOrderFlowMetrics(asset, isBuy, volumeDelta) {
       const dyn = assetDynamics[asset];
       if (!dyn) return;
@@ -780,17 +782,14 @@
       dyn.sellPct = parseFloat((100 - dyn.buyPct).toFixed(1));
       dyn.conviction = parseFloat(Math.min(Math.max(dyn.conviction + delta * 0.2, 30), 96).toFixed(1));
 
-      // Confidence Score modulation
       if (Math.random() > 0.6) {
         dyn.confidence = Math.min(Math.max(dyn.confidence + (isBuy ? 1 : -1), 45), 98);
       }
 
-      // Spoofing Score dynamic pulse
       if (Math.random() > 0.7) {
         dyn.spoof = Math.min(Math.max(dyn.spoof + (Math.random() * 4 - 2), 10), 99);
       }
 
-      // Update Screen Elements if currently viewing this asset
       if (currentActiveView === asset) {
         const barBuy = document.getElementById('bias-bar-buy');
         const barSell = document.getElementById('bias-bar-sell');
@@ -818,7 +817,6 @@
         if (elSpoof) elSpoof.textContent = Math.round(dyn.spoof) + ' / 100';
         if (elStrength) elStrength.textContent = Math.round(dyn.buyPct * 1.1);
 
-        // Trap Risk Micro-adjustment
         const bTrap = document.getElementById('risk-bull-trap-bar');
         const sTrap = document.getElementById('risk-short-sq-bar');
         if (bTrap) bTrap.style.width = Math.round(dyn.bullTrap + Math.abs(delta)) + '%';
@@ -826,7 +824,6 @@
       }
     }
 
-    // Asset News Dictionary
     const ASSET_INTELLIGENCE_NEWS = {
       BTC: [
         { title: "Bitcoin derivatives open interest holds high volume; fake sell walls cleared near $76,200.", link: "https://www.coindesk.com" },
@@ -837,7 +834,7 @@
         { title: "ETH spoofing alert: Large ask block pulled at $2,260 liquidity band ahead of NY volatility.", link: "https://www.tradingview.com/symbols/ETHUSDT/" }
       ],
       GOLD: [
-        { title: "Spot Gold retests $4,065 demand shelf; institutional central banks absorb bullion liquidity.", link: "https://www.tradingview.com/symbols/XAUUSD/" },
+        { title: "Spot Gold retests $4,070 demand shelf; institutional central banks absorb bullion liquidity.", link: "https://www.tradingview.com/symbols/XAUUSD/" },
         { title: "Gold Order Book Alert: Fake $145M ask wall collapsed as aggressive market buyers stepped in.", link: "https://www.bullionvault.com" }
       ],
       SILVER: [
@@ -864,7 +861,7 @@
         step: 0.1
       },
       GOLD: {
-        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 4064.50, pct: "+0.81%", high: "$4,085.00", low: "$4,020.00", vol: "$28.4B",
+        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 4070.68, pct: "+0.81%", high: "$4,085.00", low: "$4,020.00", vol: "$28.4B",
         spoofDesc: "Verified live trade ticks directly from Binance matching engine",
         newsHeading: "GOLD (XAU/USD) INSTITUTIONAL BULLION WIRE",
         step: 0.1
@@ -883,7 +880,6 @@
       }
     };
 
-    // TAB SWITCHER
     let currentActiveView = "BTC";
 
     function switchView(tabKey) {
@@ -947,7 +943,6 @@
       if (heroV) heroV.textContent = data.vol;
       if (heroC) heroC.textContent = dyn.confidence;
 
-      // Sync Bias Bar immediately
       const barBuy = document.getElementById('bias-bar-buy');
       const barSell = document.getElementById('bias-bar-sell');
       const txtBuy = document.getElementById('bias-buy-pct');
@@ -965,7 +960,6 @@
         lblBias.className = `font-bold tracking-wider ${dyn.buyPct >= 50 ? 'text-emerald-400' : 'text-rose-400'}`;
       }
 
-      // Sync Spoofing
       const spSc = document.getElementById('spoof-score');
       const spTx = document.getElementById('spoof-text');
       if (spSc) spSc.textContent = Math.round(dyn.spoof) + ' / 100';
@@ -984,7 +978,6 @@
         `).join('');
       }
 
-      // Render Order Depth
       renderOrderBook(liveP, data.step);
     }
 
@@ -1018,50 +1011,50 @@
     }
 
     // ========================================================
-    // BTC HEATMAP & SHIB HEATMAP DYNAMIC ENGINE
+    // XAU (GOLD) HEATMAP & SHIB HEATMAP DYNAMIC ENGINE
     // ========================================================
-    function updateHeatmaps(btcPrice, shibPrice) {
-      if (btcPrice) currentPrices.btc = btcPrice;
+    function updateHeatmaps(goldPrice, shibPrice) {
+      if (goldPrice) currentPrices.gold = goldPrice;
       if (shibPrice) currentPrices.shib = shibPrice;
 
-      const bp = Math.round(currentPrices.btc);
-      const btcContainer = document.getElementById('btc-heatmap-container');
-      if (btcContainer) {
-        btcContainer.innerHTML = `
+      const gp = Math.round(currentPrices.gold);
+      const goldContainer = document.getElementById('gold-heatmap-container');
+      if (goldContainer) {
+        goldContainer.innerHTML = `
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>$${bp + 800} (Short Liq)</span>
-              <span class="text-amber-400 font-bold">$142.4M</span>
+              <span>$${gp + 20} (Stop Hunt)</span>
+              <span class="text-rose-400 font-bold">$210M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-full transition-all duration-300" style="width: 88%;"></div>
+              <div class="bg-gradient-to-r from-rose-500 to-amber-500 h-full transition-all duration-300" style="width: 90%;"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>$${bp + 400} (Ask Shelf)</span>
-              <span class="text-amber-300 font-bold">$96.8M</span>
+              <span>$${gp + 10} (FVG High)</span>
+              <span class="text-yellow-400 font-bold">$145M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-amber-400 h-full transition-all duration-300" style="width: 65%;"></div>
+              <div class="bg-yellow-400 h-full transition-all duration-300" style="width: 72%;"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>$${bp - 400} (Long Liq)</span>
-              <span class="text-emerald-400 font-bold">$185.1M</span>
+              <span>$${gp - 10} (Discount FVG)</span>
+              <span class="text-emerald-400 font-bold">$190M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style="width: 95%;"></div>
+              <div class="bg-emerald-400 h-full transition-all duration-300" style="width: 86%;"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>$${bp - 800} (Bid Floor)</span>
-              <span class="text-cyan-400 font-bold">$110.6M</span>
+              <span>$${gp - 25} (Major Demand)</span>
+              <span class="text-cyan-400 font-bold">$260M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 74%;"></div>
+              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 98%;"></div>
             </div>
           </div>
         `;
@@ -1072,7 +1065,7 @@
         shibContainer.innerHTML = `
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000192 (Liq Wall)</span>
+              <span>0.0000049 (Liq Wall)</span>
               <span class="text-orange-400 font-bold">$2.8M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
@@ -1081,7 +1074,7 @@
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000188 (Resistance)</span>
+              <span>0.0000047 (Resistance)</span>
               <span class="text-yellow-400 font-bold">$1.4M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
@@ -1090,7 +1083,7 @@
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000181 (Support Liq)</span>
+              <span>0.0000045 (Support Liq)</span>
               <span class="text-emerald-400 font-bold">$3.6M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
@@ -1099,7 +1092,7 @@
           </div>
           <div>
             <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000175 (Whale Floor)</span>
+              <span>0.0000042 (Whale Floor)</span>
               <span class="text-cyan-400 font-bold">$4.9M</span>
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
@@ -1247,14 +1240,12 @@
       light.position.set(5, 3, 4);
       scene.add(light);
 
-      // Jupiter Mesh
       jupiterMesh = new THREE.Mesh(
         new THREE.SphereGeometry(1.2, 32, 32),
         new THREE.MeshStandardMaterial({ map: createJupiterTexture(), roughness: 0.6, metalness: 0.1 })
       );
       scene.add(jupiterMesh);
 
-      // Orbit Ring
       const ring = new THREE.Mesh(
         new THREE.RingGeometry(2.15, 2.22, 64),
         new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.4 })
@@ -1262,7 +1253,6 @@
       ring.rotation.x = Math.PI / 2.3;
       scene.add(ring);
 
-      // Orbiting Satellite Group
       orbitGroup = new THREE.Group();
       orbitGroup.rotation.x = Math.PI / 2.3;
       scene.add(orbitGroup);
@@ -1292,7 +1282,7 @@
       animate();
     }
 
-    // PLANETARY HOURS ENGINE (CHALDEAN ORDER)
+    // PLANETARY HOURS ENGINE (CHALDEAN ORDER) [CITE: 6]
     const CHALDEAN_PLANETS = [
       { name: "Saturn", symbol: "♄", color: "#94a3b8" },
       { name: "Jupiter", symbol: "♃", color: "#f59e0b" },
@@ -1386,7 +1376,7 @@
       { category: "FINANCE", time: "1 hr ago", title: "Citigroup Shelves $1 Billion Loan Deal for Auto-Parts Supplier", desc: "Citigroup Inc. has put a $1 billion debt financing package on hold as volatility in industrial credit spreads widens.", tag: "Credit Markets", author: "Bloomberg Markets", image: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
       { category: "FINANCE", time: "2 hrs ago", title: "Arini's Hedge Fund Losses Grow to 32% as It Sells Some Positions", desc: "Hamza Lemssouguer's flagship credit hedge fund continues risk reduction measures amid adverse macro rate positioning.", tag: "Hedge Funds", author: "Bloomberg Finance", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
       { category: "CRYPTO", time: "35 mins ago", title: "Bitcoin Open Interest Reaches All-Time High Beyond $76,000 Milestone", desc: "Institutional derivative exposure on CME and Binance shows aggressive buy-side absorption targeting $78,500 liquidity bands.", tag: "Digital Assets", author: "CoinDesk", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80", link: "https://www.tradingview.com/symbols/BTCUSDT/" },
-      { category: "COMMODITIES", time: "50 mins ago", title: "Gold Spot Expands Past $4,065 as Central Banks Accelerate Reserves", desc: "Spot Bullion registers heavy institutional discount absorption as global demand hedges against sovereign currency realignments.", tag: "Precious Metals", author: "Bloomberg Commodities", image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&auto=format&fit=crop&q=80", link: "https://www.tradingview.com/symbols/XAUUSD/" }
+      { category: "COMMODITIES", time: "50 mins ago", title: "Gold Spot Expands Past $4,070 as Central Banks Accelerate Reserves", desc: "Spot Bullion registers heavy institutional discount absorption as global demand hedges against sovereign currency realignments.", tag: "Precious Metals", author: "Bloomberg Commodities", image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&auto=format&fit=crop&q=80", link: "https://www.tradingview.com/symbols/XAUUSD/" }
     ];
 
     let currentNewsFilter = "ALL";
@@ -1444,7 +1434,6 @@
             }
             updateDualFlows('BTC', isBuy, qty * (price / 100000));
             syncLiveOrderFlowMetrics('BTC', isBuy, qty);
-            updateHeatmaps(price, null);
           } else if (symbol === 'ETHUSDT') {
             currentPrices.eth = price;
             const el = document.getElementById('desk-eth-price');
@@ -1473,15 +1462,6 @@
               spotEl.textContent = '$' + price.toFixed(2);
               spotEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
-            const deskGoldEl = document.getElementById('desk-xau-price');
-            if (deskGoldEl) {
-              deskGoldEl.textContent = '$' + price.toFixed(2);
-              deskGoldEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
-            }
-            if (currentActiveView === 'GOLD') {
-              const hEl = document.getElementById('hero-price');
-              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            }
             const tolaPKR = Math.round((price / 31.1035) * 11.6638 * 276.62);
             const g10PKR = Math.round((price / 31.1035) * 10 * 276.62);
             const tolaEl = document.getElementById('pkr-tola-rate');
@@ -1489,8 +1469,14 @@
             const gEl = document.getElementById('pkr-10g-rate');
             if (gEl) gEl.textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
 
+            if (currentActiveView === 'GOLD') {
+              const hEl = document.getElementById('hero-price');
+              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            }
+
             updateDualFlows('GOLD', isBuy, qty * (price / 50000));
             syncLiveOrderFlowMetrics('GOLD', isBuy, qty * 0.1);
+            updateHeatmaps(price, null);
           }
 
           const tapeStream = document.getElementById('trade-tape-stream');
@@ -1528,8 +1514,8 @@
       syncLiveOrderFlowMetrics('OIL', isOBuy, 0.15);
 
       // Micro SHIB tick for Heatmap
-      const shibDelta = (Math.random() * 0.0000002 - 0.0000001);
-      currentPrices.shib = parseFloat((currentPrices.shib + shibDelta).toFixed(7));
+      const shibDelta = (Math.random() * 0.00000004 - 0.00000002);
+      currentPrices.shib = parseFloat((currentPrices.shib + shibDelta).toFixed(8));
 
       updateHeatmaps();
     }, 1200);
