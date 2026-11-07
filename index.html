@@ -167,9 +167,7 @@
     </div>
   </header>
 
-  <!-- ========================================================
-       PAGE 1: LIQUIDITY RADAR VIEW
-       ======================================================== -->
+  <!-- PAGE 1: LIQUIDITY RADAR VIEW -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
@@ -178,6 +176,7 @@
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
 
+    <!-- Top Metrics Strip -->
     <div class="radar-card p-3 flex flex-wrap items-center justify-between gap-4 text-xs font-hud">
       <div>
         <span class="text-[10px] text-gray-500 block font-mono">OPEN INTEREST (OI)</span>
@@ -246,6 +245,90 @@
       </div>
     </div>
 
+    <!-- Market Strength & Last Liquidity Sweep -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="radar-card p-3.5 flex items-center space-x-4">
+        <div class="w-14 h-14 rounded-full border-4 border-emerald-400 flex items-center justify-center font-hud text-xl font-bold text-emerald-400 shrink-0">
+          <span id="strength-score">78</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider block font-mono">MARKET STRENGTH</span>
+          <span id="strength-tag" class="text-sm font-bold text-emerald-400 font-hud tracking-wide block">STRONG</span>
+          <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Bullish volume absorption confirmed on multi-asset matrix.</p>
+        </div>
+      </div>
+      <div class="radar-card p-3.5">
+        <div class="flex justify-between items-center mb-1">
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">LAST LIQUIDITY SWEEP</span>
+          <span id="sweep-age" class="text-[10px] text-gray-500 font-hud">Real-time</span>
+        </div>
+        <div class="inline-block bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-xs font-bold font-hud my-1" id="sweep-badge">
+          ⚡ INTERNAL SWEEP CONFIRMED
+        </div>
+        <p id="sweep-desc" class="text-xs text-gray-300">Continuous sub-second depth parsing active.</p>
+        <div class="flex justify-between items-center text-xs text-gray-400 mt-2 font-hud">
+          <span>At Price: <strong id="sweep-price" class="text-gray-200">Active</strong></span>
+          <span>Confidence: <strong id="sweep-conf" class="text-amber-400">88 / 100</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trap Risk & Squeeze Radar -->
+    <div class="radar-card p-3.5 font-hud">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2 font-mono">TRAP & SQUEEZE RISK</span>
+      <div class="space-y-2 text-xs">
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-gray-400 font-mono">Bull Trap</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-bull-trap-bar" class="h-full bg-cyan-400" style="width: 4%;"></div>
+          </div>
+          <span id="risk-bull-trap-val" class="w-8 text-right font-bold text-gray-300">4</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-gray-400 font-mono">Bear Trap</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-bear-trap-bar" class="h-full bg-cyan-400" style="width: 2%;"></div>
+          </div>
+          <span id="risk-bear-trap-val" class="w-8 text-right font-bold text-gray-300">2</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-short-sq-bar" class="h-full bg-emerald-400" style="width: 72%;"></div>
+          </div>
+          <span id="risk-short-sq-val" class="w-8 text-right font-bold text-emerald-400">72</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-cyan-400 font-mono">Long Squeeze</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-long-sq-bar" class="h-full bg-cyan-400" style="width: 18%;"></div>
+          </div>
+          <span id="risk-long-sq-val" class="w-8 text-right font-bold text-cyan-400">18</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Possible Spoofing Detector -->
+    <div class="radar-card p-3.5">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-mono">POSSIBLE SPOOFING</span>
+        <span class="text-[9px] text-gray-500 font-mono">Real-time Order Book Integrity</span>
+      </div>
+      <div class="flex items-baseline space-x-2 my-1">
+        <span id="spoof-score" class="text-2xl font-bold text-rose-500 font-hud">98 / 100</span>
+        <span id="spoof-text" class="text-xs text-gray-300 font-mono">$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled</span>
+      </div>
+      <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5">
+        <div class="w-6 h-5 bg-rose-500 rounded-sm"></div>
+        <div class="w-6 h-6 bg-rose-500 rounded-sm"></div>
+        <div class="w-6 h-4 bg-amber-400 rounded-sm"></div>
+        <div class="w-6 h-6 bg-rose-500 rounded-sm"></div>
+        <div class="w-6 h-7 bg-rose-500 rounded-sm"></div>
+        <div class="w-6 h-5 bg-rose-500 rounded-sm"></div>
+      </div>
+      <span class="text-[9px] text-gray-500 block font-mono">⚠️ Real-time streaming active. Binance tick frequency: Sub-second.</span>
+    </div>
+
     <!-- Target Zones & Order Book -->
     <div class="radar-card p-3.5 font-hud">
       <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2.5 block font-mono">LIQUIDITY TARGET ZONES (POOLS)</span>
@@ -271,7 +354,7 @@
   </main>
 
   <!-- ========================================================
-       PAGE 2: COMPLETE 3D QUANT REACTOR DESK (INFLOW / OUTFLOW & DYNAMIC HEATMAP)
+       PAGE 2: COMPLETE 3D QUANT REACTOR DESK (FEATURING "MUSHTARI TRADER 287" 3D ROTATION)
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     
@@ -393,6 +476,7 @@
         </div>
 
         <div class="grid grid-cols-12 gap-2 flex-1 items-center">
+          <!-- 3D Canvas -->
           <div class="col-span-7 md:col-span-8 h-[270px] relative flex items-center justify-center">
             <div id="three-reactor-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
           </div>
@@ -431,7 +515,6 @@
 
             <!-- INFLOW / OUTFLOW MULTI-MATRIX (BTC, GOLD, SILVER) -->
             <div class="space-y-1.5 my-1 text-[8px] font-mono">
-              <!-- BTC INFLOW/OUTFLOW -->
               <div class="bg-black/50 p-1 rounded border border-white/5">
                 <div class="flex justify-between items-center mb-0.5">
                   <span class="font-bold text-amber-400">BTC FLOW</span>
@@ -443,7 +526,6 @@
                 </div>
               </div>
 
-              <!-- GOLD INFLOW/OUTFLOW -->
               <div class="bg-black/50 p-1 rounded border border-white/5">
                 <div class="flex justify-between items-center mb-0.5">
                   <span class="font-bold text-yellow-400">GOLD FLOW</span>
@@ -455,7 +537,6 @@
                 </div>
               </div>
 
-              <!-- SILVER INFLOW/OUTFLOW -->
               <div class="bg-black/50 p-1 rounded border border-white/5">
                 <div class="flex justify-between items-center mb-0.5">
                   <span class="font-bold text-cyan-300">SILVER FLOW</span>
@@ -541,21 +622,19 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <!-- LEFT (3 COLS): DYNAMIC BTC LIQUIDITY HEATMAP -->
+          <!-- LEFT: DYNAMIC BTC LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-amber-400 font-hud">BTC LIQUIDITY HEATMAP</span>
               <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 rounded animate-pulse">LIVE</span>
             </div>
-            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1">
-              <!-- Dynamically updated by JS -->
-            </div>
+            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
             <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">
               Target Hunt: Buy-Side Liquidity
             </div>
           </div>
 
-          <!-- CENTER (6 COLS): THE TAPE -->
+          <!-- CENTER: THE TAPE -->
           <div class="md:col-span-6 flex flex-col justify-between bg-black/40 rounded-lg p-1.5 border border-white/5">
             <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
               <span>TIME</span>
@@ -566,15 +645,13 @@
             <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
           </div>
 
-          <!-- RIGHT (3 COLS): DYNAMIC GOLD (XAU) LIQUIDITY HEATMAP -->
+          <!-- RIGHT: DYNAMIC GOLD (XAU) LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU LIQUIDITY HEATMAP</span>
               <span class="text-[8px] bg-yellow-500/20 text-yellow-200 px-1 rounded animate-pulse">LIVE</span>
             </div>
-            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1">
-              <!-- Dynamically updated by JS -->
-            </div>
+            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
             <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">
               Demand Floor: Discount FVG
             </div>
@@ -1073,14 +1150,11 @@
     }
     initWebSocket();
 
-    // ========================================================
     // PERIODIC CONTINUOUS METALS & SILVER FLOW SIMULATOR
-    // ========================================================
     let baseSilver = 49.78;
     let baseOil = 90.42;
 
     setInterval(() => {
-      // Silver micro-movement & Flow
       const sDelta = (Math.random() * 0.04 - 0.02);
       const isSBuy = sDelta >= 0;
       baseSilver = parseFloat((baseSilver + sDelta).toFixed(2));
@@ -1091,7 +1165,6 @@
       }
       recordAssetFlow('SILVER', isSBuy, 0.1);
 
-      // Oil micro-movement
       const oDelta = (Math.random() * 0.06 - 0.03);
       baseOil = parseFloat((baseOil + oDelta).toFixed(2));
       const deskOil = document.getElementById('desk-oil-price');
@@ -1099,10 +1172,34 @@
     }, 1500);
 
     // ========================================================
-    // THREE.JS REACTOR ENGINE
+    // 3D QUANT REACTOR: CUSTOM "MUSHTARI TRADER 287" ROTATING CORE
     // ========================================================
     let threeInitialized = false;
     let baseSpeed = 0.008;
+    let textMeshCenter, textMeshRing, coreMesh, ringMesh;
+
+    function create3DTextTexture(text, bgColor, textColor, glowColor) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.font = 'bold 82px "Chakra Petch", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      ctx.shadowColor = glowColor || '#f59e0b';
+      ctx.shadowBlur = 24;
+      ctx.fillStyle = textColor || '#fef08a';
+      
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
 
     function initThreeReactor() {
       const container = document.getElementById('three-reactor-canvas');
@@ -1111,36 +1208,97 @@
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-      camera.position.z = 7;
+      camera.position.z = 6.8;
 
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: "low-power" });
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       container.appendChild(renderer.domElement);
 
-      const coreMesh = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(1.2, 1),
+      // Central Rotating Golden Wireframe Sphere
+      coreMesh = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(1.25, 2),
         new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.65 })
       );
       scene.add(coreMesh);
 
-      const ringMesh = new THREE.Mesh(
-        new THREE.TorusGeometry(2.1, 0.02, 8, 32),
-        new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.4 })
+      // Center 3D Floating Double-Sided Badge: "MUSHTARI TRADER 287"
+      const centerTex = create3DTextTexture('MUSHTARI TRADER 287', null, '#fef08a', '#f59e0b');
+      const centerMat = new THREE.MeshBasicMaterial({ 
+        map: centerTex, 
+        transparent: true, 
+        side: THREE.DoubleSide, 
+        depthWrite: false 
+      });
+      textMeshCenter = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.6), centerMat);
+      scene.add(textMeshCenter);
+
+      // Surrounding Cylindrical Orbital Ring with Repeating "MUSHTARI TRADER 287"
+      const orbitCanvas = document.createElement('canvas');
+      orbitCanvas.width = 2048;
+      orbitCanvas.height = 128;
+      const oCtx = orbitCanvas.getContext('2d');
+      oCtx.clearRect(0, 0, orbitCanvas.width, orbitCanvas.height);
+      oCtx.font = 'bold 44px "Chakra Petch", monospace';
+      oCtx.textAlign = 'center';
+      oCtx.textBaseline = 'middle';
+      oCtx.shadowColor = '#06b6d4';
+      oCtx.shadowBlur = 18;
+      oCtx.fillStyle = '#67e8f9';
+      for (let i = 0; i < 4; i++) {
+        oCtx.fillText('★ MUSHTARI TRADER 287 ★', 256 + i * 512, 64);
+      }
+      const orbitTex = new THREE.CanvasTexture(orbitCanvas);
+      orbitTex.wrapS = THREE.RepeatWrapping;
+      orbitTex.wrapT = THREE.ClampToEdgeWrapping;
+
+      const cylinderGeo = new THREE.CylinderGeometry(1.95, 1.95, 0.35, 64, 1, true);
+      const cylinderMat = new THREE.MeshBasicMaterial({ 
+        map: orbitTex, 
+        transparent: true, 
+        side: THREE.DoubleSide, 
+        opacity: 0.85, 
+        depthWrite: false 
+      });
+      textMeshRing = new THREE.Mesh(cylinderGeo, cylinderMat);
+      scene.add(textMeshRing);
+
+      // Outer Golden Orbit Ring
+      ringMesh = new THREE.Mesh(
+        new THREE.TorusGeometry(2.2, 0.018, 16, 100),
+        new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.5 })
       );
+      ringMesh.rotation.x = Math.PI / 3;
       scene.add(ringMesh);
 
       function animate() {
         requestAnimationFrame(animate);
-        coreMesh.rotation.y += baseSpeed;
-        ringMesh.rotation.x += baseSpeed * 1.2;
+
+        coreMesh.rotation.y += baseSpeed * 0.9;
+        coreMesh.rotation.x += baseSpeed * 0.4;
+
+        textMeshCenter.rotation.y += baseSpeed * 1.2;
+
+        textMeshRing.rotation.y -= baseSpeed * 0.8;
+        textMeshRing.rotation.x = 0.35;
+        textMeshRing.rotation.z = 0.2;
+
+        ringMesh.rotation.z += baseSpeed * 1.1;
+
         renderer.render(scene, camera);
       }
       animate();
+
+      window.addEventListener('resize', () => {
+        if (!container) return;
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
     }
 
     // ========================================================
-    // BLOOMBERG TERMINAL ARTICLES
+    // BLOOMBERG ARTICLES
     // ========================================================
     const bloombergArticles = [
       {
