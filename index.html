@@ -73,6 +73,12 @@
       box-shadow: 0 0 16px rgba(245, 158, 11, 0.55);
     }
 
+    .news-category-active {
+      border-bottom: 2px solid #f59e0b;
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+
     .pulse-flash-green { animation: flashGreen 0.35s ease-out; }
     .pulse-flash-red { animation: flashRed 0.35s ease-out; }
     @keyframes flashGreen {
@@ -353,10 +359,10 @@
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
 
-    <!-- LEFT COLUMN (3 COLS): BULLION, PLANETARY HOURS & MOON PHASES -->
+    <!-- LEFT COLUMN: BULLION, PLANETARY HOURS & MOON PHASES -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       
-      <!-- PKR Bullion Engine -->
+      <!-- PKR Bullion Engine & Live DXY / Interbank -->
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between items-center mb-2 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-amber-400 uppercase">PKR BULLION ENGINE (LIVE)</span>
@@ -364,15 +370,19 @@
         </div>
         <div class="grid grid-cols-2 gap-2 mb-2">
           <div class="bg-black/50 p-2 rounded border border-white/5">
-            <span class="text-[10px] text-gray-400 block font-mono">USD/PKR Interbank</span>
+            <span class="text-[9px] text-gray-400 block font-mono">USD/PKR Interbank</span>
             <span class="text-sm font-bold text-gray-200">276.62</span>
           </div>
           <div class="bg-black/50 p-2 rounded border border-white/5">
-            <span class="text-[10px] text-gray-400 block font-mono">Gold Spot (oz)</span>
-            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$4,070.68</span>
+            <span class="text-[9px] text-purple-300 block font-mono">DXY (Dollar Index)</span>
+            <span id="rate-dxy-badge" class="text-sm font-bold text-purple-400">101.565</span>
           </div>
         </div>
         <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30">
+          <div class="flex justify-between items-baseline mb-1">
+            <span class="text-xs text-amber-200 font-mono">Gold Spot (oz):</span>
+            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$4,070.68</span>
+          </div>
           <div class="flex justify-between items-baseline mb-1">
             <span class="text-xs text-amber-200 font-mono">1 Tola Gold (PKR):</span>
             <span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 4,22,450</span>
@@ -442,7 +452,7 @@
 
     </section>
 
-    <!-- CENTER COLUMN (6 COLS): JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW & HEATMAPS -->
+    <!-- CENTER COLUMN: JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW & HEATMAPS -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       
       <!-- 3D Reactor & Co-Reactor Matrix -->
@@ -563,9 +573,7 @@
         </div>
       </div>
 
-      <!-- ========================================================
-           EXPANDED DESK: BTC HEATMAP | THE TAPE | XAU GOLD HEATMAP
-           ======================================================== -->
+      <!-- EXPANDED DESK: BTC HEATMAP | THE TAPE | XAU GOLD HEATMAP -->
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px] w-full">
         <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
           <div class="flex items-center space-x-2">
@@ -611,7 +619,7 @@
 
     </section>
 
-    <!-- RIGHT COLUMN (3 COLS): SMC ZONES, EQUITIES, GLOBAL MARKETS & PSX -->
+    <!-- RIGHT COLUMN: SMC ZONES, EQUITIES, GLOBAL MARKETS & DYDX -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       
       <!-- SMC Order Flow Levels -->
@@ -645,7 +653,7 @@
         </div>
       </div>
 
-      <!-- GLOBAL STOCK MARKETS & INDICES MATRIX (INCLUDING NASDAQ 100 & DYDX PROTOCOL INDEX) -->
+      <!-- GLOBAL STOCK MARKETS & INDICES MATRIX -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
         <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-mono">
           <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
@@ -689,7 +697,7 @@
             </div>
           </div>
 
-          <!-- DYDX Protocol Index on Right Panel -->
+          <!-- DYDX Protocol Index -->
           <div class="p-2 rounded bg-black/40 border border-emerald-500/20 flex items-center justify-between">
             <div>
               <span class="font-bold text-emerald-400 block text-xs">DYDX (PERP INDEX)</span>
@@ -777,7 +785,7 @@
   </footer>
 
   <!-- ========================================================
-       SCRIPT ENGINE: MASTER SYNCHRONIZATION FOR ALL PANELS
+       SCRIPT ENGINE: COMPLETE LIVE SYNCHRONIZATION
        ======================================================== -->
   <script>
     let currentPrices = {
@@ -1208,7 +1216,7 @@
       }
     }
 
-    // 4 INFLOW & 4 OUTFLOW CALCULATION ENGINE
+    // 4 INFLOW & 4 OUTFLOW CALCULATION ENGINE (CONTINUOUS TICK)
     let flows = {
       btcIn: 14.8, btcOut: 5.2,
       goldIn: 8.4, goldOut: 2.1,
@@ -1232,25 +1240,29 @@
         else flows.dydxOut = parseFloat((flows.dydxOut + amt * 0.02).toFixed(1));
       }
 
+      renderFlowsDOM();
+    }
+
+    function renderFlowsDOM() {
       const fBi = document.getElementById('flow-btc-in-val');
       const fGi = document.getElementById('flow-gold-in-val');
       const fSi = document.getElementById('flow-silver-in-val');
       const fDi = document.getElementById('flow-dydx-in-val');
 
-      if (fBi) fBi.textContent = '+$' + flows.btcIn + 'M';
-      if (fGi) fGi.textContent = '+$' + flows.goldIn + 'M';
-      if (fSi) fSi.textContent = '+$' + flows.silverIn + 'M';
-      if (fDi) fDi.textContent = '+$' + flows.dydxIn + 'M';
+      if (fBi) fBi.textContent = '+$' + flows.btcIn.toFixed(1) + 'M';
+      if (fGi) fGi.textContent = '+$' + flows.goldIn.toFixed(1) + 'M';
+      if (fSi) fSi.textContent = '+$' + flows.silverIn.toFixed(1) + 'M';
+      if (fDi) fDi.textContent = '+$' + flows.dydxIn.toFixed(1) + 'M';
 
       const fBo = document.getElementById('flow-btc-out-val');
       const fGo = document.getElementById('flow-gold-out-val');
       const fSo = document.getElementById('flow-silver-out-val');
       const fDo = document.getElementById('flow-dydx-out-val');
 
-      if (fBo) fBo.textContent = '-$' + flows.btcOut + 'M';
-      if (fGo) fGo.textContent = '-$' + flows.goldOut + 'M';
-      if (fSo) fSo.textContent = '-$' + flows.silverOut + 'M';
-      if (fDo) fDo.textContent = '-$' + flows.dydxOut + 'M';
+      if (fBo) fBo.textContent = '-$' + flows.btcOut.toFixed(1) + 'M';
+      if (fGo) fGo.textContent = '-$' + flows.goldOut.toFixed(1) + 'M';
+      if (fSo) fSo.textContent = '-$' + flows.silverOut.toFixed(1) + 'M';
+      if (fDo) fDo.textContent = '-$' + flows.dydxOut.toFixed(1) + 'M';
 
       const bBi = document.getElementById('flow-btc-in-bar');
       const bGi = document.getElementById('flow-gold-in-bar');
@@ -1557,11 +1569,10 @@
             const el = document.getElementById('desk-dydx-price');
             const elRight = document.getElementById('market-dydx-price-right');
             const txt = '$' + price.toFixed(4);
-            const clr = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
 
             if (el) {
               el.textContent = txt;
-              el.className = clr;
+              el.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
             if (elRight) {
               elRight.textContent = txt;
@@ -1613,22 +1624,35 @@
     }
     initWebSocket();
 
-    // High frequency ticks (Silver, Oil, DXY, NASDAQ, S&P 500, Dow Jones, Shanghai, Nikkei)
+    // High frequency ticks & Continuous Inflow/Outflow Motion
     setInterval(() => {
+      // Dynamic Inflow/Outflow micro-shifts so meters never freeze
+      const fDelta = (Math.random() * 0.12 - 0.05);
+      const isFBuy = fDelta >= 0;
+      updateDualFlows('BTC', isFBuy, 0.08);
+      updateDualFlows('GOLD', !isFBuy, 0.05);
+      updateDualFlows('SILVER', isFBuy, 0.03);
+      updateDualFlows('DYDX', isFBuy, 0.02);
+
+      // Micro Silver tick
       const sDelta = (Math.random() * 0.04 - 0.02);
-      const isSBuy = sDelta >= 0;
       currentPrices.silver = parseFloat((currentPrices.silver + sDelta).toFixed(2));
       const deskXag = document.getElementById('desk-xag-price');
       if (deskXag) deskXag.textContent = '$' + currentPrices.silver.toFixed(2);
-      updateDualFlows('SILVER', isSBuy, 0.15);
-      syncLiveOrderFlowMetrics('SILVER', isSBuy, 0.2);
+      syncLiveOrderFlowMetrics('SILVER', sDelta >= 0, 0.15);
 
+      // Micro Oil tick
       const oDelta = (Math.random() * 0.06 - 0.03);
-      const isOBuy = oDelta >= 0;
       currentPrices.oil = parseFloat((currentPrices.oil + oDelta).toFixed(2));
       const deskOil = document.getElementById('desk-oil-price');
       if (deskOil) deskOil.textContent = '$' + currentPrices.oil.toFixed(2);
-      syncLiveOrderFlowMetrics('OIL', isOBuy, 0.15);
+      syncLiveOrderFlowMetrics('OIL', oDelta >= 0, 0.15);
+
+      // DXY Index tick
+      const dxyDelta = (Math.random() * 0.02 - 0.01);
+      currentPrices.dxy = parseFloat((currentPrices.dxy + dxyDelta).toFixed(3));
+      const elDxy = document.getElementById('rate-dxy-badge');
+      if (elDxy) elDxy.textContent = currentPrices.dxy.toFixed(3);
 
       // NASDAQ 100 Live Pulse
       const ndxDelta = (Math.random() * 2.4 - 1.2);
@@ -1671,7 +1695,9 @@
       if (clockEl) clockEl.textContent = timeStr;
     }, 1000);
 
+    // Initial Launch
     switchView('BTC');
+    renderFlowsDOM();
     syncFearAndGreed(0);
     lucide.createIcons();
   </script>
