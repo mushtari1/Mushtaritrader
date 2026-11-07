@@ -73,12 +73,6 @@
       box-shadow: 0 0 16px rgba(245, 158, 11, 0.55);
     }
 
-    .news-category-active {
-      border-bottom: 2px solid #f59e0b;
-      color: #ffffff !important;
-      font-weight: 700;
-    }
-
     .pulse-flash-green { animation: flashGreen 0.35s ease-out; }
     .pulse-flash-red { animation: flashRed 0.35s ease-out; }
     @keyframes flashGreen {
@@ -156,7 +150,7 @@
         </button>
       </div>
 
-      <!-- SOCIAL & APP -->
+      <!-- APP BUTTONS -->
       <div class="flex items-center space-x-2 text-xs">
         <a href="https://instagram.com/mushtritrader" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center space-x-1 bg-pink-950/40 border border-pink-500/30 text-pink-300 px-2 py-1 rounded text-[11px]">
           <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-400"></i>
@@ -175,11 +169,13 @@
     </div>
   </header>
 
-  <!-- PAGE 1: LIQUIDITY RADAR VIEW -->
+  <!-- ========================================================
+       PAGE 1: LIQUIDITY RADAR VIEW
+       ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 block">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • RADAR TERMINAL: REAL-TIME INSTITUTIONAL FLOW & LIVE ORDER SYNCHRONIZATION
+        • RADAR TERMINAL: FULL SYNCHRONIZED LIQUIDITY & SPOOFING FLOW
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
@@ -249,6 +245,69 @@
       </div>
     </div>
 
+    <!-- Market Strength & Last Sweep -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="radar-card p-3.5 flex items-center space-x-4">
+        <div class="w-14 h-14 rounded-full border-4 border-emerald-400 flex items-center justify-center font-hud text-xl font-bold text-emerald-400 shrink-0">
+          <span id="strength-score">78</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider block font-mono">MARKET STRENGTH</span>
+          <span id="strength-tag" class="text-sm font-bold text-emerald-400 font-hud tracking-wide block">STRONG</span>
+          <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Bullish volume absorption confirmed on multi-asset matrix.</p>
+        </div>
+      </div>
+      <div class="radar-card p-3.5">
+        <div class="flex justify-between items-center mb-1">
+          <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">LAST LIQUIDITY SWEEP</span>
+          <span id="sweep-age" class="text-[10px] text-gray-500 font-hud">Real-time</span>
+        </div>
+        <div class="inline-block bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-xs font-bold font-hud my-1" id="sweep-badge">
+          ⚡ INTERNAL SWEEP CONFIRMED
+        </div>
+        <p id="sweep-desc" class="text-xs text-gray-300">Continuous sub-second depth parsing active.</p>
+        <div class="flex justify-between items-center text-xs text-gray-400 mt-2 font-hud">
+          <span>At Price: <strong id="sweep-price" class="text-gray-200">Active</strong></span>
+          <span>Confidence: <strong id="sweep-conf" class="text-amber-400">88 / 100</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trap Risk & Squeeze Radar -->
+    <div class="radar-card p-3.5 font-hud">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2 font-mono">TRAP & SQUEEZE RISK</span>
+      <div class="space-y-2 text-xs">
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-gray-400 font-mono">Bull Trap</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-bull-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 4%;"></div>
+          </div>
+          <span id="risk-bull-trap-val" class="w-8 text-right font-bold text-gray-300">4</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-gray-400 font-mono">Bear Trap</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-bear-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 2%;"></div>
+          </div>
+          <span id="risk-bear-trap-val" class="w-8 text-right font-bold text-gray-300">2</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-short-sq-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 72%;"></div>
+          </div>
+          <span id="risk-short-sq-val" class="w-8 text-right font-bold text-emerald-400">72</span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="w-28 text-cyan-400 font-mono">Long Squeeze</span>
+          <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
+            <div id="risk-long-sq-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 18%;"></div>
+          </div>
+          <span id="risk-long-sq-val" class="w-8 text-right font-bold text-cyan-400">18</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Possible Spoofing Detector Card -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-baseline mb-1">
@@ -259,7 +318,7 @@
         <span id="spoof-score" class="text-2xl font-bold text-rose-500 font-hud">98 / 100</span>
         <span id="spoof-text" class="text-xs text-gray-300 font-mono">$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled</span>
       </div>
-      <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5" id="spoof-bars-container">
+      <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5">
         <div class="w-6 h-5 bg-rose-500 rounded-sm"></div>
         <div class="w-6 h-6 bg-rose-500 rounded-sm"></div>
         <div class="w-6 h-4 bg-amber-400 rounded-sm"></div>
@@ -325,7 +384,7 @@
         </div>
       </div>
 
-      <!-- Real-Time Planetary Hours Engine -->
+      <!-- Planetary Hours Engine -->
       <div class="glass-panel rounded-xl p-3 border-purple-500/30">
         <div class="flex justify-between items-center mb-1.5 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-purple-300 uppercase">PLANETARY HOURS (SA'AT)</span>
@@ -457,7 +516,7 @@
         </div>
       </div>
 
-      <!-- Live Multi-Crypto Tiles -->
+      <!-- Live Multi-Crypto Tiles (BTC, ETH, SOL, DYDX) -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
         <div class="glass-panel p-2 rounded-lg border-amber-500/30">
           <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span id="desk-btc-pct" class="text-emerald-400">+1.45%</span></div>
@@ -474,14 +533,16 @@
           <div id="desk-sol-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$90.61</div>
           <span class="text-[9px] text-gray-500 block truncate font-mono">Solana High TPS</span>
         </div>
-        <div class="glass-panel p-2 rounded-lg border-blue-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-blue-400">LINK/USDT</span><span id="desk-link-pct" class="text-emerald-400">+1.10%</span></div>
-          <div id="desk-link-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$10.77</div>
-          <span class="text-[9px] text-gray-500 block truncate font-mono">Chainlink Oracle</span>
+        <div class="glass-panel p-2 rounded-lg border-emerald-500/30">
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-emerald-400">DYDX/USDT</span><span id="desk-dydx-pct" class="text-emerald-400">+2.15%</span></div>
+          <div id="desk-dydx-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$0.0985</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">dYdX DEX Engine</span>
         </div>
       </div>
 
-      <!-- XAU GOLD HEATMAP | THE TAPE | SHIB HEATMAP -->
+      <!-- ========================================================
+           EXPANDED DESK: BTC HEATMAP | THE TAPE | XAU GOLD HEATMAP
+           ======================================================== -->
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px] w-full">
         <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
           <div class="flex items-center space-x-2">
@@ -492,14 +553,14 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <!-- LEFT: XAU (GOLD) LIQUIDITY HEATMAP -->
-          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
+          <!-- LEFT: DYNAMIC BTC LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU (GOLD) HEATMAP</span>
-              <span class="text-[8px] bg-yellow-500/20 text-yellow-200 px-1 rounded animate-pulse">LIVE ZONES</span>
+              <span class="text-[10px] font-bold text-amber-400 font-hud">BTC HEATMAP</span>
+              <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 rounded animate-pulse">LIVE ZONES</span>
             </div>
-            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
-            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Demand Floor: Discount FVG</div>
+            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Target Hunt: Buy-Side</div>
           </div>
 
           <!-- CENTER: THE TAPE -->
@@ -513,14 +574,14 @@
             <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
           </div>
 
-          <!-- RIGHT: SHIB INU (SHIB) LIQUIDITY HEATMAP -->
-          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-orange-500/20 flex flex-col justify-between">
+          <!-- RIGHT: DYNAMIC XAU (GOLD) LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-bold text-orange-400 font-hud">SHIB HEATMAP</span>
-              <span class="text-[8px] bg-orange-500/20 text-orange-300 px-1 rounded animate-pulse">LIVE ZONES</span>
+              <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU (GOLD) HEATMAP</span>
+              <span class="text-[8px] bg-yellow-500/20 text-yellow-200 px-1 rounded animate-pulse">LIVE ZONES</span>
             </div>
-            <div id="shib-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
-            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Meme Liquidity Depth</div>
+            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Demand Floor: Discount FVG</div>
           </div>
         </div>
       </div>
@@ -561,10 +622,7 @@
         </div>
       </div>
 
-      <!-- ========================================================
-           GLOBAL STOCK MARKETS & INDICES MATRIX
-           (S&P 500, DOW JONES, CHINA SHANGHAI, TOKYO NIKKEI, PSX)
-           ======================================================== -->
+      <!-- GLOBAL STOCK MARKETS & INDICES MATRIX -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
         <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-mono">
           <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
@@ -572,7 +630,6 @@
         </h2>
 
         <div class="space-y-1.5 flex-1 text-xs font-hud">
-          <!-- S&P 500 -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-cyan-400 block text-xs">S&P 500 (SPX)</span>
@@ -584,7 +641,6 @@
             </div>
           </div>
 
-          <!-- Dow Jones -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-amber-400 block text-xs">DOW JONES (DJI)</span>
@@ -596,7 +652,6 @@
             </div>
           </div>
 
-          <!-- China Stock Market (Shanghai Composite) -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-rose-400 block text-xs">CHINA SHANGHAI (SSEC)</span>
@@ -608,7 +663,6 @@
             </div>
           </div>
 
-          <!-- Tokyo Stock Market (Nikkei 225) -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-purple-400 block text-xs">TOKYO NIKKEI 225 (N225)</span>
@@ -620,7 +674,6 @@
             </div>
           </div>
 
-          <!-- PSX KSE-100 -->
           <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-emerald-400 block text-xs">PSX KSE-100</span>
@@ -639,7 +692,7 @@
   </main>
 
   <!-- ========================================================
-       PAGE 3: BLOOMBERG DEDICATED NEWS WIRE (HIDDEN BY DEFAULT)
+       PAGE 3: BLOOMBERG DEDICATED NEWS WIRE
        ======================================================== -->
   <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden">
     <div class="glass-panel rounded-xl p-4 border-cyan-500/30 flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -675,15 +728,13 @@
        SCRIPT ENGINE: MASTER SYNCHRONIZATION FOR ALL PANELS
        ======================================================== -->
   <script>
-    // Asset Prices State
     let currentPrices = {
       btc: 75942.92,
       eth: 2252.21,
       sol: 90.61,
-      link: 10.77,
+      dydx: 0.0985,
       gold: 4070.68,
       silver: 49.78,
-      shib: 0.0000046,
       oil: 90.42,
       dxy: 101.565,
       spx: 7382.40,
@@ -692,7 +743,6 @@
       n225: 57434.77
     };
 
-    // Live Synchronized Order-Flow Dynamic State
     let assetDynamics = {
       BTC: { buyPct: 62.4, sellPct: 37.6, confidence: 84, conviction: 74.2, spoof: 98, bullTrap: 4, bearTrap: 2, shortSq: 72, longSq: 18 },
       ETH: { buyPct: 58.4, sellPct: 41.6, confidence: 74, conviction: 62.5, spoof: 42, bullTrap: 12, bearTrap: 4, shortSq: 78, longSq: 18 },
@@ -939,11 +989,54 @@
     }
 
     // ========================================================
-    // XAU (GOLD) HEATMAP & SHIB HEATMAP DYNAMIC ENGINE
+    // BTC HEATMAP & XAU (GOLD) HEATMAP DYNAMIC ENGINE
     // ========================================================
-    function updateHeatmaps(goldPrice, shibPrice) {
+    function updateHeatmaps(btcPrice, goldPrice) {
+      if (btcPrice) currentPrices.btc = btcPrice;
       if (goldPrice) currentPrices.gold = goldPrice;
-      if (shibPrice) currentPrices.shib = shibPrice;
+
+      const bp = Math.round(currentPrices.btc);
+      const btcContainer = document.getElementById('btc-heatmap-container');
+      if (btcContainer) {
+        btcContainer.innerHTML = `
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp + 800} (Short Liq)</span>
+              <span class="text-amber-400 font-bold">$142.4M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-full transition-all duration-300" style="width: 88%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp + 400} (Ask Shelf)</span>
+              <span class="text-amber-300 font-bold">$96.8M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-amber-400 h-full transition-all duration-300" style="width: 65%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp - 400} (Long Liq)</span>
+              <span class="text-emerald-400 font-bold">$185.1M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp - 800} (Bid Floor)</span>
+              <span class="text-cyan-400 font-bold">$110.6M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 74%;"></div>
+            </div>
+          </div>
+        `;
+      }
 
       const gp = Math.round(currentPrices.gold);
       const goldContainer = document.getElementById('gold-heatmap-container');
@@ -983,48 +1076,6 @@
             </div>
             <div class="w-full h-1.5 bg-black rounded overflow-hidden">
               <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 98%;"></div>
-            </div>
-          </div>
-        `;
-      }
-
-      const shibContainer = document.getElementById('shib-heatmap-container');
-      if (shibContainer) {
-        shibContainer.innerHTML = `
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000049 (Liq Wall)</span>
-              <span class="text-orange-400 font-bold">$2.8M</span>
-            </div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-full transition-all duration-300" style="width: 82%;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000047 (Resistance)</span>
-              <span class="text-yellow-400 font-bold">$1.4M</span>
-            </div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-yellow-400 h-full transition-all duration-300" style="width: 60%;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000045 (Support Liq)</span>
-              <span class="text-emerald-400 font-bold">$3.6M</span>
-            </div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-emerald-400 h-full transition-all duration-300" style="width: 90%;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400">
-              <span>0.0000042 (Whale Floor)</span>
-              <span class="text-cyan-400 font-bold">$4.9M</span>
-            </div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
-              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 96%;"></div>
             </div>
           </div>
         `;
@@ -1210,7 +1261,7 @@
       animate();
     }
 
-    // PLANETARY HOURS ENGINE (CHALDEAN ORDER)
+    // PLANETARY HOURS ENGINE (CHALDEAN ORDER) [CITE: 6]
     const CHALDEAN_PLANETS = [
       { name: "Saturn", symbol: "♄", color: "#94a3b8" },
       { name: "Jupiter", symbol: "♃", color: "#f59e0b" },
@@ -1334,8 +1385,8 @@
       `).join('');
     }
 
-    // LIVE BINANCE TICKER & WEBSOCKET ENGINE
-    const wsStreams = ['btcusdt@trade', 'ethusdt@trade', 'solusdt@trade', 'linkusdt@trade', 'paxgusdt@trade'].join('/');
+    // LIVE BINANCE TICKER & WEBSOCKET ENGINE (INCLUDING DYDXUSDT)
+    const wsStreams = ['btcusdt@trade', 'ethusdt@trade', 'solusdt@trade', 'dydxusdt@trade', 'paxgusdt@trade'].join('/');
     function initWebSocket() {
       try {
         const ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${wsStreams}`);
@@ -1362,6 +1413,7 @@
             }
             updateDualFlows('BTC', isBuy, qty * (price / 100000));
             syncLiveOrderFlowMetrics('BTC', isBuy, qty);
+            updateHeatmaps(price, null);
           } else if (symbol === 'ETHUSDT') {
             currentPrices.eth = price;
             const el = document.getElementById('desk-eth-price');
@@ -1373,16 +1425,19 @@
               const hEl = document.getElementById('hero-price');
               if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
             }
-            updateDualFlows('DYDX', isBuy, qty * 0.1);
             syncLiveOrderFlowMetrics('ETH', isBuy, qty * 0.05);
           } else if (symbol === 'SOLUSDT') {
             currentPrices.sol = price;
             const el = document.getElementById('desk-sol-price');
             if (el) el.textContent = '$' + price.toFixed(2);
-          } else if (symbol === 'LINKUSDT') {
-            currentPrices.link = price;
-            const el = document.getElementById('desk-link-price');
-            if (el) el.textContent = '$' + price.toFixed(2);
+          } else if (symbol === 'DYDXUSDT') {
+            currentPrices.dydx = price;
+            const el = document.getElementById('desk-dydx-price');
+            if (el) {
+              el.textContent = '$' + price.toFixed(4);
+              el.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
+            updateDualFlows('DYDX', isBuy, qty * 0.05);
           } else if (symbol === 'PAXGUSDT') {
             currentPrices.gold = price;
             const spotEl = document.getElementById('rate-xau-spot');
@@ -1408,7 +1463,7 @@
 
             updateDualFlows('GOLD', isBuy, qty * (price / 50000));
             syncLiveOrderFlowMetrics('GOLD', isBuy, qty * 0.1);
-            updateHeatmaps(price, null);
+            updateHeatmaps(null, price);
           }
 
           const tapeStream = document.getElementById('trade-tape-stream');
@@ -1416,7 +1471,7 @@
             const row = document.createElement('div');
             const timeStr = new Date(data.T).toLocaleTimeString('en-GB', { hour12: false });
             row.className = `grid grid-cols-4 px-2 py-0.5 rounded ${isBuy ? 'bg-emerald-500/5 text-emerald-400' : 'bg-rose-500/5 text-rose-400'} border-b border-white/[0.02] font-hud`;
-            row.innerHTML = `<span>${timeStr}</span><span class="text-gray-300 font-bold font-mono">${symbol.replace('USDT','')}</span><span class="text-right">${price.toFixed(2)}</span><span class="text-right text-gray-400 font-mono">${qty.toFixed(3)}</span>`;
+            row.innerHTML = `<span>${timeStr}</span><span class="text-gray-300 font-bold font-mono">${symbol.replace('USDT','')}</span><span class="text-right">${price.toFixed(price < 1 ? 4 : 2)}</span><span class="text-right text-gray-400 font-mono">${qty.toFixed(2)}</span>`;
             tapeStream.insertBefore(row, tapeStream.firstChild);
             if (tapeStream.children.length > 15) tapeStream.removeChild(tapeStream.lastChild);
           }
@@ -1428,7 +1483,7 @@
     }
     initWebSocket();
 
-    // High frequency ticks (Silver, Oil, SHIB, DXY, S&P 500, Dow Jones, Shanghai, Nikkei)
+    // High frequency ticks (Silver, Oil, DXY + Dynamic flow)
     setInterval(() => {
       const sDelta = (Math.random() * 0.04 - 0.02);
       const isSBuy = sDelta >= 0;
@@ -1444,9 +1499,6 @@
       const deskOil = document.getElementById('desk-oil-price');
       if (deskOil) deskOil.textContent = '$' + currentPrices.oil.toFixed(2);
       syncLiveOrderFlowMetrics('OIL', isOBuy, 0.15);
-
-      const shibDelta = (Math.random() * 0.00000004 - 0.00000002);
-      currentPrices.shib = parseFloat((currentPrices.shib + shibDelta).toFixed(8));
 
       // Global Indices Live Micro-Pulsing
       const spxDelta = (Math.random() * 1.6 - 0.8);
@@ -1480,7 +1532,6 @@
       if (clockEl) clockEl.textContent = timeStr;
     }, 1000);
 
-    // Initial Launch
     switchView('BTC');
     lucide.createIcons();
   </script>
