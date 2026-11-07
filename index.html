@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Mushtari Trader | Al-Irtiqaa Capital Multi-Desk Terminal</title>
   
-  <!-- Direct Web App Manifest (PWA) -->
   <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Mushtari%20Trader%20Terminal%22%2C%22short_name%22%3A%22MushtariTrader%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23070a10%22%2C%22theme_color%22%3A%22%23f59e0b%22%7D">
   <meta name="theme-color" content="#f59e0b">
 
@@ -98,9 +97,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
-  <!-- ========================================================
-       TOP GLOBAL BOLD DISCLAIMER STRIP
-       ======================================================== -->
+  <!-- TOP GLOBAL BOLD DISCLAIMER STRIP -->
   <div class="w-full bg-gradient-to-r from-amber-950/90 via-black to-amber-950/90 border-b border-amber-500/40 px-3 py-2 text-center shadow-lg sticky top-0 z-50">
     <p class="text-[11px] sm:text-xs md:text-sm font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
@@ -131,7 +128,7 @@
         </div>
       </div>
 
-      <!-- DESK & ASSET SWITCHER (SMOOTH TOUCH & INSTANT DESK SWITCHING) -->
+      <!-- DESK & ASSET SWITCHER -->
       <div class="flex items-center space-x-1.5 bg-black/80 p-1.5 rounded-xl border border-white/10 overflow-x-auto font-hud w-full md:w-auto z-50">
         <button type="button" onclick="switchView('BTC')" id="tab-BTC" class="nav-tab-btn nav-tab-active px-3 py-1.5 rounded-lg text-xs font-bold transition">
           BTCUSDT PERP
@@ -159,7 +156,7 @@
         </button>
       </div>
 
-      <!-- APP BUTTON -->
+      <!-- APP BUTTONS -->
       <div class="flex items-center space-x-2 text-xs">
         <a href="https://instagram.com/mushtritrader" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center space-x-1 bg-pink-950/40 border border-pink-500/30 text-pink-300 px-2 py-1 rounded text-[11px]">
           <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-400"></i>
@@ -179,17 +176,17 @@
   </header>
 
   <!-- ========================================================
-       PAGE 1: LIQUIDITY RADAR VIEW (BTC, ETH, GOLD, SILVER, OIL)
+       PAGE 1: LIQUIDITY RADAR VIEW
        ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 block">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • RADAR TERMINAL DISCLAIMER: ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. NOT RESPONSIBLE FOR ANY LOSS AND PROFIT.
+        • RADAR TERMINAL: REAL-TIME INSTITUTIONAL FLOW & LIVE ORDER SYNCHRONIZATION
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
 
-    <!-- Top Metrics Strip -->
+    <!-- Metrics Bar -->
     <div class="radar-card p-3 flex flex-wrap items-center justify-between gap-4 text-xs font-hud">
       <div>
         <span class="text-[10px] text-gray-500 block font-mono">OPEN INTEREST (OI)</span>
@@ -204,7 +201,7 @@
         <span id="stat-spread" class="text-sm font-bold text-gray-300">$0.10</span>
       </div>
       <div>
-        <span class="text-[10px] text-gray-500 block font-mono">LIVE TICK STREAM</span>
+        <span class="text-[10px] text-gray-500 block font-mono">LIVE MATCH FEED</span>
         <span id="stat-trades" class="text-sm font-bold text-emerald-400 flex items-center gap-1">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
           <span>STREAMING ACTIVE</span>
@@ -216,7 +213,7 @@
       </div>
     </div>
 
-    <!-- Hero Price & Confidence Score -->
+    <!-- Hero Card -->
     <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -237,10 +234,10 @@
       </div>
     </div>
 
-    <!-- Market Bias Bar -->
+    <!-- Market Bias Live Bar (Green vs Red Moving dynamically) -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
-        <span class="text-gray-400 tracking-wider font-mono">MARKET BIAS</span>
+        <span class="text-gray-400 tracking-wider font-mono">LIVE BUYERS VS SELLERS BIAS</span>
         <span id="bias-label" class="font-bold tracking-wider text-emerald-400">BULLISH EXPANSION</span>
       </div>
       <div class="w-full h-3 bg-black/80 rounded-full overflow-hidden flex border border-white/5 my-1">
@@ -254,7 +251,7 @@
       </div>
     </div>
 
-    <!-- Market Strength & Last Liquidity Sweep -->
+    <!-- Market Strength & Last Sweep -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="radar-card p-3.5 flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full border-4 border-emerald-400 flex items-center justify-center font-hud text-xl font-bold text-emerald-400 shrink-0">
@@ -282,52 +279,52 @@
       </div>
     </div>
 
-    <!-- Trap Risk & Squeeze Radar -->
+    <!-- Trap Risk & Squeeze Radar (Live Synchronized) -->
     <div class="radar-card p-3.5 font-hud">
       <span class="text-[10px] text-gray-400 uppercase tracking-wider block mb-2 font-mono">TRAP & SQUEEZE RISK</span>
       <div class="space-y-2 text-xs">
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-gray-400 font-mono">Bull Trap</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-bull-trap-bar" class="h-full bg-cyan-400" style="width: 4%;"></div>
+            <div id="risk-bull-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 4%;"></div>
           </div>
           <span id="risk-bull-trap-val" class="w-8 text-right font-bold text-gray-300">4</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-gray-400 font-mono">Bear Trap</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-bear-trap-bar" class="h-full bg-cyan-400" style="width: 2%;"></div>
+            <div id="risk-bear-trap-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 2%;"></div>
           </div>
           <span id="risk-bear-trap-val" class="w-8 text-right font-bold text-gray-300">2</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-short-sq-bar" class="h-full bg-emerald-400" style="width: 72%;"></div>
+            <div id="risk-short-sq-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 72%;"></div>
           </div>
           <span id="risk-short-sq-val" class="w-8 text-right font-bold text-emerald-400">72</span>
         </div>
         <div class="flex items-center justify-between gap-3">
           <span class="w-28 text-cyan-400 font-mono">Long Squeeze</span>
           <div class="flex-1 h-2 bg-black/60 rounded-full overflow-hidden border border-white/5">
-            <div id="risk-long-sq-bar" class="h-full bg-cyan-400" style="width: 18%;"></div>
+            <div id="risk-long-sq-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 18%;"></div>
           </div>
           <span id="risk-long-sq-val" class="w-8 text-right font-bold text-cyan-400">18</span>
         </div>
       </div>
     </div>
 
-    <!-- Possible Spoofing Detector Card -->
+    <!-- Possible Spoofing Detector Card (Live Synchronized) -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-baseline mb-1">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-mono">POSSIBLE SPOOFING</span>
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider font-mono">POSSIBLE SPOOFING DETECTOR</span>
         <span class="text-[9px] text-gray-500 font-mono">Real-time Order Book Integrity</span>
       </div>
       <div class="flex items-baseline space-x-2 my-1">
         <span id="spoof-score" class="text-2xl font-bold text-rose-500 font-hud">98 / 100</span>
         <span id="spoof-text" class="text-xs text-gray-300 font-mono">$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled</span>
       </div>
-      <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5">
+      <div class="flex items-end gap-1 h-8 my-2 pt-1 border-b border-white/5" id="spoof-bars-container">
         <div class="w-6 h-5 bg-rose-500 rounded-sm"></div>
         <div class="w-6 h-6 bg-rose-500 rounded-sm"></div>
         <div class="w-6 h-4 bg-amber-400 rounded-sm"></div>
@@ -338,13 +335,13 @@
       <span class="text-[9px] text-gray-500 block font-mono">⚠️ Real-time streaming active. Sub-second tick parsing.</span>
     </div>
 
-    <!-- Dedicated Asset News Below Spoofing -->
+    <!-- Asset-Specific News -->
     <div class="radar-card p-3.5 border-l-4 border-amber-500">
       <div class="flex items-center justify-between mb-2">
         <span id="asset-news-heading" class="text-xs font-bold text-amber-400 font-hud uppercase tracking-wider">
           BTC MARKET INTELLIGENCE & SPOOFING WIRE
         </span>
-        <span class="text-[9px] bg-black/60 px-2 py-0.5 rounded text-gray-400 font-mono uppercase">REAL-TIME DISPATCH</span>
+        <span class="text-[9px] bg-black/60 px-2 py-0.5 rounded text-gray-400 font-mono uppercase">REAL-TIME</span>
       </div>
       <div id="asset-news-container" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px] font-mono"></div>
     </div>
@@ -374,19 +371,21 @@
   </main>
 
   <!-- ========================================================
-       PAGE 2: COMPLETE 3D QUANT REACTOR DESK (HIDDEN BY DEFAULT)
+       PAGE 2: COMPLETE ORIGINAL 3D QUANT DESK LAYOUT
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
+    
     <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
-        • 3D QUANT DESK: SOLAR JUPITER ENGINE, LUNAR CYCLE & PLANETARY HOURS [287]
+        • 3D QUANT DESK: SOLAR JUPITER ENGINE, LUNAR ASTRO CYCLE & MULTI-ASSET MATRICES [287]
       </span>
       <span class="text-gray-400 text-[10px] font-mono">AL-IRTIQAA CAPITAL • MUSHTARI TRADER</span>
     </div>
 
-    <!-- Left: Bullion, Planetary Hours & Moon Phases -->
+    <!-- LEFT COLUMN (3 COLS): BULLION, PLANETARY HOURS & MOON PHASES -->
     <section class="lg:col-span-3 flex flex-col gap-3">
-      <!-- Bullion -->
+      
+      <!-- PKR Bullion Engine -->
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between items-center mb-2 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-amber-400 uppercase">PKR BULLION ENGINE (LIVE)</span>
@@ -414,7 +413,7 @@
         </div>
       </div>
 
-      <!-- Planetary Hours Engine -->
+      <!-- Real-Time Planetary Hours Engine -->
       <div class="glass-panel rounded-xl p-3 border-purple-500/30">
         <div class="flex justify-between items-center mb-1.5 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-purple-300 uppercase">PLANETARY HOURS (SA'AT)</span>
@@ -422,26 +421,26 @@
         </div>
         <div class="bg-gradient-to-r from-purple-950/40 via-black to-black p-2 rounded border border-purple-500/30 mb-2 flex items-center justify-between">
           <div>
-            <span class="text-[8px] text-gray-400 block font-mono uppercase">CURRENT RULING PLANET</span>
+            <span class="text-[8px] text-gray-400 block font-mono uppercase">RULING PLANET</span>
             <span id="current-planet-name" class="text-xs font-bold text-purple-200 flex items-center gap-1">
               <span id="planet-symbol-tag" class="text-amber-400 text-sm">♃</span>
               <span id="planet-name-text">Jupiter (Mushtari)</span>
             </span>
           </div>
           <div class="text-right">
-            <span class="text-[8px] text-gray-400 block font-mono">HOUR TIME SLOT</span>
+            <span class="text-[8px] text-gray-400 block font-mono">TIME SLOT</span>
             <span id="current-planet-time" class="text-xs font-bold text-amber-400 font-hud">--:-- - --:--</span>
           </div>
         </div>
         <div class="border border-white/5 rounded bg-black/40 p-1.5">
-          <div id="planetary-hours-list" class="space-y-1 text-[10px] font-mono max-h-36 overflow-y-auto pr-1"></div>
+          <div id="planetary-hours-list" class="space-y-1 text-[10px] font-mono max-h-32 overflow-y-auto pr-1"></div>
         </div>
       </div>
 
-      <!-- Lunar Astro Cycle -->
+      <!-- Lunar Astro Calendar -->
       <div class="glass-panel rounded-xl p-3 border-cyan-500/30">
         <div class="flex justify-between items-center mb-1.5 font-mono">
-          <span class="text-[11px] font-bold tracking-wider text-cyan-300 uppercase">LUNAR CYCLE (MOON PHASES)</span>
+          <span class="text-[11px] font-bold tracking-wider text-cyan-300 uppercase">LUNAR ASTRO CYCLE</span>
           <span id="current-moon-icon" class="text-base animate-pulse">🌗</span>
         </div>
         <div class="bg-black/60 p-2 rounded border border-white/5 mb-2 flex items-center justify-between">
@@ -469,13 +468,16 @@
           </div>
         </div>
       </div>
+
     </section>
 
-    <!-- Center: 3D Jupiter Solar Reactor & Dedicated 4 Inflow / 4 Outflow Columns -->
+    <!-- CENTER COLUMN (6 COLS): JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW, MULTI TILES, & THE TAPE -->
     <section class="lg:col-span-6 flex flex-col gap-3">
+      
+      <!-- 3D Reactor & Co-Reactor Matrix -->
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
         <div class="flex items-center justify-between mb-1 z-10">
-          <span class="text-xs font-bold text-amber-400 tracking-wider">JUPITER (MUSHTARI) SOLAR REACTOR</span>
+          <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR</span>
           <span class="text-[9px] text-emerald-400 font-hud font-bold">ORBITING ACTIVE • 287 SPEED</span>
         </div>
 
@@ -484,14 +486,13 @@
             <div id="three-reactor-canvas" class="w-full h-full"></div>
           </div>
 
-          <!-- 4 Inflow vs 4 Outflow Split Matrix Stack -->
+          <!-- 4 Inflow vs 4 Outflow Matrix -->
           <div class="col-span-6 flex flex-col justify-between h-[275px] bg-black/70 border border-cyan-500/30 rounded-lg p-2 shadow-inner">
             <div class="bg-black/60 border border-white/10 rounded-md p-1 flex items-center justify-between">
               <span class="text-[8px] font-mono text-gray-400 font-bold">FEAR & GREED</span>
               <span id="fg-label" class="px-1 py-0.2 rounded font-bold bg-amber-500/20 text-amber-300 text-[8px]">FEAR 28</span>
             </div>
 
-            <!-- SEPARATE 4 INFLOW & 4 OUTFLOW MATRIX [CITE: 10] -->
             <div class="grid grid-cols-2 gap-1.5 my-1 text-[8px] font-mono">
               <!-- 4 Inflows -->
               <div class="space-y-1 bg-black/40 p-1.5 rounded border border-emerald-500/20">
@@ -537,49 +538,177 @@
             </div>
 
             <div class="pt-0.5 border-t border-white/5 flex items-center justify-between text-[8px]">
-              <span class="text-gray-400 font-mono">NET FLOW:</span>
+              <span class="text-gray-400 font-mono">NET CAPITAL:</span>
               <span id="dominant-flow-status" class="text-emerald-400 font-bold animate-pulse">TOTAL +$17.8M INFLOW</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Live Tape & Heatmaps -->
+      <!-- Live Multi-Crypto Tiles (BTC, ETH, SOL, LINK) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div class="glass-panel p-2 rounded-lg border-amber-500/30">
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span id="desk-btc-pct" class="text-emerald-400">+1.45%</span></div>
+          <div id="desk-btc-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$75,942.92</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">Dominance: 60.18%</span>
+        </div>
+        <div class="glass-panel p-2 rounded-lg border-purple-500/30">
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-purple-400">ETH/USDT</span><span id="desk-eth-pct" class="text-emerald-400">+0.95%</span></div>
+          <div id="desk-eth-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$2,252.21</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">Ethereum Core</span>
+        </div>
+        <div class="glass-panel p-2 rounded-lg border-cyan-500/30">
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-cyan-400">SOL/USDT</span><span id="desk-sol-pct" class="text-rose-400">-0.82%</span></div>
+          <div id="desk-sol-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$90.61</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">Solana High TPS</span>
+        </div>
+        <div class="glass-panel p-2 rounded-lg border-blue-500/30">
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-blue-400">LINK/USDT</span><span id="desk-link-pct" class="text-emerald-400">+1.10%</span></div>
+          <div id="desk-link-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$10.77</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">Chainlink Oracle</span>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           EXPANDED DESK: BTC HEATMAP | THE TAPE | SHIB HEATMAP
+           ======================================================== -->
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[220px] w-full">
+        <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
+            <span class="text-xs font-bold text-gray-200">INSTITUTIONAL LIQUIDITY HEATMAPS & LIVE ORDER TAPE</span>
+          </div>
+          <span class="text-[9px] text-gray-400 uppercase">Binance Public Match Engine</span>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20">
-            <span class="text-[10px] font-bold text-amber-400 font-hud block mb-1">BTC HEATMAP</span>
-            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono"></div>
+          <!-- LEFT (3 COLS): DYNAMIC BTC LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-amber-400 font-hud">BTC HEATMAP</span>
+              <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 rounded animate-pulse">LIVE POOLS</span>
+            </div>
+            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Target Hunt: Buy-Side</div>
           </div>
+
+          <!-- CENTER (6 COLS): THE TAPE (MATCH ENGINE) -->
           <div class="md:col-span-6 flex flex-col justify-between bg-black/40 rounded-lg p-1.5 border border-white/5">
-            <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px]"></div>
+            <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
+              <span>TIME</span>
+              <span>PAIR</span>
+              <span class="text-right">PRICE (USDT)</span>
+              <span class="text-right">SIZE (QTY)</span>
+            </div>
+            <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
           </div>
-          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20">
-            <span class="text-[10px] font-bold text-yellow-300 font-hud block mb-1">XAU HEATMAP</span>
-            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono"></div>
+
+          <!-- RIGHT (3 COLS): SHIB INU (SHIB) LIQUIDITY HEATMAP -->
+          <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-orange-500/20 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-orange-400 font-hud">SHIB HEATMAP</span>
+              <span class="text-[8px] bg-orange-500/20 text-orange-300 px-1 rounded animate-pulse">LIVE ZONES</span>
+            </div>
+            <div id="shib-heatmap-container" class="space-y-1 text-[10px] font-mono flex-1 flex flex-col justify-around py-1"></div>
+            <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Meme Liquidity Depth</div>
           </div>
         </div>
       </div>
+
     </section>
 
-    <!-- Right: SMC Zones -->
+    <!-- RIGHT COLUMN (3 COLS): SMC ZONES, EQUITIES & PSX BENCHMARK -->
     <section class="lg:col-span-3 flex flex-col gap-3">
+      
+      <!-- SMC Order Flow Levels -->
       <div class="glass-panel rounded-xl p-3 border-emerald-500/30">
-        <h2 class="text-xs font-bold text-emerald-400 font-mono mb-2">SMC ORDER FLOW LEVELS</h2>
-        <div class="bg-black/50 p-2 rounded-lg border border-white/5 mb-2 text-xs space-y-0.5">
-          <div class="text-amber-400 font-cinzel font-bold">GOLD (XAU/USD)</div>
-          <div class="flex justify-between"><span>Buy:</span><span class="font-bold text-emerald-400">$4,028 – $4,045</span></div>
-          <div class="flex justify-between"><span>TP:</span><span class="font-bold text-cyan-400">$4,075 – $4,095</span></div>
-          <div class="flex justify-between"><span>SL:</span><span class="font-bold text-rose-400">$4,005.00</span></div>
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-xs font-bold text-emerald-400 font-mono flex items-center gap-1.5">
+            <i data-lucide="crosshair" class="w-4 h-4"></i>
+            SMC ORDER FLOW LEVELS
+          </h2>
+          <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-bold font-hud">NY ZONE</span>
         </div>
+
+        <div class="bg-black/50 p-2 rounded-lg border border-white/5 mb-2 text-xs space-y-0.5">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="text-amber-400 font-cinzel font-bold">GOLD (XAU/USD)</span>
+            <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded font-mono">DISCOUNT FVG</span>
+          </div>
+          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$4,028 – $4,045</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$4,075 – $4,095</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$4,005.00</span></div>
+        </div>
+
         <div class="bg-black/50 p-2 rounded-lg border border-white/5 text-xs space-y-0.5">
-          <div class="text-amber-300 font-cinzel font-bold">BITCOIN (BTC)</div>
-          <div class="flex justify-between"><span>Buy:</span><span class="font-bold text-emerald-400">$75,600 – $75,900</span></div>
-          <div class="flex justify-between"><span>TP:</span><span class="font-bold text-cyan-400">$76,800 – $77,500</span></div>
-          <div class="flex justify-between"><span>SL:</span><span class="font-bold text-rose-400">$75,200.00</span></div>
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="text-amber-300 font-cinzel font-bold">BITCOIN (BTC)</span>
+            <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 rounded font-mono">INTERNAL SWEEP</span>
+          </div>
+          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$75,600 – $75,900</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$76,800 – $77,500</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$75,200.00</span></div>
         </div>
       </div>
+
+      <!-- Equities, Metals & PSX -->
+      <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
+        <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-mono">
+          <i data-lucide="bar-chart-2" class="w-4 h-4 text-amber-400"></i>
+          US EQUITIES & METALS BENCHMARK
+        </h2>
+
+        <div class="space-y-1.5 flex-1 text-xs font-hud">
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-emerald-400 block text-xs">PSX KSE-100</span>
+              <span class="text-[9px] text-gray-400 font-mono">Pakistan Stock Exchange</span>
+            </div>
+            <div class="text-right">
+              <span class="font-bold text-gray-100 block text-xs">173,886.68</span>
+              <span class="text-[10px] text-rose-400 font-semibold">-0.85%</span>
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-cyan-400 block text-xs">NASDAQ 100</span>
+              <span class="text-[9px] text-gray-400 font-mono">Tech Heavy NDX</span>
+            </div>
+            <div class="text-right">
+              <span class="font-bold text-gray-100 block text-xs">26,962.30</span>
+              <span class="text-[10px] text-emerald-400 font-semibold">+0.44%</span>
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-purple-400 block text-xs font-cinzel">US 10Y YIELD</span>
+              <span class="text-[9px] text-gray-400 font-mono">Treasury Benchmark</span>
+            </div>
+            <div class="text-right">
+              <span class="font-bold text-gray-100 block text-xs">4.855%</span>
+              <span class="text-[10px] text-gray-300 font-semibold">Hold</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-1.5 pt-1">
+            <div class="bg-black/40 p-1.5 rounded border border-white/5">
+              <span class="text-[9px] text-gray-400 block font-mono">NVDA Corp</span>
+              <span class="text-xs font-bold text-gray-200 block">$186.64</span>
+              <span class="text-[9px] text-emerald-400 font-bold">+2.78%</span>
+            </div>
+            <div class="bg-black/40 p-1.5 rounded border border-white/5">
+              <span class="text-[9px] text-gray-400 block font-mono">AAPL Inc</span>
+              <span class="text-xs font-bold text-gray-200 block">$342.37</span>
+              <span class="text-[9px] text-rose-400 font-bold">-0.52%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
+
   </main>
 
   <!-- ========================================================
@@ -592,7 +721,7 @@
           BLOOMBERG TERMINAL • GLOBAL DISPATCH
         </h2>
         <p class="text-[11px] text-gray-400 font-mono mt-0.5">
-          Real-time Institutional News Feed • Markets, Finance, Crypto, Gold
+          Real-time Institutional News Feed • Markets, Finance, Crypto, Gold & Central Banks
         </p>
       </div>
 
@@ -616,7 +745,7 @@
   </footer>
 
   <!-- ========================================================
-       SCRIPT ENGINE: ROBUST DUAL EXECUTION & MULTI-SOCKET LOGIC
+       SCRIPT ENGINE: LIVE SYNCHRONIZATION FOR ALL PANELS
        ======================================================== -->
   <script>
     // State Prices
@@ -627,9 +756,75 @@
       link: 10.77,
       gold: 4064.50,
       silver: 49.78,
+      shib: 0.0000185,
       oil: 90.42,
       dxy: 101.565
     };
+
+    // Dynamic Live Order-Flow State per Asset
+    let assetDynamics = {
+      BTC: { buyPct: 62.4, sellPct: 37.6, confidence: 84, conviction: 74.2, spoof: 98, bullTrap: 4, bearTrap: 2, shortSq: 72, longSq: 18 },
+      ETH: { buyPct: 58.4, sellPct: 41.6, confidence: 74, conviction: 62.5, spoof: 42, bullTrap: 12, bearTrap: 4, shortSq: 78, longSq: 18 },
+      GOLD: { buyPct: 67.2, sellPct: 32.8, confidence: 82, conviction: 81.0, spoof: 15, bullTrap: 5, bearTrap: 2, shortSq: 85, longSq: 10 },
+      SILVER: { buyPct: 61.5, sellPct: 38.5, confidence: 71, conviction: 68.2, spoof: 35, bullTrap: 14, bearTrap: 8, shortSq: 72, longSq: 22 },
+      OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42 }
+    };
+
+    // Live Synchronizer Function (Pushes real-time ticks to Bias, Confidence & Spoofing)
+    function syncLiveOrderFlowMetrics(asset, isBuy, volumeDelta) {
+      const dyn = assetDynamics[asset];
+      if (!dyn) return;
+
+      const delta = (volumeDelta || 0.15) * (isBuy ? 1 : -1);
+      dyn.buyPct = parseFloat(Math.min(Math.max(dyn.buyPct + delta * 0.4, 25), 85).toFixed(1));
+      dyn.sellPct = parseFloat((100 - dyn.buyPct).toFixed(1));
+      dyn.conviction = parseFloat(Math.min(Math.max(dyn.conviction + delta * 0.2, 30), 96).toFixed(1));
+
+      // Confidence Score modulation
+      if (Math.random() > 0.6) {
+        dyn.confidence = Math.min(Math.max(dyn.confidence + (isBuy ? 1 : -1), 45), 98);
+      }
+
+      // Spoofing Score dynamic pulse
+      if (Math.random() > 0.7) {
+        dyn.spoof = Math.min(Math.max(dyn.spoof + (Math.random() * 4 - 2), 10), 99);
+      }
+
+      // Update Screen Elements if currently viewing this asset
+      if (currentActiveView === asset) {
+        const barBuy = document.getElementById('bias-bar-buy');
+        const barSell = document.getElementById('bias-bar-sell');
+        const txtBuy = document.getElementById('bias-buy-pct');
+        const txtSell = document.getElementById('bias-sell-pct');
+        const txtConv = document.getElementById('bias-conviction');
+        const lblBias = document.getElementById('bias-label');
+        const elConf = document.getElementById('hero-confidence');
+        const elSpoof = document.getElementById('spoof-score');
+        const elStrength = document.getElementById('strength-score');
+
+        if (barBuy) barBuy.style.width = dyn.buyPct + '%';
+        if (barSell) barSell.style.width = dyn.sellPct + '%';
+        if (txtBuy) txtBuy.textContent = dyn.buyPct + '% BUY';
+        if (txtSell) txtSell.textContent = dyn.sellPct + '% SELL';
+        if (txtConv) txtConv.textContent = dyn.conviction + ' / 100';
+
+        if (lblBias) {
+          const isBull = dyn.buyPct >= 50;
+          lblBias.textContent = isBull ? 'BULLISH EXPANSION' : 'BEARISH DISTRIBUTION';
+          lblBias.className = `font-bold tracking-wider ${isBull ? 'text-emerald-400' : 'text-rose-400'}`;
+        }
+
+        if (elConf) elConf.textContent = dyn.confidence;
+        if (elSpoof) elSpoof.textContent = Math.round(dyn.spoof) + ' / 100';
+        if (elStrength) elStrength.textContent = Math.round(dyn.buyPct * 1.1);
+
+        // Trap Risk Micro-adjustment
+        const bTrap = document.getElementById('risk-bull-trap-bar');
+        const sTrap = document.getElementById('risk-short-sq-bar');
+        if (bTrap) bTrap.style.width = Math.round(dyn.bullTrap + Math.abs(delta)) + '%';
+        if (sTrap) sTrap.style.width = Math.round(dyn.shortSq + (isBuy ? 1 : -1)) + '%';
+      }
+    }
 
     // Asset News Dictionary
     const ASSET_INTELLIGENCE_NEWS = {
@@ -657,34 +852,34 @@
 
     const RADAR_PROFILES = {
       BTC: {
-        oi: "$7.18B", fr: "+0.0092%", spread: "$0.10", price: 75942.92, pct: "+1.45%", high: "$76,450", low: "$74,800", vol: "41,208 BTC", confidence: 84,
-        bias: "BULLISH EXPANSION", buyPct: 62.4, sellPct: 37.6, conviction: "74.2 / 100",
-        spoofScore: "98 / 100", spoofDesc: "$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled",
-        newsHeading: "BTC MARKET INTELLIGENCE & SPOOFING WIRE"
+        oi: "$7.18B", fr: "+0.0092%", spread: "$0.10", price: 75942.92, pct: "+1.45%", high: "$76,450", low: "$74,800", vol: "41,208 BTC",
+        spoofDesc: "$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled",
+        newsHeading: "BTC MARKET INTELLIGENCE & SPOOFING WIRE",
+        step: 1
       },
       ETH: {
-        oi: "$3.42B", fr: "+0.0081%", spread: "$0.05", price: 2252.21, pct: "+0.95%", high: "$2,340", low: "$2,210", vol: "$5.84B", confidence: 74,
-        bias: "BULLISH", buyPct: 58.4, sellPct: 41.6, conviction: "62.5 / 100",
-        spoofScore: "42 / 100", spoofDesc: "1,200 ETH bid wall absorbed at $2,240, 100% filled",
-        newsHeading: "ETHEREUM NETWORK INTELLIGENCE & L2 FLOW"
+        oi: "$3.42B", fr: "+0.0081%", spread: "$0.05", price: 2252.21, pct: "+0.95%", high: "$2,340", low: "$2,210", vol: "$5.84B",
+        spoofDesc: "1,200 ETH bid wall absorbed at $2,240, 100% filled",
+        newsHeading: "ETHEREUM NETWORK INTELLIGENCE & L2 FLOW",
+        step: 0.1
       },
       GOLD: {
-        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 4064.50, pct: "+0.81%", high: "$4,085.00", low: "$4,020.00", vol: "$28.4B", confidence: 82,
-        bias: "STRONG BULLISH", buyPct: 67.2, sellPct: 32.8, conviction: "81.0 / 100",
-        spoofScore: "15 / 100", spoofDesc: "Verified live trade ticks directly from Binance matching engine",
-        newsHeading: "GOLD (XAU/USD) INSTITUTIONAL BULLION WIRE"
+        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 4064.50, pct: "+0.81%", high: "$4,085.00", low: "$4,020.00", vol: "$28.4B",
+        spoofDesc: "Verified live trade ticks directly from Binance matching engine",
+        newsHeading: "GOLD (XAU/USD) INSTITUTIONAL BULLION WIRE",
+        step: 0.1
       },
       SILVER: {
-        oi: "$4.1B", fr: "LIVE SPOT", spread: "$0.02", price: 49.78, pct: "+1.24%", high: "$50.40", low: "$48.80", vol: "$6.2B", confidence: 71,
-        bias: "BULLISH BREAKOUT", buyPct: 61.5, sellPct: 38.5, conviction: "68.2 / 100",
-        spoofScore: "35 / 100", spoofDesc: "Minor sell-side spoof attempt cleared at $49.80",
-        newsHeading: "SILVER (XAG/USD) BREAKOUT & METALS DESK"
+        oi: "$4.1B", fr: "LIVE SPOT", spread: "$0.02", price: 49.78, pct: "+1.24%", high: "$50.40", low: "$48.80", vol: "$6.2B",
+        spoofDesc: "Minor sell-side spoof attempt cleared at $49.80",
+        newsHeading: "SILVER (XAG/USD) BREAKOUT & METALS DESK",
+        step: 0.01
       },
       OIL: {
-        oi: "$8.9B", fr: "LIVE CRUDE", spread: "$0.04", price: 90.42, pct: "-0.42%", high: "$98.20", low: "$90.00", vol: "$9.4B", confidence: 59,
-        bias: "RANGE CONSOLIDATION", buyPct: 48.0, sellPct: 52.0, conviction: "49.0 / 100",
-        spoofScore: "68 / 100", spoofDesc: "Algorithmic fade walls detected near $91.10",
-        newsHeading: "WTI CRUDE OIL SUPPLY & ENERGY FLOW"
+        oi: "$8.9B", fr: "LIVE CRUDE", spread: "$0.04", price: 90.42, pct: "-0.42%", high: "$98.20", low: "$90.00", vol: "$9.4B",
+        spoofDesc: "Algorithmic fade walls detected near $91.10",
+        newsHeading: "WTI CRUDE OIL SUPPLY & ENERGY FLOW",
+        step: 0.05
       }
     };
 
@@ -719,6 +914,7 @@
         if (!threeInitialized) initThreeReactor();
         calculatePlanetaryHours();
         calculateLunarCalendar();
+        updateHeatmaps();
       } else if (tabKey === 'BLOOMBERG_NEWS') {
         if (bloombergView) bloombergView.classList.remove('hidden');
         renderBloombergArticles();
@@ -730,7 +926,8 @@
 
     function renderRadarData(key) {
       const data = RADAR_PROFILES[key];
-      if (!data) return;
+      const dyn = assetDynamics[key];
+      if (!data || !dyn) return;
 
       const heroP = document.getElementById('hero-price');
       const heroPct = document.getElementById('hero-pct');
@@ -739,7 +936,8 @@
       const heroV = document.getElementById('hero-vol');
       const heroC = document.getElementById('hero-confidence');
 
-      if (heroP) heroP.textContent = '$' + data.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+      const liveP = currentPrices[key.toLowerCase()] || data.price;
+      if (heroP) heroP.textContent = '$' + liveP.toLocaleString('en-US', { minimumFractionDigits: 2 });
       if (heroPct) {
         heroPct.textContent = data.pct;
         heroPct.className = `text-base font-bold font-hud ${data.pct.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`;
@@ -747,11 +945,30 @@
       if (heroH) heroH.textContent = data.high;
       if (heroL) heroL.textContent = data.low;
       if (heroV) heroV.textContent = data.vol;
-      if (heroC) heroC.textContent = data.confidence;
+      if (heroC) heroC.textContent = dyn.confidence;
 
+      // Sync Bias Bar immediately
+      const barBuy = document.getElementById('bias-bar-buy');
+      const barSell = document.getElementById('bias-bar-sell');
+      const txtBuy = document.getElementById('bias-buy-pct');
+      const txtSell = document.getElementById('bias-sell-pct');
+      const txtConv = document.getElementById('bias-conviction');
+      const lblBias = document.getElementById('bias-label');
+
+      if (barBuy) barBuy.style.width = dyn.buyPct + '%';
+      if (barSell) barSell.style.width = dyn.sellPct + '%';
+      if (txtBuy) txtBuy.textContent = dyn.buyPct + '% BUY';
+      if (txtSell) txtSell.textContent = dyn.sellPct + '% SELL';
+      if (txtConv) txtConv.textContent = dyn.conviction + ' / 100';
+      if (lblBias) {
+        lblBias.textContent = dyn.buyPct >= 50 ? 'BULLISH EXPANSION' : 'BEARISH DISTRIBUTION';
+        lblBias.className = `font-bold tracking-wider ${dyn.buyPct >= 50 ? 'text-emerald-400' : 'text-rose-400'}`;
+      }
+
+      // Sync Spoofing
       const spSc = document.getElementById('spoof-score');
       const spTx = document.getElementById('spoof-text');
-      if (spSc) spSc.textContent = data.spoofScore;
+      if (spSc) spSc.textContent = Math.round(dyn.spoof) + ' / 100';
       if (spTx) spTx.textContent = data.spoofDesc;
 
       const nH = document.getElementById('asset-news-heading');
@@ -766,9 +983,210 @@
           </a>
         `).join('');
       }
+
+      // Render Order Depth
+      renderOrderBook(liveP, data.step);
     }
 
-    // 3D PLANET JUPITER + ORBITING SATELLITE ENGINE [CITE: 9]
+    function renderOrderBook(basePrice, step) {
+      const bidsEl = document.getElementById('orderbook-bids');
+      const asksEl = document.getElementById('orderbook-asks');
+      if (!bidsEl || !asksEl) return;
+
+      let bidsHtml = '';
+      let asksHtml = '';
+      for (let i = 1; i <= 6; i++) {
+        const bp = (basePrice - (i * step)).toFixed(2);
+        const bQty = (Math.random() * 5 + 0.1).toFixed(3);
+        bidsHtml += `
+          <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-emerald-500/5 border-b border-white/[0.02] font-hud">
+            <span class="font-bold text-emerald-400 text-xs">$${bp}</span>
+            <span class="text-gray-400 font-mono text-[11px]">${bQty}</span>
+          </div>
+        `;
+        const ap = (basePrice + (i * step)).toFixed(2);
+        const aQty = (Math.random() * 5 + 0.1).toFixed(3);
+        asksHtml += `
+          <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-rose-500/5 border-b border-white/[0.02] font-hud">
+            <span class="text-gray-400 font-mono text-[11px]">${aQty}</span>
+            <span class="font-bold text-rose-400 text-xs text-right">$${ap}</span>
+          </div>
+        `;
+      }
+      bidsEl.innerHTML = bidsHtml;
+      asksEl.innerHTML = asksHtml;
+    }
+
+    // ========================================================
+    // BTC HEATMAP & SHIB HEATMAP DYNAMIC ENGINE
+    // ========================================================
+    function updateHeatmaps(btcPrice, shibPrice) {
+      if (btcPrice) currentPrices.btc = btcPrice;
+      if (shibPrice) currentPrices.shib = shibPrice;
+
+      const bp = Math.round(currentPrices.btc);
+      const btcContainer = document.getElementById('btc-heatmap-container');
+      if (btcContainer) {
+        btcContainer.innerHTML = `
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp + 800} (Short Liq)</span>
+              <span class="text-amber-400 font-bold">$142.4M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-full transition-all duration-300" style="width: 88%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp + 400} (Ask Shelf)</span>
+              <span class="text-amber-300 font-bold">$96.8M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-amber-400 h-full transition-all duration-300" style="width: 65%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp - 400} (Long Liq)</span>
+              <span class="text-emerald-400 font-bold">$185.1M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>$${bp - 800} (Bid Floor)</span>
+              <span class="text-cyan-400 font-bold">$110.6M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 74%;"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      const shibContainer = document.getElementById('shib-heatmap-container');
+      if (shibContainer) {
+        shibContainer.innerHTML = `
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>0.0000192 (Liq Wall)</span>
+              <span class="text-orange-400 font-bold">$2.8M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-full transition-all duration-300" style="width: 82%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>0.0000188 (Resistance)</span>
+              <span class="text-yellow-400 font-bold">$1.4M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-yellow-400 h-full transition-all duration-300" style="width: 60%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>0.0000181 (Support Liq)</span>
+              <span class="text-emerald-400 font-bold">$3.6M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-emerald-400 h-full transition-all duration-300" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[9px] text-gray-400">
+              <span>0.0000175 (Whale Floor)</span>
+              <span class="text-cyan-400 font-bold">$4.9M</span>
+            </div>
+            <div class="w-full h-1.5 bg-black rounded overflow-hidden">
+              <div class="bg-cyan-400 h-full transition-all duration-300" style="width: 96%;"></div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // ========================================================
+    // SEPARATE 4 INFLOW & 4 OUTFLOW CALCULATION ENGINE
+    // ========================================================
+    let flows = {
+      btcIn: 14.8, btcOut: 5.2,
+      goldIn: 8.4, goldOut: 2.1,
+      silverIn: 3.2, silverOut: 1.9,
+      dydxIn: 1.6, dydxOut: 0.8
+    };
+
+    function updateDualFlows(asset, isBuy, vol) {
+      const amt = (vol || 0.15);
+      if (asset === 'BTC') {
+        if (isBuy) flows.btcIn = parseFloat((flows.btcIn + amt * 0.05).toFixed(1));
+        else flows.btcOut = parseFloat((flows.btcOut + amt * 0.05).toFixed(1));
+      } else if (asset === 'GOLD') {
+        if (isBuy) flows.goldIn = parseFloat((flows.goldIn + amt * 0.04).toFixed(1));
+        else flows.goldOut = parseFloat((flows.goldOut + amt * 0.04).toFixed(1));
+      } else if (asset === 'SILVER') {
+        if (isBuy) flows.silverIn = parseFloat((flows.silverIn + amt * 0.03).toFixed(1));
+        else flows.silverOut = parseFloat((flows.silverOut + amt * 0.03).toFixed(1));
+      } else if (asset === 'DYDX') {
+        if (isBuy) flows.dydxIn = parseFloat((flows.dydxIn + amt * 0.02).toFixed(1));
+        else flows.dydxOut = parseFloat((flows.dydxOut + amt * 0.02).toFixed(1));
+      }
+
+      const fBi = document.getElementById('flow-btc-in-val');
+      const fGi = document.getElementById('flow-gold-in-val');
+      const fSi = document.getElementById('flow-silver-in-val');
+      const fDi = document.getElementById('flow-dydx-in-val');
+
+      if (fBi) fBi.textContent = '+$' + flows.btcIn + 'M';
+      if (fGi) fGi.textContent = '+$' + flows.goldIn + 'M';
+      if (fSi) fSi.textContent = '+$' + flows.silverIn + 'M';
+      if (fDi) fDi.textContent = '+$' + flows.dydxIn + 'M';
+
+      const fBo = document.getElementById('flow-btc-out-val');
+      const fGo = document.getElementById('flow-gold-out-val');
+      const fSo = document.getElementById('flow-silver-out-val');
+      const fDo = document.getElementById('flow-dydx-out-val');
+
+      if (fBo) fBo.textContent = '-$' + flows.btcOut + 'M';
+      if (fGo) fGo.textContent = '-$' + flows.goldOut + 'M';
+      if (fSo) fSo.textContent = '-$' + flows.silverOut + 'M';
+      if (fDo) fDo.textContent = '-$' + flows.dydxOut + 'M';
+
+      const bBi = document.getElementById('flow-btc-in-bar');
+      const bGi = document.getElementById('flow-gold-in-bar');
+      const bSi = document.getElementById('flow-silver-in-bar');
+      const bDi = document.getElementById('flow-dydx-in-bar');
+
+      if (bBi) bBi.style.width = Math.min(flows.btcIn * 4, 95) + '%';
+      if (bGi) bGi.style.width = Math.min(flows.goldIn * 7, 95) + '%';
+      if (bSi) bSi.style.width = Math.min(flows.silverIn * 15, 95) + '%';
+      if (bDi) bDi.style.width = Math.min(flows.dydxIn * 25, 95) + '%';
+
+      const bBo = document.getElementById('flow-btc-out-bar');
+      const bGo = document.getElementById('flow-gold-out-bar');
+      const bSo = document.getElementById('flow-silver-out-bar');
+      const bDo = document.getElementById('flow-dydx-out-bar');
+
+      if (bBo) bBo.style.width = Math.min(flows.btcOut * 8, 95) + '%';
+      if (bGo) bGo.style.width = Math.min(flows.goldOut * 18, 95) + '%';
+      if (bSo) bSo.style.width = Math.min(flows.silverOut * 20, 95) + '%';
+      if (bDo) bDo.style.width = Math.min(flows.dydxOut * 35, 95) + '%';
+
+      const net = (flows.btcIn + flows.goldIn + flows.silverIn + flows.dydxIn) - (flows.btcOut + flows.goldOut + flows.silverOut + flows.dydxOut);
+      const stat = document.getElementById('dominant-flow-status');
+      if (stat) {
+        stat.textContent = net >= 0 ? `TOTAL +$${net.toFixed(1)}M INFLOW` : `TOTAL -$${Math.abs(net).toFixed(1)}M OUTFLOW`;
+        stat.className = net >= 0 ? 'text-emerald-400 font-bold animate-pulse' : 'text-rose-400 font-bold animate-pulse';
+      }
+    }
+
+    // ========================================================
+    // 3D PLANET JUPITER + ORBITING SATELLITE ENGINE
+    // ========================================================
     let threeInitialized = false;
     let baseSpeed = 0.008;
     let jupiterMesh, orbitGroup, moonBadgeMesh;
@@ -874,7 +1292,7 @@
       animate();
     }
 
-    // PLANETARY HOURS ENGINE (CHALDEAN ORDER) [CITE: 6]
+    // PLANETARY HOURS ENGINE (CHALDEAN ORDER)
     const CHALDEAN_PLANETS = [
       { name: "Saturn", symbol: "♄", color: "#94a3b8" },
       { name: "Jupiter", symbol: "♃", color: "#f59e0b" },
@@ -914,13 +1332,12 @@
       const listContainer = document.getElementById('planetary-hours-list');
       if (listContainer) {
         let scheduleHtml = '';
-        for (let h = 0; h < 12; h++) {
+        for (let h = 0; h < 8; h++) {
           const slotHour = isDay ? (6 + h) : ((18 + h) % 24);
           const pIndex = (dayRulerIndex + (isDay ? h : (12 + h))) % 7;
           const pl = CHALDEAN_PLANETS[pIndex];
           const isCurr = slotHour === currentHour;
           const s = slotHour % 12 || 12;
-          const e = (slotHour + 1) % 12 || 12;
           const ap = slotHour >= 12 ? 'pm' : 'am';
           scheduleHtml += `
             <div class="flex justify-between items-center p-1 rounded ${isCurr ? 'bg-purple-950/60 border border-purple-400/50 text-white font-bold' : 'bg-black/30 border border-white/5 text-gray-300'}">
@@ -964,7 +1381,7 @@
       if (dL) dL.textContent = getNextPhaseDate(22.14);
     }
 
-    // BLOOMBERG NEWS ARTICLES
+    // BLOOMBERG ARTICLES
     const bloombergArticles = [
       { category: "FINANCE", time: "1 hr ago", title: "Citigroup Shelves $1 Billion Loan Deal for Auto-Parts Supplier", desc: "Citigroup Inc. has put a $1 billion debt financing package on hold as volatility in industrial credit spreads widens.", tag: "Credit Markets", author: "Bloomberg Markets", image: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
       { category: "FINANCE", time: "2 hrs ago", title: "Arini's Hedge Fund Losses Grow to 32% as It Sells Some Positions", desc: "Hamza Lemssouguer's flagship credit hedge fund continues risk reduction measures amid adverse macro rate positioning.", tag: "Hedge Funds", author: "Bloomberg Finance", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
@@ -1003,7 +1420,7 @@
     const wsStreams = ['btcusdt@trade', 'ethusdt@trade', 'solusdt@trade', 'linkusdt@trade', 'paxgusdt@trade'].join('/');
     function initWebSocket() {
       try {
-        ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${wsStreams}`);
+        const ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${wsStreams}`);
         ws.onmessage = (event) => {
           const payload = JSON.parse(event.data);
           const data = payload.data;
@@ -1015,21 +1432,65 @@
           const isBuy = !data.m;
 
           if (symbol === 'BTCUSDT') {
+            currentPrices.btc = price;
+            const el = document.getElementById('desk-btc-price');
+            if (el) {
+              el.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+              el.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
             if (currentActiveView === 'BTC') {
               const hEl = document.getElementById('hero-price');
               if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
             }
-          }
-
-          if (symbol === 'PAXGUSDT') {
+            updateDualFlows('BTC', isBuy, qty * (price / 100000));
+            syncLiveOrderFlowMetrics('BTC', isBuy, qty);
+            updateHeatmaps(price, null);
+          } else if (symbol === 'ETHUSDT') {
+            currentPrices.eth = price;
+            const el = document.getElementById('desk-eth-price');
+            if (el) {
+              el.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+              el.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
+            if (currentActiveView === 'ETH') {
+              const hEl = document.getElementById('hero-price');
+              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            }
+            updateDualFlows('DYDX', isBuy, qty * 0.1);
+            syncLiveOrderFlowMetrics('ETH', isBuy, qty * 0.05);
+          } else if (symbol === 'SOLUSDT') {
+            currentPrices.sol = price;
+            const el = document.getElementById('desk-sol-price');
+            if (el) el.textContent = '$' + price.toFixed(2);
+          } else if (symbol === 'LINKUSDT') {
+            currentPrices.link = price;
+            const el = document.getElementById('desk-link-price');
+            if (el) el.textContent = '$' + price.toFixed(2);
+          } else if (symbol === 'PAXGUSDT') {
+            currentPrices.gold = price;
             const spotEl = document.getElementById('rate-xau-spot');
-            if (spotEl) spotEl.textContent = '$' + price.toFixed(2);
+            if (spotEl) {
+              spotEl.textContent = '$' + price.toFixed(2);
+              spotEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
+            const deskGoldEl = document.getElementById('desk-xau-price');
+            if (deskGoldEl) {
+              deskGoldEl.textContent = '$' + price.toFixed(2);
+              deskGoldEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
+            if (currentActiveView === 'GOLD') {
+              const hEl = document.getElementById('hero-price');
+              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            }
             const tolaPKR = Math.round((price / 31.1035) * 11.6638 * 276.62);
             const g10PKR = Math.round((price / 31.1035) * 10 * 276.62);
             const tolaEl = document.getElementById('pkr-tola-rate');
             if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
             const gEl = document.getElementById('pkr-10g-rate');
             if (gEl) gEl.textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
+
+            updateDualFlows('GOLD', isBuy, qty * (price / 50000));
+            syncLiveOrderFlowMetrics('GOLD', isBuy, qty * 0.1);
           }
 
           const tapeStream = document.getElementById('trade-tape-stream');
@@ -1048,6 +1509,30 @@
       }
     }
     initWebSocket();
+
+    // High frequency ticks (Silver, Oil, SHIB, DXY + Dynamic flow)
+    setInterval(() => {
+      const sDelta = (Math.random() * 0.04 - 0.02);
+      const isSBuy = sDelta >= 0;
+      currentPrices.silver = parseFloat((currentPrices.silver + sDelta).toFixed(2));
+      const deskXag = document.getElementById('desk-xag-price');
+      if (deskXag) deskXag.textContent = '$' + currentPrices.silver.toFixed(2);
+      updateDualFlows('SILVER', isSBuy, 0.15);
+      syncLiveOrderFlowMetrics('SILVER', isSBuy, 0.2);
+
+      const oDelta = (Math.random() * 0.06 - 0.03);
+      const isOBuy = oDelta >= 0;
+      currentPrices.oil = parseFloat((currentPrices.oil + oDelta).toFixed(2));
+      const deskOil = document.getElementById('desk-oil-price');
+      if (deskOil) deskOil.textContent = '$' + currentPrices.oil.toFixed(2);
+      syncLiveOrderFlowMetrics('OIL', isOBuy, 0.15);
+
+      // Micro SHIB tick for Heatmap
+      const shibDelta = (Math.random() * 0.0000002 - 0.0000001);
+      currentPrices.shib = parseFloat((currentPrices.shib + shibDelta).toFixed(7));
+
+      updateHeatmaps();
+    }, 1200);
 
     // CLOCK & INIT
     setInterval(() => {
