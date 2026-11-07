@@ -168,7 +168,9 @@
     </div>
   </header>
 
-  <!-- PAGE 1: LIQUIDITY RADAR VIEW -->
+  <!-- ========================================================
+       PAGE 1: LIQUIDITY RADAR VIEW
+       ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
       <span class="text-amber-400 font-bold uppercase tracking-wider">
@@ -270,7 +272,7 @@
   </main>
 
   <!-- ========================================================
-       PAGE 2: COMPLETE 3D QUANT REACTOR DESK (FEATURING FEAR & GREED METER)
+       PAGE 2: COMPLETE 3D QUANT REACTOR DESK
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     
@@ -377,7 +379,6 @@
     <!-- CENTER PANEL: 3D QUANT REACTOR + DUAL CO-REACTOR & FEAR/GREED METER (Cols: 6) -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       
-      <!-- 3D Reactor Box + Co-Reactor Panel & Fear-Greed HUD Gauge -->
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
         <div class="flex items-center justify-between mb-1 z-10">
           <div class="flex items-center space-x-2">
@@ -393,7 +394,6 @@
         </div>
 
         <div class="grid grid-cols-12 gap-2 flex-1 items-center">
-          <!-- 3D Reactor Canvas -->
           <div class="col-span-7 md:col-span-8 h-[270px] relative flex items-center justify-center">
             <div id="three-reactor-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
           </div>
@@ -411,9 +411,7 @@
               <!-- Semi-circle Gauge SVG -->
               <div class="relative w-28 h-14 flex items-end justify-center">
                 <svg class="w-28 h-14" viewBox="0 0 100 50">
-                  <!-- Meter Background Arc -->
                   <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#1f2937" stroke-width="8" stroke-linecap="round" />
-                  <!-- Colored Arc Zones (Red -> Orange -> Yellow -> Green) -->
                   <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="url(#fg-gradient)" stroke-width="8" stroke-linecap="round" />
                   <defs>
                     <linearGradient id="fg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -424,9 +422,7 @@
                       <stop offset="100%" stop-color="#10b981" />
                     </linearGradient>
                   </defs>
-                  <!-- Needle Center Pivot -->
                   <circle cx="50" cy="50" r="4" fill="#f59e0b" />
-                  <!-- Dynamic Rotating Needle -->
                   <line id="fg-needle" x1="50" y1="50" x2="22" y2="25" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" class="transition-all duration-500" />
                 </svg>
                 <div class="absolute bottom-0 text-center">
@@ -763,7 +759,9 @@
 
   </main>
 
-  <!-- PAGE 3: BLOOMBERG DEDICATED NEWS WIRE TERMINAL -->
+  <!-- ========================================================
+       PAGE 3: BLOOMBERG DEDICATED NEWS WIRE TERMINAL
+       ======================================================== -->
   <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden">
     <div class="glass-panel rounded-xl p-4 border-cyan-500/30 flex flex-col md:flex-row md:items-center justify-between gap-3">
       <div>
@@ -894,7 +892,6 @@
       scoreEl.textContent = score;
       labelEl.textContent = label.toUpperCase();
 
-      // Color coding
       if (score < 25) {
         labelEl.className = "px-1 py-0.2 rounded font-bold bg-rose-500/20 text-rose-400";
         scoreEl.className = "text-base font-extrabold font-hud text-rose-400 tracking-tight";
@@ -912,7 +909,6 @@
         scoreEl.className = "text-base font-extrabold font-hud text-emerald-400 tracking-tight";
       }
 
-      // Needle Angle Calculation: 0 -> 180 deg (left), 100 -> 0 deg (right)
       const angleDeg = 180 - (score / 100) * 180;
       const angleRad = (angleDeg * Math.PI) / 180;
       const needleLength = 32;
@@ -924,7 +920,6 @@
       needleEl.setAttribute('y2', y2.toFixed(1));
     }
 
-    // Default Initial Value: 28 (Fear)
     updateFearGreedMeter(28, "Fear");
 
     // ========================================================
@@ -1252,10 +1247,7 @@
               if (hp) hp.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
             }
             const deskBtcEl = document.getElementById('desk-btc-price');
-            if (deskBtcEl) {
-              deskBtcEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-              deskBtcEl.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
-            }
+            if (deskBtcEl) deskBtcEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
           } else if (symbol === 'PAXGUSDT') {
             RADAR_PROFILES.GOLD.price = price;
             const spotEl = document.getElementById('rate-xau-spot');
@@ -1309,7 +1301,7 @@
     }
     renderFooterTicker();
 
-    // UNIFIED CLOCK & METALS TIMER
+    // UNIFIED CLOCK & TIMER
     setInterval(() => {
       const now = new Date();
       const timeStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
