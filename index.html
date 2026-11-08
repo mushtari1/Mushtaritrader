@@ -104,27 +104,40 @@
     </p>
   </div>
 
-  <!-- OFFICIAL MUSHTARI TRADER HERO BANNER SECTION (VISIBLE ON EVERY TAB) -->
-  <div class="w-full bg-[#070a10] border-b border-amber-500/30 relative overflow-hidden">
-    <div class="max-w-[1600px] mx-auto">
-      <!-- Yahan apni save ki hui banner image ka filename lagayein (e.g. banner.jpg) -->
-      <img src="mushtari-banner.jpg" alt="Al-Irtiqaa Capital • Mushtari Trader Institutional Desk" class="w-full h-auto max-h-[220px] md:max-h-[280px] object-cover object-center mx-auto shadow-2xl border-x border-amber-500/20" onerror="this.style.display='none'; document.getElementById('fallback-hero-banner').style.display='flex';" />
+  <!-- ========================================================
+       PERMANENT TOP HERO BANNER (DISPLAYED ON EVERY PAGE/TAB)
+       ======================================================== -->
+  <div class="w-full bg-[#05080f] border-b-2 border-amber-500/50 relative overflow-hidden shadow-2xl">
+    <div class="max-w-[1600px] mx-auto relative">
+      <!-- Main Character Banner Image (Keep 1000433001.jpg in the same folder as this HTML file) -->
+      <img 
+        src="1000433001.jpg" 
+        alt="Al-Irtiqaa Capital • Mushtari Trader Institutional Desk" 
+        class="w-full h-auto max-h-[200px] sm:max-h-[260px] md:max-h-[320px] object-cover object-center block mx-auto"
+        onerror="this.style.display='none'; document.getElementById('banner-fallback-ui').classList.remove('hidden');"
+      />
       
-      <!-- Agar image file path set na ho to yeh automatic styled banner dikhayega -->
-      <div id="fallback-hero-banner" style="display: none;" class="w-full py-4 px-4 sm:px-8 bg-gradient-to-r from-[#0e1420] via-[#1a1118] to-[#0e1420] items-center justify-between border-y border-amber-500/20">
+      <!-- Automatic Fallback UI (Only displays if 1000433001.jpg is not yet placed in the folder) -->
+      <div id="banner-fallback-ui" class="hidden w-full py-6 px-4 sm:px-8 bg-gradient-to-r from-[#110c08] via-[#0b1320] to-[#070a10] flex flex-col md:flex-row items-center justify-between gap-4 border-b border-amber-500/30">
         <div class="flex items-center space-x-4">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-amber-400 shadow-lg shadow-amber-500/20 overflow-hidden bg-amber-950/40 flex items-center justify-center shrink-0">
-            <span class="text-2xl sm:text-3xl">🦅</span>
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.5)] bg-gradient-to-b from-amber-900/40 to-black flex items-center justify-center shrink-0">
+            <span class="text-3xl sm:text-4xl">🦅</span>
           </div>
           <div>
-            <div class="text-amber-400 font-cinzel text-xs sm:text-sm font-bold tracking-widest uppercase">AL-IRTIQAA CAPITAL</div>
-            <h2 class="font-cinzel text-lg sm:text-2xl md:text-3xl font-black text-white tracking-wider">MUSHTARI TRADER • <span class="text-amber-400">INSTITUTIONAL DESK</span></h2>
-            <p class="text-[10px] sm:text-xs text-gray-400 font-hud tracking-widest uppercase mt-0.5">Master of Market Structure & Timing • Abjad 287</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs sm:text-sm font-cinzel font-bold text-amber-300 tracking-widest uppercase">AL-IRTIQAA CAPITAL</span>
+              <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded font-bold font-hud">287</span>
+            </div>
+            <h2 class="font-hud text-xl sm:text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 tracking-wide uppercase mt-0.5">
+              MUSHTARI TRADER • INSTITUTIONAL DESK
+            </h2>
+            <p class="text-[11px] sm:text-xs text-cyan-400 font-mono mt-1">
+              Master of Market Structure & Timing • Proprietary Quant Terminal
+            </p>
           </div>
         </div>
-        <div class="hidden lg:flex items-center space-x-3 bg-black/60 border border-amber-500/30 px-4 py-2 rounded-xl">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="text-xs font-hud font-bold text-amber-300 uppercase tracking-wider">Proprietary Trading Terminal</span>
+        <div class="text-right font-mono text-[10px] text-amber-300/80 bg-black/60 px-3 py-2 rounded border border-amber-500/30">
+          💡 Tip: Keep <strong class="text-white">1000433001.jpg</strong> in the same folder to show full graphic banner.
         </div>
       </div>
     </div>
@@ -838,6 +851,7 @@
       OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42, sweepConf: 52 }
     };
 
+    // FEAR & GREED SYNCHRONIZER
     let currentFG = 28;
     function syncFearAndGreed(delta) {
       currentFG = Math.min(Math.max(currentFG + delta, 12), 88);
@@ -1114,8 +1128,40 @@
           </a>
         `).join('');
       }
+
+      renderOrderBook(liveP, data.step);
     }
 
+    function renderOrderBook(basePrice, step) {
+      const bidsEl = document.getElementById('orderbook-bids');
+      const asksEl = document.getElementById('orderbook-asks');
+      if (!bidsEl || !asksEl) return;
+
+      let bidsHtml = '';
+      let asksHtml = '';
+      for (let i = 1; i <= 6; i++) {
+        const bp = (basePrice - (i * step)).toFixed(2);
+        const bQty = (Math.random() * 5 + 0.1).toFixed(3);
+        bidsHtml += `
+          <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-emerald-500/5 border-b border-white/[0.02] font-hud">
+            <span class="font-bold text-emerald-400 text-xs">$${bp}</span>
+            <span class="text-gray-400 font-mono text-[11px]">${bQty}</span>
+          </div>
+        `;
+        const ap = (basePrice + (i * step)).toFixed(2);
+        const aQty = (Math.random() * 5 + 0.1).toFixed(3);
+        asksHtml += `
+          <div class="flex justify-between items-center px-1.5 py-0.5 rounded bg-rose-500/5 border-b border-white/[0.02] font-hud">
+            <span class="text-gray-400 font-mono text-[11px]">${aQty}</span>
+            <span class="font-bold text-rose-400 text-xs text-right">$${ap}</span>
+          </div>
+        `;
+      }
+      bidsEl.innerHTML = bidsHtml;
+      asksEl.innerHTML = asksHtml;
+    }
+
+    // DYNAMIC HEATMAPS ENGINE (BTC & GOLD)
     function updateHeatmaps(btcPrice, goldPrice) {
       if (btcPrice) currentPrices.btc = btcPrice;
       if (goldPrice) currentPrices.gold = goldPrice;
@@ -1209,6 +1255,7 @@
       }
     }
 
+    // 4 INFLOW & 4 OUTFLOW CALCULATION ENGINE (CONTINUOUS TICK)
     let flows = {
       btcIn: 14.8, btcOut: 5.2,
       goldIn: 8.4, goldOut: 2.1,
@@ -1284,6 +1331,7 @@
       }
     }
 
+    // 3D PLANET JUPITER + ORBITING SATELLITE ENGINE
     let threeInitialized = false;
     let baseSpeed = 0.008;
     let jupiterMesh, orbitGroup, moonBadgeMesh;
@@ -1386,6 +1434,7 @@
       animate();
     }
 
+    // PLANETARY HOURS ENGINE (CHALDEAN ORDER)
     const CHALDEAN_PLANETS = [
       { name: "Saturn", symbol: "♄", color: "#94a3b8" },
       { name: "Jupiter", symbol: "♃", color: "#f59e0b" },
@@ -1443,6 +1492,7 @@
       }
     }
 
+    // LUNAR CALENDAR
     function calculateLunarCalendar() {
       const now = new Date();
       const refDate = new Date(Date.UTC(2000, 0, 6, 18, 14, 0));
@@ -1473,6 +1523,7 @@
       if (dL) dL.textContent = getNextPhaseDate(22.14);
     }
 
+    // BLOOMBERG ARTICLES
     const bloombergArticles = [
       { category: "FINANCE", time: "1 hr ago", title: "Citigroup Shelves $1 Billion Loan Deal for Auto-Parts Supplier", desc: "Citigroup Inc. has put a $1 billion debt financing package on hold as volatility in industrial credit spreads widens.", tag: "Credit Markets", author: "Bloomberg Markets", image: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
       { category: "FINANCE", time: "2 hrs ago", title: "Arini's Hedge Fund Losses Grow to 32% as It Sells Some Positions", desc: "Hamza Lemssouguer's flagship credit hedge fund continues risk reduction measures amid adverse macro rate positioning.", tag: "Hedge Funds", author: "Bloomberg Finance", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
@@ -1507,6 +1558,7 @@
       `).join('');
     }
 
+    // LIVE BINANCE TICKER & WEBSOCKET ENGINE (INCLUDING DYDX)
     const wsStreams = ['btcusdt@trade', 'ethusdt@trade', 'solusdt@trade', 'dydxusdt@trade', 'paxgusdt@trade'].join('/');
     function initWebSocket() {
       try {
@@ -1573,6 +1625,11 @@
               spotEl.textContent = '$' + price.toFixed(2);
               spotEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
             }
+            const deskGoldEl = document.getElementById('desk-xau-price');
+            if (deskGoldEl) {
+              deskGoldEl.textContent = '$' + price.toFixed(2);
+              deskGoldEl.className = 'text-sm font-bold font-hud ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
+            }
             if (currentActiveView === 'GOLD') {
               const hEl = document.getElementById('hero-price');
               if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
@@ -1606,7 +1663,9 @@
     }
     initWebSocket();
 
+    // High frequency ticks & Continuous Inflow/Outflow Motion
     setInterval(() => {
+      // Dynamic Inflow/Outflow micro-shifts so meters never freeze
       const fDelta = (Math.random() * 0.12 - 0.05);
       const isFBuy = fDelta >= 0;
       updateDualFlows('BTC', isFBuy, 0.08);
@@ -1614,39 +1673,51 @@
       updateDualFlows('SILVER', isFBuy, 0.03);
       updateDualFlows('DYDX', isFBuy, 0.02);
 
+      // Micro Silver tick
       const sDelta = (Math.random() * 0.04 - 0.02);
       currentPrices.silver = parseFloat((currentPrices.silver + sDelta).toFixed(2));
+      const deskXag = document.getElementById('desk-xag-price');
+      if (deskXag) deskXag.textContent = '$' + currentPrices.silver.toFixed(2);
       syncLiveOrderFlowMetrics('SILVER', sDelta >= 0, 0.15);
 
+      // Micro Oil tick
       const oDelta = (Math.random() * 0.06 - 0.03);
       currentPrices.oil = parseFloat((currentPrices.oil + oDelta).toFixed(2));
+      const deskOil = document.getElementById('desk-oil-price');
+      if (deskOil) deskOil.textContent = '$' + currentPrices.oil.toFixed(2);
       syncLiveOrderFlowMetrics('OIL', oDelta >= 0, 0.15);
 
+      // DXY Index tick
       const dxyDelta = (Math.random() * 0.02 - 0.01);
       currentPrices.dxy = parseFloat((currentPrices.dxy + dxyDelta).toFixed(3));
       const elDxy = document.getElementById('rate-dxy-badge');
       if (elDxy) elDxy.textContent = currentPrices.dxy.toFixed(3);
 
+      // NASDAQ 100 Live Pulse
       const ndxDelta = (Math.random() * 2.4 - 1.2);
       currentPrices.ndx = parseFloat((currentPrices.ndx + ndxDelta).toFixed(2));
       const elNdx = document.getElementById('market-ndx-price');
       if (elNdx) elNdx.textContent = currentPrices.ndx.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
+      // S&P 500
       const spxDelta = (Math.random() * 1.6 - 0.8);
       currentPrices.spx = parseFloat((currentPrices.spx + spxDelta).toFixed(2));
       const elSpx = document.getElementById('market-spx-price');
       if (elSpx) elSpx.textContent = currentPrices.spx.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
+      // Dow Jones
       const djiDelta = (Math.random() * 4.0 - 2.0);
       currentPrices.dji = parseFloat((currentPrices.dji + djiDelta).toFixed(2));
       const elDji = document.getElementById('market-dji-price');
       if (elDji) elDji.textContent = currentPrices.dji.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
+      // China Shanghai
       const ssecDelta = (Math.random() * 0.4 - 0.2);
       currentPrices.ssec = parseFloat((currentPrices.ssec + ssecDelta).toFixed(2));
       const elSsec = document.getElementById('market-ssec-price');
       if (elSsec) elSsec.textContent = currentPrices.ssec.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
+      // Tokyo Nikkei 225
       const n225Delta = (Math.random() * 8.0 - 4.0);
       currentPrices.n225 = parseFloat((currentPrices.n225 + n225Delta).toFixed(2));
       const elN225 = document.getElementById('market-n225-price');
@@ -1655,6 +1726,7 @@
       updateHeatmaps();
     }, 1200);
 
+    // CLOCK & INIT
     setInterval(() => {
       const now = new Date();
       const timeStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
@@ -1662,6 +1734,7 @@
       if (clockEl) clockEl.textContent = timeStr;
     }, 1000);
 
+    // Initial Launch
     switchView('BTC');
     renderFlowsDOM();
     syncFearAndGreed(0);
