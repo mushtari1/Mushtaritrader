@@ -907,7 +907,7 @@
           🔍 SCAN GOLD, SILVER & BTC CHARTS
         </button>
         <div id="scanner-output" class="bg-black/70 p-2 rounded border border-white/10 text-[11px] font-mono text-gray-200">
-          GOLD: 86% Bullish FVG •SILVER: 76% Sweep • BTC: 84% Bullish
+          GOLD: 86% Bullish FVG • SILVER: 76% Sweep • BTC: 84% Bullish
         </div>
       </div>
 
@@ -1222,6 +1222,16 @@
       OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42, sweepConf: 52 }
     };
 
+    // MULTI-TIMEFRAME INDEPENDENT BIAS MATRIX (FIXES STATIC LONG ISSUE ACROSS 1M-1D)
+    window.tfSignalMatrix = {
+      '1M':  { GOLD: { buyPct: 54.2, conf: 82 }, SILVER: { buyPct: 46.8, conf: 78 }, BTC: { buyPct: 58.4, conf: 85 } },
+      '5M':  { GOLD: { buyPct: 44.5, conf: 79 }, SILVER: { buyPct: 57.2, conf: 81 }, BTC: { buyPct: 45.1, conf: 80 } },
+      '15M': { GOLD: { buyPct: 66.8, conf: 88 }, SILVER: { buyPct: 61.5, conf: 84 }, BTC: { buyPct: 63.2, conf: 86 } },
+      '1H':  { GOLD: { buyPct: 38.4, conf: 87 }, SILVER: { buyPct: 42.0, conf: 82 }, BTC: { buyPct: 39.5, conf: 85 } },
+      '4H':  { GOLD: { buyPct: 41.2, conf: 89 }, SILVER: { buyPct: 58.6, conf: 83 }, BTC: { buyPct: 36.8, conf: 88 } },
+      '1D':  { GOLD: { buyPct: 72.4, conf: 92 }, SILVER: { buyPct: 68.0, conf: 89 }, BTC: { buyPct: 44.2, conf: 90 } }
+    };
+
     const SPOOF_LIVE_MESSAGES = {
       BTC: [
         "$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled",
@@ -1286,6 +1296,18 @@
 
       if (Math.random() > 0.5) {
         dyn.confidence = Math.min(Math.max(dyn.confidence + (isBuy ? 1 : -1), 52), 98);
+      }
+
+      // Update Independent Multi-Timeframe Signal Matrix every second
+      if (['GOLD', 'SILVER', 'BTC'].includes(asset)) {
+        ['1M', '5M', '15M', '1H', '4H', '1D'].forEach((tf, idx) => {
+          const cell = window.tfSignalMatrix[tf][asset];
+          if (cell) {
+            const wave = (Math.random() * 4.8 - 2.4) + (isBuy ? 0.6 : -0.6) * ((6 - idx) * 0.25);
+            cell.buyPct = parseFloat(Math.min(Math.max(cell.buyPct + wave, 22), 88).toFixed(1));
+            cell.conf = Math.min(Math.max(Math.round(cell.conf + (Math.random() * 2 - 1)), 64), 97);
+          }
+        });
       }
 
       dyn.spoof = Math.min(Math.max(Math.round(dyn.spoof + (Math.random() * 6 - 3)), 14), 99);
@@ -1491,10 +1513,17 @@
     }
 
     // ========================================================
-    // LIVE SIGNALS ENGINE (GOLD, SILVER, BTC • 1M TO 1D)
+    // LIVE SIGNALS ENGINE (GOLD, SILVER, BTC • 1M TO 1D DYNAMIC)
     // ========================================================
     window.currentSignalTF = '15M';
-    window.manualFlipOverrides = { GOLD: null, SILVER: null, BTC: null };
+    window.manualFlipOverrides = {
+      '1M':  { GOLD: null, SILVER: null, BTC: null },
+      '5M':  { GOLD: null, SILVER: null, BTC: null },
+      '15M': { GOLD: null, SILVER: null, BTC: null },
+      '1H':  { GOLD: null, SILVER: null, BTC: null },
+      '4H':  { GOLD: null, SILVER: null, BTC: null },
+      '1D':  { GOLD: null, SILVER: null, BTC: null }
+    };
 
     const TF_MULTIPLIERS = {
       '1M': { mult: 0.35, label: '1M Scalping' },
@@ -1518,15 +1547,17 @@
     };
 
     window.toggleManualSignalFlip = function(assetKey) {
-      const dyn = window.assetDynamics[assetKey];
-      const currentAutoLong = dyn ? dyn.buyPct >= 50 : true;
-      const currentState = window.manualFlipOverrides[assetKey] !== null ? window.manualFlipOverrides[assetKey] : currentAutoLong;
-      window.manualFlipOverrides[assetKey] = !currentState;
+      const tf = window.currentSignalTF;
+      const tfData = window.tfSignalMatrix[tf][assetKey];
+      const currentAutoLong = tfData ? tfData.buyPct >= 50 : true;
+      const currentState = window.manualFlipOverrides[tf][assetKey] !== null ? window.manualFlipOverrides[tf][assetKey] : currentAutoLong;
+      window.manualFlipOverrides[tf][assetKey] = !currentState;
       window.renderLiveSignalCards();
     };
 
     window.resetAutoSyncSignal = function(assetKey) {
-      window.manualFlipOverrides[assetKey] = null;
+      const tf = window.currentSignalTF;
+      window.manualFlipOverrides[tf][assetKey] = null;
       window.renderLiveSignalCards();
     };
 
@@ -1534,7 +1565,8 @@
       const grid = document.getElementById('live-signals-cards-grid');
       if (!grid) return;
 
-      const tfObj = TF_MULTIPLIERS[window.currentSignalTF] || TF_MULTIPLIERS['15M'];
+      const tf = window.currentSignalTF;
+      const tfObj = TF_MULTIPLIERS[tf] || TF_MULTIPLIERS['15M'];
       const m = tfObj.mult;
 
       const configs = [
@@ -1544,8 +1576,9 @@
       ];
 
       grid.innerHTML = configs.map(cfg => {
-        const dyn = window.assetDynamics[cfg.key] || { buyPct: 62, confidence: 84 };
-        const isLong = window.manualFlipOverrides[cfg.key] !== null ? window.manualFlipOverrides[cfg.key] : (dyn.buyPct >= 50);
+        const tfCell = (window.tfSignalMatrix[tf] && window.tfSignalMatrix[tf][cfg.key]) || { buyPct: 55.0, conf: 84 };
+        const override = window.manualFlipOverrides[tf] ? window.manualFlipOverrides[tf][cfg.key] : null;
+        const isLong = override !== null ? override : (tfCell.buyPct >= 50);
         const dirFactor = isLong ? 1 : -1;
 
         const entry = cfg.price;
@@ -1558,6 +1591,9 @@
           : 'bg-gradient-to-r from-rose-600 to-red-500 text-white';
 
         const headline = isLong ? '🟢 AB LONG KARO (BUY NOW)' : '🔴 AB SHORT KARO (SELL NOW)';
+        const flowLabel = isLong
+          ? `${tfCell.buyPct.toFixed(1)}% BUY • ${tfCell.conf}% CONF`
+          : `${(100 - tfCell.buyPct).toFixed(1)}% SELL • ${tfCell.conf}% CONF`;
 
         return `
           <div class="radar-card p-4 border-2 ${isLong ? 'border-emerald-500/60' : 'border-rose-500/60'} flex flex-col justify-between space-y-3">
@@ -1577,8 +1613,8 @@
                   <span class="text-2xl font-black text-white">$${entry.toFixed(cfg.dec)}</span>
                 </div>
                 <div class="text-right">
-                  <span class="text-[10px] text-gray-400 block font-mono">ORDER FLOW BIAS</span>
-                  <span class="text-sm font-black ${isLong ? 'text-emerald-400' : 'text-rose-400'}">${dyn.buyPct}% BUY • ${dyn.confidence}% CONF</span>
+                  <span class="text-[10px] text-gray-400 block font-mono">ORDER FLOW BIAS (${tf})</span>
+                  <span class="text-sm font-black ${isLong ? 'text-emerald-400' : 'text-rose-400'}">${flowLabel}</span>
                 </div>
               </div>
 
@@ -1952,10 +1988,10 @@
 
     // 🌍 TOTAL WORLD NEWS DATA (WAR, ANTI-WAR PEACE SUMMITS, GEOPOLITICS, GLOBAL EVENTS)
     window.worldNewsFeed = [
-      { cat: "WAR_PEACE", time: "Just Now • 1m ago", region: "UN / GENEVA", title: "UN Security Council & Global Coalition Demand Immediate Ceasefire & Anti-War Corridor", desc: "Diplomatic envoys from 40+ nations sign joint anti-war resolution in Geneva to halt military escalations and protect civilian trade routes.", impact: "GOLD SAFE-HAVEN ACTIVE • OIL STABILIZING", badge: "🕊️ ANTI-WARDIPLOMACY" },
+      { cat: "WAR_PEACE", time: "Just Now • 1m ago", region: "UN / GENEVA", title: "UN Security Council & Global Coalition Demand Immediate Ceasefire & Anti-War Corridor", desc: "Diplomatic envoys from 40+ nations sign joint anti-war resolution in Geneva to halt military escalations and protect civilian trade routes.", impact: "GOLD SAFE-HAVEN ACTIVE • OIL STABILIZING", badge: "🕊️ ANTI-WAR DIPLOMACY" },
       { cat: "CONFLICT", time: "2 mins ago", region: "MIDDLE EAST / RED SEA", title: "Maritime Security Alert: Naval Escorts Deployed Across Bab el-Mandeb & Hormuz", desc: "Commercial shipping insurers adjust war-risk premiums as naval task forces monitor drone and missile activity along key energy chokepoints.", impact: "WTI CRUDE +$0.85 • XAUUSD BULLISH", badge: "⚠️ FRONTLINE ALERT" },
       { cat: "WAR_PEACE", time: "4 mins ago", region: "EUROPE / BRUSSELS", title: "Massive Peace Rallies Across European Capitals Call for De-Escalation & Humanitarian Aid", desc: "Hundreds of thousands gather in Berlin, Paris, and London urging world leaders to prioritize peace treaties over defense spending.", impact: "EUR/USD STEADY • DEFENSE STOCKS MIXED", badge: "🕊️ GLOBAL PEACE MOVEMENT" },
-      { cat: "CONFLICT", time: "7 mins ago", region: "EASTERN EUROPE", title: " Ceasefire Negotiations Proposed for Power Grid & Grain Export Infrastructure", desc: "Mediators propose a 60-day halt on energy infrastructure strikes to prevent winter humanitarian crises across border regions.", impact: "WHEAT & GAS VOLATILE • GOLD SUPPORTED", badge: "⚠️ CONFLICT MONITOR" },
+      { cat: "CONFLICT", time: "7 mins ago", region: "EASTERN EUROPE", title: "Ceasefire Negotiations Proposed for Power Grid & Grain Export Infrastructure", desc: "Mediators propose a 60-day halt on energy infrastructure strikes to prevent winter humanitarian crises across border regions.", impact: "WHEAT & GAS VOLATILE • GOLD SUPPORTED", badge: "⚠️ CONFLICT MONITOR" },
       { cat: "ECONOMY", time: "9 mins ago", region: "BRICS / CENTRAL BANKS", title: "Central Banks Add 48 Tons of Physical Gold to Sovereign Reserves to Hedge Geopolitical Risk", desc: "Emerging market central banks accelerate de-dollarization and bullion accumulation against sanctions and war-driven inflation.", impact: "XAUUSD STRONG FLOOR @ $4,065", badge: "🏦 SOVEREIGN FLOW" },
       { cat: "ECONOMY", time: "12 mins ago", region: "WASHINGTON / TOKYO", title: "G7 Finance Ministers Issue Joint Statement on Global Supply Chain & Energy Stability", desc: "Emergency liquidity facilities remain on standby to counter any sudden commodity price shocks from regional conflicts.", impact: "USD DXY 101.56 • BTC INFLOWS +$14.8M", badge: "🌐 MACRO DISPATCH" }
     ];
