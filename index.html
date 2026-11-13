@@ -93,6 +93,36 @@
       font-weight: 800 !important;
     }
 
+    .econ-filter-active {
+      background-color: #f59e0b !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Forex Factory Folder Icons */
+    .ff-folder {
+      display: inline-block;
+      width: 14px;
+      height: 11px;
+      border-radius: 2px;
+      position: relative;
+      vertical-align: middle;
+    }
+    .ff-folder::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 6px;
+      height: 3px;
+      border-radius: 2px 2px 0 0;
+      background: inherit;
+    }
+    .ff-high { background-color: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
+    .ff-medium { background-color: #f97316; }
+    .ff-low { background-color: #eab308; }
+    .ff-holiday { background-color: #94a3b8; }
+
     .gear-spin-cw { animation: spinCW 8s linear infinite; }
     .gear-spin-ccw { animation: spinCCW 8s linear infinite; }
     @keyframes spinCW { 100% { transform: rotate(360deg); } }
@@ -191,14 +221,14 @@
           </g>
           <g transform="translate(740, 114)">
             <rect x="0" y="0" width="250" height="132" rx="6" fill="#09131c" stroke="#06b6d4" stroke-width="2.5" />
-            <text x="14" y="20" fill="#38bdf8" font-family="monospace" font-weight="bold" font-size="13">PORITO</text>
+            <text x="14" y="20" fill="#38bdf8" font-family="monospace" font-weight="bold" font-size="13">PORTFOLIO LIVE</text>
             <circle cx="48" cy="60" r="22" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="45 100" />
             <circle cx="48" cy="60" r="22" fill="none" stroke="#10b981" stroke-width="10" stroke-dasharray="35 100" stroke-dashoffset="-45" />
             <g transform="translate(105, 25)">
               <rect x="0" y="30" width="8" height="28" fill="#10b981" /><rect x="16" y="18" width="8" height="35" fill="#10b981" /><rect x="32" y="26" width="8" height="24" fill="#f43f5e" /><rect x="48" y="10" width="8" height="42" fill="#10b981" /><rect x="64" y="20" width="8" height="30" fill="#f43f5e" /><rect x="80" y="6" width="8" height="46" fill="#10b981" />
             </g>
-            <text x="16" y="108" fill="#94a3b8" font-family="monospace" font-size="10">BTC  319,090.4M   $75,942.92</text>
-            <text x="16" y="122" fill="#94a3b8" font-family="monospace" font-size="10">XAU  SPOT GOLD    $4,070.68</text>
+            <text x="16" y="108" fill="#94a3b8" font-family="monospace" font-size="10">BTC  LIVE STREAM   AUTO-SYNC</text>
+            <text x="16" y="122" fill="#94a3b8" font-family="monospace" font-size="10">XAU  SPOT GOLD     AUTO-SYNC</text>
           </g>
           <g transform="translate(1025, 106)">
             <polygon points="0,8 275,-6 275,148 0,134" fill="#09131c" stroke="#10b981" stroke-width="2.5" />
@@ -212,7 +242,7 @@
   </div>
 
   <!-- ========================================================
-       TOP HEADER / HUD NAVIGATION (ALL 10 TABS)
+       TOP HEADER / HUD NAVIGATION (ALL 11 TABS INCLUDING ECONOMIC CALENDAR)
        ======================================================== -->
   <header class="w-full bg-[#0b0f18] border-b border-amber-500/25 px-3 sm:px-6 py-2.5 z-50 shadow-lg relative">
     <div class="w-full flex flex-wrap items-center justify-between gap-2.5">
@@ -237,7 +267,7 @@
         </div>
       </div>
 
-      <!-- DESK & ASSET SWITCHER (10 TABS INCLUDING TOTAL WORLD NEWS) -->
+      <!-- DESK & ASSET SWITCHER (11 TABS) -->
       <nav class="flex flex-wrap items-center gap-1.5 bg-black/90 p-1.5 rounded-xl border border-white/15 font-hud w-full xl:w-auto relative z-50">
         <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn nav-tab-active px-3 py-1.5 rounded-lg text-xs font-bold transition">
           BTCUSDT PERP
@@ -266,6 +296,11 @@
         <button type="button" onclick="window.switchView('LIVE_SIGNALS')" id="tab-LIVE_SIGNALS" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-yellow-300 border border-yellow-400/50 bg-yellow-500/10 hover:bg-yellow-500/25 transition flex items-center space-x-1">
           <span>⚙️ ⚡</span>
           <span>LIVE SIGNALS (LONG/SHORT)</span>
+        </button>
+        <button type="button" onclick="window.switchView('ECON_CALENDAR')" id="tab-ECON_CALENDAR" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-red-300 border border-red-500/50 bg-red-500/15 hover:bg-red-500/30 transition flex items-center space-x-1.5">
+          <span>📅</span>
+          <span>ECONOMIC CALENDAR (CPI/PPI)</span>
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
         </button>
         <button type="button" onclick="window.switchView('BLOOMBERG_NEWS')" id="tab-BLOOMBERG_NEWS" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-bold text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/20 transition flex items-center space-x-1">
           <span>📰</span>
@@ -325,7 +360,7 @@
       </div>
       <div>
         <span class="text-[10px] text-gray-500 block font-mono">PKT (KARACHI) CLOCK</span>
-        <span id="clock-pkt-radar" class="text-sm font-bold text-amber-400">13:45:00</span>
+        <span id="clock-pkt-radar" class="text-sm font-bold text-amber-400">14:35:00</span>
       </div>
     </div>
 
@@ -334,13 +369,13 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-baseline space-x-3">
-            <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$75,942.92</span>
-            <span id="hero-pct" class="text-base font-bold text-emerald-400">+1.45%</span>
+            <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$71,030.00</span>
+            <span id="hero-pct" class="text-base font-bold text-rose-400">-3.59%</span>
           </div>
           <div class="flex items-center space-x-4 mt-2 text-xs text-gray-400 font-hud">
-            <span>24H H: <strong id="hero-high" class="text-gray-200 text-sm">$76,450</strong></span>
-            <span>24H L: <strong id="hero-low" class="text-gray-200 text-sm">$74,800</strong></span>
-            <span>VOL: <strong id="hero-vol" class="text-amber-400 text-sm">41,208 BTC</strong></span>
+            <span>24H H: <strong id="hero-high" class="text-gray-200 text-sm">$73,911</strong></span>
+            <span>24H L: <strong id="hero-low" class="text-gray-200 text-sm">$70,950</strong></span>
+            <span>VOL: <strong id="hero-vol" class="text-amber-400 text-sm">44,810 BTC</strong></span>
           </div>
         </div>
         <div class="text-right flex md:flex-col items-center md:items-end justify-between">
@@ -376,7 +411,7 @@
         <div>
           <span class="text-[10px] text-gray-500 uppercase tracking-wider block font-mono">MARKET STRENGTH</span>
           <span id="strength-tag" class="text-sm font-bold text-emerald-400 font-hud tracking-wide block">STRONG</span>
-          <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Bullish volume absorption confirmed on multi-asset matrix.</p>
+          <p id="strength-desc" class="text-xs text-gray-300 mt-0.5">Live WebSocket + REST API order flow absorption active.</p>
         </div>
       </div>
       <div class="radar-card p-3.5">
@@ -389,7 +424,7 @@
         </div>
         <p id="sweep-desc" class="text-xs text-gray-300">Continuous sub-second depth parsing active.</p>
         <div class="flex justify-between items-center text-xs text-gray-400 mt-2 font-hud">
-          <span>At Price: <strong id="sweep-price" class="text-gray-200">$75,940</strong></span>
+          <span>At Price: <strong id="sweep-price" class="text-gray-200">$70,950</strong></span>
           <span>Confidence: <strong id="sweep-conf" class="text-amber-400">88 / 100</strong></span>
         </div>
       </div>
@@ -430,7 +465,7 @@
       </div>
     </div>
 
-    <!-- Possible Spoofing Detector Card (DYNAMIC ANIMATED BARS & LIVE FEED) -->
+    <!-- Possible Spoofing Detector Card -->
     <div class="radar-card p-3.5 border border-rose-500/30">
       <div class="flex justify-between items-baseline mb-1">
         <span class="text-[10px] text-rose-400 font-bold uppercase tracking-wider font-mono flex items-center gap-1.5">
@@ -441,7 +476,7 @@
       </div>
       <div class="flex flex-wrap items-baseline gap-3 my-1">
         <span id="spoof-score" class="text-2xl font-bold text-rose-500 font-hud">98 / 100</span>
-        <span id="spoof-text" class="text-xs text-gray-200 font-mono">$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled</span>
+        <span id="spoof-text" class="text-xs text-gray-200 font-mono">$46.5 BTC ask wall at $71,480 — cancelled after 0.3s, 0% filled</span>
       </div>
       <div class="flex items-end gap-1.5 h-9 my-2 pt-1 border-b border-white/5" id="spoof-bars-container">
         <div class="w-7 h-5 bg-rose-500 rounded-sm transition-all duration-300"></div>
@@ -492,25 +527,25 @@
         <div class="grid grid-cols-2 gap-2 mb-2">
           <div class="bg-black/50 p-2 rounded border border-white/5">
             <span class="text-[9px] text-gray-400 block font-mono">USD/PKR Interbank</span>
-            <span class="text-sm font-bold text-gray-200">276.62</span>
+            <span class="text-sm font-bold text-gray-200">276.61</span>
           </div>
           <div class="bg-black/50 p-2 rounded border border-white/5">
             <span class="text-[9px] text-purple-300 block font-mono">DXY (Dollar Index)</span>
-            <span id="rate-dxy-badge" class="text-sm font-bold text-purple-400">101.565</span>
+            <span id="rate-dxy-badge" class="text-sm font-bold text-purple-400">103.138</span>
           </div>
         </div>
         <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30">
           <div class="flex justify-between items-baseline mb-1">
             <span class="text-xs text-amber-200 font-mono">Gold Spot (oz):</span>
-            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$4,070.68</span>
+            <span id="rate-xau-spot" class="text-sm font-bold text-amber-400">$3,886.68</span>
           </div>
           <div class="flex justify-between items-baseline mb-1">
             <span class="text-xs text-amber-200 font-mono">1 Tola Gold (PKR):</span>
-            <span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 4,22,450</span>
+            <span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 4,03,310</span>
           </div>
           <div class="flex justify-between items-baseline">
             <span class="text-xs text-gray-400 font-mono">10 Grams (PKR):</span>
-            <span id="pkr-10g-rate" class="text-xs font-bold text-gray-200">Rs 3,62,180</span>
+            <span id="pkr-10g-rate" class="text-xs font-bold text-gray-200">Rs 3,45,770</span>
           </div>
         </div>
       </div>
@@ -543,12 +578,12 @@
       <div class="glass-panel rounded-xl p-3 border-cyan-500/30">
         <div class="flex justify-between items-center mb-1.5 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-cyan-300 uppercase">LUNAR ASTRO CYCLE</span>
-          <span id="current-moon-icon" class="text-base animate-pulse">🌗</span>
+          <span id="current-moon-icon" class="text-base animate-pulse">🌒</span>
         </div>
         <div class="bg-black/60 p-2 rounded border border-white/5 mb-2 flex items-center justify-between">
           <div>
             <span class="text-[9px] text-gray-400 block font-mono">CURRENT PHASE</span>
-            <span id="current-moon-phase" class="text-xs font-bold text-gray-100">Waning Crescent</span>
+            <span id="current-moon-phase" class="text-xs font-bold text-gray-100">Waxing Crescent</span>
           </div>
           <div class="text-right">
             <span class="text-[9px] text-gray-400 block font-mono">ILLUMINATION</span>
@@ -576,7 +611,6 @@
     <!-- CENTER COLUMN: JUPITER 3D REACTOR, 4 INFLOW / 4 OUTFLOW & HEATMAPS -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       
-      <!-- 3D Reactor & Co-Reactor Matrix -->
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
         <div class="flex items-center justify-between mb-1 z-10">
           <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR</span>
@@ -588,10 +622,7 @@
             <div id="three-reactor-canvas" class="w-full h-full"></div>
           </div>
 
-          <!-- 4 Inflow vs 4 Outflow Matrix + Fear & Greed -->
           <div class="col-span-6 flex flex-col justify-between h-[275px] bg-black/70 border border-cyan-500/30 rounded-lg p-2 shadow-inner">
-            
-            <!-- Fear & Greed Meter with dynamic needle -->
             <div class="bg-black/60 border border-white/10 rounded-md p-1.5 flex flex-col items-center">
               <div class="w-full flex items-center justify-between text-[8px] font-mono text-gray-400 mb-0.5">
                 <span class="font-bold text-amber-400">FEAR & GREED</span>
@@ -617,9 +648,7 @@
               </div>
             </div>
 
-            <!-- 4 Inflows & 4 Outflows with dynamic moving bars -->
             <div class="grid grid-cols-2 gap-1.5 my-1 text-[8px] font-mono">
-              <!-- 4 Inflows -->
               <div class="space-y-1 bg-black/40 p-1.5 rounded border border-emerald-500/20">
                 <span class="text-[8px] font-bold text-emerald-400 block border-b border-white/5 pb-0.5">▲ INFLOW</span>
                 <div>
@@ -640,7 +669,6 @@
                 </div>
               </div>
 
-              <!-- 4 Outflows -->
               <div class="space-y-1 bg-black/40 p-1.5 rounded border border-rose-500/20">
                 <span class="text-[8px] font-bold text-rose-400 block border-b border-white/5 pb-0.5">▼ OUTFLOW</span>
                 <div>
@@ -673,18 +701,18 @@
       <!-- Live Multi-Crypto Tiles (BTC, ETH, SOL, DYDX) -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
         <div class="glass-panel p-2 rounded-lg border-amber-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span id="desk-btc-pct" class="text-emerald-400">+1.45%</span></div>
-          <div id="desk-btc-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$75,942.92</div>
-          <span class="text-[9px] text-gray-500 block truncate font-mono">Dominance: 60.18%</span>
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span id="desk-btc-pct" class="text-rose-400">-3.59%</span></div>
+          <div id="desk-btc-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$71,030.00</div>
+          <span class="text-[9px] text-gray-500 block truncate font-mono">Dominance: 60.50%</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-purple-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-purple-400">ETH/USDT</span><span id="desk-eth-pct" class="text-emerald-400">+0.95%</span></div>
-          <div id="desk-eth-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$2,252.21</div>
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-purple-400">ETH/USDT</span><span id="desk-eth-pct" class="text-rose-400">-1.83%</span></div>
+          <div id="desk-eth-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$2,013.11</div>
           <span class="text-[9px] text-gray-500 block truncate font-mono">Ethereum Core</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-cyan-500/30">
-          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-cyan-400">SOL/USDT</span><span id="desk-sol-pct" class="text-rose-400">-0.82%</span></div>
-          <div id="desk-sol-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$90.61</div>
+          <div class="flex justify-between items-center text-[10px] font-bold"><span class="text-cyan-400">SOL/USDT</span><span id="desk-sol-pct" class="text-rose-400">-1.85%</span></div>
+          <div id="desk-sol-price" class="text-sm md:text-base font-bold text-gray-100 my-0.5">$81.52</div>
           <span class="text-[9px] text-gray-500 block truncate font-mono">Solana High TPS</span>
         </div>
         <div class="glass-panel p-2 rounded-lg border-emerald-500/30">
@@ -705,7 +733,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-2 flex-1 w-full">
-          <!-- LEFT: DYNAMIC BTC LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-amber-400 font-hud">BTC HEATMAP</span>
@@ -715,7 +742,6 @@
             <div class="text-[8px] text-gray-500 text-center border-t border-white/5 pt-1">Target Hunt: Buy-Side</div>
           </div>
 
-          <!-- CENTER: THE TAPE -->
           <div class="md:col-span-6 flex flex-col justify-between bg-black/40 rounded-lg p-1.5 border border-white/5">
             <div class="grid grid-cols-4 text-[10px] text-gray-400 px-2 py-0.5 border-b border-white/5 font-semibold font-mono">
               <span>TIME</span>
@@ -726,7 +752,6 @@
             <div id="trade-tape-stream" class="h-[150px] overflow-y-auto space-y-1 pr-1 font-hud text-[11px] pt-1"></div>
           </div>
 
-          <!-- RIGHT: DYNAMIC XAU (GOLD) LIQUIDITY HEATMAP -->
           <div class="md:col-span-3 bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-yellow-300 font-hud">XAU (GOLD) HEATMAP</span>
@@ -743,38 +768,36 @@
     <!-- RIGHT COLUMN: SMC ZONES, EQUITIES, GLOBAL MARKETS & DYDX -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       
-      <!-- SMC Order Flow Levels -->
       <div class="glass-panel rounded-xl p-3 border-emerald-500/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-xs font-bold text-emerald-400 font-mono flex items-center gap-1.5">
             <i data-lucide="crosshair" class="w-4 h-4"></i>
             SMC ORDER FLOW LEVELS
           </h2>
-          <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-bold font-hud">NY ZONE</span>
+          <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-bold font-hud">NY / PPI ZONE</span>
         </div>
 
         <div class="bg-black/50 p-2 rounded-lg border border-white/5 mb-2 text-xs space-y-0.5">
           <div class="flex justify-between items-center mb-0.5">
             <span class="text-amber-400 font-cinzel font-bold">GOLD (XAU/USD)</span>
-            <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded font-mono">DISCOUNT FVG</span>
+            <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded font-mono">RECLAIMED FLOOR</span>
           </div>
-          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$4,028 – $4,045</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$4,075 – $4,095</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$4,005.00</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$3,868 – $3,880</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$3,910 – $3,935</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$3,849.00</span></div>
         </div>
 
         <div class="bg-black/50 p-2 rounded-lg border border-white/5 text-xs space-y-0.5">
           <div class="flex justify-between items-center mb-0.5">
             <span class="text-amber-300 font-cinzel font-bold">BITCOIN (BTC)</span>
-            <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 rounded font-mono">INTERNAL SWEEP</span>
+            <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 rounded font-mono">SWEEP RECLAIM</span>
           </div>
-          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$75,600 – $75,900</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$76,800 – $77,500</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$75,200.00</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Buy:</span><span class="font-bold text-emerald-400">$70,150 – $70,950</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">TP:</span><span class="font-bold text-cyan-400">$72,400 – $73,390</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">SL:</span><span class="font-bold text-rose-400">$69,450.00</span></div>
         </div>
       </div>
 
-      <!-- GLOBAL STOCK MARKETS & INDICES MATRIX -->
       <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
         <h2 class="text-xs font-bold text-gray-300 flex items-center gap-1.5 mb-2 font-mono">
           <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
@@ -788,8 +811,8 @@
               <span class="text-[9px] text-gray-400 font-mono">US Tech Heavy Index</span>
             </div>
             <div class="text-right">
-              <span id="market-ndx-price" class="font-bold text-gray-100 block text-xs">26,989.99</span>
-              <span id="market-ndx-pct" class="text-[10px] text-emerald-400 font-semibold">+1.35%</span>
+              <span id="market-ndx-price" class="font-bold text-gray-100 block text-xs">28,289.19</span>
+              <span id="market-ndx-pct" class="text-[10px] text-rose-400 font-semibold">-0.30%</span>
             </div>
           </div>
 
@@ -799,8 +822,8 @@
               <span class="text-[9px] text-gray-400 font-mono">US 500 Large Caps</span>
             </div>
             <div class="text-right">
-              <span id="market-spx-price" class="font-bold text-gray-100 block text-xs">7,382.40</span>
-              <span id="market-spx-pct" class="text-[10px] text-emerald-400 font-semibold">+0.32%</span>
+              <span id="market-spx-price" class="font-bold text-gray-100 block text-xs">7,592.40</span>
+              <span id="market-spx-pct" class="text-[10px] text-rose-400 font-semibold">-0.36%</span>
             </div>
           </div>
 
@@ -810,8 +833,8 @@
               <span class="text-[9px] text-gray-400 font-mono">Wall Street 30 Industrial</span>
             </div>
             <div class="text-right">
-              <span id="market-dji-price" class="font-bold text-gray-100 block text-xs">51,390.00</span>
-              <span id="market-dji-pct" class="text-[10px] text-emerald-400 font-semibold">+0.15%</span>
+              <span id="market-dji-price" class="font-bold text-gray-100 block text-xs">52,297.09</span>
+              <span id="market-dji-pct" class="text-[10px] text-rose-400 font-semibold">-0.36%</span>
             </div>
           </div>
 
@@ -832,8 +855,8 @@
               <span class="text-[9px] text-gray-400 font-mono">Shanghai Stock Exchange</span>
             </div>
             <div class="text-right">
-              <span id="market-ssec-price" class="font-bold text-gray-100 block text-xs">3,649.18</span>
-              <span id="market-ssec-pct" class="text-[10px] text-rose-400 font-semibold">-1.19%</span>
+              <span id="market-ssec-price" class="font-bold text-gray-100 block text-xs">3,654.37</span>
+              <span id="market-ssec-pct" class="text-[10px] text-rose-400 font-semibold">-0.04%</span>
             </div>
           </div>
 
@@ -843,8 +866,8 @@
               <span class="text-[9px] text-gray-400 font-mono">Tokyo Stock Exchange (JPX)</span>
             </div>
             <div class="text-right">
-              <span id="market-n225-price" class="font-bold text-gray-100 block text-xs">57,434.77</span>
-              <span id="market-n225-pct" class="text-[10px] text-rose-400 font-semibold">-5.96%</span>
+              <span id="market-n225-price" class="font-bold text-gray-100 block text-xs">61,785.00</span>
+              <span id="market-n225-pct" class="text-[10px] text-emerald-400 font-semibold">+1.59%</span>
             </div>
           </div>
 
@@ -854,8 +877,8 @@
               <span class="text-[9px] text-gray-400 font-mono">Pakistan Stock Exchange</span>
             </div>
             <div class="text-right">
-              <span id="market-psx-price" class="font-bold text-gray-100 block text-xs">173,886.68</span>
-              <span id="market-psx-pct" class="text-[10px] text-rose-400 font-semibold">-0.85%</span>
+              <span id="market-psx-price" class="font-bold text-gray-100 block text-xs">177,373.76</span>
+              <span id="market-psx-pct" class="text-[10px] text-rose-400 font-semibold">-0.95%</span>
             </div>
           </div>
         </div>
@@ -866,11 +889,10 @@
   </main>
 
   <!-- ========================================================
-       PAGE 3: 🤖 11 AI SKILLS PACK (PAPER TRADING REMOVED, ALL 11 WORKING)
+       PAGE 3: 🤖 11 AI SKILLS PACK (ALL 11 WORKING)
        ======================================================== -->
   <main id="view-ai-skills" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     
-    <!-- Tri-Asset Synchronization Gear Agent Banner -->
     <div class="glass-panel rounded-xl p-3.5 border border-amber-500/40 bg-gradient-to-r from-amber-950/30 via-black to-emerald-950/30 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-3">
         <div class="flex items-center -space-x-2">
@@ -887,16 +909,14 @@
         </div>
       </div>
       <div class="flex items-center gap-3 text-xs font-mono">
-        <span class="bg-amber-500/20 border border-amber-500/40 px-2.5 py-1 rounded text-amber-300 font-bold">GOLD: $<span id="skill-sync-gold">4070.68</span></span>
-        <span class="bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-1 rounded text-cyan-300 font-bold">SILVER: $<span id="skill-sync-silver">49.78</span></span>
-        <span class="bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-1 rounded text-emerald-300 font-bold">BTC: $<span id="skill-sync-btc">75942.92</span></span>
+        <span class="bg-amber-500/20 border border-amber-500/40 px-2.5 py-1 rounded text-amber-300 font-bold">GOLD: $<span id="skill-sync-gold">3886.68</span></span>
+        <span class="bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-1 rounded text-cyan-300 font-bold">SILVER: $<span id="skill-sync-silver">50.10</span></span>
+        <span class="bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-1 rounded text-emerald-300 font-bold">BTC: $<span id="skill-sync-btc">71030.00</span></span>
       </div>
     </div>
 
-    <!-- 11 WORKING AI SKILLS GRID (NO PAPER TRADING) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
       
-      <!-- Skill 01: Chart Scanner -->
       <div class="radar-card p-3.5 border border-emerald-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-emerald-400 font-bold font-mono">01 • CHART SCANNER</span>
@@ -907,27 +927,25 @@
           🔍 SCAN GOLD, SILVER & BTC CHARTS
         </button>
         <div id="scanner-output" class="bg-black/70 p-2 rounded border border-white/10 text-[11px] font-mono text-gray-200">
-          GOLD: 86% Bullish FVG • SILVER: 76% Sweep • BTC: 84% Bullish
+          GOLD: 86% Floor Reclaim • SILVER: $50.00 Hold • BTC: Sweep Test
         </div>
       </div>
 
-      <!-- Skill 02: News Monitor -->
       <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2">
         <div class="flex justify-between items-center">
-          <span class="text-[10px] text-cyan-400 font-bold font-mono">02 • NEWS MONITOR</span>
+          <span class="text-[10px] text-cyan-400 font-bold font-mono">02 • NEWS & CPI/PPI MONITOR</span>
           <span class="text-[10px] bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded font-mono animate-pulse">LIVE SENTIMENT</span>
         </div>
-        <h4 class="text-sm font-bold text-white">Global Macro & War Impact Sentiment</h4>
+        <h4 class="text-sm font-bold text-white">Macro CPI/PPI & War Impact Sentiment</h4>
         <div id="skill-news-monitor-box" class="bg-black/70 p-2 rounded border border-cyan-500/30 text-[11px] font-mono text-gray-200 space-y-1">
-          <div class="text-amber-300 font-bold">• Gold Safe-Haven Bid: HIGH (+78% Bullish)</div>
-          <div class="text-cyan-300">• Fed & Central Bank Liquidity: EXPANDING</div>
+          <div class="text-rose-400 font-bold">• 6:30 PM PKT: USD Core PPI & PPI High Impact!</div>
+          <div class="text-amber-300">• Gold Safe-Haven & DXY 103.14 Volatility Active</div>
         </div>
-        <button type="button" onclick="window.switchView('WORLD_NEWS')" class="w-full bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 font-bold py-1 rounded text-[11px] cursor-pointer">
-          🌍 Open Total World News Terminal
+        <button type="button" onclick="window.switchView('ECON_CALENDAR')" class="w-full bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 font-bold py-1 rounded text-[11px] cursor-pointer">
+          📅 Open Forex Factory Economic Calendar
         </button>
       </div>
 
-      <!-- Skill 03: Entry Timer -->
       <div class="radar-card p-3.5 border border-amber-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-amber-400 font-bold font-mono">03 • ENTRY TIMER</span>
@@ -940,7 +958,6 @@
         </div>
       </div>
 
-      <!-- Skill 04: Exit Planner -->
       <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-cyan-400 font-bold font-mono">04 • EXIT PLANNER</span>
@@ -962,7 +979,6 @@
         <div id="exit-planner-output" class="bg-black/70 p-2 rounded border border-cyan-500/30 text-[11px] font-mono space-y-0.5"></div>
       </div>
 
-      <!-- Skill 05: Time Machine -->
       <div class="radar-card p-3.5 border border-purple-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-purple-400 font-bold font-mono">05 • TIME MACHINE</span>
@@ -977,7 +993,6 @@
         </div>
       </div>
 
-      <!-- Skill 06: Risk Manager -->
       <div class="radar-card p-3.5 border border-rose-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-rose-400 font-bold font-mono">06 • RISK MANAGER</span>
@@ -999,7 +1014,6 @@
         </div>
       </div>
 
-      <!-- Skill 07: Budget Manager (Lot Calculator) -->
       <div class="radar-card p-3.5 border border-amber-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-amber-400 font-bold font-mono">07 • BUDGET MANAGER</span>
@@ -1025,7 +1039,6 @@
         </div>
       </div>
 
-      <!-- Skill 08: Institutional Order Execution & Slippage Matrix (Replaces Paper Trading) -->
       <div class="radar-card p-3.5 border border-emerald-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-emerald-400 font-bold font-mono">08 • INSTITUTIONAL ORDER ROUTER</span>
@@ -1039,7 +1052,6 @@
         </div>
       </div>
 
-      <!-- Skill 09: Price Alerts (Audio Alarm) -->
       <div class="radar-card p-3.5 border border-yellow-500/40 space-y-2">
         <div class="flex justify-between items-center">
           <span class="text-[10px] text-yellow-400 font-bold font-mono">09 • PRICE ALERTS</span>
@@ -1060,12 +1072,11 @@
         </div>
       </div>
 
-      <!-- Skill 10 & 11: Earnings Analyst & Pelosi Congress Tracker -->
       <div class="radar-card p-3.5 border border-purple-500/40 md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="bg-black/60 p-2.5 rounded border border-white/10">
           <span class="text-[10px] text-amber-400 font-bold font-mono block mb-1">10 • EARNINGS ANALYST (WALL STREET REPORTS)</span>
-          <p class="text-xs text-gray-200 font-mono">• NVIDIA (NVDA): Revenue +18% Beat | Institutional AI Demand High</p>
-          <p class="text-xs text-emerald-400 font-mono mt-0.5">• Newmont & Barrick Gold Miners: Free Cash Flow +22% on $4,070 Gold</p>
+          <p class="text-xs text-gray-200 font-mono">• CoreWeave Revenue +25% Beat | AI Sector Rotation into AMD & Broadcom</p>
+          <p class="text-xs text-emerald-400 font-mono mt-0.5">• Newmont & Barrick Gold Miners: Strong Cash Flow Margins Above $3,850 Gold</p>
         </div>
         <div class="bg-black/60 p-2.5 rounded border border-white/10">
           <span class="text-[10px] text-cyan-400 font-bold font-mono block mb-1">11 • PELOSI & US CONGRESS FILINGS TRACKER</span>
@@ -1082,7 +1093,6 @@
        ======================================================== -->
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     
-    <!-- Top Control Bar with Timeframes (1M, 5M, 15M, 1H, 4H, 1D) -->
     <div class="glass-panel rounded-xl p-3.5 border border-yellow-500/40 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-3">
         <span class="text-2xl gear-spin-cw inline-block">⚙️</span>
@@ -1096,7 +1106,6 @@
         </div>
       </div>
 
-      <!-- 6 Timeframes Selector -->
       <div class="flex flex-wrap items-center gap-1.5 bg-black/90 p-1.5 rounded-lg border border-white/15">
         <span class="text-[10px] text-gray-400 font-mono px-1.5">TIMEFRAME:</span>
         <button type="button" onclick="window.setSignalTimeframe('1M')" id="tf-1M" class="px-2.5 py-1 rounded text-xs font-bold text-gray-300 hover:text-white cursor-pointer">1M</button>
@@ -1108,8 +1117,108 @@
       </div>
     </div>
 
-    <!-- 3 Big Signal Cards (GOLD, SILVER, BTC) -->
     <div id="live-signals-cards-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+
+  </main>
+
+  <!-- ========================================================
+       NEW PAGE: 📅 ECONOMIC CALENDAR (FOREX FACTORY STYLE + LIVE TV AUTO-WIDGET)
+       ======================================================== -->
+  <main id="view-econ-calendar" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+
+    <!-- Top Forex Factory Style Header & High-Impact Countdown -->
+    <div class="glass-panel rounded-xl p-4 border-2 border-amber-500/60 bg-gradient-to-r from-[#141e30] via-[#0b111e] to-[#1a0f14] flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-12 h-12 rounded-xl bg-red-600/20 border-2 border-red-500 flex items-center justify-center text-2xl shrink-0 shadow-lg">
+          📅
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase animate-pulse">FOREX FACTORY ECONOMIC WIRE</span>
+            <span id="ff-pkt-live-clock" class="text-xs font-mono text-amber-400 font-bold">PKT --:--:--</span>
+            <span id="ff-sync-badge" class="text-[10px] font-mono bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-2 py-0.5 rounded">● AUTO-SYNC ACTIVE</span>
+          </div>
+          <h2 class="font-cinzel text-lg sm:text-xl font-black tracking-wider text-white uppercase mt-1">
+            ECONOMIC CALENDAR • CPI, PPI, NFP, FOMC & HIGH-IMPACT RELEASES
+          </h2>
+          <p class="text-[11px] text-gray-300 font-mono">
+            Karachi (PKT) Timezone Synchronized • Red Folder = High Impact Volatility (Gold, USD, BTC)
+          </p>
+        </div>
+      </div>
+
+      <!-- Next Red-Folder Event Countdown Box -->
+      <div class="bg-black/80 border border-red-500/50 rounded-xl px-4 py-2.5 text-right shrink-0">
+        <span class="text-[10px] text-red-400 font-mono font-bold uppercase block">⚡ NEXT RED FOLDER USD IMPACT</span>
+        <span id="ff-next-major-title" class="text-sm font-extrabold text-white block">USD Core PPI m/m & PPI m/m (6:30 PM)</span>
+        <span id="ff-next-major-countdown" class="text-base font-black text-amber-400 font-mono">Calculating PKT...</span>
+      </div>
+    </div>
+
+    <!-- Mushtari 287 SMC News Rule Strip -->
+    <div class="radar-card p-2.5 border-l-4 border-red-500 bg-black/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="ff-folder ff-high"></span>
+        <span class="text-amber-300 font-bold">MUSHTARI 287 SMC RULE:</span>
+        <span class="text-gray-200 font-mono text-[11px]">Red Folder (CPI / PPI / NFP / Fed) ke waqt pehle 5–15 minute dono taraf stop-hunt (liquidity sweep) hoti hai — 15M CHoCH ke baad entry lein!</span>
+      </div>
+      <div class="flex items-center gap-3 text-[10px] font-mono">
+        <span><i class="ff-folder ff-high mr-1"></i>High</span>
+        <span><i class="ff-folder ff-medium mr-1"></i>Medium</span>
+        <span><i class="ff-folder ff-low mr-1"></i>Low</span>
+      </div>
+    </div>
+
+    <!-- Filter & View Mode Bar (Forex Factory Table vs 365-Day Live TradingView Widget) -->
+    <div class="flex flex-wrap items-center justify-between gap-2 bg-black/75 p-2.5 rounded-xl border border-white/10">
+      <div class="flex flex-wrap items-center gap-1.5 text-xs">
+        <button type="button" onclick="window.setEconMode('FF_TABLE')" id="emode-FF_TABLE" class="econ-filter-active px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 font-bold cursor-pointer">
+          📁 Forex Factory Style Table (PKT)
+        </button>
+        <button type="button" onclick="window.setEconMode('TV_WIDGET')" id="emode-TV_WIDGET" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-bold hover:bg-cyan-500/30 cursor-pointer">
+          🌐 Live 365-Day Auto Calendar (TradingView)
+        </button>
+      </div>
+
+      <div id="ff-filter-controls" class="flex flex-wrap items-center gap-1.5 text-xs">
+        <button type="button" onclick="window.filterFFCalendar('ALL')" id="ff-flt-ALL" class="econ-filter-active px-2.5 py-1 rounded bg-white/10 text-gray-200 cursor-pointer">All Events</button>
+        <button type="button" onclick="window.filterFFCalendar('HIGH')" id="ff-flt-HIGH" class="px-2.5 py-1 rounded bg-red-500/20 border border-red-500/40 text-red-300 font-bold cursor-pointer">🔴 High Impact (CPI/PPI)</button>
+        <button type="button" onclick="window.filterFFCalendar('USD')" id="ff-flt-USD" class="px-2.5 py-1 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold cursor-pointer">🇺🇸 USD Only</button>
+        <button type="button" onclick="window.filterFFCalendar('TODAY')" id="ff-flt-TODAY" class="px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold cursor-pointer">📌 Today Only</button>
+        <button type="button" onclick="window.fetchLiveForexFactoryJSON(true)" class="px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 text-cyan-300 font-mono text-[11px] cursor-pointer">🔄 Sync Live Week</button>
+      </div>
+    </div>
+
+    <!-- MODE 1: FOREX FACTORY STYLE DARK/GOLD TABLE -->
+    <div id="econ-ff-table-wrapper" class="radar-card overflow-hidden border border-amber-500/30 shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-[#111927] border-b border-amber-500/40 text-[11px] font-mono text-amber-300 uppercase">
+              <th class="py-2.5 px-3 w-28">Time (PKT)</th>
+              <th class="py-2.5 px-2.5 w-16">Curr</th>
+              <th class="py-2.5 px-2.5 w-16 text-center">Impact</th>
+              <th class="py-2.5 px-3">Economic Event (Forex Factory Wire)</th>
+              <th class="py-2.5 px-3 text-right w-24">Actual</th>
+              <th class="py-2.5 px-3 text-right w-24">Forecast</th>
+              <th class="py-2.5 px-3 text-right w-24">Previous</th>
+            </tr>
+          </thead>
+          <tbody id="ff-calendar-tbody" class="divide-y divide-white/10 text-xs font-mono">
+            <!-- Populated dynamically by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MODE 2: OFFICIAL TRADINGVIEW AUTO-UPDATING ECONOMIC CALENDAR WIDGET (100% AUTOMATIC EVERY DAY) -->
+    <div id="econ-tv-widget-wrapper" class="hidden radar-card p-2 border border-cyan-500/40 min-h-[640px]">
+      <div class="text-[11px] font-mono text-cyan-300 px-2 py-1.5 flex items-center justify-between border-b border-white/10 mb-2">
+        <span>🌐 LIVE GLOBAL ECONOMIC CALENDAR STREAM (AUTO-UPDATES ACTUAL CPI, PPI, NFP & FED DATA DAILY)</span>
+        <span class="text-amber-400 font-bold">TIMEZONE: ASIA/KARACHI (PKT)</span>
+      </div>
+      <div id="tv-econ-widget-mount" class="w-full h-[600px]"></div>
+    </div>
 
   </main>
 
@@ -1141,7 +1250,6 @@
        ======================================================== -->
   <main id="view-world-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     
-    <!-- Top Live Minute-by-Minute Global Wire Header -->
     <div class="glass-panel rounded-xl p-4 border-2 border-rose-500/50 bg-gradient-to-r from-rose-950/30 via-black to-amber-950/30 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
         <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-500/50 flex items-center justify-center text-2xl shrink-0">
@@ -1161,7 +1269,6 @@
         </div>
       </div>
 
-      <!-- Category Filters for Total World News -->
       <div class="flex flex-wrap items-center gap-1.5 text-xs">
         <button type="button" onclick="window.filterWorldNews('ALL')" id="wcat-ALL" class="world-cat-active px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🌍 All World</button>
         <button type="button" onclick="window.filterWorldNews('WAR_PEACE')" id="wcat-WAR_PEACE" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🕊️ Anti-War & Peace</button>
@@ -1170,7 +1277,6 @@
       </div>
     </div>
 
-    <!-- Live Minute Flash Bulletin Bar -->
     <div class="radar-card p-3 border-l-4 border-rose-500 flex items-center justify-between gap-3 bg-black/80">
       <div class="flex items-center space-x-2 text-xs font-mono overflow-hidden">
         <span class="bg-amber-500 text-black font-extrabold px-2 py-0.5 rounded text-[10px] shrink-0">FLASH WIRE</span>
@@ -1181,7 +1287,6 @@
       <span id="world-next-tick-counter" class="text-[10px] font-mono text-gray-400 shrink-0">Next Update: 12s</span>
     </div>
 
-    <!-- Total World News Feed Grid -->
     <div id="world-news-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
 
   </main>
@@ -1195,34 +1300,33 @@
   </footer>
 
   <!-- ========================================================
-       SCRIPT ENGINE: COMPLETE LIVE SYNCHRONIZATION & WORLD WIRE
+       SCRIPT ENGINE: COMPLETE LIVE SYNCHRONIZATION, BINANCE REST + WS & FOREX FACTORY CALENDAR
        ======================================================== -->
   <script>
     window.currentPrices = {
-      btc: 75942.92,
-      eth: 2252.21,
-      sol: 90.61,
+      btc: 71030.00,
+      eth: 2013.11,
+      sol: 81.52,
       dydx: 0.0985,
-      gold: 4070.68,
-      silver: 49.78,
-      oil: 90.42,
-      dxy: 101.565,
-      ndx: 26989.99,
-      spx: 7382.40,
-      dji: 51390.00,
-      ssec: 3649.18,
-      n225: 57434.77
+      gold: 3886.68,
+      silver: 50.10,
+      oil: 88.35,
+      dxy: 103.138,
+      ndx: 28289.19,
+      spx: 7592.40,
+      dji: 52297.09,
+      ssec: 3654.37,
+      n225: 61785.00
     };
 
     window.assetDynamics = {
-      BTC: { buyPct: 62.4, sellPct: 37.6, confidence: 84, conviction: 74.2, spoof: 98, bullTrap: 4, bearTrap: 2, shortSq: 72, longSq: 18, sweepConf: 88 },
-      ETH: { buyPct: 58.4, sellPct: 41.6, confidence: 74, conviction: 62.5, spoof: 42, bullTrap: 12, bearTrap: 4, shortSq: 78, longSq: 18, sweepConf: 78 },
-      GOLD: { buyPct: 67.2, sellPct: 32.8, confidence: 86, conviction: 81.0, spoof: 15, bullTrap: 5, bearTrap: 2, shortSq: 85, longSq: 10, sweepConf: 89 },
-      SILVER: { buyPct: 61.5, sellPct: 38.5, confidence: 76, conviction: 68.2, spoof: 35, bullTrap: 14, bearTrap: 8, shortSq: 72, longSq: 22, sweepConf: 76 },
-      OIL: { buyPct: 48.0, sellPct: 52.0, confidence: 59, conviction: 49.0, spoof: 68, bullTrap: 25, bearTrap: 18, shortSq: 40, longSq: 42, sweepConf: 52 }
+      BTC: { buyPct: 54.4, sellPct: 45.6, confidence: 84, conviction: 72.2, spoof: 96, bullTrap: 8, bearTrap: 14, shortSq: 74, longSq: 22, sweepConf: 88 },
+      ETH: { buyPct: 52.4, sellPct: 47.6, confidence: 74, conviction: 62.5, spoof: 42, bullTrap: 12, bearTrap: 8, shortSq: 72, longSq: 18, sweepConf: 78 },
+      GOLD: { buyPct: 64.2, sellPct: 35.8, confidence: 86, conviction: 81.0, spoof: 19, bullTrap: 5, bearTrap: 6, shortSq: 84, longSq: 12, sweepConf: 89 },
+      SILVER: { buyPct: 61.5, sellPct: 38.5, confidence: 78, conviction: 68.2, spoof: 35, bullTrap: 14, bearTrap: 8, shortSq: 72, longSq: 22, sweepConf: 76 },
+      OIL: { buyPct: 56.0, sellPct: 44.0, confidence: 69, conviction: 59.0, spoof: 68, bullTrap: 18, bearTrap: 14, shortSq: 60, longSq: 28, sweepConf: 68 }
     };
 
-    // MULTI-TIMEFRAME INDEPENDENT BIAS MATRIX (FIXES STATIC LONG ISSUE ACROSS 1M-1D)
     window.tfSignalMatrix = {
       '1M':  { GOLD: { buyPct: 54.2, conf: 82 }, SILVER: { buyPct: 46.8, conf: 78 }, BTC: { buyPct: 58.4, conf: 85 } },
       '5M':  { GOLD: { buyPct: 44.5, conf: 79 }, SILVER: { buyPct: 57.2, conf: 81 }, BTC: { buyPct: 45.1, conf: 80 } },
@@ -1234,28 +1338,381 @@
 
     const SPOOF_LIVE_MESSAGES = {
       BTC: [
-        "$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled",
-        "$62.0 BTC fake bid block pulled at $75,820 — spoofing algorithm detected",
-        "$38.4 BTC sell wall absorbed at $76,050 — whale accumulation active"
+        "$46.5 BTC ask wall at $71,480 — cancelled after 0.3s, 0% filled",
+        "$62.0 BTC fake bid block pulled at $70,850 — spoofing algorithm detected",
+        "$38.4 BTC sell wall absorbed at $71,200 — whale accumulation active"
       ],
       ETH: [
-        "1,200 ETH bid wall absorbed at $2,240 — 100% institutional fill",
-        "850 ETH ask spoof wall flashed at $2,265 — cancelled in 0.2s"
+        "1,200 ETH bid wall absorbed at $2,005 — 100% institutional fill",
+        "850 ETH ask spoof wall flashed at $2,035 — cancelled in 0.2s"
       ],
       GOLD: [
-        "$145M Bullion ask wall collapsed at $4,078 — sovereign buyers stepped in",
-        "COMEX / PAXG spoof order detected at $4,062 — rapid limit pull in 0.18s",
-        "Heavy discount FVG absorption at $4,068 — zero sell-side follow through"
+        "$145M Bullion ask wall collapsed at $3,895 — sovereign buyers stepped in",
+        "COMEX / PAXG spoof order detected at $3,872 — rapid limit pull in 0.18s",
+        "Heavy discount FVG absorption at $3,878 — zero sell-side follow through"
       ],
       SILVER: [
-        "Minor sell-side spoof attempt cleared at $49.85 — bullish breakout",
-        "Silver limit wall of 450,000 oz pulled near $50.10 resistance"
+        "Minor sell-side spoof attempt cleared at $49.98 — $50.00 defended",
+        "Silver limit wall of 450,000 oz pulled near $50.45 resistance"
       ],
       OIL: [
-        "Algorithmic fade walls detected near $91.10 NYMEX crude book",
-        "WTI liquidity sweep at $90.20 — fake ask block removed"
+        "Algorithmic fade walls detected near $88.90 NYMEX crude book",
+        "WTI liquidity sweep at $88.10 — fake ask block removed"
       ]
     };
+
+    const RADAR_PROFILES = {
+      BTC: {
+        oi: "$7.18B", fr: "+0.0092%", spread: "$0.10", price: 71030.00, pct: "-3.59%", high: "$73,911", low: "$70,950", vol: "44,810 BTC",
+        spoofDesc: "$46.5 BTC ask wall at $71,480 — cancelled after 0.3s, 0% filled",
+        newsHeading: "BTC MARKET INTELLIGENCE & SPOOFING WIRE",
+        sweepBadge: "⚡ SUB-$71K LIQUIDITY TEST", sweepDesc: "Continuous sub-second depth parsing active.", sweepPrice: "$70,950"
+      },
+      ETH: {
+        oi: "$3.42B", fr: "+0.0081%", spread: "$0.05", price: 2013.11, pct: "-1.83%", high: "$2,085", low: "$1,993", vol: "$5.84B",
+        spoofDesc: "1,200 ETH bid wall absorbed at $2,005, 100% filled",
+        newsHeading: "ETHEREUM NETWORK INTELLIGENCE & L2 FLOW",
+        sweepBadge: "⚡ $2,000 PSYCHOLOGICAL DEFEND", sweepDesc: "Price swept $1,993 lows, institutional bounce.", sweepPrice: "$1,993"
+      },
+      GOLD: {
+        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 3886.68, pct: "+0.10%", high: "$4,001.00", low: "$3,852.00", vol: "$28.4B",
+        spoofDesc: "Verified live trade ticks directly from Binance matching engine",
+        newsHeading: "GOLD (XAU/USD) INSTITUTIONAL BULLION WIRE",
+        sweepBadge: "🔥 $3,852 SWEEP & FLOOR RECLAIM", sweepDesc: "Live Binance PAXG order book volume stream active.", sweepPrice: "$3,852.00"
+      },
+      SILVER: {
+        oi: "$4.1B", fr: "LIVE SPOT", spread: "$0.02", price: 50.10, pct: "+0.18%", high: "$51.96", low: "$49.98", vol: "$6.2B",
+        spoofDesc: "Minor sell-side spoof attempt cleared at $49.98",
+        newsHeading: "SILVER (XAG/USD) BREAKOUT & METALS DESK",
+        sweepBadge: "⚡ $50.00 FLOOR ABSORPTION", sweepDesc: "Clean sweep at $49.98 liquidity shelf.", sweepPrice: "$49.98"
+      },
+      OIL: {
+        oi: "$8.9B", fr: "LIVE CRUDE", spread: "$0.04", price: 88.35, pct: "+2.05%", high: "$88.95", low: "$85.74", vol: "$9.4B",
+        spoofDesc: "Algorithmic fade walls detected near $88.90",
+        newsHeading: "WTI CRUDE OIL SUPPLY & ENERGY FLOW",
+        sweepBadge: "🔥 HORMUZ SUPPLY PREMIUM", sweepDesc: "Strong surge above $88.00 ahead of US PPI.", sweepPrice: "$88.10"
+      }
+    };
+
+    const ASSET_INTELLIGENCE_NEWS = {
+      BTC: [
+        { title: "Bitcoin tests $71,000 institutional support band ahead of 6:30 PM PKT US PPI inflation release.", link: "https://www.coindesk.com" },
+        { title: "Whale order spoofing detected: $46M limit ask wall cancelled near $71,480.", link: "https://www.tradingview.com/symbols/BTCUSDT/" }
+      ],
+      ETH: [
+        { title: "Ethereum defends $2,000 psychological floor after sub-$1,994 stop-hunt wick.", link: "https://www.coindesk.com" },
+        { title: "ETH spoofing alert: Large ask block pulled at $2,035 ahead of NY session.", link: "https://www.tradingview.com/symbols/ETHUSDT/" }
+      ],
+      GOLD: [
+        { title: "Spot Gold rebounds to $3,886 off $3,852 1-year low; all eyes on 6:30 PM US Core PPI.", link: "https://www.tradingview.com/symbols/XAUUSD/" },
+        { title: "Gold Order Book Alert: Sovereign physical buyers step in below $3,875.", link: "https://www.bullionvault.com" }
+      ],
+      SILVER: [
+        { title: "Spot Silver defends $50.00 major psychological support with strong SMT divergence.", link: "https://www.tradingview.com/symbols/SILVER/" },
+        { title: "Silver liquidity check: Sub-$50.00 retail stops absorbed rapidly by smart money.", link: "https://www.tradingview.com/symbols/SILVER/" }
+      ],
+      OIL: [
+        { title: "WTI Crude holds $88.35 surge on Middle East shipping & energy infrastructure tensions.", link: "https://www.tradingview.com/symbols/USOUSD/" },
+        { title: "Crude spoofing warning: Algorithmic fade walls active near $89.00.", link: "https://www.tradingview.com/symbols/USOUSD/" }
+      ]
+    };
+
+    // ========================================================
+    // 📅 FOREX FACTORY ECONOMIC CALENDAR ENGINE (PKT TIME + LIVE WEEKLY FEED)
+    // ========================================================
+    window.ffCalendarEvents = [
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "12:00am", hour24: 0, min: 0, currency: "USD", impact: "Low", title: "Federal Budget Balance", actual: "-404.1B", actualColor: "red", forecast: "-380.0B", previous: "-284.4B" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "12:30am", hour24: 0, min: 30, currency: "EUR", impact: "Medium", title: "ECB President Lagarde Speaks", actual: "", actualColor: "", forecast: "", previous: "" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "2:30am", hour24: 2, min: 30, currency: "NZD", impact: "Low", title: "BusinessNZ Manufacturing Index", actual: "54.9", actualColor: "neutral", forecast: "", previous: "53.1" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "4:30am", hour24: 4, min: 30, currency: "USD", impact: "Low", title: "FOMC Member Williams Speaks", actual: "", actualColor: "", forecast: "", previous: "" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "12:00pm", hour24: 12, min: 0, currency: "EUR", impact: "Low", title: "German WPI m/m", actual: "0.4%", actualColor: "neutral", forecast: "0.2%", previous: "-0.3%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "12:30pm", hour24: 12, min: 30, currency: "CHF", impact: "Low", title: "PPI m/m", actual: "0.9%", actualColor: "green", forecast: "0.2%", previous: "-0.1%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "12:45pm", hour24: 12, min: 45, currency: "EUR", impact: "Low", title: "French Final CPI m/m", actual: "0.4%", actualColor: "neutral", forecast: "0.4%", previous: "0.4%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "2:00pm", hour24: 14, min: 0, currency: "EUR", impact: "Low", title: "Italian Trade Balance", actual: "2.08B", actualColor: "red", forecast: "3.15B", previous: "1.43B" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "3:00pm", hour24: 15, min: 0, currency: "EUR", impact: "Low", title: "Flash Employment Change q/q", actual: "", actualColor: "", forecast: "0.2%", previous: "0.2%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "3:00pm", hour24: 15, min: 0, currency: "EUR", impact: "Low", title: "Flash GDP q/q", actual: "", actualColor: "", forecast: "0.4%", previous: "0.4%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "3:00pm", hour24: 15, min: 0, currency: "EUR", impact: "Low", title: "Trade Balance", actual: "", actualColor: "", forecast: "11.2B", previous: "11.0B" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "Tentative", hour24: 16, min: 0, currency: "CNY", impact: "Low", title: "M2 Money Supply y/y", actual: "", actualColor: "", forecast: "7.5%", previous: "7.4%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "Tentative", hour24: 16, min: 0, currency: "CNY", impact: "Low", title: "New Loans", actual: "", actualColor: "", forecast: "700B", previous: "590B" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "6:30pm", hour24: 18, min: 30, currency: "CAD", impact: "Low", title: "Manufacturing Sales m/m", actual: "", actualColor: "", forecast: "-0.5%", previous: "-1.3%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "6:30pm", hour24: 18, min: 30, currency: "CAD", impact: "Low", title: "Wholesale Sales m/m", actual: "", actualColor: "", forecast: "0.8%", previous: "-0.6%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "6:30pm", hour24: 18, min: 30, currency: "USD", impact: "High", title: "Core PPI m/m", actual: "", actualColor: "", forecast: "0.3%", previous: "0.3%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "6:30pm", hour24: 18, min: 30, currency: "USD", impact: "High", title: "PPI m/m", actual: "", actualColor: "", forecast: "0.4%", previous: "1.3%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "7:10pm", hour24: 19, min: 10, currency: "USD", impact: "Low", title: "FOMC Member Collins Speaks", actual: "", actualColor: "", forecast: "", previous: "" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "7:30pm", hour24: 19, min: 30, currency: "GBP", impact: "Low", title: "CB Leading Index m/m", actual: "", actualColor: "", forecast: "", previous: "-0.2%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "7:40pm", hour24: 19, min: 40, currency: "USD", impact: "Low", title: "FOMC Member Logan Speaks", actual: "", actualColor: "", forecast: "", previous: "" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "Tentative", hour24: 20, min: 0, currency: "USD", impact: "Low", title: "Mortgage Delinquencies", actual: "", actualColor: "", forecast: "", previous: "3.97%" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "8:30pm", hour24: 20, min: 30, currency: "USD", impact: "Low", title: "Natural Gas Storage", actual: "", actualColor: "", forecast: "34B", previous: "69B" },
+      { dateLabel: "Fri Nov 13", isToday: true, timePKT: "8:50pm", hour24: 20, min: 50, currency: "USD", impact: "Low", title: "FOMC Member Bowman Speaks", actual: "", actualColor: "", forecast: "", previous: "" }
+    ];
+
+    window.currentFFFilter = "ALL";
+    window.currentEconMode = "FF_TABLE";
+    let tvWidgetLoaded = false;
+
+    window.setEconMode = function(mode) {
+      window.currentEconMode = mode;
+      const btnFF = document.getElementById('emode-FF_TABLE');
+      const btnTV = document.getElementById('emode-TV_WIDGET');
+      const wrapFF = document.getElementById('econ-ff-table-wrapper');
+      const wrapTV = document.getElementById('econ-tv-widget-wrapper');
+      const fltBar = document.getElementById('ff-filter-controls');
+
+      if (mode === 'FF_TABLE') {
+        if (btnFF) btnFF.classList.add('econ-filter-active');
+        if (btnTV) btnTV.classList.remove('econ-filter-active');
+        if (wrapFF) wrapFF.classList.remove('hidden');
+        if (wrapTV) wrapTV.classList.add('hidden');
+        if (fltBar) fltBar.classList.remove('hidden');
+        window.renderFFCalendarTable();
+      } else {
+        if (btnTV) btnTV.classList.add('econ-filter-active');
+        if (btnFF) btnFF.classList.remove('econ-filter-active');
+        if (wrapTV) wrapTV.classList.remove('hidden');
+        if (wrapFF) wrapFF.classList.add('hidden');
+        if (fltBar) fltBar.classList.add('hidden');
+        mountTradingViewEconCalendar();
+      }
+    };
+
+    function mountTradingViewEconCalendar() {
+      if (tvWidgetLoaded) return;
+      const mount = document.getElementById('tv-econ-widget-mount');
+      if (!mount) return;
+      tvWidgetLoaded = true;
+
+      const container = document.createElement('div');
+      container.className = 'tradingview-widget-container';
+      container.style.height = '100%';
+      container.style.width = '100%';
+
+      const inner = document.createElement('div');
+      inner.className = 'tradingview-widget-container__widget';
+      inner.style.height = '100%';
+      inner.style.width = '100%';
+      container.appendChild(inner);
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        colorTheme: "dark",
+        isTransparent: true,
+        width: "100%",
+        height: "590",
+        locale: "en",
+        importanceFilter: "-1,0,1",
+        countryFilter: "us,eu,gb,jp,cn,ca,ch,au,nz"
+      });
+      container.appendChild(script);
+      mount.innerHTML = '';
+      mount.appendChild(container);
+    }
+
+    window.filterFFCalendar = function(flt) {
+      window.currentFFFilter = flt;
+      ['ALL', 'HIGH', 'USD', 'TODAY'].forEach(k => {
+        const b = document.getElementById('ff-flt-' + k);
+        if (b) {
+          if (k === flt) b.classList.add('econ-filter-active');
+          else b.classList.remove('econ-filter-active');
+        }
+      });
+      window.renderFFCalendarTable();
+    };
+
+    window.renderFFCalendarTable = function() {
+      const tbody = document.getElementById('ff-calendar-tbody');
+      if (!tbody) return;
+
+      // Get current PKT hour/minute for green "Next Event" marker (like Forex Factory)
+      const now = new Date();
+      const pktParts = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now).split(':');
+      const curMins = parseInt(pktParts[0], 10) * 60 + parseInt(pktParts[1], 10);
+
+      let list = window.ffCalendarEvents.slice();
+      if (window.currentFFFilter === 'HIGH') list = list.filter(e => e.impact === 'High' || e.impact === 'Medium');
+      else if (window.currentFFFilter === 'USD') list = list.filter(e => e.currency === 'USD');
+      else if (window.currentFFFilter === 'TODAY') list = list.filter(e => e.isToday);
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-400">Is filter mein aaj koi event nahi mila. "All Events" select karein.</td></tr>`;
+        return;
+      }
+
+      let lastDate = "";
+      let nextMarkerPlaced = false;
+      let nextTimeBucket = null;
+      let html = "";
+
+      list.forEach((ev) => {
+        if (ev.dateLabel !== lastDate) {
+          lastDate = ev.dateLabel;
+          html += `
+            <tr class="bg-[#1b2538] border-y border-amber-500/30">
+              <td colspan="7" class="py-2 px-3 font-hud font-extrabold text-amber-300 text-xs tracking-wider uppercase">
+                📅 ${ev.dateLabel}${ev.isToday ? '<span class="ml-2 bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-[10px]">TODAY (KARACHI PKT)</span>' : ''}
+              </td>
+            </tr>
+          `;
+        }
+
+        const evMins = (ev.hour24 || 0) * 60 + (ev.min || 0);
+        let isNextUp = false;
+        if (ev.isToday && evMins >= curMins && ev.timePKT !== 'Tentative') {
+          if (!nextMarkerPlaced) {
+            nextMarkerPlaced = true;
+            nextTimeBucket = ev.timePKT;
+            isNextUp = true;
+          } else if (ev.timePKT === nextTimeBucket) {
+            isNextUp = true;
+          }
+        }
+
+        const folderClass = ev.impact === 'High' ? 'ff-high' : (ev.impact === 'Medium' ? 'ff-medium' : (ev.impact === 'Holiday' ? 'ff-holiday' : 'ff-low'));
+        const rowHighlight = ev.impact === 'High'
+          ? 'bg-red-950/25 hover:bg-red-900/30 border-l-4 border-l-red-500'
+          : (isNextUp ? 'bg-emerald-950/20 hover:bg-white/5 border-l-4 border-l-emerald-400' : 'hover:bg-white/5');
+
+        let actualClass = "text-gray-100 font-bold";
+        if (ev.actualColor === 'green') actualClass = "text-emerald-400 font-extrabold";
+        if (ev.actualColor === 'red') actualClass = "text-rose-400 font-extrabold";
+
+        html += `
+          <tr class="${rowHighlight} transition">
+            <td class="py-2.5 px-3 whitespace-nowrap ${isNextUp ? 'text-emerald-400 font-extrabold' : 'text-gray-300'}">
+              ${isNextUp ? '<span class="inline-block text-emerald-400 mr-1">▶</span>' : ''}${ev.timePKT}
+            </td>
+            <td class="py-2.5 px-2.5 font-extrabold ${ev.currency === 'USD' ? 'text-amber-300' : 'text-cyan-300'}">${ev.currency}</td>
+            <td class="py-2.5 px-2.5 text-center"><span class="ff-folder ${folderClass}" title="${ev.impact} Impact"></span></td>
+            <td class="py-2.5 px-3 ${ev.impact === 'High' ? 'text-white font-extrabold' : 'text-gray-200'}">
+              ${ev.title}${ev.impact === 'High' ? '<span class="ml-1.5 text-[9px] bg-red-600/30 border border-red-500/50 text-red-300 px-1.5 py-0.5 rounded font-hud uppercase">HIGH VOLATILITY</span>' : ''}
+            </td>
+            <td class="py-2.5 px-3 text-right ${actualClass}">${ev.actual || '—'}</td>
+            <td class="py-2.5 px-3 text-right text-gray-300">${ev.forecast || '—'}</td>
+            <td class="py-2.5 px-3 text-right text-gray-400">${ev.previous || '—'}</td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    };
+
+    // Fetch Live Weekly Forex Factory JSON Automatically (Converts to Asia/Karachi PKT)
+    window.fetchLiveForexFactoryJSON = async function(manualClick) {
+      const badge = document.getElementById('ff-sync-badge');
+      if (badge && manualClick) badge.textContent = "⏳ SYNCING FF LIVE...";
+
+      const ffUrl = "https://nfs.faireconomy.media/ff_calendar_thisweek.json";
+      const endpoints = [
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(ffUrl),
+        "https://corsproxy.io/?" + encodeURIComponent(ffUrl)
+      ];
+
+      for (let i = 0; i < endpoints.length; i++) {
+        try {
+          const res = await fetch(endpoints[i]);
+          if (!res.ok) continue;
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 5) {
+            const todayPKT = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Karachi' }).format(new Date());
+            window.ffCalendarEvents = json.map(item => {
+              const dt = new Date(item.date);
+              const itemDayPKT = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Karachi' }).format(dt);
+              const dateLabel = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'Asia/Karachi' }).format(dt);
+              const timePKT = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Karachi' }).format(dt).toLowerCase().replace(' ', '');
+              const hm = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(dt).split(':');
+              return {
+                dateLabel,
+                isToday: itemDayPKT === todayPKT,
+                timePKT,
+                hour24: parseInt(hm[0], 10) || 0,
+                min: parseInt(hm[1], 10) || 0,
+                currency: item.country || "USD",
+                impact: item.impact || "Low",
+                title: item.title || "Economic Release",
+                actual: item.actual || "",
+                actualColor: "neutral",
+                forecast: item.forecast || "",
+                previous: item.previous || "",
+                rawTimestamp: dt.getTime()
+              };
+            });
+            if (badge) badge.textContent = "● FF WEEKLY LIVE SYNCED";
+            window.renderFFCalendarTable();
+            return;
+          }
+        } catch (err) {}
+      }
+      if (badge) badge.textContent = "● PKT SCHEDULE ACTIVE";
+      window.renderFFCalendarTable();
+    };
+
+    function updateFFCountdown() {
+      const now = new Date();
+      const pktStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
+      const ffClock = document.getElementById('ff-pkt-live-clock');
+      if (ffClock) ffClock.textContent = 'PKT ' + pktStr;
+
+      const parts = pktStr.split(':').map(Number);
+      const nowSec = parts[0] * 3600 + parts[1] * 60 + parts[2];
+
+      // Find next High-Impact event today (e.g., 6:30 PM = 18:30 PKT)
+      const highToday = window.ffCalendarEvents.filter(e => e.isToday && e.impact === 'High');
+      const titleEl = document.getElementById('ff-next-major-title');
+      const cdEl = document.getElementById('ff-next-major-countdown');
+
+      if (highToday.length > 0) {
+        const nextEv = highToday.find(e => (e.hour24 * 3600 + e.min * 60) > nowSec) || highToday[0];
+        const targetSec = nextEv.hour24 * 3600 + nextEv.min * 60;
+        if (titleEl) titleEl.textContent = `${nextEv.currency}${nextEv.title} (${nextEv.timePKT})`;  const diff = targetSec - nowSec; if (diff > 0) { const hh = Math.floor(diff / 3600); const mm = Math.floor((diff \% 3600) / 60); const ss = diff \% 60; if (cdEl) cdEl.textContent = `⏳ In ${hh}h ${mm}m${ss}s (PKT)`;
+        } else if (diff > -1800) {
+          if (cdEl) cdEl.textContent = `🔥 LIVE RELEASE IN PROGRESS!`;
+        } else {
+          if (cdEl) cdEl.textContent = `✅ Released Today (${nextEv.timePKT})`;
+        }
+      }
+    }
+
+    // ========================================================
+    // LIVE BINANCE 24H REST SNAPSHOT (INSTANT AUTO-UPDATE ON PAGE OPEN)
+    // ========================================================
+    async function fetchInitialBinance24hStats() {
+      const symbols = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DYDXUSDT', 'PAXGUSDT'];
+      try {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbols=' + encodeURIComponent(JSON.stringify(symbols)));
+        if (!res.ok) return;
+        const arr = await res.json();
+        arr.forEach(item => {
+          const p = parseFloat(item.lastPrice);
+          const pct = (parseFloat(item.priceChangePercent) >= 0 ? '+' : '') + parseFloat(item.priceChangePercent).toFixed(2) + '%';
+          const high = '$' + parseFloat(item.highPrice).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          const low = '$' + parseFloat(item.lowPrice).toLocaleString('en-US', { maximumFractionDigits: 2 });
+
+          if (item.symbol === 'BTCUSDT') {
+            window.currentPrices.btc = p;
+            RADAR_PROFILES.BTC.price = p; RADAR_PROFILES.BTC.pct = pct; RADAR_PROFILES.BTC.high = high; RADAR_PROFILES.BTC.low = low;
+            const dPct = document.getElementById('desk-btc-pct'); if (dPct) dPct.textContent = pct;
+          } else if (item.symbol === 'ETHUSDT') {
+            window.currentPrices.eth = p;
+            RADAR_PROFILES.ETH.price = p; RADAR_PROFILES.ETH.pct = pct; RADAR_PROFILES.ETH.high = high; RADAR_PROFILES.ETH.low = low;
+            const dPct = document.getElementById('desk-eth-pct'); if (dPct) dPct.textContent = pct;
+          } else if (item.symbol === 'SOLUSDT') {
+            window.currentPrices.sol = p;
+            const dPct = document.getElementById('desk-sol-pct'); if (dPct) dPct.textContent = pct;
+          } else if (item.symbol === 'DYDXUSDT') {
+            window.currentPrices.dydx = p;
+          } else if (item.symbol === 'PAXGUSDT') {
+            window.currentPrices.gold = p;
+            RADAR_PROFILES.GOLD.price = p; RADAR_PROFILES.GOLD.pct = pct; RADAR_PROFILES.GOLD.high = high; RADAR_PROFILES.GOLD.low = low;
+          }
+        });
+        if (['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL'].includes(window.currentActiveView)) {
+          renderRadarData(window.currentActiveView);
+        }
+      } catch (e) {}
+    }
 
     // FEAR & GREED SYNCHRONIZER
     let currentFG = 28;
@@ -1284,7 +1741,6 @@
       }
     }
 
-    // LIVE ORDER FLOW & SPOOFING SYNCHRONIZER
     function syncLiveOrderFlowMetrics(asset, isBuy, volumeDelta) {
       const dyn = window.assetDynamics[asset];
       if (!dyn) return;
@@ -1298,7 +1754,6 @@
         dyn.confidence = Math.min(Math.max(dyn.confidence + (isBuy ? 1 : -1), 52), 98);
       }
 
-      // Update Independent Multi-Timeframe Signal Matrix every second
       if (['GOLD', 'SILVER', 'BTC'].includes(asset)) {
         ['1M', '5M', '15M', '1H', '4H', '1D'].forEach((tf, idx) => {
           const cell = window.tfSignalMatrix[tf][asset];
@@ -1335,94 +1790,7 @@
         if (lblBias) {
           const isBull = dyn.buyPct >= 50;
           lblBias.textContent = isBull ? 'BULLISH EXPANSION' : 'BEARISH DISTRIBUTION';
-          lblBias.className = `font-bold tracking-wider ${isBull ? 'text-emerald-400' : 'text-rose-400'}`;
-        }
-
-        if (elConf) elConf.textContent = dyn.confidence;
-        if (elSpoof) elSpoof.textContent = Math.round(dyn.spoof) + ' / 100';
-        if (elSpoofTxt && Math.random() > 0.65) {
-          const msgs = SPOOF_LIVE_MESSAGES[asset] || SPOOF_LIVE_MESSAGES.BTC;
-          elSpoofTxt.textContent = msgs[Math.floor(Math.random() * msgs.length)];
-        }
-        if (elStrength) elStrength.textContent = Math.round(dyn.buyPct * 1.1);
-        if (elSweepConf) elSweepConf.textContent = Math.min(99, Math.round(dyn.confidence + 4)) + ' / 100';
-
-        // Animate Spoofing Bars
-        const spoofBars = document.getElementById('spoof-bars-container');
-        if (spoofBars && spoofBars.children.length > 0) {
-          Array.from(spoofBars.children).forEach(bar => {
-            const h = Math.floor(Math.random() * 24) + 8;
-            bar.style.height = h + 'px';
-          });
-        }
-      }
-    }
-
-    const ASSET_INTELLIGENCE_NEWS = {
-      BTC: [
-        { title: "Bitcoin derivatives open interest holds high volume; fake sell walls cleared near $76,200.", link: "https://www.coindesk.com" },
-        { title: "Whale order spoofing detected: $46M limit bid wall cancelled before confirmation.", link: "https://www.tradingview.com/symbols/BTCUSDT/" }
-      ],
-      ETH: [
-        { title: "Ethereum gas consumption rises amidst layer-2 settlement wave and DeFi staking expansion.", link: "https://www.coindesk.com" },
-        { title: "ETH spoofing alert: Large ask block pulled at $2,260 liquidity band ahead of NY volatility.", link: "https://www.tradingview.com/symbols/ETHUSDT/" }
-      ],
-      GOLD: [
-        { title: "Spot Gold retests $4,070 demand shelf; institutional central banks absorb bullion liquidity.", link: "https://www.tradingview.com/symbols/XAUUSD/" },
-        { title: "Gold Order Book Alert: Fake $145M ask wall collapsed as aggressive market buyers stepped in.", link: "https://www.bullionvault.com" }
-      ],
-      SILVER: [
-        { title: "Spot Silver consolidates above $49.75 baseline after structural rebound off 45-year support.", link: "https://www.tradingview.com/symbols/SILVER/" },
-        { title: "Silver liquidity check: Retail short stops cleared near $50.20 mitigation block.", link: "https://www.tradingview.com/symbols/SILVER/" }
-      ],
-      OIL: [
-        { title: "WTI Crude holds $90.42 pivot; inventory tightness counters global demand projections.", link: "https://www.tradingview.com/symbols/USOUSD/" },
-        { title: "Crude spoofing warning: Algorithmic liquidity fade registered near $91.50 resistance.", link: "https://www.tradingview.com/symbols/USOUSD/" }
-      ]
-    };
-
-    const RADAR_PROFILES = {
-      BTC: {
-        oi: "$7.18B", fr: "+0.0092%", spread: "$0.10", price: 75942.92, pct: "+1.45%", high: "$76,450", low: "$74,800", vol: "41,208 BTC",
-        spoofDesc: "$46.5 BTC ask wall at $76,140 — cancelled after 0.3s, 0% filled",
-        newsHeading: "BTC MARKET INTELLIGENCE & SPOOFING WIRE",
-        sweepBadge: "⚡ INTERNAL SWEEP CONFIRMED", sweepDesc: "Continuous sub-second depth parsing active.", sweepPrice: "$75,940"
-      },
-      ETH: {
-        oi: "$3.42B", fr: "+0.0081%", spread: "$0.05", price: 2252.21, pct: "+0.95%", high: "$2,340", low: "$2,210", vol: "$5.84B",
-        spoofDesc: "1,200 ETH bid wall absorbed at $2,240, 100% filled",
-        newsHeading: "ETHEREUM NETWORK INTELLIGENCE & L2 FLOW",
-        sweepBadge: "⚡ BULLISH LIQUIDITY SWEEP", sweepDesc: "Price swept $2,230 session lows, sharp bounce.", sweepPrice: "$2,230"
-      },
-      GOLD: {
-        oi: "$18.6B", fr: "BINANCE PAXG", spread: "$0.10", price: 4070.68, pct: "+0.81%", high: "$4,085.00", low: "$4,020.00", vol: "$28.4B",
-        spoofDesc: "Verified live trade ticks directly from Binance matching engine",
-        newsHeading: "GOLD (XAU/USD) INSTITUTIONAL BULLION WIRE",
-        sweepBadge: "🔥 BULLISH DEMAND SWEEP", sweepDesc: "Live Binance PAXG order book volume stream active.", sweepPrice: "$4,064.50"
-      },
-      SILVER: {
-        oi: "$4.1B", fr: "LIVE SPOT", spread: "$0.02", price: 49.78, pct: "+1.24%", high: "$50.40", low: "$48.80", vol: "$6.2B",
-        spoofDesc: "Minor sell-side spoof attempt cleared at $49.80",
-        newsHeading: "SILVER (XAG/USD) BREAKOUT & METALS DESK",
-        sweepBadge: "⚡ LIQUIDITY ABSORPTION", sweepDesc: "Clean sweep at $49.00 liquidity shelf.", sweepPrice: "$49.05"
-      },
-      OIL: {
-        oi: "$8.9B", fr: "LIVE CRUDE", spread: "$0.04", price: 90.42, pct: "-0.42%", high: "$98.20", low: "$90.00", vol: "$9.4B",
-        spoofDesc: "Algorithmic fade walls detected near $91.10",
-        newsHeading: "WTI CRUDE OIL SUPPLY & ENERGY FLOW",
-        sweepBadge: "〰 LIQUIDITY RANGE TEST", sweepDesc: "Tested $92.40 highs, supply returned.", sweepPrice: "$91.40"
-      }
-    };
-
-    window.currentActiveView = "BTC";
-
-    // MASTER TAB SWITCHER (ALL 10 TABS)
-    window.switchView = function(tabKey) {
-      window.currentActiveView = tabKey;
-
-      const tabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'BLOOMBERG_NEWS', 'WORLD_NEWS'];
-      tabs.forEach(k => {
-        const btn = document.getElementById(`tab-${k}`);
+          lblBias.className = `font-bold tracking-wider ${isBull ? 'text-emerald-400' : 'text-rose-400'}`; }  if (elConf) elConf.textContent = dyn.confidence; if (elSpoof) elSpoof.textContent = Math.round(dyn.spoof) + ' / 100'; if (elSpoofTxt && Math.random() > 0.65) { const msgs = SPOOF_LIVE_MESSAGES[asset] \vert{}\vert{} SPOOF_LIVE_MESSAGES.BTC; elSpoofTxt.textContent = msgs[Math.floor(Math.random() * msgs.length)]; } if (elStrength) elStrength.textContent = Math.round(dyn.buyPct * 1.1); if (elSweepConf) elSweepConf.textContent = Math.min(99, Math.round(dyn.confidence + 4)) + ' / 100';  const spoofBars = document.getElementById('spoof-bars-container'); if (spoofBars && spoofBars.children.length > 0) { Array.from(spoofBars.children).forEach(bar => { const h = Math.floor(Math.random() * 24) + 8; bar.style.height = h + 'px'; }); } } }  window.currentActiveView = "BTC";  // MASTER TAB SWITCHER (ALL 11 TABS) window.switchView = function(tabKey) { window.currentActiveView = tabKey;  const tabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'ECON_CALENDAR', 'BLOOMBERG_NEWS', 'WORLD_NEWS']; tabs.forEach(k => { const btn = document.getElementById(`tab-${k}`);
         if (btn) {
           if (k === tabKey) btn.classList.add('nav-tab-active');
           else btn.classList.remove('nav-tab-active');
@@ -1434,6 +1802,7 @@
         quant: document.getElementById('view-quant-desk'),
         skills: document.getElementById('view-ai-skills'),
         signals: document.getElementById('view-live-signals'),
+        econ: document.getElementById('view-econ-calendar'),
         bloomberg: document.getElementById('view-bloomberg-news'),
         world: document.getElementById('view-world-news')
       };
@@ -1454,6 +1823,10 @@
       } else if (tabKey === 'LIVE_SIGNALS') {
         if (views.signals) views.signals.classList.remove('hidden');
         window.renderLiveSignalCards();
+      } else if (tabKey === 'ECON_CALENDAR') {
+        if (views.econ) views.econ.classList.remove('hidden');
+        window.renderFFCalendarTable();
+        updateFFCountdown();
       } else if (tabKey === 'BLOOMBERG_NEWS') {
         if (views.bloomberg) views.bloomberg.classList.remove('hidden');
         window.renderBloombergArticles();
@@ -1512,9 +1885,7 @@
       }
     }
 
-    // ========================================================
-    // LIVE SIGNALS ENGINE (GOLD, SILVER, BTC • 1M TO 1D DYNAMIC)
-    // ========================================================
+    // LIVE SIGNALS ENGINE
     window.currentSignalTF = '15M';
     window.manualFlipOverrides = {
       '1M':  { GOLD: null, SILVER: null, BTC: null },
@@ -1592,8 +1963,8 @@
 
         const headline = isLong ? '🟢 AB LONG KARO (BUY NOW)' : '🔴 AB SHORT KARO (SELL NOW)';
         const flowLabel = isLong
-          ? `${tfCell.buyPct.toFixed(1)}% BUY • ${tfCell.conf}% CONF`
-          : `${(100 - tfCell.buyPct).toFixed(1)}% SELL • ${tfCell.conf}% CONF`;
+          ? `${tfCell.buyPct.toFixed(1)}\% BUY • ${tfCell.conf}% CONF`
+          : `${(100 - tfCell.buyPct).toFixed(1)}\% SELL • ${tfCell.conf}% CONF`;
 
         return `
           <div class="radar-card p-4 border-2 ${isLong ? 'border-emerald-500/60' : 'border-rose-500/60'} flex flex-col justify-between space-y-3">
@@ -1604,13 +1975,7 @@
               </div>
 
               <div class="${bannerBg} rounded-xl p-3.5 text-center font-extrabold text-base sm:text-lg tracking-wide shadow-lg">
-                ${headline}
-              </div>
-
-              <div class="flex items-baseline justify-between my-3 border-b border-white/10 pb-2">
-                <div>
-                  <span class="text-[10px] text-gray-400 block font-mono">LIVE SYNC PRICE</span>
-                  <span class="text-2xl font-black text-white">$${entry.toFixed(cfg.dec)}</span>
+                ${headline} </div>                <div class="flex items-baseline justify-between my-3 border-b border-white/10 pb-2"> <div> <span class="text-[10px] text-gray-400 block font-mono">LIVE SYNC PRICE</span> <span class="text-2xl font-black text-white">$${entry.toFixed(cfg.dec)}</span>
                 </div>
                 <div class="text-right">
                   <span class="text-[10px] text-gray-400 block font-mono">ORDER FLOW BIAS (${tf})</span>
@@ -1619,10 +1984,8 @@
               </div>
 
               <div class="space-y-1.5 text-xs font-mono bg-black/60 p-2.5 rounded-lg border border-white/5">
-                <div class="flex justify-between"><span class="text-gray-400">Entry Zone:</span><span class="text-white font-bold">$${entry.toFixed(cfg.dec)}</span></div>
-                <div class="flex justify-between"><span class="text-gray-400">Target TP 1:</span><span class="text-emerald-400 font-bold">$${tp1.toFixed(cfg.dec)}</span></div>
-                <div class="flex justify-between"><span class="text-gray-400">Target TP 2:</span><span class="text-cyan-400 font-bold">$${tp2.toFixed(cfg.dec)}</span></div>
-                <div class="flex justify-between"><span class="text-gray-400">Stop-Loss (SL):</span><span class="text-rose-400 font-bold">$${sl.toFixed(cfg.dec)}</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Entry Zone:</span><span class="text-white font-bold">$${entry.toFixed(cfg.dec)}</span></div> <div class="flex justify-between"><span class="text-gray-400">Target TP 1:</span><span class="text-emerald-400 font-bold">$${tp1.toFixed(cfg.dec)}</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Target TP 2:</span><span class="text-cyan-400 font-bold">$${tp2.toFixed(cfg.dec)}</span></div> <div class="flex justify-between"><span class="text-gray-400">Stop-Loss (SL):</span><span class="text-rose-400 font-bold">$${sl.toFixed(cfg.dec)}</span></div>
               </div>
             </div>
 
@@ -1630,40 +1993,20 @@
               <button type="button" onclick="window.toggleManualSignalFlip('${cfg.key}')" class="bg-white/10 hover:bg-white/20 text-gray-200 px-3 py-1.5 rounded text-[11px] font-bold transition cursor-pointer">
                 🔄 Manual Flip
               </button>
-              <button type="button" onclick="window.resetAutoSyncSignal('${cfg.key}')" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 px-3 py-1.5 rounded text-[11px] font-bold transition flex-1 cursor-pointer">
-                ⚙️ Auto Gear Sync
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    };
-
-    // ========================================================
-    // WORKING 11 AI SKILLS FUNCTIONS (NO PAPER TRADING)
-    // ========================================================
-    window.runLotCalculator = function() {
-      const bal = parseFloat(document.getElementById('calc-balance')?.value) || 1000;
-      const riskPct = parseFloat(document.getElementById('calc-risk')?.value) || 2;
-      const slDist = parseFloat(document.getElementById('calc-sl')?.value) || 10;
-      const riskUsd = (bal * riskPct) / 100;
-      const recLot = Math.max(0.01, riskUsd / (slDist * 10));
-      const out = document.getElementById('calc-lot-output');
-      if (out) out.textContent = `Risk: $${riskUsd.toFixed(2)} • Recommended: ${recLot.toFixed(2)} Std Lot`;
+              <button type="button" onclick="window.resetAutoSyncSignal('${cfg.key}')" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 px-3 py-1.5 rounded text-[11px] font-bold transition flex-1 cursor-pointer"> ⚙️ Auto Gear Sync </button> </div> </div> `; }).join(''); };  // WORKING 11 AI SKILLS FUNCTIONS window.runLotCalculator = function() { const bal = parseFloat(document.getElementById('calc-balance')?.value) \vert{}\vert{} 1000; const riskPct = parseFloat(document.getElementById('calc-risk')?.value) \vert{}\vert{} 2; const slDist = parseFloat(document.getElementById('calc-sl')?.value) \vert{}\vert{} 10; const riskUsd = (bal * riskPct) / 100; const recLot = Math.max(0.01, riskUsd / (slDist * 10)); const out = document.getElementById('calc-lot-output'); if (out) out.textContent = `Risk: $${riskUsd.toFixed(2)} • Recommended: ${recLot.toFixed(2)} Std Lot`;
     };
 
     window.runExitPlanner = function() {
       const asset = document.getElementById('exit-asset')?.value || 'GOLD';
       const rr = parseFloat(document.getElementById('exit-rr')?.value) || 3;
-      const price = window.currentPrices[asset.toLowerCase()] || 4070.68;
+      const price = window.currentPrices[asset.toLowerCase()] || 3886.68;
       const slOffset = asset === 'GOLD' ? 8 : (asset === 'BTC' ? 300 : 0.4);
       const sl = price - slOffset;
       const tp = price + (slOffset * rr);
       const out = document.getElementById('exit-planner-output');
       if (out) {
         out.innerHTML = `
-          <div class="flex justify-between"><span>Live Entry:</span><span class="text-white font-bold">$${price.toFixed(2)}</span></div>
-          <div class="flex justify-between"><span>Stop-Loss:</span><span class="text-rose-400 font-bold">$${sl.toFixed(2)}</span></div>
+          <div class="flex justify-between"><span>Live Entry:</span><span class="text-white font-bold">$${price.toFixed(2)}</span></div> <div class="flex justify-between"><span>Stop-Loss:</span><span class="text-rose-400 font-bold">$${sl.toFixed(2)}</span></div>
           <div class="flex justify-between"><span>Target (1:${rr}):</span><span class="text-emerald-400 font-bold">$${tp.toFixed(2)}</span></div>
         `;
       }
@@ -1690,7 +2033,7 @@
       const box = document.getElementById('alert-status-box');
       if (!target) return;
       window.activeAlarm = { asset, target };
-      if (box) box.innerHTML = `<span class="text-amber-300 font-bold">🔔 Armed: ${asset} @ $${target.toFixed(2)}</span>`;
+      if (box) box.innerHTML = `<span class="text-amber-300 font-bold">🔔 Armed: ${asset} @$${target.toFixed(2)}</span>`;
     };
 
     window.runTimeMachineBacktest = function() {
@@ -1699,526 +2042,4 @@
       const winRate = Math.round((wins / 30) * 100);
       const out = document.getElementById('timemachine-output');
       if (out) {
-        out.innerHTML = `<span class="text-emerald-400 font-bold">30 Setups Replayed:</span> ${wins}W / ${losses}L (${winRate}% Win Rate) • Expectancy +2.8R`;
-      }
-    };
-
-    window.runChartScanner = function() {
-      const out = document.getElementById('scanner-output');
-      if (out) {
-        out.innerHTML = `<span class="text-amber-300 font-bold">Scan Complete:</span> GOLD $${window.currentPrices.gold.toFixed(2)} (Bullish FVG) • BTC $${window.currentPrices.btc.toFixed(0)} (Sweep)`;
-      }
-    };
-
-    // ========================================================
-    // DYNAMIC HEATMAPS & INFLOW/OUTFLOW ENGINE
-    // ========================================================
-    function updateHeatmaps(btcPrice, goldPrice) {
-      if (btcPrice) window.currentPrices.btc = btcPrice;
-      if (goldPrice) window.currentPrices.gold = goldPrice;
-
-      const bp = Math.round(window.currentPrices.btc);
-      const btcContainer = document.getElementById('btc-heatmap-container');
-      if (btcContainer) {
-        const wave = Math.sin(Date.now() / 1000) * 8;
-        btcContainer.innerHTML = `
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp + 800} (Short Liq)</span><span class="text-amber-400 font-bold">$${(142.4 + wave).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-amber-500 h-full" style="width: 88%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp + 400} (Ask Shelf)</span><span class="text-amber-300 font-bold">$${(96.8 - wave * 0.5).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-amber-400 h-full" style="width: 65%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp - 400} (Long Liq)</span><span class="text-emerald-400 font-bold">$${(185.1 - wave).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-emerald-500 h-full" style="width: 94%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp - 800} (Bid Floor)</span><span class="text-cyan-400 font-bold">$${(110.6 + wave * 0.4).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-cyan-400 h-full" style="width: 74%;"></div></div>
-          </div>
-        `;
-      }
-
-      const gp = Math.round(window.currentPrices.gold);
-      const goldContainer = document.getElementById('gold-heatmap-container');
-      if (goldContainer) {
-        const gwave = Math.cos(Date.now() / 1200) * 12;
-        goldContainer.innerHTML = `
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${gp + 20} (Stop Hunt)</span><span class="text-rose-400 font-bold">$${(210 + gwave).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-rose-500 h-full" style="width: 90%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${gp + 10} (FVG High)</span><span class="text-yellow-400 font-bold">$${(145 - gwave * 0.5).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-yellow-400 h-full" style="width: 72%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${gp - 10} (Discount FVG)</span><span class="text-emerald-400 font-bold">$${(190 + gwave * 0.6).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-emerald-400 h-full" style="width: 86%;"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between text-[9px] text-gray-400"><span>$${gp - 25} (Major Demand)</span><span class="text-cyan-400 font-bold">$${(260 - gwave * 0.4).toFixed(1)}M</span></div>
-            <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-cyan-400 h-full" style="width: 96%;"></div></div>
-          </div>
-        `;
-      }
-    }
-
-    let flows = { btcIn: 14.8, btcOut: 5.2, goldIn: 8.4, goldOut: 2.1, silverIn: 3.2, silverOut: 1.9, dydxIn: 1.6, dydxOut: 0.8 };
-    function updateDualFlows(asset, isBuy, vol) {
-      const amt = (vol || 0.15);
-      if (asset === 'BTC') { if (isBuy) flows.btcIn += amt * 0.05; else flows.btcOut += amt * 0.05; }
-      else if (asset === 'GOLD') { if (isBuy) flows.goldIn += amt * 0.04; else flows.goldOut += amt * 0.04; }
-      else if (asset === 'SILVER') { if (isBuy) flows.silverIn += amt * 0.03; else flows.silverOut += amt * 0.03; }
-      else if (asset === 'DYDX') { if (isBuy) flows.dydxIn += amt * 0.02; else flows.dydxOut += amt * 0.02; }
-      renderFlowsDOM();
-    }
-
-    function renderFlowsDOM() {
-      const setTxt = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-      setTxt('flow-btc-in-val', '+$' + flows.btcIn.toFixed(1) + 'M');
-      setTxt('flow-gold-in-val', '+$' + flows.goldIn.toFixed(1) + 'M');
-      setTxt('flow-silver-in-val', '+$' + flows.silverIn.toFixed(1) + 'M');
-      setTxt('flow-dydx-in-val', '+$' + flows.dydxIn.toFixed(1) + 'M');
-      setTxt('flow-btc-out-val', '-$' + flows.btcOut.toFixed(1) + 'M');
-      setTxt('flow-gold-out-val', '-$' + flows.goldOut.toFixed(1) + 'M');
-      setTxt('flow-silver-out-val', '-$' + flows.silverOut.toFixed(1) + 'M');
-      setTxt('flow-dydx-out-val', '-$' + flows.dydxOut.toFixed(1) + 'M');
-
-      const net = (flows.btcIn + flows.goldIn + flows.silverIn + flows.dydxIn) - (flows.btcOut + flows.goldOut + flows.silverOut + flows.dydxOut);
-      const stat = document.getElementById('dominant-flow-status');
-      if (stat) stat.textContent = net >= 0 ? `TOTAL +$${net.toFixed(1)}M INFLOW` : `TOTAL -$${Math.abs(net).toFixed(1)}M OUTFLOW`;
-    }
-
-    // ========================================================
-    // 3D JUPITER REACTOR + SATELLITE BADGE (FULL ORIGINAL)
-    // ========================================================
-    let threeInitialized = false;
-    let baseSpeed = 0.008;
-    let jupiterMesh, orbitGroup, moonBadgeMesh;
-
-    function createJupiterTexture() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 512; canvas.height = 256;
-      const ctx = canvas.getContext('2d');
-      const bands = ['#d97706', '#b45309', '#fef3c7', '#d97706', '#78350f', '#fde68a', '#92400e', '#fef3c7'];
-      const bh = canvas.height / bands.length;
-      for (let i = 0; i < bands.length; i++) { ctx.fillStyle = bands[i]; ctx.fillRect(0, i * bh, canvas.width, bh); }
-      ctx.fillStyle = '#dc2626'; ctx.beginPath(); ctx.ellipse(320, 150, 30, 16, 0.1, 0, Math.PI * 2); ctx.fill();
-      return new THREE.CanvasTexture(canvas);
-    }
-
-    function createMoonBadgeTexture(text) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 512; canvas.height = 128;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = 'rgba(7, 10, 16, 0.85)';
-      ctx.fillRect(10, 10, canvas.width - 20, canvas.height - 20);
-      ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 6; ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
-      ctx.font = 'bold 38px "Chakra Petch", monospace';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#fef08a';
-      ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-      return new THREE.CanvasTexture(canvas);
-    }
-
-    function initThreeReactor() {
-      const container = document.getElementById('three-reactor-canvas');
-      if (!container || threeInitialized || typeof THREE === 'undefined') return;
-      threeInitialized = true;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-      camera.position.z = 6.2;
-
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-      const light = new THREE.DirectionalLight(0xfffbeb, 1.8);
-      light.position.set(5, 3, 4);
-      scene.add(light);
-
-      jupiterMesh = new THREE.Mesh(
-        new THREE.SphereGeometry(1.2, 32, 32),
-        new THREE.MeshStandardMaterial({ map: createJupiterTexture(), roughness: 0.6, metalness: 0.1 })
-      );
-      scene.add(jupiterMesh);
-
-      const ring = new THREE.Mesh(
-        new THREE.RingGeometry(2.15, 2.22, 64),
-        new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.4 })
-      );
-      ring.rotation.x = Math.PI / 2.3;
-      scene.add(ring);
-
-      orbitGroup = new THREE.Group();
-      orbitGroup.rotation.x = Math.PI / 2.3;
-      scene.add(orbitGroup);
-
-      const moon = new THREE.Mesh(
-        new THREE.SphereGeometry(0.22, 16, 16),
-        new THREE.MeshStandardMaterial({ color: 0x06b6d4, emissive: 0x0284c7, emissiveIntensity: 0.5 })
-      );
-      moon.position.set(2.18, 0, 0);
-      orbitGroup.add(moon);
-
-      moonBadgeMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(1.6, 0.4),
-        new THREE.MeshBasicMaterial({ map: createMoonBadgeTexture('MUSHTARI TRADER 287'), transparent: true, side: THREE.DoubleSide })
-      );
-      moonBadgeMesh.position.set(2.18, 0.45, 0);
-      orbitGroup.add(moonBadgeMesh);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        jupiterMesh.rotation.y += baseSpeed * 0.7;
-        orbitGroup.rotation.z -= baseSpeed * 1.3;
-        moonBadgeMesh.rotation.z = -orbitGroup.rotation.z;
-        moonBadgeMesh.rotation.x = -Math.PI / 2.3;
-        renderer.render(scene, camera);
-      }
-      animate();
-    }
-
-    // PLANETARY HOURS & LUNAR CALENDAR
-    const CHALDEAN_PLANETS = [
-      { name: "Saturn (Zuhal)", symbol: "♄" },
-      { name: "Jupiter (Mushtari)", symbol: "♃" },
-      { name: "Mars (Mirrikh)", symbol: "♂" },
-      { name: "Sun (Shams)", symbol: "☉" },
-      { name: "Venus (Zuhra)", symbol: "♀" },
-      { name: "Mercury (Utarid)", symbol: "☿" },
-      { name: "Moon (Qamar)", symbol: "☽" }
-    ];
-    const DAY_RULERS = [3, 6, 2, 5, 1, 4, 0];
-
-    function calculatePlanetaryHours() {
-      const now = new Date();
-      const dayOfWeek = now.getDay();
-      const currentHour = now.getHours();
-      const dayRulerIndex = DAY_RULERS[dayOfWeek];
-      const isDay = currentHour >= 6 && currentHour < 18;
-      const currentPlanetIndex = (dayRulerIndex + (currentHour >= 6 ? currentHour - 6 : currentHour + 18)) % 7;
-      const planet = CHALDEAN_PLANETS[currentPlanetIndex];
-
-      const pSymTag = document.getElementById('planet-symbol-tag');
-      const pNameText = document.getElementById('planet-name-text');
-      const pTopSym = document.getElementById('current-planet-symbol');
-      const pTimeSlot = document.getElementById('current-planet-time');
-
-      if (pSymTag) pSymTag.textContent = planet.symbol;
-      if (pNameText) pNameText.textContent = planet.name;
-      if (pTopSym) pTopSym.textContent = planet.symbol;
-      const sH = currentHour % 12 || 12;
-      const eH = (currentHour + 1) % 12 || 12;
-      if (pTimeSlot) pTimeSlot.textContent = `${sH}:00 - ${eH}:00`;
-
-      const listContainer = document.getElementById('planetary-hours-list');
-      if (listContainer) {
-        let scheduleHtml = '';
-        for (let h = 0; h < 8; h++) {
-          const slotHour = isDay ? (6 + h) : ((18 + h) % 24);
-          const pIndex = (dayRulerIndex + (isDay ? h : (12 + h))) % 7;
-          const pl = CHALDEAN_PLANETS[pIndex];
-          const isCurr = slotHour === currentHour;
-          const s = slotHour % 12 || 12;
-          const ap = slotHour >= 12 ? 'pm' : 'am';
-          scheduleHtml += `
-            <div class="flex justify-between items-center p-1 rounded ${isCurr ? 'bg-purple-950/60 border border-purple-400/50 text-white font-bold' : 'bg-black/30 border border-white/5 text-gray-300'}">
-              <span>${pl.symbol} ${pl.name}</span>
-              <span class="text-[9px] font-mono">${s}:00 ${ap}</span>
-            </div>
-          `;
-        }
-        listContainer.innerHTML = scheduleHtml;
-      }
-    }
-
-    function calculateLunarCalendar() {
-      const now = new Date();
-      const refDate = new Date(Date.UTC(2000, 0, 6, 18, 14, 0));
-      const synodicMonth = 29.53058867;
-      const diffDays = (now.getTime() - refDate.getTime()) / (1000 * 60 * 60 * 24);
-      const cyclePos = (diffDays % synodicMonth + synodicMonth) % synodicMonth;
-      const phaseFrac = cyclePos / synodicMonth;
-      const illum = Math.round((1 - Math.cos(phaseFrac * 2 * Math.PI)) / 2 * 100);
-      const illumEl = document.getElementById('current-moon-illum');
-      if (illumEl) illumEl.textContent = illum + '%';
-    }
-
-    // ========================================================
-    // BLOOMBERG ARTICLES & TOTAL WORLD NEWS ENGINE
-    // ========================================================
-    const bloombergArticles = [
-      { category: "FINANCE", time: "14 mins ago", title: "Citigroup Shelves $1 Billion Loan Deal for Auto-Parts Supplier", desc: "Citigroup Inc. has put a $1 billion debt financing package on hold as volatility in industrial credit spreads widens.", tag: "Credit Markets", author: "Bloomberg Markets", image: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
-      { category: "FINANCE", time: "28 mins ago", title: "Global Macro Hedge Funds Increase Bullion & Sovereign Bond Allocation", desc: "Institutional portfolio managers rotate capital into hard assets amid central bank interest rate recalibrations.", tag: "Hedge Funds", author: "Bloomberg Finance", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80", link: "https://www.bloomberg.com/markets" },
-      { category: "CRYPTO", time: "6 mins ago", title: "Bitcoin Open Interest Reaches High Beyond $76,000 Milestone", desc: "Institutional derivative exposure on CME and Binance shows aggressive buy-side absorption targeting $78,500 liquidity bands.", tag: "Digital Assets", author: "CoinDesk", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80", link: "https://www.tradingview.com/symbols/BTCUSDT/" },
-      { category: "COMMODITIES", time: "11 mins ago", title: "Gold Spot Expands Past $4,070 as Central Banks Accelerate Reserves", desc: "Spot Bullion registers heavy institutional discount absorption as global demand hedges against sovereign currency realignments.", tag: "Precious Metals", author: "Bloomberg Commodities", image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&auto=format&fit=crop&q=80", link: "https://www.tradingview.com/symbols/XAUUSD/" }
-    ];
-
-    window.currentNewsFilter = "ALL";
-    window.filterNewsCategory = function(cat) {
-      window.currentNewsFilter = cat;
-      window.renderBloombergArticles();
-    };
-
-    window.renderBloombergArticles = function() {
-      const container = document.getElementById('bloomberg-news-grid');
-      if (!container) return;
-      const filtered = window.currentNewsFilter === "ALL" ? bloombergArticles : bloombergArticles.filter(a => a.category === window.currentNewsFilter);
-      container.innerHTML = filtered.map(item => `
-        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="glass-panel rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/50 flex flex-col justify-between transition group">
-          <div class="h-40 w-full overflow-hidden bg-black/60 relative">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-80 group-hover:opacity-100">
-            <span class="absolute top-2 left-2 bg-black/80 border border-white/10 text-[9px] font-bold text-amber-400 px-2 py-0.5 rounded font-hud uppercase">${item.tag}</span>
-          </div>
-          <div class="p-3.5 flex flex-col justify-between flex-1">
-            <div>
-              <div class="flex items-center justify-between text-[10px] text-gray-400 font-mono mb-1.5"><span class="text-cyan-400 font-bold">${item.author}</span><span>${item.time}</span></div>
-              <h3 class="font-hud text-sm font-bold text-gray-100 group-hover:text-amber-300 transition leading-snug">${item.title}</h3>
-              <p class="text-[11px] text-gray-400 font-mono mt-1.5 leading-relaxed">${item.desc}</p>
-            </div>
-          </div>
-        </a>
-      `).join('');
-    };
-
-    // 🌍 TOTAL WORLD NEWS DATA (WAR, ANTI-WAR PEACE SUMMITS, GEOPOLITICS, GLOBAL EVENTS)
-    window.worldNewsFeed = [
-      { cat: "WAR_PEACE", time: "Just Now • 1m ago", region: "UN / GENEVA", title: "UN Security Council & Global Coalition Demand Immediate Ceasefire & Anti-War Corridor", desc: "Diplomatic envoys from 40+ nations sign joint anti-war resolution in Geneva to halt military escalations and protect civilian trade routes.", impact: "GOLD SAFE-HAVEN ACTIVE • OIL STABILIZING", badge: "🕊️ ANTI-WAR DIPLOMACY" },
-      { cat: "CONFLICT", time: "2 mins ago", region: "MIDDLE EAST / RED SEA", title: "Maritime Security Alert: Naval Escorts Deployed Across Bab el-Mandeb & Hormuz", desc: "Commercial shipping insurers adjust war-risk premiums as naval task forces monitor drone and missile activity along key energy chokepoints.", impact: "WTI CRUDE +$0.85 • XAUUSD BULLISH", badge: "⚠️ FRONTLINE ALERT" },
-      { cat: "WAR_PEACE", time: "4 mins ago", region: "EUROPE / BRUSSELS", title: "Massive Peace Rallies Across European Capitals Call for De-Escalation & Humanitarian Aid", desc: "Hundreds of thousands gather in Berlin, Paris, and London urging world leaders to prioritize peace treaties over defense spending.", impact: "EUR/USD STEADY • DEFENSE STOCKS MIXED", badge: "🕊️ GLOBAL PEACE MOVEMENT" },
-      { cat: "CONFLICT", time: "7 mins ago", region: "EASTERN EUROPE", title: "Ceasefire Negotiations Proposed for Power Grid & Grain Export Infrastructure", desc: "Mediators propose a 60-day halt on energy infrastructure strikes to prevent winter humanitarian crises across border regions.", impact: "WHEAT & GAS VOLATILE • GOLD SUPPORTED", badge: "⚠️ CONFLICT MONITOR" },
-      { cat: "ECONOMY", time: "9 mins ago", region: "BRICS / CENTRAL BANKS", title: "Central Banks Add 48 Tons of Physical Gold to Sovereign Reserves to Hedge Geopolitical Risk", desc: "Emerging market central banks accelerate de-dollarization and bullion accumulation against sanctions and war-driven inflation.", impact: "XAUUSD STRONG FLOOR @ $4,065", badge: "🏦 SOVEREIGN FLOW" },
-      { cat: "ECONOMY", time: "12 mins ago", region: "WASHINGTON / TOKYO", title: "G7 Finance Ministers Issue Joint Statement on Global Supply Chain & Energy Stability", desc: "Emergency liquidity facilities remain on standby to counter any sudden commodity price shocks from regional conflicts.", impact: "USD DXY 101.56 • BTC INFLOWS +$14.8M", badge: "🌐 MACRO DISPATCH" }
-    ];
-
-    const MINUTE_WORLD_FLASHES = [
-      "[LIVE MINUTE WIRE] UN General Assembly convenes emergency session calling for immediate global ceasefire & de-escalation...",
-      "[PEACE DISPATCH] Neutral mediators in Doha and Geneva report progress on humanitarian corridor agreements...",
-      "[GEOPOLITICAL ALERT] Central Banks increase physical Gold allocation as hedge against sovereign sanctions & war risks...",
-      "[ENERGY & SHIPPING] Red Sea & Hormuz maritime monitors report heightened naval patrol activity; Gold holds $4,070+..."
-    ];
-
-    window.currentWorldCat = "ALL";
-    window.filterWorldNews = function(cat) {
-      window.currentWorldCat = cat;
-      ['ALL', 'WAR_PEACE', 'CONFLICT', 'ECONOMY'].forEach(c => {
-        const b = document.getElementById('wcat-' + c);
-        if (b) {
-          if (c === cat) b.classList.add('world-cat-active');
-          else b.classList.remove('world-cat-active');
-        }
-      });
-      window.renderWorldNews();
-    };
-
-    window.renderWorldNews = function() {
-      const grid = document.getElementById('world-news-grid');
-      if (!grid) return;
-      const items = window.currentWorldCat === 'ALL'
-        ? window.worldNewsFeed
-        : window.worldNewsFeed.filter(x => x.cat === window.currentWorldCat);
-
-      grid.innerHTML = items.map(item => `
-        <div class="radar-card p-4 border-l-4 ${item.cat === 'WAR_PEACE' ? 'border-emerald-500' : (item.cat === 'CONFLICT' ? 'border-rose-500' : 'border-amber-500')} flex flex-col justify-between space-y-2.5">
-          <div>
-            <div class="flex items-center justify-between text-[10px] font-mono mb-1.5">
-              <span class="bg-white/10 text-amber-300 font-bold px-2 py-0.5 rounded">${item.badge} • ${item.region}</span>
-              <span class="text-rose-400 font-bold">${item.time}</span>
-            </div>
-            <h3 class="text-sm sm:text-base font-extrabold text-white leading-snug">${item.title}</h3>
-            <p class="text-xs text-gray-300 font-mono mt-1.5 leading-relaxed">${item.desc}</p>
-          </div>
-          <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-            <span class="text-gray-400">MARKET IMPACT:</span>
-            <span class="text-cyan-300 font-bold">${item.impact}</span>
-          </div>
-        </div>
-      `).join('');
-    };
-
-    // ========================================================
-    // LIVE BINANCE WEBSOCKET & 1-SECOND MASTER SYNC ENGINE
-    // ========================================================
-    const wsStreams = ['btcusdt@trade', 'ethusdt@trade', 'solusdt@trade', 'dydxusdt@trade', 'paxgusdt@trade'].join('/');
-    function initWebSocket() {
-      try {
-        const ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${wsStreams}`);
-        ws.onmessage = (event) => {
-          const payload = JSON.parse(event.data);
-          const data = payload.data;
-          if (!data) return;
-
-          const symbol = data.s;
-          const price = parseFloat(data.p);
-          const qty = parseFloat(data.q);
-          const isBuy = !data.m;
-
-          if (symbol === 'BTCUSDT') {
-            window.currentPrices.btc = price;
-            const el = document.getElementById('desk-btc-price');
-            if (el) {
-              el.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-              el.className = 'text-sm md:text-base font-bold my-0.5 ' + (isBuy ? 'text-emerald-400 pulse-flash-green' : 'text-rose-400 pulse-flash-red');
-            }
-            if (window.currentActiveView === 'BTC') {
-              const hEl = document.getElementById('hero-price');
-              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            }
-            updateDualFlows('BTC', isBuy, qty * (price / 100000));
-            syncLiveOrderFlowMetrics('BTC', isBuy, qty);
-            updateHeatmaps(price, null);
-          } else if (symbol === 'ETHUSDT') {
-            window.currentPrices.eth = price;
-            const el = document.getElementById('desk-eth-price');
-            if (el) el.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            if (window.currentActiveView === 'ETH') {
-              const hEl = document.getElementById('hero-price');
-              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            }
-            syncLiveOrderFlowMetrics('ETH', isBuy, qty * 0.05);
-          } else if (symbol === 'SOLUSDT') {
-            window.currentPrices.sol = price;
-            const el = document.getElementById('desk-sol-price');
-            if (el) el.textContent = '$' + price.toFixed(2);
-          } else if (symbol === 'DYDXUSDT') {
-            window.currentPrices.dydx = price;
-            const txt = '$' + price.toFixed(4);
-            const el = document.getElementById('desk-dydx-price');
-            const elRight = document.getElementById('market-dydx-price-right');
-            if (el) el.textContent = txt;
-            if (elRight) elRight.textContent = txt;
-            updateDualFlows('DYDX', isBuy, qty * 0.05);
-          } else if (symbol === 'PAXGUSDT') {
-            window.currentPrices.gold = price;
-            const spotEl = document.getElementById('rate-xau-spot');
-            if (spotEl) spotEl.textContent = '$' + price.toFixed(2);
-            if (window.currentActiveView === 'GOLD') {
-              const hEl = document.getElementById('hero-price');
-              if (hEl) hEl.textContent = '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            }
-            const tolaPKR = Math.round((price / 31.1035) * 11.6638 * 276.62);
-            const g10PKR = Math.round((price / 31.1035) * 10 * 276.62);
-            const tolaEl = document.getElementById('pkr-tola-rate');
-            if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
-            const gEl = document.getElementById('pkr-10g-rate');
-            if (gEl) gEl.textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
-
-            updateDualFlows('GOLD', isBuy, qty * (price / 50000));
-            syncLiveOrderFlowMetrics('GOLD', isBuy, qty * 0.1);
-            updateHeatmaps(null, price);
-          }
-
-          const tapeStream = document.getElementById('trade-tape-stream');
-          if (tapeStream && window.currentActiveView === 'QUANT_DESK') {
-            const row = document.createElement('div');
-            const timeStr = new Date(data.T).toLocaleTimeString('en-GB', { hour12: false });
-            row.className = `grid grid-cols-4 px-2 py-0.5 rounded ${isBuy ? 'bg-emerald-500/5 text-emerald-400' : 'bg-rose-500/5 text-rose-400'} border-b border-white/[0.02] font-hud`;
-            row.innerHTML = `<span>${timeStr}</span><span class="text-gray-300 font-bold font-mono">${symbol.replace('USDT','')}</span><span class="text-right">${price.toFixed(price < 1 ? 4 : 2)}</span><span class="text-right text-gray-400 font-mono">${qty.toFixed(2)}</span>`;
-            tapeStream.insertBefore(row, tapeStream.firstChild);
-            if (tapeStream.children.length > 15) tapeStream.removeChild(tapeStream.lastChild);
-          }
-        };
-        ws.onclose = () => setTimeout(initWebSocket, 2000);
-      } catch (e) {}
-    }
-    initWebSocket();
-
-    // 1-Second Master Synchronization & World News Ticker
-    let worldTickSec = 15;
-    let flashIdx = 0;
-
-    setInterval(() => {
-      const now = new Date();
-      const timeStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
-      const clockEl = document.getElementById('clock-pkt-radar');
-      const worldClockEl = document.getElementById('world-news-clock');
-      if (clockEl) clockEl.textContent = timeStr;
-      if (worldClockEl) worldClockEl.textContent = 'PKT ' + timeStr;
-
-      // Entry countdown
-      const secLeft = 59 - now.getSeconds();
-      const cdEl = document.getElementById('entry-countdown-timer');
-      if (cdEl) cdEl.textContent = '00:' + (secLeft < 10 ? '0' + secLeft : secLeft);
-
-      // Continuous Micro-Ticks so Gold, Silver, BTC, Oil & Indices never freeze
-      const gDelta = (Math.random() * 0.4 - 0.19);
-      window.currentPrices.gold = parseFloat((window.currentPrices.gold + gDelta).toFixed(2));
-      const sDelta = (Math.random() * 0.04 - 0.019);
-      window.currentPrices.silver = parseFloat((window.currentPrices.silver + sDelta).toFixed(2));
-      const bDelta = (Math.random() * 10 - 4.8);
-      window.currentPrices.btc = parseFloat((window.currentPrices.btc + bDelta).toFixed(2));
-      const oDelta = (Math.random() * 0.06 - 0.029);
-      window.currentPrices.oil = parseFloat((window.currentPrices.oil + oDelta).toFixed(2));
-
-      syncLiveOrderFlowMetrics('GOLD', gDelta >= 0, 0.15);
-      syncLiveOrderFlowMetrics('SILVER', sDelta >= 0, 0.15);
-      syncLiveOrderFlowMetrics('BTC', bDelta >= 0, 0.15);
-      syncLiveOrderFlowMetrics('OIL', oDelta >= 0, 0.15);
-
-      updateDualFlows('BTC', bDelta >= 0, 0.08);
-      updateDualFlows('GOLD', gDelta >= 0, 0.06);
-      updateDualFlows('SILVER', sDelta >= 0, 0.04);
-
-      // Update PKR Bullion Live
-      const tolaPKR = Math.round((window.currentPrices.gold / 31.1035) * 11.6638 * 276.62);
-      const g10PKR = Math.round((window.currentPrices.gold / 31.1035) * 10 * 276.62);
-      const spotEl = document.getElementById('rate-xau-spot');
-      const tolaEl = document.getElementById('pkr-tola-rate');
-      const gEl = document.getElementById('pkr-10g-rate');
-      if (spotEl) spotEl.textContent = '$' + window.currentPrices.gold.toFixed(2);
-      if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
-      if (gEl) gEl.textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
-
-      // Update Skills Gear Sync Badges
-      const sg = document.getElementById('skill-sync-gold');
-      const ss = document.getElementById('skill-sync-silver');
-      const sb = document.getElementById('skill-sync-btc');
-      if (sg) sg.textContent = window.currentPrices.gold.toFixed(2);
-      if (ss) ss.textContent = window.currentPrices.silver.toFixed(2);
-      if (sb) sb.textContent = window.currentPrices.btc.toFixed(2);
-
-      // Price Alarm Check
-      if (window.activeAlarm) {
-        const curP = window.currentPrices[window.activeAlarm.asset.toLowerCase()];
-        if (curP && Math.abs(curP - window.activeAlarm.target) <= (window.activeAlarm.asset === 'BTC' ? 25 : 1.5)) {
-          const box = document.getElementById('alert-status-box');
-          if (box) box.innerHTML = `<span class="text-emerald-400 font-extrabold animate-ping">🔊 ALARM HIT: ${window.activeAlarm.asset} @ $${curP.toFixed(2)}!</span>`;
-          window.activeAlarm = null;
-        }
-      }
-
-      // World News Minute Counter
-      worldTickSec--;
-      if (worldTickSec <= 0) {
-        worldTickSec = 15;
-        flashIdx = (flashIdx + 1) % MINUTE_WORLD_FLASHES.length;
-        const flEl = document.getElementById('world-minute-flash-text');
-        if (flEl) flEl.textContent = MINUTE_WORLD_FLASHES[flashIdx];
-      }
-      const cntEl = document.getElementById('world-next-tick-counter');
-      if (cntEl) cntEl.textContent = 'Next Wire Sync: ' + worldTickSec + 's';
-
-      if (window.currentActiveView === 'LIVE_SIGNALS') window.renderLiveSignalCards();
-      if (['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL'].includes(window.currentActiveView)) {
-        const hp = document.getElementById('hero-price');
-        const pv = window.currentPrices[window.currentActiveView.toLowerCase()];
-        if (hp && pv) hp.textContent = '$' + pv.toLocaleString('en-US', { minimumFractionDigits: 2 });
-      }
-      updateHeatmaps();
-    }, 1000);
-
-    // Initial Launch
-    window.addEventListener('DOMContentLoaded', () => {
-      window.switchView('BTC');
-      renderFlowsDOM();
-      syncFearAndGreed(0);
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-    });
-  </script>
-</body>
-</html>
+        out.innerHTML = `<span class="text-emerald-400 font-bold">30 Setups Replayed:</span> ${wins}W / ${losses}L (${winRate}\% Win Rate) • Expectancy +2.8R`; } };  window.runChartScanner = function() { const out = document.getElementById('scanner-output'); if (out) { out.innerHTML = `<span class="text-amber-300 font-bold">Scan Complete:</span> GOLD $${window.currentPrices.gold.toFixed(2)} (Reclaimed Floor) • BTC $${window.currentPrices.btc.toFixed(0)} (Sweep)`; } };  // DYNAMIC HEATMAPS & INFLOW/OUTFLOW ENGINE function updateHeatmaps(btcPrice, goldPrice) { if (btcPrice) window.currentPrices.btc = btcPrice; if (goldPrice) window.currentPrices.gold = goldPrice;  const bp = Math.round(window.currentPrices.btc); const btcContainer = document.getElementById('btc-heatmap-container'); if (btcContainer) { const wave = Math.sin(Date.now() / 1000) * 8; btcContainer.innerHTML = ` <div> <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp + 800} (Short Liq)</span><span class="text-amber-400 font-bold">$${(142.4 + wave).toFixed(1)}M</span></div> <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-amber-500 h-full" style="width: 88\%;"></div></div> </div> <div> <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp + 400} (Ask Shelf)</span><span class="text-amber-300 font-bold">$${(96.8 - wave * 0.5).toFixed(1)}M</span></div> <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-amber-400 h-full" style="width: 65\%;"></div></div> </div> <div> <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp - 400} (Long Liq)</span><span class="text-emerald-400 font-bold">$${(185.1 - wave).toFixed(1)}M</span></div> <div class="w-full h-1.5 bg-black rounded overflow-hidden"><div class="bg-emerald-500 h-full" style="width: 94\%;"></div></div> </div> <div> <div class="flex justify-between text-[9px] text-gray-400"><span>$${bp - 800} (Bid Floor)</span><span class="text
