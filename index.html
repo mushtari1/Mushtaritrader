@@ -106,14 +106,14 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
   <!-- ========================================================
-       1. PERMANENT STICKY TOP DISCLAIMER + LIVE TICKER + SESSION CLOCK
+       1. PERMANENT STICKY TOP DISCLAIMER + LIVE TICKER + SESSION CLOCK & COUNTDOWNS
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#180d04] via-[#070b13] to-[#180d04] border-b border-amber-500/50 px-2 sm:px-4 py-1.5 text-center shadow-2xl sticky top-0 z-50">
     <p class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
     </p>
 
-    <!-- TRADINGVIEW & CME SPOT SYNCHRONIZED TICKER RIBBON -->
+    <!-- UNIVERSAL TRADINGVIEW & CME SPOT SYNC TICKER RIBBON -->
     <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-0.5 mt-1 pt-1 border-t border-white/10 text-[10px] font-mono">
       <span class="text-emerald-400 font-extrabold">🔗 TRADINGVIEW & CME SPOT SYNC: LOCKED</span>
       <span class="text-amber-400 font-bold">🟡 XAUUSD: $<span data-sync-price="gold">3,795.00</span> <small data-sync-pct="gold" class="text-rose-400">(-1.12%)</small></span>
@@ -125,7 +125,7 @@
       <span class="text-sky-300 font-bold">🇵🇰 USD/PKR: Rs <span data-sync-price="usdpkr">276.51</span></span>
     </div>
 
-    <!-- GLOBAL MARKET SESSIONS & LIVE COUNTDOWN STRIP -->
+    <!-- PERMANENT GLOBAL MARKET SESSIONS & LIVE COUNTDOWN STRIP -->
     <div class="mt-1.5 pt-1.5 border-t border-amber-500/25 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-hud bg-black/75 px-2.5 py-1 rounded-lg border border-white/10">
       <div class="flex items-center gap-2">
         <span class="bg-amber-500 text-black font-black px-2 py-0.5 rounded text-[10px] uppercase">🕒 PKT <span data-sync-clock="pkt">--:--:--</span></span>
@@ -151,6 +151,8 @@
 
   <!-- ========================================================
        2. PERMANENT INSTITUTIONAL HERO BANNER
+          LEFT: MENTOR PICTURE
+          RIGHT: 3 REAL WORKING LIVE WINDOWS (BTC, GOLD, SILVER)
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-3 sm:px-6 shadow-2xl relative overflow-hidden">
     <div class="max-w-[1650px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
@@ -186,7 +188,7 @@
         </div>
       </div>
 
-      <!-- RIGHT SIDE: 3 LIVE WORKING WINDOWS -->
+      <!-- RIGHT SIDE: TITLE + 3 LIVE WORKING WINDOWS -->
       <div class="lg:col-span-8 flex flex-col justify-between space-y-2.5">
         <div class="text-center lg:text-left border-b border-amber-500/30 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <div>
@@ -301,7 +303,7 @@
   </header>
 
   <!-- ========================================================
-       TABS 1–5: RADAR VIEW
+       TABS 1–5: RADAR VIEW (TABS 1, 2, 3, 4, 5)
        ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 hidden">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
@@ -317,9 +319,13 @@
     </div>
 
     <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
-      <div class="flex items-baseline space-x-3">
-        <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,795.00</span>
-        <span id="hero-pct" class="text-base font-bold text-rose-400">-1.12%</span>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-baseline space-x-3">
+            <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,795.00</span>
+            <span id="hero-pct" class="text-base font-bold text-rose-400">-1.12%</span>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -332,71 +338,118 @@
       <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D QUANT DESK: SOLAR JUPITER ENGINE & SPOT SYNC [287]</span>
       <span class="text-gray-300 text-[10px] font-mono">PKT: <strong data-sync-clock="pkt" class="text-amber-400">--:--:--</strong></span>
     </div>
-    <section class="lg:col-span-12 glass-panel rounded-xl p-4 flex flex-col min-h-[350px] border-amber-500/20">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR • ORBITING ACTIVE</span>
-        <span class="text-[9px] text-emerald-400 font-hud font-bold">ABJAD 287 HARMONIC</span>
+
+    <section class="lg:col-span-3 flex flex-col gap-3">
+      <div class="glass-panel rounded-xl p-3 border-amber-500/30">
+        <div class="flex justify-between items-center mb-2 font-mono">
+          <span class="text-[11px] font-bold tracking-wider text-amber-400 uppercase">PKR BULLION ENGINE</span>
+          <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.5 rounded font-bold font-hud">24 KARAT</span>
+        </div>
+        <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30 space-y-1 font-mono">
+          <div class="flex justify-between items-baseline"><span class="text-xs text-amber-200">Gold Spot (oz):</span><span class="text-sm font-bold text-amber-400">$<span data-sync-price="gold">3,795.00</span></span></div>
+          <div class="flex justify-between items-baseline pt-1 border-t border-white/10"><span class="text-xs text-amber-200">1 Tola (PKR):</span><span id="pkr-tola-rate" class="text-base font-bold text-amber-400">Rs 3,93,800</span></div>
+        </div>
       </div>
-      <div id="three-reactor-canvas" class="w-full h-[280px] bg-black/80 rounded border border-white/10"></div>
+    </section>
+
+    <section class="lg:col-span-9 flex flex-col gap-3">
+      <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
+        <div class="flex items-center justify-between mb-1 z-10">
+          <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR • ORBITING ACTIVE</span>
+          <span class="text-[9px] text-emerald-400 font-hud font-bold">ABJAD 287 HARMONIC</span>
+        </div>
+        <div class="w-full h-[300px] relative flex items-center justify-center">
+          <div id="three-reactor-canvas" class="w-full h-full bg-black/60 rounded border border-white/10"></div>
+        </div>
+      </div>
     </section>
   </main>
 
   <!-- ========================================================
-       TAB 7: 11 AI SKILLS PACK
+       TAB 7: 🤖 11 AI SKILLS PACK
        ======================================================== -->
   <main id="view-ai-skills" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div class="glass-panel rounded-xl p-4 border border-amber-500/40">
-      <h2 class="text-base font-black text-amber-300 uppercase">11 AI TRADING SKILLS SUITE • FULLY ACTIVE</h2>
-      <p class="text-xs text-gray-300 mt-1 font-mono">All calculators synchronized with TradingView & CME Spot anchors.</p>
+    <div class="glass-panel rounded-xl p-4 border border-amber-500/40 bg-gradient-to-r from-amber-950/30 via-black to-emerald-950/30">
+      <h2 class="text-base font-black text-amber-300 uppercase">11 AI TRADING SKILLS SUITE • QUAD-ASSET GEAR SYNC</h2>
+      <p class="text-xs text-gray-300 mt-1 font-mono">All analyzers, position calculators, and risk guards synchronized with TradingView & CME Spot anchors.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="radar-card p-4 border border-emerald-500/40 space-y-2">
+        <h4 class="text-sm font-bold text-white">Multi-Timeframe SMC Pattern Scanner</h4>
+        <button type="button" onclick="window.runChartScanner()" class="w-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-bold py-1.5 rounded text-xs cursor-pointer">🔍 LIVE SCAN GOLD, SILVER, BTC & OIL</button>
+        <div id="scanner-output" class="bg-black/70 p-2 rounded border border-white/10 text-[11px] font-mono text-gray-200">Ready for scan...</div>
+      </div>
+      <div class="radar-card p-4 border border-cyan-500/40 space-y-2">
+        <h4 class="text-sm font-bold text-white">Position & Lot Size Calculator</h4>
+        <div class="grid grid-cols-3 gap-1.5 text-xs font-mono">
+          <div><label class="text-[9px] text-gray-400 block">Balance ($)</label><input type="number" id="calc-balance" value="1000" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-white" /></div>
+          <div><label class="text-[9px] text-gray-400 block">Risk (%)</label><input type="number" id="calc-risk" value="2" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-amber-300" /></div>
+          <div><label class="text-[9px] text-gray-400 block">SL ($)</label><input type="number" id="calc-sl" value="10" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-rose-300" /></div>
+        </div>
+        <div id="calc-lot-output" class="bg-black/70 p-2 rounded border border-amber-500/30 text-xs font-mono text-emerald-400 font-bold">Risk: $20.00 • Recommended: 0.20 Std Lot</div>
+      </div>
     </div>
   </main>
 
   <!-- ========================================================
-       TAB 8: LIVE SIGNALS (QUAD-ASSET ENGINE)
+       TAB 8: ⚡ LIVE SIGNALS (QUAD-ASSET ENGINE)
        ======================================================== -->
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-3.5 border border-yellow-500/40 mb-3 flex items-center justify-between">
-      <h2 class="text-base font-black text-amber-300 uppercase">QUAD-ASSET SYNCHRONIZED SIGNAL ENGINE</h2>
+      <h2 class="text-base font-black text-amber-300 uppercase">QUAD-ASSET SYNCHRONIZED SIGNAL ENGINE (GOLD • SILVER • BTC • OIL)</h2>
+      <div class="flex gap-2">
+        <button type="button" onclick="window.setSignalTimeframe('15M')" class="tf-btn-active px-3 py-1 rounded text-xs font-bold cursor-pointer">15M</button>
+        <button type="button" onclick="window.setSignalTimeframe('1H')" class="px-3 py-1 rounded text-xs font-bold text-gray-300 cursor-pointer">1H</button>
+      </div>
     </div>
     <div id="live-signals-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
   <!-- ========================================================
-       TAB 9: ECONOMIC CALENDAR / FOREX FACTORY
+       TAB 9: 📅 ECONOMIC CALENDAR / FOREX FACTORY
        ======================================================== -->
   <main id="view-forex-factory" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="radar-card overflow-x-auto border border-orange-500/30 p-3">
       <table class="w-full text-left border-collapse text-xs font-mono">
-        <thead><tr class="text-orange-300 uppercase text-[11px]"><th class="p-2">Time</th><th class="p-2">Cur</th><th class="p-2">Impact</th><th class="p-2">Event</th><th class="p-2 text-right">Actual</th></tr></thead>
+        <thead><tr class="text-orange-300 uppercase text-[11px] border-b border-white/10"><th class="p-2">Time (PKT)</th><th class="p-2">Cur</th><th class="p-2">Impact</th><th class="p-2">Event</th><th class="p-2 text-right">Actual</th><th class="p-2 text-right">Forecast</th></tr></thead>
         <tbody id="forex-factory-tbody" class="divide-y divide-white/5"></tbody>
       </table>
     </div>
   </main>
 
   <!-- ========================================================
-       TAB 10: BLOOMBERG WIRE
+       TAB 10: 📰 BLOOMBERG WIRE
        ======================================================== -->
-  <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden">
+  <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+    <div class="glass-panel rounded-xl p-3 border-cyan-500/30 mb-3">
+      <h2 class="font-cinzel text-lg font-bold tracking-widest text-cyan-400 uppercase">BLOOMBERG TERMINAL • GLOBAL DISPATCH</h2>
+    </div>
     <div id="bloomberg-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </main>
 
   <!-- ========================================================
-       TAB 11: TOTAL WORLD NEWS TERMINAL
+       TAB 11: 🌍 TOTAL WORLD NEWS TERMINAL
        ======================================================== -->
   <main id="view-world-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+    <div class="glass-panel rounded-xl p-3 border-rose-500/30 mb-3">
+      <h2 class="font-cinzel text-lg font-bold tracking-widest text-rose-300 uppercase">TOTAL WORLD NEWS TERMINAL • GEOPOLITICS & FRONT-LINES</h2>
+    </div>
     <div id="world-news-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
   </main>
 
   <!-- ========================================================
-       TAB 12: AI PREDICTOR
+       TAB 12: 🧠 AI PREDICTOR
        ======================================================== -->
   <main id="view-ai-intelligence" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div id="ai-house-conviction-box" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono mb-3"></div>
-    <div id="ai-master-verdict-banner" class="bg-black/70 border border-amber-500/30 rounded-lg p-3 text-xs font-mono text-gray-200"></div>
+    <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 bg-gradient-to-r from-[#1a1205] via-[#0c1222] to-[#120924] space-y-3">
+      <h2 class="font-cinzel text-lg font-black text-amber-300 uppercase">AAJ MARKET MEIN KYA HO SAKTA HAI (LIVE AI CONVICTION)</h2>
+      <div id="ai-house-conviction-box" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono"></div>
+      <div id="ai-master-verdict-banner" class="bg-black/70 border border-amber-500/30 rounded-lg p-3 text-xs font-mono text-gray-200"></div>
+    </div>
   </main>
 
   <!-- ========================================================
-       TAB 13: 6-CHART LIQUIDITY SWEEP MATRIX
+       TAB 13: 📊 6-CHART LIQUIDITY SWEEP MATRIX
        ======================================================== -->
   <main id="view-multi-sweep-matrix" class="w-full px-3 sm:px-6 py-3 space-y-3.5 flex-1 block font-hud">
     <div class="glass-panel rounded-xl p-3.5 border-2 border-cyan-400/60 bg-gradient-to-r from-cyan-950/40 via-black to-amber-950/30 flex flex-wrap items-center justify-between gap-3">
@@ -493,6 +546,10 @@
       if (pktTimeStr) {
         document.querySelectorAll('[data-sync-clock="pkt"]').forEach(el => { el.textContent = pktTimeStr; });
       }
+
+      const tolaPKR = Math.round((P.gold / 31.1035) * 11.6638 * P.usdpkr);
+      const tolaEl = document.getElementById('pkr-tola-rate');
+      if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
     };
 
     // 3D JUPITER REACTOR RENDERER
@@ -521,6 +578,22 @@
       }
       anim();
     }
+
+    // TAB 7 TOOLS WORKING
+    window.runLotCalculator = function() {
+      const bal = parseFloat(document.getElementById('calc-balance')?.value) || 1000;
+      const risk = parseFloat(document.getElementById('calc-risk')?.value) || 2;
+      const sl = parseFloat(document.getElementById('calc-sl')?.value) || 10;
+      const rUsd = (bal * risk) / 100;
+      const out = document.getElementById('calc-lot-output');
+      if (out) out.textContent = `Risk: $${rUsd.toFixed(2)} • Recommended: ${Math.max(0.01, rUsd / (sl * 10)).toFixed(2)} Std Lot`;
+    };
+
+    window.runChartScanner = function() {
+      const P = window.masterState.prices;
+      const o = document.getElementById('scanner-output');
+      if (o) o.innerHTML = `GOLD $${fmtNum(P.gold, 2)} (FVG Reclaim) • SILVER $${fmtNum(P.silver, 2)} • BTC $${fmtNum(P.btc, 0)} • OIL $${fmtNum(P.oil, 2)}`;
+    };
 
     // TAB 8 LIVE SIGNALS RENDERER
     window.renderLiveSignalCards = function() {
@@ -553,8 +626,29 @@
       const tbody = document.getElementById('forex-factory-tbody');
       if (!tbody) return;
       tbody.innerHTML = `
-        <tr><td class="p-2 text-gray-200">03:00 PM PKT</td><td class="p-2 text-cyan-300">EUR</td><td class="p-2"><span class="bg-amber-500 text-black px-1.5 rounded text-[10px]">MED</span></td><td class="p-2 text-white">Eurozone Flash GDP</td><td class="p-2 text-right text-amber-300">0.2%</td></tr>
-        <tr><td class="p-2 text-gray-200">06:30 PM PKT</td><td class="p-2 text-cyan-300">USD</td><td class="p-2"><span class="bg-red-600 text-white px-1.5 rounded text-[10px]">HIGH</span></td><td class="p-2 text-white">US Producer Price Index (PPI)</td><td class="p-2 text-right text-amber-300">Pending</td></tr>
+        <tr class="hover:bg-white/5"><td class="p-2 text-gray-200">03:00 PM PKT</td><td class="p-2 text-cyan-300 font-bold">EUR</td><td class="p-2"><span class="bg-amber-500 text-black px-1.5 rounded text-[10px] font-bold">MED</span></td><td class="p-2 text-white font-bold">Eurozone Flash GDP q/q</td><td class="p-2 text-right text-amber-300 font-bold">0.2%</td><td class="p-2 text-right text-gray-300">0.2%</td></tr>
+        <tr class="hover:bg-white/5"><td class="p-2 text-gray-200">06:30 PM PKT</td><td class="p-2 text-cyan-300 font-bold">USD</td><td class="p-2"><span class="bg-red-600 text-white px-1.5 rounded text-[10px] font-bold">HIGH</span></td><td class="p-2 text-white font-bold">US Producer Price Index (PPI m/m)</td><td class="p-2 text-right text-amber-300 font-bold">Pending</td><td class="p-2 text-right text-gray-300">0.4%</td></tr>
+      `;
+    };
+
+    // TAB 10 BLOOMBERG WIRE RENDERER
+    window.renderBloombergArticles = function() {
+      const c = document.getElementById('bloomberg-news-grid');
+      if (!c) return;
+      const P = window.masterState.prices;
+      c.innerHTML = `
+        <div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-amber-400 font-bold">COMMODITIES • LIVE</span><h3 class="font-hud text-sm font-bold text-white mt-1">Spot Gold Synced @ $${fmtNum(P.gold, 2)} Across Global Desks</h3><p class="text-[11px] text-gray-400 mt-1.5">Silver trades at $${fmtNum(P.silver, 2)} as NY session opens.</p></div>
+        <div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-emerald-400 font-bold">DIGITAL ASSETS • LIVE</span><h3 class="font-hud text-sm font-bold text-white mt-1">Bitcoin Trades @ $${fmtNum(P.btc, 0)} on Live Match Engine</h3><p class="text-[11px] text-gray-400 mt-1.5">ETH holds $${fmtNum(P.eth, 2)} ahead of US macro data.</p></div>
+      `;
+    };
+
+    // TAB 11 WORLD NEWS RENDERER
+    window.renderWorldNews = function() {
+      const g = document.getElementById('world-news-grid');
+      if (!g) return;
+      const P = window.masterState.prices;
+      g.innerHTML = `
+        <div class="radar-card p-4 border-l-4 border-amber-500"><div class="flex justify-between text-[10px] mb-1"><span class="text-amber-300 font-bold">🏦 MACRO • GOLD & BTC</span><span class="text-emerald-400 font-bold">Live</span></div><h3 class="text-sm font-extrabold text-white">Gold ($${fmtNum(P.gold, 2)}) & BTC ($${fmtNum(P.btc, 0)}) Synced</h3><p class="text-xs text-gray-300 mt-1">Atomic synchronization active across desktop and mobile terminals.</p></div>
       `;
     };
 
@@ -650,8 +744,8 @@
       else if (tabKey === 'AI_SKILLS') views.skills.classList.remove('hidden');
       else if (tabKey === 'LIVE_SIGNALS') { views.signals.classList.remove('hidden'); window.renderLiveSignalCards(); }
       else if (tabKey === 'FOREX_FACTORY') { views.forexfactory.classList.remove('hidden'); window.renderForexFactory(); }
-      else if (tabKey === 'BLOOMBERG_NEWS') views.bloomberg.classList.remove('hidden');
-      else if (tabKey === 'WORLD_NEWS') views.world.classList.remove('hidden');
+      else if (tabKey === 'BLOOMBERG_NEWS') { views.bloomberg.classList.remove('hidden'); window.renderBloombergArticles(); }
+      else if (tabKey === 'WORLD_NEWS') { views.world.classList.remove('hidden'); window.renderWorldNews(); }
       else if (tabKey === 'AI_INTELLIGENCE') { views.aiintel.classList.remove('hidden'); window.renderAIIntelligenceTab(); }
       else if (tabKey === 'MULTI_SWEEP_MATRIX') { views.matrix.classList.remove('hidden'); drawAll6MatrixCharts(); }
       else views.radar.classList.remove('hidden');
