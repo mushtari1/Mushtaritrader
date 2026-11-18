@@ -106,14 +106,14 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
   <!-- ========================================================
-       1. PERMANENT STICKY TOP DISCLAIMER + LIVE TICKER + SESSION CLOCK & COUNTDOWNS
+       1. PERMANENT STICKY TOP DISCLAIMER + LIVE TICKER + SESSION CLOCK
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#180d04] via-[#070b13] to-[#180d04] border-b border-amber-500/50 px-2 sm:px-4 py-1.5 text-center shadow-2xl sticky top-0 z-50">
     <p class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
     </p>
 
-    <!-- UNIVERSAL TRADINGVIEW & CME SPOT SYNC TICKER RIBBON -->
+    <!-- TRADINGVIEW & CME SPOT SYNCHRONIZED TICKER RIBBON -->
     <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-0.5 mt-1 pt-1 border-t border-white/10 text-[10px] font-mono">
       <span class="text-emerald-400 font-extrabold">🔗 TRADINGVIEW & CME SPOT SYNC: LOCKED</span>
       <span class="text-amber-400 font-bold">🟡 XAUUSD: $<span data-sync-price="gold">3,795.00</span> <small data-sync-pct="gold" class="text-rose-400">(-1.12%)</small></span>
@@ -125,7 +125,7 @@
       <span class="text-sky-300 font-bold">🇵🇰 USD/PKR: Rs <span data-sync-price="usdpkr">276.51</span></span>
     </div>
 
-    <!-- PERMANENT GLOBAL MARKET SESSIONS & LIVE COUNTDOWN STRIP -->
+    <!-- GLOBAL MARKET SESSIONS & LIVE COUNTDOWN STRIP -->
     <div class="mt-1.5 pt-1.5 border-t border-amber-500/25 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-hud bg-black/75 px-2.5 py-1 rounded-lg border border-white/10">
       <div class="flex items-center gap-2">
         <span class="bg-amber-500 text-black font-black px-2 py-0.5 rounded text-[10px] uppercase">🕒 PKT <span data-sync-clock="pkt">--:--:--</span></span>
@@ -133,131 +133,70 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-2 font-mono text-[10px]">
-        <div id="sess-pill-asia" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5">
-          <span>🌏 ASIAN:</span>
-          <strong id="sess-txt-asia" class="text-gray-300">--:--:--</strong>
-        </div>
-        <div id="sess-pill-london" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5">
-          <span>🇬🇧 LONDON:</span>
-          <strong id="sess-txt-london" class="text-gray-300">--:--:--</strong>
-        </div>
-        <div id="sess-pill-ny" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5">
-          <span>🇺🇸 NEW YORK:</span>
-          <strong id="sess-txt-ny" class="text-amber-300">--:--:--</strong>
-        </div>
+        <div id="sess-pill-asia" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🌏 ASIAN:</span><strong id="sess-txt-asia" class="text-gray-300">--:--:--</strong></div>
+        <div id="sess-pill-london" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🇬🇧 LONDON:</span><strong id="sess-txt-london" class="text-gray-300">--:--:--</strong></div>
+        <div id="sess-pill-ny" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🇺🇸 NEW YORK:</span><strong id="sess-txt-ny" class="text-amber-300">--:--:--</strong></div>
       </div>
     </div>
   </div>
 
   <!-- ========================================================
        2. PERMANENT INSTITUTIONAL HERO BANNER
-          LEFT: MENTOR PICTURE
-          RIGHT: 3 REAL WORKING LIVE WINDOWS (BTC, GOLD, SILVER)
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-3 sm:px-6 shadow-2xl relative overflow-hidden">
     <div class="max-w-[1650px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
       
-      <!-- LEFT SIDE: MENTOR PICTURE -->
       <div class="lg:col-span-4 flex flex-col items-center justify-center">
         <div class="relative w-full max-w-[430px] rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] bg-[#120b07] group">
-          <img 
-            id="hero-mentor-photo"
-            src="Mustari.jpg" 
-            alt="Mushtari Trader • Institutional Mentor Desk" 
-            class="w-full h-[185px] sm:h-[205px] object-cover object-center block brightness-110 contrast-125 saturate-110"
-            onerror="window.handleMentorImgError(this)"
-          />
+          <img id="hero-mentor-photo" src="Mustari.jpg" alt="Mushtari Trader" class="w-full h-[185px] sm:h-[205px] object-cover object-center block brightness-110 contrast-125 saturate-110" onerror="window.handleMentorImgError(this)" />
           <div id="hero-mentor-fallback" class="hidden w-full h-[195px] bg-gradient-to-br from-[#2a0f14] via-[#121826] to-[#090d16] p-3 flex flex-col items-center justify-between text-center relative">
             <div class="text-[10px] font-cinzel font-black text-amber-300 tracking-wider">🦅 AL-IRTIQAA CAPITAL • MUSHTARI TRADER</div>
-            <div class="w-20 h-20 rounded-full border-2 border-amber-400 bg-gradient-to-b from-[#5e141c] to-[#1a090d] flex items-center justify-center shadow-lg">
-              <span class="font-cinzel font-black text-2xl text-amber-300">MT</span>
-            </div>
+            <div class="w-20 h-20 rounded-full border-2 border-amber-400 bg-gradient-to-b from-[#5e141c] to-[#1a090d] flex items-center justify-center shadow-lg"><span class="font-cinzel font-black text-2xl text-amber-300">MT</span></div>
             <div>
               <div class="text-xs font-hud font-extrabold text-amber-400 uppercase">MASTER OF MARKET STRUCTURE & TIMING</div>
               <input type="file" id="mentor-pic-uploader" accept="image/*" class="hidden" onchange="window.uploadAndLockMentorPic(event)" />
-              <button type="button" onclick="document.getElementById('mentor-pic-uploader').click()" class="mt-1 bg-amber-500 text-black text-[10px] font-extrabold px-2.5 py-0.5 rounded cursor-pointer">
-                🖼️ Tap to Lock Your Pic
-              </button>
+              <button type="button" onclick="document.getElementById('mentor-pic-uploader').click()" class="mt-1 bg-amber-500 text-black text-[10px] font-extrabold px-2.5 py-0.5 rounded cursor-pointer">🖼️ Tap to Lock Your Pic</button>
             </div>
           </div>
           <div class="w-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-600 text-black text-center py-1 px-2">
-            <p class="font-hud font-black text-[11px] tracking-wider uppercase leading-tight">
-              MUSHTARI TRADER • MASTER OF MARKET STRUCTURE & TIMING
-            </p>
+            <p class="font-hud font-black text-[11px] tracking-wider uppercase leading-tight">MUSHTARI TRADER • MASTER OF MARKET STRUCTURE & TIMING</p>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT SIDE: TITLE + 3 LIVE WORKING WINDOWS -->
       <div class="lg:col-span-8 flex flex-col justify-between space-y-2.5">
         <div class="text-center lg:text-left border-b border-amber-500/30 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <div>
             <div class="flex items-center justify-center lg:justify-start gap-2">
               <span class="text-xl">🦅</span>
-              <span class="font-cinzel font-black text-base sm:text-xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">
-                AL-IRTIQAA CAPITAL
-              </span>
+              <span class="font-cinzel font-black text-base sm:text-xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">AL-IRTIQAA CAPITAL</span>
               <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded font-hud font-bold">ABJAD 287</span>
             </div>
-            <h2 class="font-hud font-black text-lg sm:text-2xl md:text-3xl text-amber-300 tracking-wide uppercase">
-              MUSHTARI TRADER • INSTITUTIONAL DESK
-            </h2>
+            <h2 class="font-hud font-black text-lg sm:text-2xl md:text-3xl text-amber-300 tracking-wide uppercase">MUSHTARI TRADER • INSTITUTIONAL DESK</h2>
           </div>
-          <div class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1 rounded self-center">
-            ● TRADINGVIEW / CME SPOT 100% SYNCED
-          </div>
+          <div class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1 rounded self-center">● TRADINGVIEW / CME SPOT 100% SYNCED</div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <div onclick="window.switchView('BTC')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-amber-500/50 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-hud font-extrabold text-xs text-amber-400 flex items-center gap-1">
-                <span>₿</span><span>BTCUSDT LIVE</span>
-              </span>
-              <span data-sync-pct="btc" class="text-[10px] font-mono font-bold text-rose-400">-0.74%</span>
-            </div>
-            <div class="text-lg sm:text-xl font-hud font-black text-white leading-none mb-1.5">
-              $<span data-sync-price="btc">64,603.00</span>
-            </div>
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-amber-400 flex items-center gap-1"><span>₿</span><span>BTCUSDT LIVE</span></span><span data-sync-pct="btc" class="text-[10px] font-mono font-bold text-rose-400">-0.74%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-white leading-none mb-1.5">$<span data-sync-price="btc">64,603.00</span></div>
             <canvas id="hero-win-canvas-btc" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
-            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10">
-              <span class="text-emerald-400">SSL: $<span id="hero-win-btc-ssl">63,850</span></span>
-              <span class="text-rose-400">BSL: $<span id="hero-win-btc-bsl">65,250</span></span>
-            </div>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-btc-ssl">63,850</span></span><span class="text-rose-400">BSL: $<span id="hero-win-btc-bsl">65,250</span></span></div>
           </div>
 
           <div onclick="window.switchView('GOLD')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-yellow-400/70 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-hud font-extrabold text-xs text-yellow-300 flex items-center gap-1">
-                <span>🟡</span><span>XAUUSD GOLD SPOT</span>
-              </span>
-              <span data-sync-pct="gold" class="text-[10px] font-mono font-bold text-rose-400">-1.12%</span>
-            </div>
-            <div class="text-lg sm:text-xl font-hud font-black text-amber-300 leading-none mb-1.5">
-              $<span data-sync-price="gold">3,795.00</span>
-            </div>
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-yellow-300 flex items-center gap-1"><span>🟡</span><span>XAUUSD GOLD SPOT</span></span><span data-sync-pct="gold" class="text-[10px] font-mono font-bold text-rose-400">-1.12%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-amber-300 leading-none mb-1.5">$<span data-sync-price="gold">3,795.00</span></div>
             <canvas id="hero-win-canvas-gold" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
-            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10">
-              <span class="text-emerald-400">SSL: $<span id="hero-win-gold-ssl">3,780</span></span>
-              <span class="text-rose-400">BSL: $<span id="hero-win-gold-bsl">3,825</span></span>
-            </div>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-gold-ssl">3,780</span></span><span class="text-rose-400">BSL: $<span id="hero-win-gold-bsl">3,825</span></span></div>
           </div>
 
           <div onclick="window.switchView('SILVER')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-cyan-400/60 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-hud font-extrabold text-xs text-cyan-300 flex items-center gap-1">
-                <span>⚪</span><span>XAGUSD SILVER SPOT</span>
-              </span>
-              <span data-sync-pct="silver" class="text-[10px] font-mono font-bold text-rose-400">-1.49%</span>
-            </div>
-            <div class="text-lg sm:text-xl font-hud font-black text-cyan-200 leading-none mb-1.5">
-              $<span data-sync-price="silver">46.68</span>
-            </div>
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-cyan-300 flex items-center gap-1"><span>⚪</span><span>XAGUSD SILVER SPOT</span></span><span data-sync-pct="silver" class="text-[10px] font-mono font-bold text-rose-400">-1.49%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-cyan-200 leading-none mb-1.5">$<span data-sync-price="silver">46.68</span></div>
             <canvas id="hero-win-canvas-silver" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
-            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10">
-              <span class="text-emerald-400">SSL: $<span id="hero-win-silver-ssl">46.10</span></span>
-              <span class="text-rose-400">BSL: $<span id="hero-win-silver-bsl">47.40</span></span>
-            </div>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-silver-ssl">46.10</span></span><span class="text-rose-400">BSL: $<span id="hero-win-silver-bsl">47.40</span></span></div>
           </div>
         </div>
       </div>
@@ -265,19 +204,15 @@
   </div>
 
   <!-- ========================================================
-       3. TOP HEADER / HUD NAVIGATION (ALL 13 TABS INTACT)
+       3. TOP HEADER / HUD NAVIGATION (13 TABS)
        ======================================================== -->
   <header class="w-full bg-[#0b0f18] border-b border-amber-500/25 px-3 sm:px-6 py-2.5 z-40 shadow-lg relative">
     <div class="w-full flex flex-wrap items-center justify-between gap-2.5">
       <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg border border-amber-300/40">
-          <span class="font-cinzel font-black text-black text-lg">🦅</span>
-        </div>
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg border border-amber-300/40"><span class="font-cinzel font-black text-black text-lg">🦅</span></div>
         <div>
           <div class="flex items-center space-x-1.5">
-            <h1 class="font-cinzel text-base md:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">
-              AL-IRTIQAA CAPITAL
-            </h1>
+            <h1 class="font-cinzel text-base md:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">AL-IRTIQAA CAPITAL</h1>
             <span class="text-[10px] bg-amber-500/10 border border-amber-500/30 text-amber-400 px-1.5 py-0.5 rounded font-bold font-hud">287</span>
           </div>
           <p class="text-[10px] text-gray-400 tracking-widest uppercase">Mushtari Trader • 13-Tab Synchronized Desk</p>
@@ -303,7 +238,7 @@
   </header>
 
   <!-- ========================================================
-       TABS 1–5: RADAR VIEW (TABS 1, 2, 3, 4, 5)
+       TABS 1–5: RADAR & LIQUIDITY VIEWS
        ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 hidden">
     <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
@@ -319,27 +254,23 @@
     </div>
 
     <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-baseline space-x-3">
-            <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,795.00</span>
-            <span id="hero-pct" class="text-base font-bold text-rose-400">-1.12%</span>
-          </div>
-        </div>
+      <div class="flex items-baseline space-x-3">
+        <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,795.00</span>
+        <span id="hero-pct" class="text-base font-bold text-rose-400">-1.12%</span>
       </div>
     </div>
   </main>
 
   <!-- ========================================================
-       TAB 6: 3D QUANT DESK (SOLAR JUPITER ENGINE)
+       TAB 6: 3D QUANT DESK (SOLAR JUPITER REACTOR & LUNAR TIMING)
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
-      <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D QUANT DESK: SOLAR JUPITER ENGINE & SPOT SYNC [287]</span>
+      <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D QUANT DESK: SOLAR JUPITER ENGINE, LUNAR PHASES & SPOT SYNC [287]</span>
       <span class="text-gray-300 text-[10px] font-mono">PKT: <strong data-sync-clock="pkt" class="text-amber-400">--:--:--</strong></span>
     </div>
 
-    <section class="lg:col-span-3 flex flex-col gap-3">
+    <section class="lg:col-span-4 flex flex-col gap-3">
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between items-center mb-2 font-mono">
           <span class="text-[11px] font-bold tracking-wider text-amber-400 uppercase">PKR BULLION ENGINE</span>
@@ -350,15 +281,24 @@
           <div class="flex justify-between items-baseline pt-1 border-t border-white/10"><span class="text-xs text-amber-200">1 Tola (PKR):</span><span id="pkr-tola-rate" class="text-base font-bold text-amber-400">Rs 3,93,800</span></div>
         </div>
       </div>
+
+      <div class="glass-panel rounded-xl p-3 border-cyan-500/30">
+        <div class="flex justify-between items-center mb-1.5 font-mono"><span class="text-[11px] font-bold tracking-wider text-cyan-300 uppercase">LUNAR ASTRO CYCLE</span><span class="text-base">🌒</span></div>
+        <div class="bg-black/60 p-2 rounded border border-white/5 space-y-1 text-xs font-mono">
+          <div class="flex justify-between"><span>🌑 New Moon:</span><span class="text-amber-400">Active</span></div>
+          <div class="flex justify-between"><span>🌓 First Qtr:</span><span class="text-cyan-400">Synced</span></div>
+          <div class="flex justify-between"><span>🌕 Full Moon:</span><span class="text-emerald-400">Peak Cycle</span></div>
+        </div>
+      </div>
     </section>
 
-    <section class="lg:col-span-9 flex flex-col gap-3">
+    <section class="lg:col-span-8 flex flex-col gap-3">
       <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
-        <div class="flex items-center justify-between mb-1 z-10">
+        <div class="flex items-center justify-between mb-2 z-10">
           <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR • ORBITING ACTIVE</span>
           <span class="text-[9px] text-emerald-400 font-hud font-bold">ABJAD 287 HARMONIC</span>
         </div>
-        <div class="w-full h-[300px] relative flex items-center justify-center">
+        <div class="w-full h-[320px] relative flex items-center justify-center">
           <div id="three-reactor-canvas" class="w-full h-full bg-black/60 rounded border border-white/10"></div>
         </div>
       </div>
@@ -438,11 +378,11 @@
   </main>
 
   <!-- ========================================================
-       TAB 12: 🧠 AI PREDICTOR
+       TAB 12: 🧠 AI PREDICTOR & ORDER FLOW HEATMAP INTEL
        ======================================================== -->
   <main id="view-ai-intelligence" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 bg-gradient-to-r from-[#1a1205] via-[#0c1222] to-[#120924] space-y-3">
-      <h2 class="font-cinzel text-lg font-black text-amber-300 uppercase">AAJ MARKET MEIN KYA HO SAKTA HAI (LIVE AI CONVICTION)</h2>
+      <h2 class="font-cinzel text-lg font-black text-amber-300 uppercase">AAJ MARKET MEIN KYA HO SAKTA HAI (ORDER FLOW & AI CONVICTION)</h2>
       <div id="ai-house-conviction-box" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono"></div>
       <div id="ai-master-verdict-banner" class="bg-black/70 border border-amber-500/30 rounded-lg p-3 text-xs font-mono text-gray-200"></div>
     </div>
@@ -454,61 +394,34 @@
   <main id="view-multi-sweep-matrix" class="w-full px-3 sm:px-6 py-3 space-y-3.5 flex-1 block font-hud">
     <div class="glass-panel rounded-xl p-3.5 border-2 border-cyan-400/60 bg-gradient-to-r from-cyan-950/40 via-black to-amber-950/30 flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h2 class="font-cinzel text-base sm:text-xl font-black text-white tracking-wider uppercase">
-          TAB 13 • TRADINGVIEW & CME SPOT 6-CHART LIQUIDITY SWEEP MATRIX
-        </h2>
-        <p class="text-[11px] text-gray-300 font-mono">
-          Pure Spot Feed • Synchronized Gold ($3,795.00), Silver ($46.68), BTC ($64,603.00), Oil ($84.35)!
-        </p>
+        <h2 class="font-cinzel text-base sm:text-xl font-black text-white tracking-wider uppercase">TAB 13 • TRADINGVIEW & CME SPOT 6-CHART LIQUIDITY SWEEP MATRIX</h2>
+        <p class="text-[11px] text-gray-300 font-mono">Pure Spot Feed • Synchronized Gold ($3,795.00), Silver ($46.68), BTC ($64,603.00), Oil ($84.35)!</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
       <div class="radar-card p-3 border-2 border-amber-500/50 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-amber-400">🟡 1. XAUUSD (GOLD SPOT)</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="gold">3,795.00</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-amber-400">🟡 1. XAUUSD (GOLD SPOT)</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="gold">3,795.00</span></span></div>
         <canvas id="mcanvas-GOLD" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
-
       <div class="radar-card p-3 border-2 border-cyan-500/40 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-cyan-300">⚪ 2. XAGUSD (SILVER SPOT)</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="silver">46.68</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-cyan-300">⚪ 2. XAGUSD (SILVER SPOT)</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="silver">46.68</span></span></div>
         <canvas id="mcanvas-SILVER" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
-
       <div class="radar-card p-3 border-2 border-emerald-500/40 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-emerald-400">🟠 3. BTCUSDT (BITCOIN)</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="btc">64,603.00</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-emerald-400">🟠 3. BTCUSDT (BITCOIN)</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="btc">64,603.00</span></span></div>
         <canvas id="mcanvas-BTC" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
-
       <div class="radar-card p-3 border-2 border-rose-500/40 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-rose-400">🛢️ 4. WTI CRUDE OIL</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="oil">84.35</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-rose-400">🛢️ 4. WTI CRUDE OIL</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="oil">84.35</span></span></div>
         <canvas id="mcanvas-OIL" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
-
       <div class="radar-card p-3 border-2 border-purple-500/40 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-purple-300">🟣 5. DYDXUSDT (DEX PERP)</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="dydx">0.0942</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-purple-300">🟣 5. DYDXUSDT (DEX PERP)</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="dydx">0.0942</span></span></div>
         <canvas id="mcanvas-DYDX" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
-
       <div class="radar-card p-3 border-2 border-indigo-500/40 bg-[#080c15] flex flex-col justify-between">
-        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-          <span class="text-xs font-black text-indigo-300">💎 6. ETHUSDT (ETHEREUM)</span>
-          <span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="eth">1,812.33</span></span>
-        </div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-indigo-300">💎 6. ETHUSDT (ETHEREUM)</span><span class="text-sm font-extrabold text-white font-mono">$<span data-sync-price="eth">1,812.33</span></span></div>
         <canvas id="mcanvas-ETH" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
     </div>
@@ -517,7 +430,7 @@
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 z-40 mt-4">
     <div class="w-full mx-auto flex flex-wrap items-center justify-between gap-2">
       <span class="text-xs font-bold text-amber-400 font-hud">MASTER SYNCHRONIZED TERMINAL • MUSHTARI TRADER [ABJAD 287]</span>
-      <span class="text-[10px] text-gray-400 font-mono">2000 WATTS POWER FULLY RESTORED</span>
+      <span class="text-[10px] text-gray-400 font-mono">2000 WATTS POWER FULLY RESTORED & CME SYNCHRONIZED</span>
     </div>
   </footer>
 
@@ -552,7 +465,7 @@
       if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
     };
 
-    // 3D JUPITER REACTOR RENDERER
+    // 3D JUPITER REACTOR INITIALIZER
     let threeInitialized = false;
     function initThreeReactor() {
       const container = document.getElementById('three-reactor-canvas');
@@ -579,7 +492,7 @@
       anim();
     }
 
-    // TAB 7 TOOLS WORKING
+    // AI SKILLS CALCULATORS
     window.runLotCalculator = function() {
       const bal = parseFloat(document.getElementById('calc-balance')?.value) || 1000;
       const risk = parseFloat(document.getElementById('calc-risk')?.value) || 2;
@@ -595,16 +508,16 @@
       if (o) o.innerHTML = `GOLD $${fmtNum(P.gold, 2)} (FVG Reclaim) • SILVER $${fmtNum(P.silver, 2)} • BTC $${fmtNum(P.btc, 0)} • OIL $${fmtNum(P.oil, 2)}`;
     };
 
-    // TAB 8 LIVE SIGNALS RENDERER
+    // TAB 8 LIVE SIGNALS
     window.renderLiveSignalCards = function() {
       const grid = document.getElementById('live-signals-cards-grid');
       if (!grid) return;
       const P = window.masterState.prices;
       const cards = [
-        { name: 'XAUUSD • GOLD SPOT', price: P.gold, buy: true, tp: P.gold + 25, sl: P.gold - 12 },
-        { name: 'XAGUSD • SILVER SPOT', price: P.silver, buy: true, tp: P.silver + 0.8, sl: P.silver - 0.35 },
-        { name: 'BTCUSDT • BITCOIN', price: P.btc, buy: true, tp: P.btc + 1200, sl: P.btc - 650 },
-        { name: 'WTI • CRUDE OIL', price: P.oil, buy: true, tp: P.oil + 1.5, sl: P.oil - 0.6 }
+        { name: 'XAUUSD • GOLD SPOT', price: P.gold, tp: P.gold + 25, sl: P.gold - 12 },
+        { name: 'XAGUSD • SILVER SPOT', price: P.silver, tp: P.silver + 0.8, sl: P.silver - 0.35 },
+        { name: 'BTCUSDT • BITCOIN', price: P.btc, tp: P.btc + 1200, sl: P.btc - 650 },
+        { name: 'WTI • CRUDE OIL', price: P.oil, tp: P.oil + 1.5, sl: P.oil - 0.6 }
       ];
       grid.innerHTML = cards.map(c => `
         <div class="radar-card p-4 border-2 border-emerald-500/60 flex flex-col justify-between space-y-3">
@@ -621,7 +534,7 @@
       `).join('');
     };
 
-    // TAB 9 ECONOMIC CALENDAR RENDERER
+    // TAB 9 ECONOMIC CALENDAR
     window.renderForexFactory = function() {
       const tbody = document.getElementById('forex-factory-tbody');
       if (!tbody) return;
@@ -631,7 +544,7 @@
       `;
     };
 
-    // TAB 10 BLOOMBERG WIRE RENDERER
+    // TAB 10 BLOOMBERG WIRE
     window.renderBloombergArticles = function() {
       const c = document.getElementById('bloomberg-news-grid');
       if (!c) return;
@@ -642,7 +555,7 @@
       `;
     };
 
-    // TAB 11 WORLD NEWS RENDERER
+    // TAB 11 WORLD NEWS
     window.renderWorldNews = function() {
       const g = document.getElementById('world-news-grid');
       if (!g) return;
@@ -652,22 +565,22 @@
       `;
     };
 
-    // TAB 12 AI PREDICTOR RENDERER
+    // TAB 12 AI PREDICTOR
     window.renderAIIntelligenceTab = function() {
       const box = document.getElementById('ai-house-conviction-box');
       const verdict = document.getElementById('ai-master-verdict-banner');
       if (box) {
         box.innerHTML = `
-          <div class="bg-black/75 border border-amber-400/50 rounded-xl p-3"><span class="text-amber-400 font-bold">🟡 GOLD OUTLOOK</span><p class="text-gray-200 text-[11px] mt-1">Spot $3,795 holding demand base; expect bounce toward $3,835.</p></div>
+          <div class="bg-black/75 border border-amber-400/50 rounded-xl p-3"><span class="text-amber-400 font-bold">🟡 GOLD OUTLOOK</span><p class="text-gray-200 text-[11px] mt-1">Spot $3,795 holding demand base; order flow heatmap indicates buy liquidity absorption.</p></div>
           <div class="bg-black/75 border border-emerald-400/50 rounded-xl p-3"><span class="text-emerald-400 font-bold">🟠 BTC OUTLOOK</span><p class="text-gray-200 text-[11px] mt-1">$64,603 consolidation active before short-squeeze test.</p></div>
         `;
       }
       if (verdict) {
-        verdict.innerHTML = `<strong class="text-amber-400">🧠 MUSHTARI AI MASTER VERDICT:</strong> All 13 tabs synchronized with live TradingView & CME Spot feeds.`;
+        verdict.innerHTML = `<strong class="text-amber-400">🧠 MUSHTARI AI MASTER VERDICT:</strong> All 13 tabs synchronized with live TradingView & CME Spot feeds. Order flow heatmap confirms institutional demand.`;
       }
     };
 
-    // MATRIX CHARTS RENDERER (TAB 13)
+    // MATRIX CHARTS (TAB 13)
     const MATRIX_ASSETS = [
       { key: 'GOLD', prop: 'gold', dec: 2, vol: 1.5, seed: 11 },
       { key: 'SILVER', prop: 'silver', dec: 2, vol: 0.08, seed: 22 },
