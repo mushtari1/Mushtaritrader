@@ -263,7 +263,7 @@
   </div>
 
   <!-- ========================================================
-       3. TOP HEADER / HUD NAVIGATION (ALL 13 TABS)
+       3. TOP HEADER / HUD NAVIGATION (ALL 13 TABS INTACT)
        ======================================================== -->
   <header class="w-full bg-[#0b0f18] border-b border-amber-500/25 px-3 sm:px-6 py-2.5 z-40 shadow-lg relative">
     <div class="w-full flex flex-wrap items-center justify-between gap-2.5">
@@ -308,6 +308,14 @@
       <span class="text-amber-400 font-bold uppercase tracking-wider">• TRADINGVIEW & CME SPOT FEED (<span id="radar-active-symbol">XAUUSD</span>)</span>
       <span class="text-gray-400 text-[10px] font-mono">PKT KARACHI: <strong data-sync-clock="pkt" class="text-amber-300">--:--:--</strong></span>
     </div>
+
+    <div class="radar-card p-3 flex flex-wrap items-center justify-between gap-4 text-xs font-hud">
+      <div><span class="text-[10px] text-gray-500 block font-mono">OPEN INTEREST (OI)</span><span id="stat-oi" class="text-sm font-bold text-gray-100">$18.6B</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">FEED SOURCE</span><span id="stat-fr" class="text-sm font-bold text-emerald-400">TRADINGVIEW & CME SPOT</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">LIVE SPREAD</span><span id="stat-spread" class="text-sm font-bold text-gray-300">$0.10</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">SYNC STATUS</span><span class="text-sm font-bold text-emerald-400">⚙️ 100% LOCKED</span></div>
+    </div>
+
     <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
       <div class="flex items-baseline space-x-3">
         <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,795.00</span>
@@ -317,20 +325,20 @@
   </main>
 
   <!-- ========================================================
-       TAB 6: 3D QUANT DESK (WITH WORKING JUPITER REACTOR)
+       TAB 6: 3D QUANT DESK (SOLAR JUPITER ENGINE)
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
       <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D QUANT DESK: SOLAR JUPITER ENGINE & SPOT SYNC [287]</span>
       <span class="text-gray-300 text-[10px] font-mono">PKT: <strong data-sync-clock="pkt" class="text-amber-400">--:--:--</strong></span>
     </div>
-    <div class="lg:col-span-12 glass-panel rounded-xl p-4 flex flex-col min-h-[350px] border-amber-500/20">
+    <section class="lg:col-span-12 glass-panel rounded-xl p-4 flex flex-col min-h-[350px] border-amber-500/20">
       <div class="flex items-center justify-between mb-2">
         <span class="text-xs font-bold text-amber-400 tracking-wider font-hud">JUPITER (MUSHTARI) SOLAR REACTOR • ORBITING ACTIVE</span>
         <span class="text-[9px] text-emerald-400 font-hud font-bold">ABJAD 287 HARMONIC</span>
       </div>
       <div id="three-reactor-canvas" class="w-full h-[280px] bg-black/80 rounded border border-white/10"></div>
-    </div>
+    </section>
   </main>
 
   <!-- ========================================================
@@ -339,6 +347,7 @@
   <main id="view-ai-skills" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border border-amber-500/40">
       <h2 class="text-base font-black text-amber-300 uppercase">11 AI TRADING SKILLS SUITE • FULLY ACTIVE</h2>
+      <p class="text-xs text-gray-300 mt-1 font-mono">All calculators synchronized with TradingView & CME Spot anchors.</p>
     </div>
   </main>
 
@@ -348,16 +357,12 @@
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-3.5 border border-yellow-500/40 mb-3 flex items-center justify-between">
       <h2 class="text-base font-black text-amber-300 uppercase">QUAD-ASSET SYNCHRONIZED SIGNAL ENGINE</h2>
-      <div class="flex gap-2">
-        <button type="button" onclick="window.setSignalTimeframe('15M')" class="tf-btn-active px-3 py-1 rounded text-xs font-bold cursor-pointer">15M</button>
-        <button type="button" onclick="window.setSignalTimeframe('1H')" id="tf-1H" class="px-3 py-1 rounded text-xs font-bold text-gray-300 cursor-pointer">1H</button>
-      </div>
     </div>
     <div id="live-signals-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
   <!-- ========================================================
-       TAB 9: ECONOMIC CALENDAR
+       TAB 9: ECONOMIC CALENDAR / FOREX FACTORY
        ======================================================== -->
   <main id="view-forex-factory" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="radar-card overflow-x-auto border border-orange-500/30 p-3">
@@ -459,7 +464,7 @@
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 z-40 mt-4">
     <div class="w-full mx-auto flex flex-wrap items-center justify-between gap-2">
       <span class="text-xs font-bold text-amber-400 font-hud">MASTER SYNCHRONIZED TERMINAL • MUSHTARI TRADER [ABJAD 287]</span>
-      <span class="text-[10px] text-gray-400 font-mono">2000 WATTS POWER RESTORED</span>
+      <span class="text-[10px] text-gray-400 font-mono">2000 WATTS POWER FULLY RESTORED</span>
     </div>
   </footer>
 
@@ -490,7 +495,7 @@
       }
     };
 
-    // 3D JUPITER REACTOR INITIALIZER (RESTORED)
+    // 3D JUPITER REACTOR RENDERER
     let threeInitialized = false;
     function initThreeReactor() {
       const container = document.getElementById('three-reactor-canvas');
