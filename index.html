@@ -114,7 +114,7 @@
     <div class="mt-1.5 pt-1.5 border-t border-amber-500/25 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-hud bg-black/75 px-2.5 py-1 rounded-lg border border-white/10">
       <div class="flex items-center gap-2">
         <span class="bg-amber-500 text-black font-black px-2 py-0.5 rounded text-[10px] uppercase">🕒 PKT <span data-sync-clock="pkt">--:--:--</span></span>
-        <span id="active-killzone-banner" class="text-emerald-400 font-extrabold uppercase tracking-wide">🔥 CHECKING ACTIVE SESSION...</span>
+        <span id="active-killzone-banner" class="text-emerald-400 font-extrabold uppercase tracking-wide">🔥 LONDON / PSX SESSION ACTIVE</span>
       </div>
 
       <div class="flex flex-wrap items-center gap-2 font-mono text-[10px]">
@@ -157,7 +157,7 @@
             </div>
             <h2 class="font-hud font-black text-lg sm:text-2xl md:text-3xl text-amber-300 tracking-wide uppercase">MUSHTARI TRADER • INSTITUTIONAL DESK</h2>
           </div>
-          <div class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1 rounded self-center">● TRADINGVIEW / CME SPOT 100% SYNCED</div>
+          <div class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1 rounded self-center">● TRADINGVIEW & CME SPOT 100% SYNCED</div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -391,14 +391,14 @@
         <div class="bg-black/50 p-2 rounded-lg border border-amber-500/20 mb-1.5 text-xs space-y-0.5">
           <div class="flex justify-between items-center"><span class="text-amber-400 font-cinzel font-bold">GOLD (XAU/USD)</span><span class="text-[9px] text-amber-300">SPOT</span></div>
           <div class="flex justify-between"><span class="text-gray-400">Live Spot:</span><span class="font-bold text-white">$<span data-sync-price="gold">3,734.56</span></span></div>
-          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span id="smc-gold-buy" class="font-bold text-emerald-400">$3,700 – $3,720</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span id="smc-gold-tp" class="font-bold text-cyan-400">$3,790 – $3,850</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span class="font-bold text-emerald-400">$3,700 – $3,720</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span class="font-bold text-cyan-400">$3,790 – $3,850</span></div>
         </div>
         <div class="bg-black/50 p-2 rounded-lg border border-emerald-500/20 text-xs space-y-0.5">
           <div class="flex justify-between items-center"><span class="text-amber-300 font-cinzel font-bold">BITCOIN (BTC)</span><span class="text-[9px] text-emerald-300">SPOT</span></div>
           <div class="flex justify-between"><span class="text-gray-400">Live Spot:</span><span class="font-bold text-white">$<span data-sync-price="btc">63,448.00</span></span></div>
-          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span id="smc-btc-buy" class="font-bold text-emerald-400">$62,030 – $62,800</span></div>
-          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span id="smc-btc-tp" class="font-bold text-cyan-400">$64,850 – $66,000</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span class="font-bold text-emerald-400">$62,030 – $62,800</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span class="font-bold text-cyan-400">$64,850 – $66,000</span></div>
         </div>
       </div>
 
@@ -1120,7 +1120,7 @@
       const setPill = (id, st) => { const el = document.getElementById(id); if (el) el.textContent = st.isOpen ? `🟢 LIVE (${fmtHMS(st.rem)})` : `⏳ In ${fmtHMS(st.rem)}`; };
       setPill('sess-txt-asia', asia); setPill('sess-txt-london', london); setPill('sess-txt-ny', ny);
       const banner = document.getElementById('active-killzone-banner');
-      if (banner) banner.textContent = london.isOpen ? `🇬🇧 LONDON SESSION LIVE! (${fmtHMS(london.rem)} Left)` : (ny.isOpen ? `🇺🇸 NEW YORK SESSION LIVE!` : `🌏 ASIAN SESSION ACTIVE`);
+      if (banner) banner.textContent = london.isOpen ? `🇬🇧 LONDON / PSX SESSION LIVE! (${fmtHMS(london.rem)} Left)` : (ny.isOpen ? `🇺🇸 NEW YORK SESSION LIVE!` : `🌏 ASIAN SESSION ACTIVE`);
     }
 
     function calculatePlanetaryHours() {
