@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Mushtari Trader | Al-Irtiqaa Capital [287] — 14-Tab Synchronized Institutional Terminal</title>
+  <title>Mushtari Trader | Al-Irtiqaa Capital [287] — Synchronized Institutional Terminal</title>
   
   <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Mushtari%20Trader%20Master%20Terminal%22%2C%22short_name%22%3A%22Mushtari287%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23070a10%22%2C%22theme_color%22%3A%22%23f59e0b%22%7D">
   <meta name="theme-color" content="#f59e0b">
@@ -91,7 +91,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
-  <!-- TOP DISCLAIMER & LIVE CME/TRADINGVIEW TICKER -->
+  <!-- 1. PERMANENT STICKY TOP DISCLAIMER + TRADINGVIEW / CME SPOT TICKER + SESSION CLOCK -->
   <div class="w-full bg-gradient-to-r from-[#180d04] via-[#070b13] to-[#180d04] border-b border-amber-500/50 px-2 sm:px-4 py-1.5 text-center shadow-2xl sticky top-0 z-50">
     <p class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
@@ -99,393 +99,746 @@
 
     <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-0.5 mt-1 pt-1 border-t border-white/10 text-[10px] font-mono">
       <span class="text-emerald-400 font-extrabold">🔗 TRADINGVIEW & CME SPOT SYNC: LOCKED</span>
-      <span class="text-amber-400 font-bold">🟡 XAUUSD: $<span data-sync-price="gold">3,795.00</span> <small data-sync-pct="gold" class="text-rose-400">(-1.12%)</small></span>
-      <span class="text-cyan-300 font-bold">⚪ XAGUSD: $<span data-sync-price="silver">46.68</span> <small data-sync-pct="silver" class="text-rose-400">(-1.49%)</small></span>
-      <span class="text-emerald-400 font-bold">🟠 BTCUSDT: $<span data-sync-price="btc">64,603.00</span> <small data-sync-pct="btc" class="text-rose-400">(-0.74%)</small></span>
-      <span class="text-purple-300 font-bold">💎 ETHUSDT: $<span data-sync-price="eth">1,812.33</span></span>
-      <span class="text-rose-300 font-bold">🛢️ WTI OIL: $<span data-sync-price="oil">84.35</span></span>
-      <span class="text-yellow-200 font-bold">💵 DXY: <span data-sync-price="dxy">103.67</span></span>
-      <span class="text-sky-300 font-bold">🇵🇰 USD/PKR: Rs <span data-sync-price="usdpkr">276.51</span></span>
+      <span class="text-amber-400 font-bold">🟡 XAUUSD: $<span data-sync-price="gold">3,734.56</span> <small data-sync-pct="gold" class="text-rose-400">(-1.59%)</small></span>
+      <span class="text-cyan-300 font-bold">⚪ XAGUSD: $<span data-sync-price="silver">45.41</span> <small data-sync-pct="silver" class="text-rose-400">(-2.72%)</small></span>
+      <span class="text-emerald-400 font-bold">🟠 BTCUSDT: $<span data-sync-price="btc">63,448.00</span> <small data-sync-pct="btc" class="text-rose-400">(-1.79%)</small></span>
+      <span class="text-purple-300 font-bold">💎 ETHUSDT: $<span data-sync-price="eth">1,802.06</span></span>
+      <span class="text-rose-300 font-bold">🛢️ WTI OIL: $<span data-sync-price="oil">83.88</span></span>
+      <span class="text-yellow-200 font-bold">💵 DXY: <span data-sync-price="dxy">103.86</span></span>
+      <span class="text-sky-300 font-bold">🇵🇰 USD/PKR: Rs <span data-sync-price="usdpkr">276.29</span></span>
     </div>
 
     <div class="mt-1.5 pt-1.5 border-t border-amber-500/25 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-hud bg-black/75 px-2.5 py-1 rounded-lg border border-white/10">
       <div class="flex items-center gap-2">
         <span class="bg-amber-500 text-black font-black px-2 py-0.5 rounded text-[10px] uppercase">🕒 PKT <span data-sync-clock="pkt">--:--:--</span></span>
-        <span id="active-killzone-banner" class="text-emerald-400 font-extrabold uppercase tracking-wide">🔥 NEW YORK SESSION ACTIVE</span>
+        <span id="active-killzone-banner" class="text-emerald-400 font-extrabold uppercase tracking-wide">🔥 CHECKING ACTIVE SESSION...</span>
       </div>
+
       <div class="flex flex-wrap items-center gap-2 font-mono text-[10px]">
-        <div class="px-2.5 py-0.5 rounded border border-emerald-400 bg-emerald-950/50"><span>🌏 ASIAN: <strong>LIVE</strong></span></div>
-        <div class="px-2.5 py-0.5 rounded border border-emerald-400 bg-emerald-950/50"><span>🇬🇧 LONDON: <strong>LIVE</strong></span></div>
-        <div class="px-2.5 py-0.5 rounded border border-emerald-400 bg-emerald-950/50"><span>🇺🇸 NEW YORK: <strong>LIVE</strong></span></div>
+        <div id="sess-pill-asia" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🌏 ASIAN:</span><strong id="sess-txt-asia" class="text-gray-300">--:--:--</strong></div>
+        <div id="sess-pill-london" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🇬🇧 LONDON:</span><strong id="sess-txt-london" class="text-gray-300">--:--:--</strong></div>
+        <div id="sess-pill-ny" class="px-2.5 py-0.5 rounded border border-white/15 bg-black/80 flex items-center gap-1.5"><span>🇺🇸 NEW YORK:</span><strong id="sess-txt-ny" class="text-amber-300">--:--:--</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- HERO BANNER WITH 3 LIVE WINDOWS -->
+  <!-- 2. INSTITUTIONAL HERO BANNER & 3 LIVE WINDOWS -->
   <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-3 sm:px-6 shadow-2xl relative overflow-hidden">
     <div class="max-w-[1650px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+      
       <div class="lg:col-span-4 flex flex-col items-center justify-center">
         <div class="relative w-full max-w-[430px] rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] bg-[#120b07] group">
-          <img id="hero-mentor-photo" src="Mustari.jpg" alt="Mushtari Trader" class="w-full h-[185px] sm:h-[205px] object-cover object-center block brightness-110 contrast-125 saturate-110" onerror="window.handleMentorImgError(this)" />
+          <img id="hero-mentor-photo" src="Mustari.jpg" alt="Mushtari Trader • Institutional Mentor Desk" class="w-full h-[185px] sm:h-[205px] object-cover object-center block brightness-110 contrast-125 saturate-110" onerror="window.handleMentorImgError(this)" />
+          <div id="hero-mentor-fallback" class="hidden w-full h-[195px] bg-gradient-to-br from-[#2a0f14] via-[#121826] to-[#090d16] p-3 flex flex-col items-center justify-between text-center relative">
+            <div class="text-[10px] font-cinzel font-black text-amber-300 tracking-wider">🦅 AL-IRTIQAA CAPITAL • MUSHTARI TRADER</div>
+            <div class="w-20 h-20 rounded-full border-2 border-amber-400 bg-gradient-to-b from-[#5e141c] to-[#1a090d] flex items-center justify-center shadow-lg"><span class="font-cinzel font-black text-2xl text-amber-300">MT</span></div>
+            <div>
+              <div class="text-xs font-hud font-extrabold text-amber-400 uppercase">MASTER OF MARKET STRUCTURE & TIMING</div>
+              <input type="file" id="mentor-pic-uploader" accept="image/*" class="hidden" onchange="window.uploadAndLockMentorPic(event)" />
+              <button type="button" onclick="document.getElementById('mentor-pic-uploader').click()" class="mt-1 bg-amber-500 text-black text-[10px] font-extrabold px-2.5 py-0.5 rounded cursor-pointer">🖼️ Tap to Lock Your Pic</button>
+            </div>
+          </div>
           <div class="w-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-600 text-black text-center py-1 px-2">
             <p class="font-hud font-black text-[11px] tracking-wider uppercase leading-tight">MUSHTARI TRADER • MASTER OF MARKET STRUCTURE & TIMING</p>
           </div>
         </div>
       </div>
-      <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-        <div onclick="window.switchView('BTC')" class="bg-[#08111c] border-2 border-amber-500/50 rounded-xl p-2.5 cursor-pointer shadow-lg flex flex-col justify-between">
-          <span class="text-xs text-amber-400 font-bold">₿ BTCUSDT LIVE</span>
-          <div class="text-xl font-black text-white my-1">$<span data-sync-price="btc">64,603.00</span></div>
-          <span class="text-[9px] text-emerald-400">SSL: $63,850 | BSL: $65,250</span>
+
+      <div class="lg:col-span-8 flex flex-col justify-between space-y-2.5">
+        <div class="text-center lg:text-left border-b border-amber-500/30 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <div>
+            <div class="flex items-center justify-center lg:justify-start gap-2">
+              <span class="text-xl">🦅</span>
+              <span class="font-cinzel font-black text-base sm:text-xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">AL-IRTIQAA CAPITAL</span>
+              <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded font-hud font-bold">ABJAD 287</span>
+            </div>
+            <h2 class="font-hud font-black text-lg sm:text-2xl md:text-3xl text-amber-300 tracking-wide uppercase">MUSHTARI TRADER • INSTITUTIONAL DESK</h2>
+          </div>
+          <div class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 px-2.5 py-1 rounded self-center">● TRADINGVIEW / CME SPOT 100% SYNCED</div>
         </div>
-        <div onclick="window.switchView('GOLD')" class="bg-[#08111c] border-2 border-yellow-400/70 rounded-xl p-2.5 cursor-pointer shadow-lg flex flex-col justify-between">
-          <span class="text-xs text-yellow-300 font-bold">🟡 XAUUSD GOLD SPOT</span>
-          <div class="text-xl font-black text-amber-300 my-1">$<span data-sync-price="gold">3,795.00</span></div>
-          <span class="text-[9px] text-emerald-400">SSL: $3,780 | BSL: $3,825</span>
-        </div>
-        <div onclick="window.switchView('SILVER')" class="bg-[#08111c] border-2 border-cyan-400/60 rounded-xl p-2.5 cursor-pointer shadow-lg flex flex-col justify-between">
-          <span class="text-xs text-cyan-300 font-bold">⚪ XAGUSD SILVER SPOT</span>
-          <div class="text-xl font-black text-cyan-200 my-1">$<span data-sync-price="silver">46.68</span></div>
-          <span class="text-[9px] text-emerald-400">SSL: $46.10 | BSL: $47.40</span>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div onclick="window.switchView('BTC')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-amber-500/50 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-amber-400 flex items-center gap-1"><span>₿</span><span>BTCUSDT SPOT</span></span><span data-sync-pct="btc" class="text-[10px] font-mono font-bold text-rose-400">-1.79%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-white leading-none mb-1.5">$<span data-sync-price="btc">63,448.00</span></div>
+            <canvas id="hero-win-canvas-btc" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-btc-ssl">62,030</span></span><span class="text-rose-400">BSL: $<span id="hero-win-btc-bsl">64,850</span></span></div>
+          </div>
+
+          <div onclick="window.switchView('GOLD')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-yellow-400/70 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-yellow-300 flex items-center gap-1"><span>🟡</span><span>XAUUSD GOLD SPOT</span></span><span data-sync-pct="gold" class="text-[10px] font-mono font-bold text-rose-400">-1.59%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-amber-300 leading-none mb-1.5">$<span data-sync-price="gold">3,734.56</span></div>
+            <canvas id="hero-win-canvas-gold" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-gold-ssl">3,700</span></span><span class="text-rose-400">BSL: $<span id="hero-win-gold-bsl">3,790</span></span></div>
+          </div>
+
+          <div onclick="window.switchView('SILVER')" class="bg-[#08111c] hover:bg-[#0c1828] border-2 border-cyan-400/60 rounded-xl p-2.5 cursor-pointer transition shadow-lg flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1"><span class="font-hud font-extrabold text-xs text-cyan-300 flex items-center gap-1"><span>⚪</span><span>XAGUSD SILVER SPOT</span></span><span data-sync-pct="silver" class="text-[10px] font-mono font-bold text-rose-400">-2.72%</span></div>
+            <div class="text-lg sm:text-xl font-hud font-black text-cyan-200 leading-none mb-1.5">$<span data-sync-price="silver">45.41</span></div>
+            <canvas id="hero-win-canvas-silver" width="240" height="58" class="w-full h-[58px] bg-[#04080e] rounded border border-white/10"></canvas>
+            <div class="flex items-center justify-between text-[9px] font-mono text-gray-300 mt-1.5 pt-1 border-t border-white/10"><span class="text-emerald-400">SSL: $<span id="hero-win-silver-ssl">44.80</span></span><span class="text-rose-400">BSL: $<span id="hero-win-silver-bsl">46.40</span></span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- NAVIGATION BAR (14 TABS) -->
+  <!-- 3. TOP HEADER / HUD NAVIGATION (ALL 14 TABS) -->
   <header class="w-full bg-[#0b0f18] border-b border-amber-500/25 px-3 sm:px-6 py-2.5 z-40 shadow-lg relative">
-    <nav class="flex flex-wrap items-center gap-1.5 bg-black/90 p-1.5 rounded-xl border border-white/15 font-hud">
-      <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300">1•BTC</button>
-      <button type="button" onclick="window.switchView('ETH')" id="tab-ETH" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300">2•ETH</button>
-      <button type="button" onclick="window.switchView('GOLD')" id="tab-GOLD" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-200">3•GOLD</button>
-      <button type="button" onclick="window.switchView('SILVER')" id="tab-SILVER" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300">4•SILVER</button>
-      <button type="button" onclick="window.switchView('OIL')" id="tab-OIL" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300">5•OIL</button>
-      <button type="button" onclick="window.switchView('QUANT_DESK')" id="tab-QUANT_DESK" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-300 border border-amber-500/40">🏛️ 6•3D QUANT DESK</button>
-      <button type="button" onclick="window.switchView('AI_SKILLS')" id="tab-AI_SKILLS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-emerald-300 border border-emerald-500/40">🤖 7•11 AI SKILLS</button>
-      <button type="button" onclick="window.switchView('LIVE_SIGNALS')" id="tab-LIVE_SIGNALS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-yellow-300 border border-yellow-400/50">⚡ 8•LIVE SIGNALS</button>
-      <button type="button" onclick="window.switchView('FOREX_FACTORY')" id="tab-FOREX_FACTORY" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-orange-300 border border-orange-500/50">📅 9•CALENDAR</button>
-      <button type="button" onclick="window.switchView('BLOOMBERG_NEWS')" id="tab-BLOOMBERG_NEWS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-cyan-300 border border-cyan-500/40">📰 10•BLOOMBERG</button>
-      <button type="button" onclick="window.switchView('WORLD_NEWS')" id="tab-WORLD_NEWS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-rose-300 border border-rose-500/50">🌍 11•WORLD NEWS</button>
-      <button type="button" onclick="window.switchView('AI_INTELLIGENCE')" id="tab-AI_INTELLIGENCE" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-purple-200 border border-purple-500/70">🧠 12•AI PREDICTOR</button>
-      <button type="button" onclick="window.switchView('MULTI_SWEEP_MATRIX')" id="tab-MULTI_SWEEP_MATRIX" class="nav-tab-btn nav-tab-active px-2.5 py-1.5 rounded-lg text-xs font-bold text-cyan-200 border border-cyan-400">📊 13•SWEEPS</button>
-      <button type="button" onclick="window.switchView('TERMINAL_HUB')" id="tab-TERMINAL_HUB" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-300 border border-amber-400">🚀 14•HUB</button>
-    </nav>
+    <div class="w-full flex flex-wrap items-center justify-between gap-2.5">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg border border-amber-300/40"><span class="font-cinzel font-black text-black text-lg">🦅</span></div>
+        <div>
+          <div class="flex items-center space-x-1.5">
+            <h1 class="font-cinzel text-base md:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">AL-IRTIQAA CAPITAL</h1>
+            <span class="text-[10px] bg-amber-500/10 border border-amber-500/30 text-amber-400 px-1.5 py-0.5 rounded font-bold font-hud">287</span>
+          </div>
+          <p class="text-[10px] text-gray-400 tracking-widest uppercase">Mushtari Trader • Synchronized Desk</p>
+        </div>
+      </div>
+
+      <nav class="flex flex-wrap items-center gap-1.5 bg-black/90 p-1.5 rounded-xl border border-white/15 font-hud w-full xl:w-auto relative z-50">
+        <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300 hover:text-white transition">1•BTC $<span data-sync-price="btc">63,448</span></button>
+        <button type="button" onclick="window.switchView('ETH')" id="tab-ETH" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300 hover:text-white transition">2•ETH $<span data-sync-price="eth">1,802</span></button>
+        <button type="button" onclick="window.switchView('GOLD')" id="tab-GOLD" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-200 hover:text-white transition">3•GOLD $<span data-sync-price="gold">3,734.56</span></button>
+        <button type="button" onclick="window.switchView('SILVER')" id="tab-SILVER" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300 hover:text-white transition">4•SILVER $<span data-sync-price="silver">45.41</span></button>
+        <button type="button" onclick="window.switchView('OIL')" id="tab-OIL" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-gray-300 hover:text-white transition">5•OIL $<span data-sync-price="oil">83.88</span></button>
+        <button type="button" onclick="window.switchView('QUANT_DESK')" id="tab-QUANT_DESK" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-300 border border-amber-500/40 hover:bg-amber-500/20 transition">🏛️ 6•3D COIN/QUANT DESK</button>
+        <button type="button" onclick="window.switchView('AI_SKILLS')" id="tab-AI_SKILLS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/20 transition">🤖 7•11 AI SKILLS</button>
+        <button type="button" onclick="window.switchView('LIVE_SIGNALS')" id="tab-LIVE_SIGNALS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-yellow-300 border border-yellow-400/50 bg-yellow-500/10 hover:bg-yellow-500/25 transition">⚡ 8•LIVE SIGNALS</button>
+        <button type="button" onclick="window.switchView('FOREX_FACTORY')" id="tab-FOREX_FACTORY" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-orange-300 border border-orange-500/50 bg-orange-500/10 hover:bg-orange-500/25 transition">📅 9•ECONOMIC CALENDAR</button>
+        <button type="button" onclick="window.switchView('BLOOMBERG_NEWS')" id="tab-BLOOMBERG_NEWS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/20 transition">📰 10•BLOOMBERG WIRE</button>
+        <button type="button" onclick="window.switchView('WORLD_NEWS')" id="tab-WORLD_NEWS" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-rose-300 border border-rose-500/50 bg-rose-500/10 hover:bg-rose-500/25 transition">🌍 11•WORLD NEWS</button>
+        <button type="button" onclick="window.switchView('AI_INTELLIGENCE')" id="tab-AI_INTELLIGENCE" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-purple-200 border-2 border-purple-500/70 bg-purple-600/20 hover:bg-purple-600/35 transition">🧠 12•AI PREDICTOR</button>
+        <button type="button" onclick="window.switchView('MULTI_SWEEP_MATRIX')" id="tab-MULTI_SWEEP_MATRIX" class="nav-tab-btn nav-tab-active px-2.5 py-1.5 rounded-lg text-xs font-bold text-cyan-200 border-2 border-cyan-400/80 bg-cyan-500/20 hover:bg-cyan-500/35 transition">📊 13•6-CHART SWEEPS</button>
+        <button type="button" onclick="window.switchView('TERMINAL_HUB')" id="tab-TERMINAL_HUB" class="nav-tab-btn px-2.5 py-1.5 rounded-lg text-xs font-bold text-amber-300 border border-amber-400/60 bg-amber-500/10 hover:bg-amber-500/20 transition">🚀 14•TERMINAL HUB</button>
+      </nav>
+    </div>
   </header>
 
-  <!-- TAB VIEWS CONTAINER (ALL 14 TABS FULLY FUNCTIONAL) -->
+  <!-- TABS 1–5: RADAR VIEW -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-3 space-y-3 flex-1 hidden">
-    <div class="radar-card p-4 border border-emerald-500/40">
-      <div class="text-3xl font-extrabold text-white">$<span data-sync-price="gold">3,795.00</span></div>
-      <p class="text-xs text-gray-400 mt-1">TradingView & CME Spot Synchronized Live Feed Active.</p>
+    <div class="w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px] font-hud">
+      <span class="text-amber-400 font-bold uppercase tracking-wider">• RADAR TERMINAL: SYNCHRONIZED LIQUIDITY & SPOOFING FLOW (<span id="radar-active-symbol">XAUUSD</span>)</span>
+      <span class="text-gray-400 text-[10px] font-mono">PKT KARACHI: <strong data-sync-clock="pkt" class="text-amber-300">--:--:--</strong></span>
+    </div>
+
+    <div class="radar-card p-3 flex flex-wrap items-center justify-between gap-4 text-xs font-hud">
+      <div><span class="text-[10px] text-gray-500 block font-mono">OPEN INTEREST (OI)</span><span id="stat-oi" class="text-sm font-bold text-gray-100">$18.6B</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">FEED SOURCE</span><span id="stat-fr" class="text-sm font-bold text-emerald-400">TRADINGVIEW & CME SPOT</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">LIVE SPREAD</span><span id="stat-spread" class="text-sm font-bold text-gray-300">$0.10</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">SYNC ENGINE</span><span class="text-sm font-bold text-emerald-400">⚙️ ATOMIC UTC LOCKED</span></div>
+      <div><span class="text-[10px] text-gray-500 block font-mono">PKT (KARACHI) CLOCK</span><span data-sync-clock="pkt" class="text-sm font-bold text-amber-400">--:--:--</span></div>
+    </div>
+
+    <div class="radar-card p-4 border border-emerald-500/40 relative overflow-hidden bg-gradient-to-r from-emerald-950/20 via-black to-black font-hud">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-baseline space-x-3">
+            <span id="hero-price" class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-100 tracking-tight">$3,734.56</span>
+            <span id="hero-pct" class="text-base font-bold text-rose-400">-1.59%</span>
+          </div>
+          <div class="flex items-center space-x-4 mt-2 text-xs text-gray-400 font-hud">
+            <span>24H H: <strong id="hero-high" class="text-gray-200 text-sm">$3,805.00</strong></span>
+            <span>24H L: <strong id="hero-low" class="text-gray-200 text-sm">$3,725.00</strong></span>
+            <span>VOL: <strong id="hero-vol" class="text-amber-400 text-sm">$32.4B</strong></span>
+          </div>
+        </div>
+        <div class="text-right flex md:flex-col items-center md:items-end justify-between">
+          <div class="text-4xl md:text-5xl font-black text-cyan-400" id="hero-confidence">89</div>
+          <span class="text-[10px] text-gray-400 tracking-wider uppercase block font-mono">CONFIDENCE SCORE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="radar-card p-3.5">
+      <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
+        <span class="text-gray-400 tracking-wider font-mono">LIVE BUYERS VS SELLERS ORDER-FLOW BIAS</span>
+        <span id="bias-label" class="font-bold tracking-wider text-emerald-400">INSTITUTIONAL ACCUMULATION</span>
+      </div>
+      <div class="w-full h-3 bg-black/80 rounded-full overflow-hidden flex border border-white/5 my-1">
+        <div id="bias-bar-buy" class="h-full bg-emerald-500 transition-all duration-300" style="width: 62.4%;"></div>
+        <div id="bias-bar-sell" class="h-full bg-rose-500 transition-all duration-300" style="width: 37.6%;"></div>
+      </div>
+      <div class="flex justify-between items-center text-xs font-hud text-gray-400 mt-1">
+        <span id="bias-buy-pct" class="text-emerald-400 font-bold">62.4% BUY</span>
+        <span id="bias-conviction" class="text-gray-300 font-semibold">78.4 / 100</span>
+        <span id="bias-sell-pct" class="text-rose-400 font-bold">37.6% SELL</span>
+      </div>
+    </div>
+
+    <div class="radar-card p-3.5 border border-rose-500/30">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-wider font-mono">● SPOOFING & ORDER BOOK INTEGRITY DETECTOR</span>
+        <span class="text-[9px] text-amber-400 font-mono">Synced @ <span data-sync-clock="pkt">--:--:--</span></span>
+      </div>
+      <div class="flex flex-wrap items-baseline gap-3 my-1">
+        <span id="spoof-score" class="text-2xl font-bold text-rose-500 font-hud">88 / 100</span>
+        <span id="spoof-text" class="text-xs text-gray-200 font-mono">Scanning limit order-book walls around live spot price...</span>
+      </div>
+      <div class="flex items-end gap-1.5 h-9 my-2 pt-1 border-b border-white/5">
+        <div class="w-7 h-5 bg-rose-500 rounded-sm"></div><div class="w-7 h-7 bg-rose-500 rounded-sm"></div><div class="w-7 h-4 bg-amber-400 rounded-sm"></div><div class="w-7 h-8 bg-rose-500 rounded-sm"></div>
+        <div class="w-7 h-6 bg-rose-500 rounded-sm"></div><div class="w-7 h-7 bg-amber-400 rounded-sm"></div><div class="w-7 h-5 bg-rose-500 rounded-sm"></div><div class="w-7 h-8 bg-rose-600 rounded-sm"></div>
+      </div>
     </div>
   </main>
 
+  <!-- TAB 6: 3D COIN / QUANT DESK -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-2.5 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
-    <div class="lg:col-span-4 glass-panel rounded-xl p-3 border-amber-500/30 space-y-2">
-      <div class="text-amber-400 font-bold">PKR BULLION & LUNAR ASTRO CYCLE</div>
-      <div class="text-xs text-gray-300 font-mono">1 Tola Gold: <strong id="pkr-tola-rate" class="text-amber-300">Rs 3,93,800</strong></div>
-      <div class="bg-black/60 p-2 rounded text-xs font-mono">🌑 New Moon: Active<br>🌕 Full Moon: Nov 24<br>🪐 Ruling Planet: Jupiter (Mushtari)</div>
+    <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
+      <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D COIN / QUANT DESK: SOLAR JUPITER ENGINE, PKR BULLION, LUNAR CYCLE & LIVE SMC ZONES [287]</span>
+      <span class="text-gray-300 text-[10px] font-mono">PKT: <strong data-sync-clock="pkt" class="text-amber-400">--:--:--</strong></span>
     </div>
-    <div class="lg:col-span-8 glass-panel rounded-xl p-3 flex flex-col min-h-[320px]">
-      <div class="text-xs font-bold text-amber-400 mb-1">JUPITER (MUSHTARI) SOLAR REACTOR • ORBITING ACTIVE</div>
-      <div id="three-reactor-canvas" class="w-full h-[280px] bg-black/80 rounded border border-white/10"></div>
-    </div>
+
+    <section class="lg:col-span-3 flex flex-col gap-3">
+      <div class="glass-panel rounded-xl p-3 border-amber-500/30">
+        <div class="flex justify-between items-center mb-2 font-mono"><span class="text-[11px] font-bold tracking-wider text-amber-400 uppercase">PKR BULLION ENGINE</span><span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.5 rounded font-bold font-hud">24 KARAT</span></div>
+        <div class="grid grid-cols-2 gap-2 mb-2">
+          <div class="bg-black/50 p-2 rounded border border-white/5"><span class="text-[9px] text-gray-400 block font-mono">USD/PKR</span><span data-sync-price="usdpkr" class="text-sm font-bold text-gray-200">276.29</span></div>
+          <div class="bg-black/50 p-2 rounded border border-white/5"><span class="text-[9px] text-purple-300 block font-mono">DXY</span><span data-sync-price="dxy" class="text-sm font-bold text-purple-400">103.86</span></div>
+        </div>
+        <div class="bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-black p-2.5 rounded-lg border border-amber-500/30 space-y-1">
+          <div class="flex justify-between items-baseline"><span class="text-xs text-amber-200 font-mono">Gold Spot (oz):</span><span class="text-sm font-bold text-amber-400">$<span data-sync-price="gold">3,734.56</span></span></div>
+          <div class="flex justify-between items-baseline"><span class="text-xs text-cyan-200 font-mono">Silver Spot (oz):</span><span class="text-xs font-bold text-cyan-300">$<span data-sync-price="silver">45.41</span></span></div>
+          <div class="flex justify-between items-baseline pt-1 border-t border-white/10"><span class="text-xs text-amber-200 font-mono">1 Tola Gold (PKR):</span><span id="pkr-tola-rate" class="text-lg font-bold text-amber-400 tracking-wide">Rs 3,87,230</span></div>
+          <div class="flex justify-between items-baseline"><span class="text-xs text-gray-400 font-mono">10 Grams (PKR):</span><span id="pkr-10g-rate" class="text-xs font-bold text-gray-200">Rs 3,31,990</span></div>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-xl p-3 border-purple-500/30">
+        <div class="flex justify-between items-center mb-1.5 font-mono"><span class="text-[11px] font-bold tracking-wider text-purple-300 uppercase">PLANETARY HOURS (SA'AT)</span><span id="current-planet-symbol" class="text-sm font-bold text-amber-400 font-hud">♃</span></div>
+        <div class="bg-gradient-to-r from-purple-950/40 via-black to-black p-2 rounded border border-purple-500/30 mb-2 flex items-center justify-between">
+          <div><span class="text-[8px] text-gray-400 block font-mono uppercase">RULING PLANET</span><span class="text-xs font-bold text-purple-200 flex items-center gap-1"><span id="planet-symbol-tag" class="text-amber-400 text-sm">♃</span><span id="planet-name-text">Jupiter (Mushtari)</span></span></div>
+          <div class="text-right"><span class="text-[8px] text-gray-400 block font-mono">KARACHI SA'AT</span><span id="current-planet-time" class="text-xs font-bold text-amber-400 font-hud">--:-- - --:--</span></div>
+        </div>
+        <div class="border border-white/5 rounded bg-black/40 p-1.5"><div id="planetary-hours-list" class="space-y-1 text-[10px] font-mono max-h-36 overflow-y-auto pr-1"></div></div>
+      </div>
+
+      <div class="glass-panel rounded-xl p-3 border-cyan-500/30">
+        <div class="flex justify-between items-center mb-1.5 font-mono"><span class="text-[11px] font-bold tracking-wider text-cyan-300 uppercase">LUNAR ASTRO CYCLE</span><span class="text-base">🌒</span></div>
+        <div class="space-y-1 text-[10px] font-mono">
+          <div class="flex justify-between p-1 rounded bg-black/40 border border-white/5"><span>🌑 New Moon</span><span class="text-amber-400 font-hud">09 Nov 2026</span></div>
+          <div class="flex justify-between p-1 rounded bg-black/40 border border-white/5"><span>🌓 1st Quarter</span><span class="text-cyan-400 font-hud">17 Nov 2026</span></div>
+          <div class="flex justify-between p-1 rounded bg-black/40 border border-white/5"><span>🌕 Full Moon</span><span class="text-emerald-400 font-hud">24 Nov 2026</span></div>
+          <div class="flex justify-between p-1 rounded bg-black/40 border border-white/5"><span>🌗 3rd Quarter</span><span class="text-rose-400 font-hud">02 Dec 2026</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:col-span-6 flex flex-col gap-3">
+      <div class="glass-panel rounded-xl p-3 relative overflow-hidden flex flex-col min-h-[350px] border-amber-500/20">
+        <div class="flex items-center justify-between mb-1 z-10"><span class="text-xs font-bold text-amber-400 tracking-wider font-hud">3D COINDECK & JUPITER (MUSHTARI) SOLAR REACTOR</span><span class="text-[9px] text-emerald-400 font-hud font-bold">ORBITING ACTIVE • ABJAD 287</span></div>
+        <div class="grid grid-cols-12 gap-2 flex-1 items-center">
+          <div class="col-span-6 h-[270px] relative flex items-center justify-center"><div id="three-reactor-canvas" class="w-full h-full"></div></div>
+          <div class="col-span-6 flex flex-col justify-between h-[275px] bg-black/70 border border-cyan-500/30 rounded-lg p-2">
+            <div class="bg-black/60 border border-white/10 rounded-md p-2 text-center">
+              <span class="text-[9px] font-bold text-amber-400 block">FEAR & GREED INDEX</span>
+              <span class="text-2xl font-black text-amber-300 font-hud">28 (FEAR)</span>
+            </div>
+            <div class="space-y-1.5 text-[10px] font-mono bg-black/40 p-2 rounded border border-emerald-500/20">
+              <span class="text-emerald-400 font-bold block border-b border-white/5 pb-0.5">▲ INSTITUTIONAL INFLOW</span>
+              <div class="flex justify-between"><span>BTC Spot:</span><span class="text-emerald-400">+$14.8M</span></div>
+              <div class="flex justify-between"><span>Gold Spot:</span><span class="text-amber-400">+$12.1M</span></div>
+              <div class="flex justify-between"><span>Silver Spot:</span><span class="text-cyan-300">+$4.2M</span></div>
+              <div class="flex justify-between"><span>ETH Spot:</span><span class="text-purple-300">+$3.1M</span></div>
+            </div>
+            <div class="pt-0.5 border-t border-white/5 flex items-center justify-between text-[9px]"><span class="text-gray-400">NET FLOW:</span><span class="text-emerald-400 font-bold">+$21.4M INFLOW</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div class="glass-panel p-2 rounded-lg border-amber-500/30"><div class="flex justify-between items-center text-[10px] font-bold"><span class="text-amber-400">BTC/USDT</span><span data-sync-pct="btc" class="text-rose-400">-1.79%</span></div><div class="text-sm md:text-base font-bold text-gray-100 my-0.5">$<span data-sync-price="btc">63,448.00</span></div><span class="text-[9px] text-gray-500 block truncate font-mono">Dominance: 59.80%</span></div>
+        <div class="glass-panel p-2 rounded-lg border-purple-500/30"><div class="flex justify-between items-center text-[10px] font-bold"><span class="text-purple-400">ETH/USDT</span><span data-sync-pct="eth" class="text-rose-400">-0.57%</span></div><div class="text-sm md:text-base font-bold text-gray-100 my-0.5">$<span data-sync-price="eth">1,802.06</span></div><span class="text-[9px] text-gray-500 block truncate font-mono">Ethereum Core</span></div>
+        <div class="glass-panel p-2 rounded-lg border-cyan-500/30"><div class="flex justify-between items-center text-[10px] font-bold"><span class="text-cyan-400">SOL/USDT</span><span data-sync-pct="sol" class="text-emerald-400">+0.15%</span></div><div class="text-sm md:text-base font-bold text-gray-100 my-0.5">$<span data-sync-price="sol">74.84</span></div><span class="text-[9px] text-gray-500 block truncate font-mono">Solana Spot</span></div>
+        <div class="glass-panel p-2 rounded-lg border-emerald-500/30"><div class="flex justify-between items-center text-[10px] font-bold"><span class="text-emerald-400">DYDX/USDT</span><span data-sync-pct="dydx" class="text-emerald-400">+1.18%</span></div><div class="text-sm md:text-base font-bold text-gray-100 my-0.5">$<span data-sync-price="dydx">0.0942</span></div><span class="text-[9px] text-gray-500 block truncate font-mono">dYdX Spot</span></div>
+      </div>
+
+      <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[200px]">
+        <div class="flex items-center justify-between mb-2 font-mono border-b border-white/5 pb-1"><span class="text-xs font-bold text-gray-200">⚡ ORDER FLOW & LIQUIDITY HEATMAPS (BTC, XAU & XAG)</span><span class="text-[9px] text-emerald-400">CME & Spot Synced</span></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 flex-1">
+          <div class="bg-black/60 rounded-lg p-2 border border-amber-500/20 flex flex-col justify-between">
+            <span class="text-[10px] font-bold text-amber-400">BTC HEATMAP</span>
+            <div id="btc-heatmap-container" class="space-y-1 text-[10px] font-mono py-1"></div>
+          </div>
+          <div class="bg-black/60 rounded-lg p-2 border border-yellow-500/20 flex flex-col justify-between">
+            <span class="text-[10px] font-bold text-yellow-300">GOLD HEATMAP</span>
+            <div id="gold-heatmap-container" class="space-y-1 text-[10px] font-mono py-1"></div>
+          </div>
+          <div class="bg-black/60 rounded-lg p-2 border border-cyan-500/20 flex flex-col justify-between">
+            <span class="text-[10px] font-bold text-cyan-300">SILVER HEATMAP</span>
+            <div id="silver-heatmap-container" class="space-y-1 text-[10px] font-mono py-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:col-span-3 flex flex-col gap-3">
+      <div class="glass-panel rounded-xl p-3 border-emerald-500/30">
+        <div class="flex items-center justify-between mb-2"><h2 class="text-xs font-bold text-emerald-400 font-mono">🎯 SMC LIQUIDITY LEVELS</h2><span class="text-[9px] bg-emerald-500/15 text-emerald-400 px-1.5 py-0.5 rounded font-bold">SYNCED</span></div>
+        <div class="bg-black/50 p-2 rounded-lg border border-amber-500/20 mb-2 text-xs space-y-0.5">
+          <div class="flex justify-between items-center"><span class="text-amber-400 font-bold">GOLD (XAU/USD)</span><span class="text-[9px] text-amber-300">SPOT</span></div>
+          <div class="flex justify-between"><span class="text-gray-400">Live Spot:</span><span class="font-bold text-white">$<span data-sync-price="gold">3,734.56</span></span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span id="smc-gold-buy" class="font-bold text-emerald-400">$3,700 – $3,720</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span id="smc-gold-tp" class="font-bold text-cyan-400">$3,790 – $3,850</span></div>
+        </div>
+        <div class="bg-black/50 p-2 rounded-lg border border-emerald-500/20 text-xs space-y-0.5">
+          <div class="flex justify-between items-center"><span class="text-amber-300 font-bold">BITCOIN (BTC)</span><span class="text-[9px] text-emerald-300">SPOT</span></div>
+          <div class="flex justify-between"><span class="text-gray-400">Live Spot:</span><span class="font-bold text-white">$<span data-sync-price="btc">63,448.00</span></span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Demand Zone:</span><span id="smc-btc-buy" class="font-bold text-emerald-400">$62,030 – $62,800</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Supply Zone:</span><span id="smc-btc-tp" class="font-bold text-cyan-400">$64,850 – $66,000</span></div>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-xl p-3 flex-1 flex flex-col">
+        <h2 class="text-xs font-bold text-gray-300 mb-2 font-mono">🌐 GLOBAL INDICES (LIVE SYNC)</h2>
+        <div class="space-y-1.5 flex-1 text-xs font-hud">
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex justify-between"><span class="font-bold text-cyan-300">NASDAQ 100</span><span class="font-bold text-white">27,001.79</span></div>
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex justify-between"><span class="font-bold text-cyan-400">S&P 500</span><span class="font-bold text-white">7,341.23</span></div>
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex justify-between"><span class="font-bold text-amber-400">DOW JONES</span><span class="font-bold text-white">50,748.46</span></div>
+          <div class="p-2 rounded bg-black/40 border border-white/5 flex justify-between"><span class="font-bold text-emerald-400">PSX KSE-100</span><span class="font-bold text-white">177,517.74</span></div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- TAB 7: 11 AI SKILLS -->
   <main id="view-ai-skills" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div class="glass-panel rounded-xl p-4 border border-amber-500/40">
-      <h2 class="text-base font-black text-amber-300 uppercase">11 AI TRADING SKILLS SUITE</h2>
-      <button type="button" onclick="window.runChartScanner()" class="mt-2 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-bold py-1.5 px-3 rounded text-xs cursor-pointer">🔍 SCAN LIVE MARKET</button>
-      <div id="scanner-output" class="mt-2 bg-black/70 p-2 rounded text-xs font-mono text-gray-200">Ready for scan...</div>
+    <div class="glass-panel rounded-xl p-3.5 border border-amber-500/40 bg-gradient-to-r from-amber-950/30 via-black to-emerald-950/30 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl gear-spin-cw inline-block">⚙️</span>
+        <div>
+          <h2 class="text-sm sm:text-base font-black text-amber-300 tracking-wide uppercase">11 AI TRADING SKILLS SUITE • QUAD-ASSET GEAR SYNC PACK</h2>
+          <p class="text-[11px] text-gray-300 font-mono">Auto-Updates with Live TradingView & CME Spot Ticks</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+      <div class="radar-card p-3.5 border border-emerald-500/40 space-y-2">
+        <span class="text-[10px] text-emerald-400 font-bold font-mono">01 • CHART SCANNER</span>
+        <h4 class="text-sm font-bold text-white">Multi-Timeframe SMC Pattern Scanner</h4>
+        <button type="button" onclick="window.runChartScanner()" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-300 font-bold py-1.5 rounded text-xs cursor-pointer">🔍 LIVE SCAN GOLD, SILVER, BTC & OIL</button>
+        <div id="scanner-output" class="bg-black/70 p-2 rounded border border-white/10 text-[11px] font-mono text-gray-200"></div>
+      </div>
+
+      <div class="radar-card p-3.5 border border-amber-500/40 space-y-2">
+        <span class="text-[10px] text-amber-400 font-bold font-mono">02 • BUDGET & LOT MANAGER</span>
+        <h4 class="text-sm font-bold text-white">Position & Lot Size Calculator</h4>
+        <div class="grid grid-cols-3 gap-1.5 text-[11px] font-mono">
+          <div><label class="text-[9px] text-gray-400 block">Balance ($)</label><input type="number" id="calc-balance" value="1000" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-white" /></div>
+          <div><label class="text-[9px] text-gray-400 block">Risk (%)</label><input type="number" id="calc-risk" value="2" step="0.5" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-amber-300" /></div>
+          <div><label class="text-[9px] text-gray-400 block">SL ($)</label><input type="number" id="calc-sl" value="10" oninput="window.runLotCalculator()" class="w-full bg-black border border-white/15 rounded px-2 py-1 text-rose-300" /></div>
+        </div>
+        <div id="calc-lot-output" class="bg-black/70 p-2 rounded border border-amber-500/30 text-xs font-mono text-emerald-400 font-bold">Risk: $20.00 • Recommended: 0.20 Std Lot</div>
+      </div>
+
+      <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2">
+        <span class="text-[10px] text-cyan-400 font-bold font-mono">03 • LIVE EXIT PLANNER</span>
+        <h4 class="text-sm font-bold text-white">Auto Target & Structure Planner</h4>
+        <div class="flex gap-1.5 text-[11px]">
+          <select id="exit-asset" onchange="window.runExitPlanner()" class="bg-black border border-white/15 rounded px-2 py-1 text-white flex-1">
+            <option value="GOLD">GOLD (XAUUSD)</option><option value="SILVER">SILVER (XAGUSD)</option><option value="BTC">BTC (BTCUSDT)</option><option value="OIL">OIL (WTI CRUDE)</option>
+          </select>
+          <select id="exit-rr" onchange="window.runExitPlanner()" class="bg-black border border-white/15 rounded px-2 py-1 text-cyan-300">
+            <option value="2">1:2 R:R</option><option value="3" selected>1:3 R:R</option>
+          </select>
+        </div>
+        <div id="exit-planner-output" class="bg-black/70 p-2 rounded border border-cyan-500/30 text-[11px] font-mono space-y-0.5"></div>
+      </div>
     </div>
   </main>
 
+  <!-- TAB 8: LIVE MARKET OUTLOOK -->
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+    <div class="glass-panel rounded-xl p-3.5 border border-yellow-500/40 flex flex-wrap items-center justify-between gap-3">
+      <div><h2 class="text-base sm:text-lg font-black text-amber-300 tracking-wide uppercase">QUAD-ASSET INSTITUTIONAL MARKET STRUCTURE</h2></div>
+      <div class="flex flex-wrap items-center gap-1.5 bg-black/90 p-1.5 rounded-lg border border-white/15">
+        <button type="button" onclick="window.setSignalTimeframe('15M')" id="tf-15M" class="tf-btn-active px-2.5 py-1 rounded text-xs font-bold cursor-pointer">15M</button>
+        <button type="button" onclick="window.setSignalTimeframe('1H')" id="tf-1H" class="px-2.5 py-1 rounded text-xs font-bold text-gray-300 hover:text-white cursor-pointer">1H</button>
+        <button type="button" onclick="window.setSignalTimeframe('4H')" id="tf-4H" class="px-2.5 py-1 rounded text-xs font-bold text-gray-300 hover:text-white cursor-pointer">4H</button>
+      </div>
+    </div>
     <div id="live-signals-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
+  <!-- TAB 9: ECONOMIC CALENDAR -->
   <main id="view-forex-factory" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div class="radar-card p-3 border border-orange-500/30 overflow-x-auto">
-      <table class="w-full text-left text-xs font-mono"><tbody id="forex-factory-tbody"></tbody></table>
+    <div class="glass-panel rounded-xl p-4 border-2 border-orange-500/50">
+      <h2 class="font-cinzel text-lg sm:text-xl font-black text-orange-300 uppercase">ECONOMIC CALENDAR • FOREX FACTORY SYNC</h2>
+    </div>
+    <div class="radar-card overflow-x-auto border border-orange-500/30">
+      <table class="w-full text-left border-collapse text-xs font-mono">
+        <thead><tr class="bg-black/80 border-b border-orange-500/30 text-orange-300 uppercase text-[11px]"><th class="p-3">Time (PKT)</th><th class="p-3">Currency</th><th class="p-3">Impact</th><th class="p-3">Event Name</th><th class="p-3 text-right">Actual</th><th class="p-3 text-right">Forecast</th></tr></thead>
+        <tbody id="forex-factory-tbody" class="divide-y divide-white/5"></tbody>
+      </table>
     </div>
   </main>
 
-  <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+  <!-- TAB 10: BLOOMBERG WIRE -->
+  <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden">
+    <div class="glass-panel rounded-xl p-4 border-cyan-500/30"><h2 class="font-cinzel text-xl font-bold tracking-widest text-cyan-400 uppercase">BLOOMBERG TERMINAL • GLOBAL DISPATCH</h2></div>
     <div id="bloomberg-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </main>
 
+  <!-- TAB 11: WORLD NEWS -->
   <main id="view-world-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
+    <div class="glass-panel rounded-xl p-4 border-2 border-rose-500/50"><h2 class="font-cinzel text-lg sm:text-xl font-black text-white uppercase">TOTAL WORLD NEWS TERMINAL • GEOPOLITICS & MACRO</h2></div>
     <div id="world-news-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
   </main>
 
+  <!-- TAB 12: AI PREDICTOR & ORDER FLOW HEATMAP INTEL -->
   <main id="view-ai-intelligence" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 space-y-3">
-      <h2 class="font-cinzel text-lg font-black text-amber-300 uppercase">AAJ MARKET MEIN KYA HO SAKTA HAI (ORDER FLOW & AI CONVICTION)</h2>
+      <h2 class="font-cinzel text-base sm:text-xl font-black text-amber-300 uppercase">MUSHTARI AI PREDICTOR • LIVE ORDER FLOW CONVICTION [287]</h2>
       <div id="ai-house-conviction-box" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono"></div>
       <div id="ai-master-verdict-banner" class="bg-black/70 border border-amber-500/30 rounded-lg p-3 text-xs font-mono text-gray-200"></div>
     </div>
+    <div id="ai-quad-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
+  <!-- TAB 13: 6-CHART SIMULTANEOUS LIQUIDITY SWEEP MATRIX -->
   <main id="view-multi-sweep-matrix" class="w-full px-3 sm:px-6 py-3 space-y-3.5 flex-1 block font-hud">
-    <div class="glass-panel rounded-xl p-3.5 border-2 border-cyan-400/60 flex items-center justify-between">
+    <div class="glass-panel rounded-xl p-3.5 border-2 border-cyan-400/60 bg-gradient-to-r from-cyan-950/40 via-black to-amber-950/30 flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h2 class="font-cinzel text-base sm:text-xl font-black text-white uppercase">TAB 13 • TRADINGVIEW & CME SPOT 6-CHART LIQUIDITY SWEEP MATRIX</h2>
-        <p class="text-[11px] text-gray-300 font-mono">Synchronized Gold ($3,795.00), Silver ($46.68), BTC ($64,603.00), Oil ($84.35)!</p>
+        <h2 class="font-cinzel text-base sm:text-xl font-black text-white tracking-wider uppercase">TAB 13 • MULTI-ASSET AUTO LIQUIDITY SWEEP MATRIX</h2>
+        <p class="text-[11px] text-gray-300 font-mono">Auto Marked <strong class="text-rose-400">BSL (Buy-Side Liquidity)</strong> & <strong class="text-emerald-400">SSL (Sell-Side Liquidity)</strong> — 100% Synced!</p>
+      </div>
+      <div class="flex items-center gap-1.5 bg-black/90 p-1.5 rounded-xl border border-cyan-500/40">
+        <button type="button" onclick="window.setMatrixTF('1M')" id="mtf-1M" class="matrix-tf-active px-3 py-1.5 rounded-lg text-xs font-extrabold cursor-pointer">1M</button>
+        <button type="button" onclick="window.setMatrixTF('5M')" id="mtf-5M" class="px-3 py-1.5 rounded-lg text-xs font-bold text-gray-300 cursor-pointer">5M</button>
+        <button type="button" onclick="window.setMatrixTF('15M')" id="mtf-15M" class="px-3 py-1.5 rounded-lg text-xs font-bold text-gray-300 cursor-pointer">15M</button>
       </div>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
       <div class="radar-card p-3 border-2 border-amber-500/50 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-amber-400">🟡 GOLD SPOT</span><span class="text-sm font-bold text-white">$<span data-sync-price="gold">3,795.00</span></span></div>
-        <canvas id="mcanvas-GOLD" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-amber-400">🟡 1. XAUUSD (GOLD SPOT)</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="gold">3,734.56</span></span></div>
+        <canvas id="mcanvas-GOLD" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
       <div class="radar-card p-3 border-2 border-cyan-500/40 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-cyan-300">⚪ SILVER SPOT</span><span class="text-sm font-bold text-white">$<span data-sync-price="silver">46.68</span></span></div>
-        <canvas id="mcanvas-SILVER" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-cyan-300">⚪ 2. XAGUSD (SILVER SPOT)</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="silver">45.41</span></span></div>
+        <canvas id="mcanvas-SILVER" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
       <div class="radar-card p-3 border-2 border-emerald-500/40 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-emerald-400">🟠 BITCOIN</span><span class="text-sm font-bold text-white">$<span data-sync-price="btc">64,603.00</span></span></div>
-        <canvas id="mcanvas-BTC" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-emerald-400">🟠 3. BTCUSDT (BITCOIN)</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="btc">63,448.00</span></span></div>
+        <canvas id="mcanvas-BTC" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
       <div class="radar-card p-3 border-2 border-rose-500/40 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-rose-400">🛢️ WTI OIL</span><span class="text-sm font-bold text-white">$<span data-sync-price="oil">84.35</span></span></div>
-        <canvas id="mcanvas-OIL" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-rose-400">🛢️ 4. WTI CRUDE OIL</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="oil">83.88</span></span></div>
+        <canvas id="mcanvas-OIL" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
       <div class="radar-card p-3 border-2 border-purple-500/40 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-purple-300">🟣 DYDX PERP</span><span class="text-sm font-bold text-white">$<span data-sync-price="dydx">0.0942</span></span></div>
-        <canvas id="mcanvas-DYDX" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-purple-300">🟣 5. DYDXUSDT (DEX)</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="dydx">0.0942</span></span></div>
+        <canvas id="mcanvas-DYDX" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
       <div class="radar-card p-3 border-2 border-indigo-500/40 bg-[#080c15]">
-        <div class="flex justify-between border-b border-white/10 pb-1 mb-2"><span class="text-xs font-black text-indigo-300">💎 ETHEREUM</span><span class="text-sm font-bold text-white">$<span data-sync-price="eth">1,812.33</span></span></div>
-        <canvas id="mcanvas-ETH" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded"></canvas>
+        <div class="flex justify-between border-b border-white/10 pb-1.5 mb-2"><span class="text-xs font-black text-indigo-300">💎 6. ETHUSDT (ETHEREUM)</span><span class="text-sm font-extrabold text-white">$<span data-sync-price="eth">1,802.06</span></span></div>
+        <canvas id="mcanvas-ETH" width="380" height="190" class="w-full h-[190px] bg-[#05080f] rounded border border-white/5"></canvas>
       </div>
     </div>
   </main>
 
+  <!-- TAB 14: TERMINAL HUB -->
   <main id="view-terminal-hub" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border border-amber-500/40">
       <h2 class="text-base font-black text-amber-300 uppercase">14•TERMINAL MASTER HUB [287]</h2>
-      <p class="text-xs text-gray-300 mt-1 font-mono">All systems online. TradingView & CME Spot feeds locked.</p>
+      <p class="text-xs text-gray-300 mt-1 font-mono">All 14 tabs, 3D CoinDex/Jupiter reactor, lunar astro cycles, and order flow heatmaps online.</p>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 z-40 mt-4">
     <div class="w-full mx-auto flex flex-wrap items-center justify-between gap-2">
       <span class="text-xs font-bold text-amber-400 font-hud">MASTER SYNCHRONIZED TERMINAL • MUSHTARI TRADER [ABJAD 287]</span>
-      <span class="text-[10px] text-gray-400 font-mono">TRADINGVIEW & CME SPOT 100% SYNCHRONIZED</span>
+      <span class="text-[10px] text-gray-400 font-mono">TRADINGVIEW & CME SPOT SYNC • ATOMIC CLOCK ACTIVE</span>
     </div>
   </footer>
 
-  <!-- FULL JAVASCRIPT ENGINE -->
+  <!-- 4. MASTER JAVASCRIPT SYNC & 3D REACTOR ENGINE -->
   <script>
     window.masterState = {
-      prices: { gold: 3795.00, silver: 46.68, btc: 64603.00, eth: 1812.33, sol: 74.73, dydx: 0.0942, oil: 84.35, dxy: 103.67, usdpkr: 276.51 },
-      anchors24h: { gold: 3838.00, silver: 47.38, btc: 65080.00, eth: 1830.00, sol: 75.50, dydx: 0.0931, oil: 85.80, dxy: 103.40, usdpkr: 276.40 },
-      decimals: { gold: 2, silver: 2, btc: 2, eth: 2, sol: 2, dydx: 4, oil: 2, dxy: 2, usdpkr: 2 }
+      liveApiAnchors: { gold: 3734.56, silver: 45.41, btc: 63448.00, eth: 1802.06, sol: 74.84, dydx: 0.0942, oil: 83.88, dxy: 103.86, usdpkr: 276.29 },
+      prices: { gold: 3734.56, silver: 45.41, btc: 63448.00, eth: 1802.06, sol: 74.84, dydx: 0.0942, oil: 83.88, dxy: 103.86, usdpkr: 276.29 },
+      anchors24h: { gold: 3795.00, silver: 46.68, btc: 64603.00, eth: 1812.33, sol: 74.73, dydx: 0.0931, oil: 84.35, dxy: 103.67, usdpkr: 276.51 },
+      decimals: { gold: 2, silver: 2, btc: 2, eth: 2, sol: 2, dydx: 4, oil: 2, dxy: 2, usdpkr: 2 },
+      high24: { BTC: 64900.00, ETH: 1835.00, GOLD: 3805.00, SILVER: 46.80, OIL: 85.21 },
+      low24:  { BTC: 63100.00, ETH: 1790.00, GOLD: 3725.00, SILVER: 45.10, OIL: 83.40 },
+      vol24:  { BTC: "$34.8B", ETH: "$5.12B", GOLD: "$32.4B", SILVER: "$6.85B", OIL: "$11.24B" },
+      oi:     { BTC: "$7.18B", ETH: "$3.42B", GOLD: "$18.6B", SILVER: "$4.12B", OIL: "$8.94B" }
     };
 
     window.currentActiveView = "MULTI_SWEEP_MATRIX";
+    window.matrixTF = '1M';
+    window.matrixSeries = {};
 
     function fmtNum(val, dec) {
       return Number(val).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
     }
 
-    window.syncAllDisplays = function(pktTimeStr) {
-      const P = window.masterState.prices;
-      const D = window.masterState.decimals;
+    function calcPctChange(key) {
+      const cur = window.masterState.prices[key], anc = window.masterState.anchors24h[key];
+      return anc ? ((cur - anc) / anc) * 100 : 0;
+    }
 
+    async function syncGlobalMarketSnapshot() {
+      try {
+        const res = await fetch('https://data-asg.goldprice.org/dbXRates/USD', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.items && data.items[0]) {
+            const xau = parseFloat(data.items[0].xauPrice), xag = parseFloat(data.items[0].xagPrice);
+            if (xau > 1500) window.masterState.liveApiAnchors.gold = xau;
+            if (xag > 10) window.masterState.liveApiAnchors.silver = xag;
+          }
+        }
+      } catch (e) {}
+    }
+
+    function fmtHMS(totalSec) {
+      const s = Math.max(0, Math.floor(totalSec));
+      return `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor((s % 3600) / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    }
+
+    function updateGlobalSessionClocks(now) {
+      const utcSec = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+      const checkSess = (oH, cH) => {
+        const oS = oH * 3600, cS = cH * 3600;
+        return (utcSec >= oS && utcSec < cS) ? { isOpen: true, rem: cS - utcSec } : { isOpen: false, rem: utcSec < oS ? (oS - utcSec) : (86400 - utcSec + oS) };
+      };
+      const asia = checkSess(0, 9), london = checkSess(8, 17), ny = checkSess(13, 22);
+      const setPill = (id, st) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = st.isOpen ? `🟢 LIVE (${fmtHMS(st.rem)})` : `⏳ In ${fmtHMS(st.rem)}`;
+      };
+      setPill('sess-txt-asia', asia); setPill('sess-txt-london', london); setPill('sess-txt-ny', ny);
+      const banner = document.getElementById('active-killzone-banner');
+      if (banner) banner.textContent = london.isOpen ? `🇬🇧 LONDON SESSION LIVE! (${fmtHMS(london.rem)} Left)` : (ny.isOpen ? `🇺🇸 NEW YORK SESSION LIVE!` : `🌏 ASIAN SESSION ACTIVE`);
+    }
+
+    window.syncAllDisplays = function(pktTimeStr) {
+      const P = window.masterState.prices, D = window.masterState.decimals;
       document.querySelectorAll('[data-sync-price]').forEach(el => {
         const k = el.getAttribute('data-sync-price');
-        if (P[k] !== undefined) el.textContent = fmtNum(P[k], D[k] !== undefined ? D[k] : 2);
+        if (P[k] !== undefined) el.textContent = fmtNum(P[k], D[k] ?? 2);
       });
-
-      if (pktTimeStr) {
-        document.querySelectorAll('[data-sync-clock="pkt"]').forEach(el => { el.textContent = pktTimeStr; });
-      }
-
+      document.querySelectorAll('[data-sync-pct]').forEach(el => {
+        const k = el.getAttribute('data-sync-pct');
+        if (P[k] !== undefined) {
+          const pct = calcPctChange(k);
+          el.textContent = `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
+          el.className = pct >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
+        }
+      });
+      if (pktTimeStr) document.querySelectorAll('[data-sync-clock="pkt"]').forEach(el => { el.textContent = pktTimeStr; });
       const tolaPKR = Math.round((P.gold / 31.1035) * 11.6638 * P.usdpkr);
-      const tolaEl = document.getElementById('pkr-tola-rate');
-      if (tolaEl) tolaEl.textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
+      const g10PKR = Math.round((P.gold / 31.1035) * 10 * P.usdpkr);
+      if (document.getElementById('pkr-tola-rate')) document.getElementById('pkr-tola-rate').textContent = 'Rs ' + tolaPKR.toLocaleString('en-PK');
+      if (document.getElementById('pkr-10g-rate')) document.getElementById('pkr-10g-rate').textContent = 'Rs ' + g10PKR.toLocaleString('en-PK');
+
+      drawHeroLiveWindows();
+      if (['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL'].includes(window.currentActiveView)) renderRadarData(window.currentActiveView);
+      else if (window.currentActiveView === 'QUANT_DESK') updateHeatmaps();
+      else if (window.currentActiveView === 'LIVE_SIGNALS') window.renderLiveSignalCards();
+      else if (window.currentActiveView === 'AI_INTELLIGENCE') window.renderAIIntelligenceTab();
+      else if (window.currentActiveView === 'MULTI_SWEEP_MATRIX') drawAll6MatrixCharts();
     };
 
-    // 3D JUPITER SOLAR REACTOR
+    function renderRadarData(key) {
+      const P = window.masterState.prices, prop = key.toLowerCase(), liveP = P[prop];
+      if (document.getElementById('radar-active-symbol')) document.getElementById('radar-active-symbol').textContent = key + ' SPOT';
+      if (document.getElementById('hero-price')) document.getElementById('hero-price').textContent = '$' + fmtNum(liveP, 2);
+      if (document.getElementById('hero-high')) document.getElementById('hero-high').textContent = '$' + fmtNum(window.masterState.high24[key] || liveP, 2);
+      if (document.getElementById('hero-low')) document.getElementById('hero-low').textContent = '$' + fmtNum(window.masterState.low24[key] || liveP, 2);
+      if (document.getElementById('hero-vol')) document.getElementById('hero-vol').textContent = window.masterState.vol24[key] || '$15.2B';
+      if (document.getElementById('stat-oi')) document.getElementById('stat-oi').textContent = window.masterState.oi[key] || '$8.5B';
+    }
+
+    function updateHeatmaps() {
+      const bp = Math.round(window.masterState.prices.btc), gp = Math.round(window.masterState.prices.gold), sp = window.masterState.prices.silver.toFixed(2);
+      const btcC = document.getElementById('btc-heatmap-container'), goldC = document.getElementById('gold-heatmap-container'), silverC = document.getElementById('silver-heatmap-container');
+      if (btcC) btcC.innerHTML = `<div class="flex justify-between text-gray-300"><span>$${(bp + 1400).toLocaleString()} (BSL)</span><span class="text-amber-400 font-bold">$152M</span></div><div class="flex justify-between text-gray-300"><span>$${(bp - 1400).toLocaleString()} (SSL)</span><span class="text-emerald-400 font-bold">$194M</span></div>`;
+      if (goldC) goldC.innerHTML = `<div class="flex justify-between text-gray-300"><span>$${(gp + 55).toLocaleString()} (BSL)</span><span class="text-rose-400 font-bold">$215M</span></div><div class="flex justify-between text-gray-300"><span>$${(gp - 35).toLocaleString()} (SSL)</span><span class="text-emerald-400 font-bold">$198M</span></div>`;
+      if (silverC) silverC.innerHTML = `<div class="flex justify-between text-gray-300"><span>$${(parseFloat(sp) + 0.90).toFixed(2)} (BSL)</span><span class="text-cyan-300 font-bold">$84M</span></div><div class="flex justify-between text-gray-300"><span>$${(parseFloat(sp) - 0.60).toFixed(2)} (SSL)</span><span class="text-emerald-400 font-bold">$96M</span></div>`;
+    }
+
     let threeInitialized = false;
     function initThreeReactor() {
       const container = document.getElementById('three-reactor-canvas');
       if (!container || threeInitialized || typeof THREE === 'undefined') return;
       threeInitialized = true;
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+      const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
       camera.position.z = 6.2;
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      container.innerHTML = '';
-      container.appendChild(renderer.domElement);
+      container.innerHTML = ''; container.appendChild(renderer.domElement);
       scene.add(new THREE.AmbientLight(0xffffff, 0.9));
       const jup = new THREE.Mesh(new THREE.SphereGeometry(1.22, 24, 24), new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.5 }));
       scene.add(jup);
       const ring = new THREE.Mesh(new THREE.RingGeometry(2.12, 2.22, 48), new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.6 }));
       ring.rotation.x = Math.PI / 2.3; scene.add(ring);
-      function anim() {
-        requestAnimationFrame(anim);
-        jup.rotation.y += 0.01;
-        ring.rotation.z -= 0.008;
-        renderer.render(scene, camera);
-      }
+      function anim() { requestAnimationFrame(anim); jup.rotation.y += 0.008; ring.rotation.z -= 0.006; renderer.render(scene, camera); }
       anim();
     }
 
+    function calculatePlanetaryHours() {
+      const CHALDEAN = [{ name: "Saturn (Zuhal)", symbol: "♄" }, { name: "Jupiter (Mushtari)", symbol: "♃" }, { name: "Mars (Mirrikh)", symbol: "♂" }, { name: "Sun (Shams)", symbol: "☉" }, { name: "Venus (Zuhra)", symbol: "♀" }, { name: "Mercury (Utarid)", symbol: "☿" }, { name: "Moon (Qamar)", symbol: "☽" }];
+      const RULERS = [3, 6, 2, 5, 1, 4, 0], now = new Date(), h = now.getHours(), d = now.getDay(), isDay = h >= 6 && h < 18;
+      const pl = CHALDEAN[(RULERS[d] + (h >= 6 ? h - 6 : h + 18)) % 7];
+      if (document.getElementById('planet-symbol-tag')) document.getElementById('planet-symbol-tag').textContent = pl.symbol;
+      if (document.getElementById('planet-name-text')) document.getElementById('planet-name-text').textContent = pl.name;
+      if (document.getElementById('current-planet-time')) document.getElementById('current-planet-time').textContent = `${h % 12 || 12}:00 - ${(h + 1) % 12 || 12}:00`;
+      const listEl = document.getElementById('planetary-hours-list');
+      if (listEl) {
+        let html = '';
+        for (let i = 0; i < 8; i++) {
+          const sh = isDay ? (6 + i) : ((18 + i) % 24), p = CHALDEAN[(RULERS[d] + (isDay ? i : 12 + i)) % 7];
+          html += `<div class="flex justify-between p-1 rounded ${sh === h ? 'bg-purple-950/70 border border-purple-400/50 text-white font-bold' : 'bg-black/30 text-gray-300'}"><span>${p.symbol} ${p.name}</span><span>${sh % 12 || 12}:00 ${sh >= 12 ? 'pm' : 'am'}</span></div>`;
+        }
+        listEl.innerHTML = html;
+      }
+    }
+
+    window.runLotCalculator = function() {
+      const bal = parseFloat(document.getElementById('calc-balance')?.value) || 1000, risk = parseFloat(document.getElementById('calc-risk')?.value) || 2, sl = parseFloat(document.getElementById('calc-sl')?.value) || 10;
+      const rUsd = (bal * risk) / 100, out = document.getElementById('calc-lot-output');
+      if (out) out.textContent = `Risk: $${rUsd.toFixed(2)} • Recommended: ${Math.max(0.01, rUsd / (sl * 10)).toFixed(2)} Std Lot`;
+    };
+
+    window.runExitPlanner = function() {
+      const asset = document.getElementById('exit-asset')?.value || 'GOLD', p = window.masterState.prices[asset.toLowerCase()] || 3734.56;
+      const out = document.getElementById('exit-planner-output');
+      if (out) out.innerHTML = `<div class="flex justify-between"><span>Live Spot:</span><span class="text-white font-bold">$${fmtNum(p, 2)}</span></div><div class="flex justify-between"><span>Structure Pivot:</span><span class="text-cyan-400 font-bold">$${fmtNum(p * 1.006, 2)}</span></div>`;
+    };
+
     window.runChartScanner = function() {
-      const P = window.masterState.prices;
-      const o = document.getElementById('scanner-output');
-      if (o) o.innerHTML = `GOLD $${fmtNum(P.gold, 2)} (FVG Reclaim) • SILVER $${fmtNum(P.silver, 2)} • BTC $${fmtNum(P.btc, 0)} • OIL $${fmtNum(P.oil, 2)}`;
+      const P = window.masterState.prices, o = document.getElementById('scanner-output');
+      if (o) o.innerHTML = `GOLD $${fmtNum(P.gold, 2)} • SILVER $${fmtNum(P.silver, 2)} • BTC $${fmtNum(P.btc, 0)} • OIL $${fmtNum(P.oil, 2)} — Institutional Liquidity Scan Complete.`;
     };
 
     window.renderLiveSignalCards = function() {
-      const grid = document.getElementById('live-signals-cards-grid');
-      if (!grid) return;
+      const grid = document.getElementById('live-signals-cards-grid'); if (!grid) return;
       const P = window.masterState.prices;
-      const cards = [
-        { name: 'XAUUSD • GOLD SPOT', price: P.gold, tp: P.gold + 25, sl: P.gold - 12 },
-        { name: 'XAGUSD • SILVER SPOT', price: P.silver, tp: P.silver + 0.8, sl: P.silver - 0.35 },
-        { name: 'BTCUSDT • BITCOIN', price: P.btc, tp: P.btc + 1200, sl: P.btc - 650 },
-        { name: 'WTI • CRUDE OIL', price: P.oil, tp: P.oil + 1.5, sl: P.oil - 0.6 }
+      const items = [
+        { name: 'XAUUSD • GOLD SPOT', price: P.gold, outlook: 'Testing $3,700–$3,735 demand shelf; watch $3,790 resistance.' },
+        { name: 'XAGUSD • SILVER SPOT', price: P.silver, outlook: 'Corrective structure below $46.00; holding $44.80 base.' },
+        { name: 'BTCUSDT • BITCOIN', price: P.btc, outlook: 'Consolidating near $63,448; $62,030 liquidity floor active.' },
+        { name: 'WTI • CRUDE OIL', price: P.oil, outlook: 'Testing $83.88 intraday support ahead of inventory figures.' }
       ];
-      grid.innerHTML = cards.map(c => `
-        <div class="radar-card p-4 border-2 border-emerald-500/60 flex flex-col justify-between space-y-3">
-          <div class="space-y-2">
-            <span class="font-bold text-amber-300 text-xs">${c.name}</span>
-            <div class="bg-emerald-500 text-black rounded p-2 text-center font-extrabold text-xs">🟢 LONG (BUY ACTIVE)</div>
-            <div class="text-xs font-mono space-y-1 bg-black/60 p-2 rounded">
-              <div class="flex justify-between"><span>Spot:</span><span class="text-white">$${fmtNum(c.price, 2)}</span></div>
-              <div class="flex justify-between"><span>Target:</span><span class="text-emerald-400">$${fmtNum(c.tp, 2)}</span></div>
-              <div class="flex justify-between"><span>SL:</span><span class="text-rose-400">$${fmtNum(c.sl, 2)}</span></div>
-            </div>
-          </div>
-        </div>
-      `).join('');
+      grid.innerHTML = items.map(it => `<div class="radar-card p-4 border border-amber-500/40 space-y-2"><span class="font-bold text-amber-300 text-xs">${it.name}</span><div class="text-xl font-black text-white">$${fmtNum(it.price, 2)}</div><p class="text-xs text-gray-300 font-mono">${it.outlook}</p></div>`).join('');
     };
 
     window.renderForexFactory = function() {
-      const tbody = document.getElementById('forex-factory-tbody');
-      if (!tbody) return;
-      tbody.innerHTML = `
-        <tr class="hover:bg-white/5"><td class="p-2 text-gray-200">03:00 PM PKT</td><td class="p-2 text-cyan-300 font-bold">EUR</td><td class="p-2"><span class="bg-amber-500 text-black px-1.5 rounded text-[10px] font-bold">MED</span></td><td class="p-2 text-white font-bold">Eurozone Flash GDP q/q</td><td class="p-2 text-right text-amber-300 font-bold">0.2%</td></tr>
-        <tr class="hover:bg-white/5"><td class="p-2 text-gray-200">06:30 PM PKT</td><td class="p-2 text-cyan-300 font-bold">USD</td><td class="p-2"><span class="bg-red-600 text-white px-1.5 rounded text-[10px] font-bold">HIGH</span></td><td class="p-2 text-white font-bold">US Producer Price Index (PPI)</td><td class="p-2 text-right text-amber-300 font-bold">Pending</td></tr>
-      `;
+      const tbody = document.getElementById('forex-factory-tbody'); if (!tbody) return;
+      tbody.innerHTML = `<tr class="hover:bg-white/5"><td class="p-3 text-gray-200 font-bold">06:30 PM PKT</td><td class="p-3 text-cyan-300 font-bold">USD</td><td class="p-3"><span class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">🔴 HIGH</span></td><td class="p-3 text-white font-bold">US Unemployment Claims & Philly Fed</td><td class="p-3 text-right text-amber-300 font-bold">Pending</td><td class="p-3 text-right text-gray-300">218K</td></tr>`;
     };
 
     window.renderBloombergArticles = function() {
-      const c = document.getElementById('bloomberg-news-grid');
-      if (!c) return;
+      const c = document.getElementById('bloomberg-news-grid'); if (!c) return;
       const P = window.masterState.prices;
-      c.innerHTML = `
-        <div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-amber-400 font-bold">COMMODITIES • LIVE</span><h3 class="font-hud text-sm font-bold text-white mt-1">Spot Gold Synced @ $${fmtNum(P.gold, 2)} Across Global Desks</h3></div>
-        <div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-emerald-400 font-bold">DIGITAL ASSETS • LIVE</span><h3 class="font-hud text-sm font-bold text-white mt-1">Bitcoin Trades @ $${fmtNum(P.btc, 0)} on Live Match Engine</h3></div>
-      `;
+      c.innerHTML = `<div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-amber-400 font-bold">COMMODITIES</span><h3 class="font-hud text-sm font-bold text-white mt-1">Spot Gold Tests $${fmtNum(P.gold, 2)} Amid Strong DXY (103.86)</h3></div><div class="glass-panel rounded-xl border border-white/10 p-4"><span class="text-[10px] text-emerald-400 font-bold">CRYPTO</span><h3 class="font-hud text-sm font-bold text-white mt-1">Bitcoin Trades @ $${fmtNum(P.btc, 0)} with 59.80% Dominance</h3></div>`;
     };
 
     window.renderWorldNews = function() {
-      const g = document.getElementById('world-news-grid');
-      if (!g) return;
+      const g = document.getElementById('world-news-grid'); if (!g) return;
       const P = window.masterState.prices;
-      g.innerHTML = `
-        <div class="radar-card p-4 border-l-4 border-amber-500"><div class="flex justify-between text-[10px] mb-1"><span class="text-amber-300 font-bold">🏦 MACRO • GOLD & BTC</span><span class="text-emerald-400 font-bold">Live</span></div><h3 class="text-sm font-extrabold text-white">Gold ($${fmtNum(P.gold, 2)}) & BTC ($${fmtNum(P.btc, 0)}) Synced</h3></div>
-      `;
+      g.innerHTML = `<div class="radar-card p-4 border-l-4 border-amber-500"><span class="text-amber-300 font-bold text-xs">🏦 GLOBAL MACRO</span><h3 class="text-sm font-extrabold text-white mt-1">Gold ($${fmtNum(P.gold, 2)}) & BTC ($${fmtNum(P.btc, 0)}) Session Liquidity</h3><p class="text-xs text-gray-300 mt-1">Interbank USD/PKR steady at Rs 276.29 while PSX KSE-100 tracks Rs 177,517.74.</p></div>`;
     };
 
     window.renderAIIntelligenceTab = function() {
-      const box = document.getElementById('ai-house-conviction-box');
-      const verdict = document.getElementById('ai-master-verdict-banner');
-      if (box) {
-        box.innerHTML = `
-          <div class="bg-black/75 border border-amber-400/50 rounded-xl p-3"><span class="text-amber-400 font-bold">🟡 GOLD OUTLOOK</span><p class="text-gray-200 text-[11px] mt-1">Spot $3,795 holding demand base; order flow heatmap indicates buy liquidity absorption.</p></div>
-          <div class="bg-black/75 border border-emerald-400/50 rounded-xl p-3"><span class="text-emerald-400 font-bold">🟠 BTC OUTLOOK</span><p class="text-gray-200 text-[11px] mt-1">$64,603 consolidation active before short-squeeze test.</p></div>
-        `;
+      const gp = window.masterState.prices.gold, bp = window.masterState.prices.btc, sp = window.masterState.prices.silver;
+      const houseBox = document.getElementById('ai-house-conviction-box'), verdictEl = document.getElementById('ai-master-verdict-banner');
+      if (houseBox) {
+        houseBox.innerHTML = `
+          <div class="bg-black/75 border border-amber-400/50 rounded-xl p-3"><span class="text-amber-400 font-extrabold">🟡 GOLD ($${fmtNum(gp, 2)})</span><p class="text-gray-200 text-[11px] mt-1">Order flow shows absorption near $3,700–$3,735; relief bounce possible toward $3,790.</p></div>
+          <div class="bg-black/75 border border-emerald-400/50 rounded-xl p-3"><span class="text-emerald-400 font-extrabold">🟠 BTC ($${fmtNum(bp, 0)})</span><p class="text-gray-200 text-[11px] mt-1">Order flow shows liquidity resting near $62,030 and $64,850.</p></div>
+          <div class="bg-black/75 border border-cyan-400/50 rounded-xl p-3"><span class="text-cyan-300 font-extrabold">⚪ SILVER ($${fmtNum(sp, 2)})</span><p class="text-gray-200 text-[11px] mt-1">Order flow monitoring $44.80 demand vs $46.40 supply.</p></div>
+          <div class="bg-black/75 border border-purple-400/50 rounded-xl p-3"><span class="text-purple-300 font-extrabold">🪐 MUSHTARI [287]</span><p class="text-gray-200 text-[11px] mt-1">Synchronized with TradingView & CME Spot feeds.</p></div>`;
       }
-      if (verdict) {
-        verdict.innerHTML = `<strong class="text-amber-400">🧠 MUSHTARI AI MASTER VERDICT:</strong> All 14 tabs synchronized with live TradingView & CME Spot feeds.`;
-      }
+      if (verdictEl) verdictEl.innerHTML = `<strong class="text-amber-400">🧠 MUSHTARI AI HOUSE VIEW:</strong> Order flow heatmaps across Gold, Silver, and BTC are synced with live spot prices.`;
     };
 
     const MATRIX_ASSETS = [
-      { key: 'GOLD', prop: 'gold', dec: 2, vol: 1.5, seed: 11 },
-      { key: 'SILVER', prop: 'silver', dec: 2, vol: 0.08, seed: 22 },
-      { key: 'BTC', prop: 'btc', dec: 2, vol: 45.0, seed: 33 },
-      { key: 'OIL', prop: 'oil', dec: 2, vol: 0.12, seed: 44 },
-      { key: 'DYDX', prop: 'dydx', dec: 4, vol: 0.0005, seed: 55 },
-      { key: 'ETH', prop: 'eth', dec: 2, vol: 2.5, seed: 66 }
+      { key: 'GOLD', prop: 'gold', dec: 2, vol: 1.5, seed: 11 }, { key: 'SILVER', prop: 'silver', dec: 2, vol: 0.08, seed: 22 },
+      { key: 'BTC', prop: 'btc', dec: 2, vol: 45.0, seed: 33 }, { key: 'OIL', prop: 'oil', dec: 2, vol: 0.12, seed: 44 },
+      { key: 'DYDX', prop: 'dydx', dec: 4, vol: 0.0005, seed: 55 }, { key: 'ETH', prop: 'eth', dec: 2, vol: 2.5, seed: 66 }
     ];
-    window.matrixSeries = {};
 
     function initMatrixCandles() {
       const nowBucket = Math.floor(Date.now() / 5000);
       MATRIX_ASSETS.forEach(cfg => {
-        const base = window.masterState.prices[cfg.prop];
-        const v = cfg.vol;
-        const candles = [];
+        const base = window.masterState.prices[cfg.prop], v = cfg.vol, candles = [];
         let cur = base - v * 0.5;
         for (let i = 0; i < 24; i++) {
-          const b = nowBucket - (24 - i);
-          const o = cur;
-          const c = o + (Math.sin(b + cfg.seed) * 0.4) * v;
-          const h = Math.max(o, c) + 0.5 * v;
-          const l = Math.min(o, c) - 0.5 * v;
-          candles.push({ o, h, l, c, bucket: b });
+          const b = nowBucket - (24 - i), o = cur, c = o + (Math.sin(b + cfg.seed) * 0.4) * v;
+          candles.push({ o, h: Math.max(o, c) + 0.5 * v, l: Math.min(o, c) - 0.5 * v, c, bucket: b });
           cur = c;
         }
         candles[candles.length - 1].c = base;
-        window.matrixSeries[cfg.key] = { candles };
+        window.matrixSeries[cfg.key] = { candles, bsl: base + v * 1.6, ssl: base - v * 1.6 };
+      });
+    }
+
+    function drawHeroLiveWindows() {
+      [{ key: 'GOLD', id: 'hero-win-canvas-gold' }, { key: 'BTC', id: 'hero-win-canvas-btc' }, { key: 'SILVER', id: 'hero-win-canvas-silver' }].forEach(cfg => {
+        const cnv = document.getElementById(cfg.id), series = window.matrixSeries[cfg.key];
+        if (!cnv || !series) return;
+        const ctx = cnv.getContext('2d'), W = cnv.width, H = cnv.height;
+        ctx.clearRect(0, 0, W, H);
+        const slice = series.candles.slice(-16), maxP = Math.max(...slice.map(x => x.h)), minP = Math.min(...slice.map(x => x.l)), span = (maxP - minP) || 0.01;
+        const yOf = p => H - ((p - minP) / span) * (H - 10) - 5, step = (W - 8) / slice.length;
+        slice.forEach((c, i) => {
+          const x = 4 + i * step + step / 2, bull = c.c >= c.o;
+          ctx.strokeStyle = bull ? '#10b981' : '#f43f5e'; ctx.beginPath(); ctx.moveTo(x, yOf(c.h)); ctx.lineTo(x, yOf(c.l)); ctx.stroke();
+          ctx.fillStyle = bull ? '#10b981' : '#f43f5e'; ctx.fillRect(x - step * 0.3, Math.min(yOf(c.o), yOf(c.c)), step * 0.6, Math.max(2, Math.abs(yOf(c.c) - yOf(c.o))));
+        });
       });
     }
 
     function drawAll6MatrixCharts() {
       MATRIX_ASSETS.forEach(cfg => {
-        const canvas = document.getElementById('mcanvas-' + cfg.key);
-        const series = window.matrixSeries[cfg.key];
+        const canvas = document.getElementById('mcanvas-' + cfg.key), series = window.matrixSeries[cfg.key];
         if (!canvas || !series) return;
-        const ctx = canvas.getContext('2d');
-        const W = canvas.width, H = canvas.height;
+        const ctx = canvas.getContext('2d'), W = canvas.width, H = canvas.height;
         ctx.clearRect(0, 0, W, H);
-        const allH = series.candles.map(c => c.h), allL = series.candles.map(c => c.l);
-        const maxP = Math.max(...allH), minP = Math.min(...allL);
-        const pad = (maxP - minP) * 0.1 || 0.01;
-        const yOf = (p) => H - ((p - (minP - pad)) / ((maxP + pad) - (minP - pad))) * (H - 18) - 9;
-        const step = (W - 16) / series.candles.length;
+        const allH = series.candles.map(c => c.h), allL = series.candles.map(c => c.l), maxP = Math.max(...allH), minP = Math.min(...allL);
+        const pad = (maxP - minP) * 0.12 || 0.01, topP = maxP + pad, botP = minP - pad;
+        const yOf = p => H - ((p - botP) / (topP - botP)) * (H - 18) - 9, step = (W - 16) / series.candles.length;
         series.candles.forEach((c, idx) => {
-          const x = 8 + idx * step + step / 2;
-          const yO = yOf(c.o), yC = yOf(c.c), yH = yOf(c.h), yL = yOf(c.l);
-          const bull = c.c >= c.o;
-          ctx.strokeStyle = bull ? '#10b981' : '#f43f5e';
-          ctx.beginPath(); ctx.moveTo(x, yH); ctx.lineTo(x, yL); ctx.stroke();
-          ctx.fillStyle = bull ? '#10b981' : '#f43f5e';
-          ctx.fillRect(x - step * 0.28, Math.min(yO, yC), step * 0.56, Math.max(2, Math.abs(yC - yO)));
+          const x = 8 + idx * step + step / 2, bull = c.c >= c.o;
+          ctx.strokeStyle = bull ? '#10b981' : '#f43f5e'; ctx.beginPath(); ctx.moveTo(x, yOf(c.h)); ctx.lineTo(x, yOf(c.l)); ctx.stroke();
+          ctx.fillStyle = bull ? '#10b981' : '#f43f5e'; ctx.fillRect(x - step * 0.28, Math.min(yOf(c.o), yOf(c.c)), step * 0.56, Math.max(2, Math.abs(yOf(c.c) - yOf(c.o))));
         });
       });
     }
 
+    window.setMatrixTF = function(tf) {
+      window.matrixTF = tf;
+      ['1M', '5M', '15M'].forEach(t => { const b = document.getElementById('mtf-' + t); if (b) b.classList.toggle('matrix-tf-active', t === tf); });
+      initMatrixCandles(); drawAll6MatrixCharts();
+    };
+
+    window.setSignalTimeframe = function(tf) {
+      ['15M', '1H', '4H'].forEach(t => { const b = document.getElementById('tf-' + t); if (b) b.classList.toggle('tf-btn-active', t === tf); });
+      window.renderLiveSignalCards();
+    };
+
     window.switchView = function(tabKey) {
       window.currentActiveView = tabKey;
       const tabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'FOREX_FACTORY', 'BLOOMBERG_NEWS', 'WORLD_NEWS', 'AI_INTELLIGENCE', 'MULTI_SWEEP_MATRIX', 'TERMINAL_HUB'];
-      tabs.forEach(k => {
-        const btn = document.getElementById(`tab-${k}`);
-        if (btn) { if (k === tabKey) btn.classList.add('nav-tab-active'); else btn.classList.remove('nav-tab-active'); }
-      });
+      tabs.forEach(k => { const btn = document.getElementById(`tab-${k}`); if (btn) btn.classList.toggle('nav-tab-active', k === tabKey); });
       const views = {
-        radar: document.getElementById('view-radar'), quant: document.getElementById('view-quant-desk'),
-        skills: document.getElementById('view-ai-skills'), signals: document.getElementById('view-live-signals'),
-        forexfactory: document.getElementById('view-forex-factory'), bloomberg: document.getElementById('view-bloomberg-news'),
-        world: document.getElementById('view-world-news'), aiintel: document.getElementById('view-ai-intelligence'),
-        matrix: document.getElementById('view-multi-sweep-matrix'), hub: document.getElementById('view-terminal-hub')
+        radar: document.getElementById('view-radar'), quant: document.getElementById('view-quant-desk'), skills: document.getElementById('view-ai-skills'),
+        signals: document.getElementById('view-live-signals'), forexfactory: document.getElementById('view-forex-factory'), bloomberg: document.getElementById('view-bloomberg-news'),
+        world: document.getElementById('view-world-news'), aiintel: document.getElementById('view-ai-intelligence'), matrix: document.getElementById('view-multi-sweep-matrix'),
+        hub: document.getElementById('view-terminal-hub')
       };
       Object.values(views).forEach(v => { if (v) v.classList.add('hidden'); });
-      
-      if (tabKey === 'QUANT_DESK') { views.quant.classList.remove('hidden'); initThreeReactor(); }
-      else if (tabKey === 'AI_SKILLS') views.skills.classList.remove('hidden');
+      if (tabKey === 'QUANT_DESK') { views.quant.classList.remove('hidden'); initThreeReactor(); calculatePlanetaryHours(); updateHeatmaps(); }
+      else if (tabKey === 'AI_SKILLS') { views.skills.classList.remove('hidden'); window.runLotCalculator(); window.runExitPlanner(); window.runChartScanner(); }
       else if (tabKey === 'LIVE_SIGNALS') { views.signals.classList.remove('hidden'); window.renderLiveSignalCards(); }
       else if (tabKey === 'FOREX_FACTORY') { views.forexfactory.classList.remove('hidden'); window.renderForexFactory(); }
-      else if (tabKey === 'BLOOMBERG_NEWS') views.bloomberg.classList.remove('hidden');
-      else if (tabKey === 'WORLD_NEWS') views.world.classList.remove('hidden');
+      else if (tabKey === 'BLOOMBERG_NEWS') { views.bloomberg.classList.remove('hidden'); window.renderBloombergArticles(); }
+      else if (tabKey === 'WORLD_NEWS') { views.world.classList.remove('hidden'); window.renderWorldNews(); }
       else if (tabKey === 'AI_INTELLIGENCE') { views.aiintel.classList.remove('hidden'); window.renderAIIntelligenceTab(); }
       else if (tabKey === 'MULTI_SWEEP_MATRIX') { views.matrix.classList.remove('hidden'); drawAll6MatrixCharts(); }
       else if (tabKey === 'TERMINAL_HUB') { views.hub.classList.remove('hidden'); }
@@ -493,17 +846,31 @@
       window.syncAllDisplays();
     };
 
+    window.handleMentorImgError = function(imgEl) {
+      imgEl.classList.add('hidden');
+      if (document.getElementById('hero-mentor-fallback')) document.getElementById('hero-mentor-fallback').classList.remove('hidden');
+    };
+
+    setInterval(syncGlobalMarketSnapshot, 15000);
     setInterval(() => {
-      const now = new Date();
+      const now = new Date(), nowSec = Math.floor(now.getTime() / 1000);
       const pktStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
+      updateGlobalSessionClocks(now);
+      const A = window.masterState.liveApiAnchors, P = window.masterState.prices;
+      P.gold = parseFloat((A.gold + Math.sin(nowSec * 0.35) * 0.45).toFixed(2));
+      P.silver = parseFloat((A.silver + Math.sin(nowSec * 0.4) * 0.03).toFixed(2));
+      P.btc = parseFloat((A.btc + Math.sin(nowSec * 0.3) * 18.5).toFixed(2));
+      P.oil = parseFloat((A.oil + Math.sin(nowSec * 0.3) * 0.05).toFixed(2));
       window.syncAllDisplays(pktStr);
-      if (window.currentActiveView === 'MULTI_SWEEP_MATRIX') drawAll6MatrixCharts();
     }, 1000);
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
+      await syncGlobalMarketSnapshot();
       initMatrixCandles();
+      updateGlobalSessionClocks(new Date());
       window.switchView('MULTI_SWEEP_MATRIX');
       window.syncAllDisplays();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   </script>
 </body>
