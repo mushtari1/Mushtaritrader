@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>AL-IRTIQAA CAPITAL • [287] | MUSHTARI TRADER — Complete 15-Tab Live Institutional Terminal</title>
+  <title>AL-IRTIQAA CAPITAL • [287] | MUSHTARI TRADER — Complete 16-Tab Institutional Terminal</title>
 
   <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Mushtari%20Trader%20Master%20Terminal%22%2C%22short_name%22%3A%22Mushtari287%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2305080f%22%2C%22theme_color%22%3A%22%23f59e0b%22%7D">
   <meta name="theme-color" content="#f59e0b">
@@ -51,7 +51,115 @@
     }
 
     /* ==========================================================
-       STRICT HORIZONTAL COLORFUL 15-TAB BAR (NEVER VERTICAL!)
+       HERO DUAL ROTATING PLANETS (LEFT & RIGHT OF MENTOR PHOTO!)
+       ========================================================== */
+    .planet-stage {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .planet-stage { width: 96px; height: 96px; }
+    }
+
+    .jupiter-sphere {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: repeating-linear-gradient(
+        -18deg,
+        #78350f 0px,
+        #d97706 6px,
+        #fef3c7 11px,
+        #b45309 16px,
+        #f59e0b 22px
+      );
+      box-shadow: inset -8px -6px 14px rgba(0,0,0,0.85), 0 0 22px rgba(245, 158, 11, 0.65);
+      animation: planetFloat 4s ease-in-out infinite alternate, jupiterBandShift 8s linear infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .saturn-sphere {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 30%, #a5f3fc, #06b6d4 45%, #0f172a 90%);
+      box-shadow: inset -7px -6px 14px rgba(0,0,0,0.85), 0 0 22px rgba(6, 182, 212, 0.65);
+      animation: planetFloat 4.5s ease-in-out infinite alternate-reverse;
+      position: relative;
+      z-index: 2;
+    }
+
+    .orbit-ring-gold {
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(251, 191, 36, 0.65);
+      animation: spinCW 10s linear infinite;
+      z-index: 1;
+    }
+    .orbit-ring-gold::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fde047;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    .orbit-ring-cyan {
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(34, 211, 238, 0.65);
+      animation: spinCCW 9s linear infinite;
+      z-index: 1;
+    }
+    .orbit-ring-cyan::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22d3ee;
+      box-shadow: 0 0 10px #06b6d4;
+    }
+
+    .tilted-halo {
+      position: absolute;
+      width: 82px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(245, 158, 11, 0.75);
+      transform: rotate(-22deg);
+      z-index: 3;
+      pointer-events: none;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.45);
+    }
+
+    @keyframes planetFloat {
+      0% { transform: translateY(-3px) rotate(0deg); }
+      100% { transform: translateY(4px) rotate(8deg); }
+    }
+    @keyframes jupiterBandShift {
+      0% { background-position: 0 0; }
+      100% { background-position: 48px 0; }
+    }
+
+    /* ==========================================================
+       STRICT HORIZONTAL COLORFUL 16-TAB BAR (NEVER VERTICAL!)
        ========================================================== */
     .horizontal-tabs-rail {
       display: flex !important;
@@ -101,6 +209,7 @@
     .tcol-matrix  { background: linear-gradient(135deg, #14b8a6, #0d9488); color: #000; border: 1px solid #5eead4; }
     .tcol-hub     { background: linear-gradient(135deg, #fbbf24, #b45309); color: #000; border: 1px solid #fde68a; }
     .tcol-flow    { background: linear-gradient(135deg, #00f5a0, #00d9f5); color: #000; border: 1px solid #ffffff; }
+    .tcol-tweets  { background: linear-gradient(135deg, #0ea5e9, #1d4ed8); color: #fff; border: 1px solid #7dd3fc; }
 
     .nav-tab-active {
       outline: 3px solid #ffffff !important;
@@ -108,7 +217,7 @@
       transform: translateY(-1px);
     }
 
-    .tf-btn-active, .cot-filter-active, .mf-mode-active, .matrix-tf-active {
+    .tf-btn-active, .cot-filter-active, .mf-mode-active, .matrix-tf-active, .vip-filter-active {
       background-color: #f59e0b !important;
       color: #000000 !important;
       font-weight: 800 !important;
@@ -138,14 +247,13 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
   <!-- ========================================================
-       1. STICKY TOP DISCLAIMER + TRADINGVIEW LIVE TICKER (FIXED EMBED SYMBOLS — ZERO RED ICONS!) + SESSION COUNTDOWNS
+       1. STICKY TOP DISCLAIMER + TRADINGVIEW LIVE TICKER + SESSION COUNTDOWNS
        ======================================================== -->
   <div class="w-full bg-[#070b13] border-b border-amber-500/50 px-2 pt-1.5 pb-1.5 text-center shadow-2xl sticky top-0 z-50">
     <p class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wide text-amber-300 font-hud">
       ⚠️ <span class="text-white">NOTICE:</span> ITS JUST FOR KNOWLEDGE TERMINAL OF MARKET. MUSHTARI TRADER OR AL-IRTIQAA CAPITAL WILL NOT BE RESPONSIBLE FOR ANY LOSS AND PROFIT. THANK YOU.
     </p>
 
-    <!-- 100% UNLOCKED TRADINGVIEW REAL-TIME TICKER TAPE -->
     <div class="w-full mt-1 border-t border-b border-white/10 bg-[#04070d]" style="min-height: 46px;">
       <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
@@ -175,7 +283,6 @@
       </div>
     </div>
 
-    <!-- ASIAN, LONDON & NEW YORK LIVE SESSION COUNTDOWN BAR -->
     <div class="mt-1.5 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-hud bg-black/85 px-2.5 py-1 rounded-lg border border-amber-500/25">
       <div class="flex items-center gap-2">
         <span class="bg-amber-500 text-black font-black px-2 py-0.5 rounded text-[10px] uppercase">🕒 PKT <span data-sync-clock="pkt">--:--:--</span></span>
@@ -197,43 +304,68 @@
   </div>
 
   <!-- ========================================================
-       2. HERO BANNER: YOUR GITHUB PICTURE (Mustari.jpg) + 3 OFFICIAL TRADINGVIEW MINI-CHARTS
+       2. UPGRADED HERO BANNER: ROTATING JUPITER (LEFT) + YOUR GITHUB PICTURE (CENTER) + ROTATING BULLION ORB (RIGHT) + 3 LIVE TV CHARTS!
        ======================================================== -->
-  <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-3 sm:px-6 shadow-2xl">
-    <div class="max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+  <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-2 sm:px-6 shadow-2xl relative overflow-hidden">
+    <div class="max-w-[1740px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
 
-      <!-- YOUR GITHUB PICTURE KEPT 100% INTACT -->
-      <div class="lg:col-span-4 flex flex-col items-center justify-center">
-        <div class="relative w-full max-w-[420px] rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.35)] bg-[#120b07]">
+      <!-- HERO MENTOR ROW WITH DUAL ORBITING PLANETS FILLING BOTH SIDES! -->
+      <div class="lg:col-span-5 flex items-center justify-between gap-2 bg-black/55 p-2 rounded-2xl border border-amber-500/35 shadow-[0_0_30px_rgba(245,158,11,0.18)]">
+
+        <!-- LEFT ROTATING PLANET: MUSHTARI (JUPITER) 287 -->
+        <div class="flex flex-col items-center justify-center px-1 text-center">
+          <div class="planet-stage">
+            <div class="orbit-ring-gold"></div>
+            <div class="jupiter-sphere"></div>
+            <div class="tilted-halo"></div>
+          </div>
+          <span class="font-hud font-black text-[9px] sm:text-[10px] text-amber-300 tracking-wider mt-1 uppercase">♃ MUSHTARI</span>
+          <span class="font-mono text-[8px] text-yellow-200 bg-amber-500/20 border border-amber-400/40 px-1.5 rounded">ABJAD 287</span>
+        </div>
+
+        <!-- CENTER: YOUR GITHUB PICTURE (Mustari.jpg) 100% INTACT -->
+        <div class="relative flex-1 max-w-[300px] rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.45)] bg-[#120b07]">
           <img
             id="hero-mentor-photo"
             src="Mustari.jpg"
             alt="Mushtari Trader • Institutional Mentor Desk"
-            class="w-full h-[185px] sm:h-[205px] object-cover object-center block brightness-110 contrast-125 saturate-110"
+            class="w-full h-[165px] sm:h-[190px] object-cover object-center block brightness-110 contrast-125 saturate-110"
             onerror="window.handleMentorImgError(this)"
           />
-          <div id="hero-mentor-fallback" class="hidden w-full h-[195px] bg-gradient-to-br from-[#2a0f14] via-[#121826] to-[#090d16] p-3 flex flex-col items-center justify-between text-center">
-            <div class="text-[10px] font-cinzel font-black text-amber-300">🦅 AL-IRTIQAA CAPITAL • MUSHTARI TRADER</div>
-            <div class="w-16 h-16 rounded-full border-2 border-amber-400 flex items-center justify-center"><span class="font-cinzel font-black text-xl text-amber-300">MT</span></div>
+          <div id="hero-mentor-fallback" class="hidden w-full h-[180px] bg-gradient-to-br from-[#2a0f14] via-[#121826] to-[#090d16] p-3 flex flex-col items-center justify-between text-center">
+            <div class="text-[10px] font-cinzel font-black text-amber-300">🦅 AL-IRTIQAA CAPITAL</div>
+            <div class="w-14 h-14 rounded-full border-2 border-amber-400 flex items-center justify-center"><span class="font-cinzel font-black text-lg text-amber-300">MT</span></div>
             <input type="file" id="mentor-pic-uploader" accept="image/*" class="hidden" onchange="window.uploadAndLockMentorPic(event)" />
-            <button type="button" onclick="document.getElementById('mentor-pic-uploader').click()" class="bg-amber-500 text-black text-[10px] font-extrabold px-2.5 py-1 rounded cursor-pointer">🖼️ Tap to Lock Your Pic</button>
+            <button type="button" onclick="document.getElementById('mentor-pic-uploader').click()" class="bg-amber-500 text-black text-[9px] font-extrabold px-2 py-0.5 rounded cursor-pointer">🖼️ Lock Pic</button>
           </div>
-          <div class="w-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-600 text-black text-center py-1 px-2">
-            <p class="font-hud font-black text-[11px] tracking-wider uppercase">MUSHTARI TRADER • MASTER OF MARKET STRUCTURE & TIMING</p>
+          <div class="w-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-600 text-black text-center py-1 px-1.5">
+            <p class="font-hud font-black text-[9px] sm:text-[10px] tracking-wider uppercase truncate">MUSHTARI TRADER • MARKET STRUCTURE</p>
           </div>
         </div>
+
+        <!-- RIGHT ROTATING PLANET: SOVEREIGN QUANTUM ORB -->
+        <div class="flex flex-col items-center justify-center px-1 text-center">
+          <div class="planet-stage">
+            <div class="orbit-ring-cyan"></div>
+            <div class="saturn-sphere"></div>
+            <div class="tilted-halo" style="border-color: rgba(34,211,238,0.75); transform: rotate(24deg);"></div>
+          </div>
+          <span class="font-hud font-black text-[9px] sm:text-[10px] text-cyan-300 tracking-wider mt-1 uppercase">🪐 AL-IRTIQAA</span>
+          <span class="font-mono text-[8px] text-cyan-200 bg-cyan-500/20 border border-cyan-400/40 px-1.5 rounded">QUANT ORB</span>
+        </div>
+
       </div>
 
       <!-- 3 DIRECT TRADINGVIEW LIVE MINI-QUOTE CHARTS -->
-      <div class="lg:col-span-8 flex flex-col justify-between space-y-2.5">
+      <div class="lg:col-span-7 flex flex-col justify-between space-y-2.5">
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-1.5">
           <div>
             <div class="flex items-center gap-2">
               <span class="text-xl">🦅</span>
               <span class="font-cinzel font-black text-base sm:text-xl tracking-widest text-amber-300">AL-IRTIQAA CAPITAL</span>
-              <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded font-hud font-bold">ABJAD 287</span>
+              <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded font-hud font-bold">16-TAB DESK</span>
             </div>
-            <h2 class="font-hud font-black text-lg sm:text-2xl text-white uppercase">MUSHTARI TRADER • COMPLETE 15-TAB INSTITUTIONAL DESK</h2>
+            <h2 class="font-hud font-black text-base sm:text-xl text-white uppercase">MUSHTARI TRADER • COMPLETE 16-TAB INSTITUTIONAL TERMINAL</h2>
           </div>
           <div class="flex items-center gap-2">
             <a href="https://instagram.com/mushtritrader" target="_blank" rel="noopener noreferrer" class="bg-pink-950/50 border border-pink-500/40 text-pink-300 px-2.5 py-1 rounded text-[11px] font-hud font-bold">Instagram</a>
@@ -242,21 +374,21 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          <div class="bg-[#08111c] border-2 border-amber-400/70 rounded-xl overflow-hidden h-[126px]">
+          <div class="bg-[#08111c] border-2 border-amber-400/70 rounded-xl overflow-hidden h-[124px]">
             <div class="tradingview-widget-container" style="height:100%;width:100%;">
               <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
               { "symbol": "OANDA:XAUUSD", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true }
               </script>
             </div>
           </div>
-          <div class="bg-[#08111c] border-2 border-cyan-400/70 rounded-xl overflow-hidden h-[126px]">
+          <div class="bg-[#08111c] border-2 border-cyan-400/70 rounded-xl overflow-hidden h-[124px]">
             <div class="tradingview-widget-container" style="height:100%;width:100%;">
               <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
               { "symbol": "OANDA:XAGUSD", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true }
               </script>
             </div>
           </div>
-          <div class="bg-[#08111c] border-2 border-emerald-400/70 rounded-xl overflow-hidden h-[126px]">
+          <div class="bg-[#08111c] border-2 border-emerald-400/70 rounded-xl overflow-hidden h-[124px]">
             <div class="tradingview-widget-container" style="height:100%;width:100%;">
               <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
               { "symbol": "COINBASE:BTCUSD", "width": "100%", "height": "100%", "locale": "en", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true }
@@ -269,12 +401,12 @@
   </div>
 
   <!-- ========================================================
-       3. STRICT HORIZONTAL COLORFUL 15-TAB SWIPEABLE BAR
+       3. STRICT HORIZONTAL COLORFUL 16-TAB SWIPEABLE BAR (WITH NEW TAB 16 VIP TWEETS!)
        ======================================================== -->
   <div class="w-full bg-[#090d16] border-b border-amber-500/40 z-40 shadow-xl">
     <div class="px-3 pt-1.5 flex items-center justify-between text-[10px] font-mono text-amber-300">
-      <span>👉 SWIPE LEFT / RIGHT & TAP ANY OF YOUR 15 COLORFUL TABS:</span>
-      <span class="text-emerald-400 font-bold">● LIVE NEWS & NEXT SA'AT UPGRADED</span>
+      <span>👉 SWIPE LEFT / RIGHT & TAP ANY OF YOUR 16 COLORFUL TABS:</span>
+      <span class="text-sky-400 font-bold">● NEW TAB 16 VIP TWEETS ADDED!</span>
     </div>
     <nav class="horizontal-tabs-rail">
       <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn tcol-btc">🟠 1•BTC</button>
@@ -291,12 +423,13 @@
       <button type="button" onclick="window.switchView('AI_INTELLIGENCE')" id="tab-AI_INTELLIGENCE" class="nav-tab-btn tcol-ai">🧠 12•AI PREDICTOR</button>
       <button type="button" onclick="window.switchView('MULTI_SWEEP_MATRIX')" id="tab-MULTI_SWEEP_MATRIX" class="nav-tab-btn tcol-matrix">📊 13•6-TV CHARTS</button>
       <button type="button" onclick="window.switchView('TERMINAL_HUB')" id="tab-TERMINAL_HUB" class="nav-tab-btn tcol-hub">🚀 14•TV WATCHLIST & LUNAR</button>
-      <button type="button" onclick="window.switchView('MONEY_FLOW_MAP')" id="tab-MONEY_FLOW_MAP" class="nav-tab-btn tcol-flow nav-tab-active">🏛️ 15•MONEY FLOW & COT</button>
+      <button type="button" onclick="window.switchView('MONEY_FLOW_MAP')" id="tab-MONEY_FLOW_MAP" class="nav-tab-btn tcol-flow">🏛️ 15•MONEY FLOW & COT</button>
+      <button type="button" onclick="window.switchView('VIP_TWEETS')" id="tab-VIP_TWEETS" class="nav-tab-btn tcol-tweets nav-tab-active">🐦 16•VIP MARKET TWEETS</button>
     </nav>
   </div>
 
   <!-- ========================================================
-       3B. GLOBAL AUTO-UPDATING BLOOMBERG & WORLD NEWS BAR (VISIBLE ON ALL 15 TABS!)
+       3B. GLOBAL AUTO-UPDATING BLOOMBERG & VIP TWEET FLASH BAR (ALL 16 TABS)
        ======================================================== -->
   <div class="w-full bg-[#060b14] border-b border-cyan-500/40 px-3 py-1.5 flex items-center gap-2 text-xs font-mono">
     <button type="button" onclick="window.fetchAllLiveNews(true)" class="bg-cyan-500 hover:bg-cyan-400 text-black font-hud font-black text-[10px] px-2 py-0.5 rounded shrink-0 cursor-pointer flex items-center gap-1">
@@ -305,16 +438,16 @@
     </button>
     <div class="wire-marquee-wrap flex-1">
       <div id="global-all-tabs-news-marquee" class="wire-marquee-track space-x-8 text-[11px] text-gray-200">
-        <span>📡 Fetching real-time Bloomberg, CNBC, MarketWatch, Gold, Crude Oil & Geopolitical headlines...</span>
+        <span>📡 Syncing real-time Bloomberg, Trump, Elon Musk, Fed, Gold, Crude Oil & Geopolitical market dispatches...</span>
       </div>
     </div>
-    <button type="button" onclick="window.switchView('BLOOMBERG_NEWS')" class="hidden sm:inline-block text-[10px] text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded font-hud font-bold shrink-0 cursor-pointer">
-      OPEN DESK ↗
+    <button type="button" onclick="window.switchView('VIP_TWEETS')" class="hidden sm:inline-block text-[10px] text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded font-hud font-bold shrink-0 cursor-pointer">
+      VIP TWEETS ↗
     </button>
   </div>
 
   <!-- ========================================================
-       TABS 1–5: COMPLETE RADAR + "MARKET KYA BOLTA HAI" (ESPECIALLY CRUDE OIL $83.61!) + DYNAMIC PER-ASSET BIAS
+       TABS 1–5: COMPLETE RADAR + INSTITUTIONAL VERDICT
        ======================================================== -->
   <main id="view-radar" class="w-full px-3 sm:px-6 py-4 space-y-3.5 flex-1 hidden">
     <div class="radar-card p-3 border border-amber-500/40 flex flex-wrap items-center justify-between gap-2 font-hud">
@@ -322,18 +455,13 @@
       <span class="text-xs font-mono text-emerald-400">PKT: <strong data-sync-clock="pkt">--:--:--</strong> • 100% TV SERVER SYNC</span>
     </div>
 
-    <!-- NEW PROMINENT "YEH ASSET KYA BOLTA HAI" INSTITUTIONAL VERDICT BANNER -->
     <div id="radar-asset-verdict-box" class="radar-card p-4 border-2 border-amber-400/70 bg-gradient-to-r from-amber-950/35 via-[#090f1d] to-cyan-950/30 space-y-2"></div>
-
-    <!-- DIRECT TRADINGVIEW SINGLE QUOTE -->
     <div id="tv-single-quote-box" class="radar-card p-2 border border-white/15 bg-[#05080f] min-h-[112px]"></div>
 
-    <!-- DIRECT TRADINGVIEW INTERACTIVE CHART -->
     <div class="radar-card p-2 border border-cyan-500/40 bg-[#05080f]">
       <div id="tv-live-radar-chart" class="w-full h-[410px] rounded overflow-hidden"></div>
     </div>
 
-    <!-- DYNAMIC PER-ASSET BUYERS VS SELLERS ORDER-FLOW BIAS -->
     <div class="radar-card p-3.5">
       <div class="flex justify-between items-center text-xs mb-1.5 font-hud">
         <span class="text-gray-400 tracking-wider font-mono">LIVE BUYERS VS SELLERS ORDER-FLOW BIAS</span>
@@ -350,13 +478,11 @@
       </div>
     </div>
 
-    <!-- DYNAMIC PER-ASSET TRAP & SQUEEZE RISK RADAR -->
     <div class="radar-card p-3.5 font-hud">
-      <span class="text-[10px] text-amber-400 uppercase tracking-wider block mb-2 font-mono font-bold">⚡ TRAP & SQUEEZE RISK RADAR (ASSET SPECIFIC)</span>
+      <span class="text-[10px] text-amber-400 uppercase tracking-wider block mb-2 font-mono font-bold">⚡ TRAP & SQUEEZE RISK RADAR</span>
       <div id="radar-trap-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs"></div>
     </div>
 
-    <!-- LIVE SPOOFING DETECTOR & ANIMATED BARS + WALLS -->
     <div class="radar-card p-3.5 border border-rose-500/40 bg-gradient-to-r from-rose-950/20 via-black to-black">
       <div class="flex justify-between items-baseline mb-1">
         <span class="text-[10px] text-rose-400 font-bold uppercase tracking-wider font-mono">● LIVE SPOOFING DETECTOR & L2 ORDER BOOK WALL INTEGRITY</span>
@@ -372,15 +498,9 @@
   </main>
 
   <!-- ========================================================
-       TAB 6: COMPLETE 3D QUANT DESK (UPGRADED PLANETARY SA'AT WITH NEXT HOUR & LIVE COUNTDOWN + CRUDE OIL SMC VERDICT!)
+       TAB 6: COMPLETE 3D QUANT DESK (CURRENT + NEXT PLANETARY SA'AT + 3D JUPITER + ORDER TAPE)
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-3 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
-    <div class="lg:col-span-12 w-full bg-black/60 border border-amber-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between text-[11px]">
-      <span class="text-amber-400 font-bold uppercase tracking-wider">• 3D COINDEX & QUANT DESK: ROTATING MUSHTARI (JUPITER), CURRENT + NEXT PLANETARY SA'AT & CRUDE OIL SMC [287]</span>
-      <span class="text-gray-300 text-[10px] font-mono">PKT: <strong data-sync-clock="pkt" class="text-amber-400">--:--:--</strong></span>
-    </div>
-
-    <!-- LEFT COLUMN -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between items-center mb-2 font-mono">
@@ -400,52 +520,41 @@
         </div>
       </div>
 
-      <!-- UPGRADED PLANETARY HOURS: CURRENT HOUR + NEXT HOUR + LIVE COUNTDOWN + SEQUENTIAL SCHEDULE! -->
       <div class="glass-panel rounded-xl p-3 border-2 border-purple-500/50 space-y-2">
         <div class="flex justify-between items-center font-mono">
           <span class="text-[11px] font-bold text-purple-300 uppercase">🪐 PLANETARY HOURS (KARACHI SA'AT)</span>
           <span id="saat-countdown-badge" class="text-[10px] bg-amber-500 text-black font-extrabold px-1.5 py-0.5 rounded">NEXT IN --:--</span>
         </div>
-
-        <!-- CURRENT ACTIVE SA'AT -->
         <div class="bg-purple-950/60 p-2.5 rounded-lg border border-purple-400/60">
           <div class="flex justify-between items-center text-[9px] font-mono text-purple-200 uppercase">
-            <span>🟢 ABHI CHAL RAHA HAI (CURRENT SA'AT)</span>
-            <span id="current-planet-time" class="text-amber-300 font-bold">--:-- - --:--</span>
+            <span>🟢 ABHI CHAL RAHA HAI (CURRENT)</span>
+            <span id="current-planet-time" class="text-amber-300 font-bold">--:--</span>
           </div>
-          <div class="text-sm font-black text-white mt-0.5">
-            <span id="planet-symbol-tag" class="text-amber-400">♃</span> <span id="planet-name-text">Jupiter (Mushtari)</span>
-          </div>
+          <div class="text-sm font-black text-white mt-0.5"><span id="planet-symbol-tag" class="text-amber-400">♃</span> <span id="planet-name-text">Jupiter (Mushtari)</span></div>
           <p id="current-planet-nature" class="text-[10px] font-mono text-gray-300 mt-0.5">Institutional expansion & auspicious timing.</p>
         </div>
-
-        <!-- NEW: NEXT UPCOMING SA'AT BOX! -->
         <div class="bg-cyan-950/50 p-2.5 rounded-lg border border-cyan-400/60">
           <div class="flex justify-between items-center text-[9px] font-mono text-cyan-300 uppercase">
-            <span>⏭️ AGLI SA'AT (NEXT HOUR STARTS SOON)</span>
-            <span id="next-planet-time" class="text-emerald-300 font-bold">--:-- - --:--</span>
+            <span>⏭️ AGLI SA'AT (NEXT HOUR)</span>
+            <span id="next-planet-time" class="text-emerald-300 font-bold">--:--</span>
           </div>
           <div class="text-sm font-black text-cyan-200 mt-0.5" id="next-planet-name">♂ Mars (Mirrikh)</div>
-          <p id="next-planet-nature" class="text-[10px] font-mono text-gray-200 mt-0.5">High volatility & aggressive breakout energy.</p>
+          <p id="next-planet-nature" class="text-[10px] font-mono text-gray-200 mt-0.5">High volatility & breakout energy.</p>
         </div>
-
-        <!-- NEXT 8 SEQUENTIAL UPCOMING HOURS FROM NOW -->
         <div class="border border-white/10 rounded-lg bg-black/50 p-1.5">
-          <span class="text-[9px] text-gray-400 font-mono block px-1 mb-1 uppercase">UPCOMING 8 HOURS SCHEDULE (KARACHI):</span>
-          <div id="planetary-hours-list" class="space-y-1 text-[10px] font-mono max-h-40 overflow-y-auto pr-1"></div>
+          <div id="planetary-hours-list" class="space-y-1 text-[10px] font-mono max-h-36 overflow-y-auto pr-1"></div>
         </div>
       </div>
 
       <div class="glass-panel rounded-xl p-3 border-cyan-500/30 space-y-1 text-[10px] font-mono">
-        <span class="text-[11px] font-bold text-cyan-300 block mb-1">🌒 LUNAR ASTRO CYCLE (68.2% WAXING)</span>
+        <span class="text-[11px] font-bold text-cyan-300 block mb-1">🌒 LUNAR ASTRO CYCLE</span>
         <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌑 New Moon</span><span class="text-amber-400">09 Nov 2026</span></div>
-        <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌓 Half Moon (1st Qtr)</span><span class="text-cyan-400">17 Nov 2026</span></div>
+        <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌓 Half Moon (1st)</span><span class="text-cyan-400">17 Nov 2026</span></div>
         <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌕 Full Moon (Peak)</span><span class="text-emerald-400">24 Nov 2026</span></div>
-        <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌗 Half Moon (3rd Qtr)</span><span class="text-rose-400">02 Dec 2026</span></div>
+        <div class="flex justify-between p-1 bg-black/40 rounded"><span>🌗 Half Moon (3rd)</span><span class="text-rose-400">02 Dec 2026</span></div>
       </div>
     </section>
 
-    <!-- CENTER COLUMN -->
     <section class="lg:col-span-6 flex flex-col gap-3">
       <div class="glass-panel rounded-xl p-3 border-amber-500/30">
         <div class="flex justify-between mb-1.5 text-xs font-bold text-amber-400">
@@ -456,48 +565,28 @@
           <div class="md:col-span-6 h-[275px] w-full bg-black/70 rounded-lg border border-amber-500/20 overflow-hidden">
             <div id="three-reactor-canvas" class="w-full h-full"></div>
           </div>
-
           <div class="md:col-span-6 flex flex-col justify-between h-[275px] bg-black/75 border border-cyan-500/30 rounded-lg p-2.5">
-            <div class="bg-black/60 border border-white/10 rounded-md p-1.5 flex flex-col items-center">
-              <div class="w-full flex justify-between text-[8px] font-mono text-gray-400">
-                <span class="font-bold text-amber-400">FEAR & GREED GAUGE</span>
-                <span class="px-1.5 rounded bg-rose-500/20 text-rose-300 font-bold">EXTREME FEAR (VIX 35.89)</span>
-              </div>
-              <div class="relative w-28 h-12 flex items-end justify-center mt-0.5">
-                <svg class="w-28 h-12" viewBox="0 0 100 50">
-                  <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="url(#fg-grad-q)" stroke-width="8" stroke-linecap="round" />
-                  <defs><linearGradient id="fg-grad-q" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ef4444" /><stop offset="50%" stop-color="#eab308" /><stop offset="100%" stop-color="#10b981" /></linearGradient></defs>
-                  <circle cx="50" cy="50" r="4" fill="#f59e0b" />
-                  <line x1="50" y1="50" x2="26" y2="30" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" />
-                </svg>
-                <div class="absolute bottom-0 text-center"><span class="text-sm font-extrabold text-rose-400">24</span></div>
-              </div>
+            <div class="bg-black/60 border border-white/10 rounded-md p-2 text-center">
+              <span class="text-[9px] font-mono text-rose-300 font-bold block">EXTREME FEAR (VIX 35.89)</span>
+              <span class="text-2xl font-black text-amber-300">SCORE: 24 / 100</span>
             </div>
-
-            <div class="grid grid-cols-2 gap-1.5 my-1 text-[9px] font-mono">
+            <div class="grid grid-cols-2 gap-1.5 text-[9px] font-mono">
               <div class="space-y-1 bg-black/40 p-1.5 rounded border border-emerald-500/20">
-                <span class="font-bold text-emerald-400 block border-b border-white/5 pb-0.5">▲ HAVEN INFLOW</span>
+                <span class="font-bold text-emerald-400 block">▲ INFLOW</span>
                 <div class="flex justify-between"><span>US10Y Bonds</span><span class="text-emerald-400">+$1.62B</span></div>
-                <div class="flex justify-between"><span>T-Bills/MMF</span><span class="text-emerald-400">+$5.80B</span></div>
+                <div class="flex justify-between"><span>T-Bills</span><span class="text-emerald-400">+$5.80B</span></div>
                 <div class="flex justify-between"><span>WTI Oil</span><span class="text-emerald-400">+0.55%</span></div>
               </div>
               <div class="space-y-1 bg-black/40 p-1.5 rounded border border-rose-500/20">
-                <span class="font-bold text-rose-400 block border-b border-white/5 pb-0.5">▼ RISK OUTFLOW</span>
+                <span class="font-bold text-rose-400 block">▼ OUTFLOW</span>
                 <div class="flex justify-between"><span>NDX/NVDA</span><span class="text-rose-400">-$2.40B</span></div>
                 <div class="flex justify-between"><span>BTC Spot</span><span class="text-rose-400">-$582M</span></div>
                 <div class="flex justify-between"><span>ETH Spot</span><span class="text-rose-400">-$190M</span></div>
               </div>
             </div>
-            <div class="flex justify-between text-[9px] border-t border-white/10 pt-1"><span class="text-gray-400">NET FLOW:</span><span class="text-emerald-400 font-bold">BONDS, T-BILLS & OIL RESILIENT</span></div>
+            <div class="flex justify-between text-[9px] border-t border-white/10 pt-1"><span class="text-gray-400">REGIME:</span><span class="text-emerald-400 font-bold">BONDS & OIL RESILIENT</span></div>
           </div>
         </div>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
-        <div class="glass-panel p-2 rounded-lg border-amber-500/30"><div class="flex justify-between text-[10px] font-bold"><span class="text-amber-400">BTC/USD</span><span class="text-emerald-400">LIVE</span></div><div class="text-sm font-bold text-white my-0.5">$<span data-sync-price="btc">59,120.00</span></div><span class="text-[9px] text-gray-400 font-mono">BTC.D: 59.13%</span></div>
-        <div class="glass-panel p-2 rounded-lg border-purple-500/30"><div class="flex justify-between text-[10px] font-bold"><span class="text-purple-400">ETH/USD</span><span class="text-emerald-400">LIVE</span></div><div class="text-sm font-bold text-white my-0.5">$<span data-sync-price="eth">1,623.50</span></div><span class="text-[9px] text-gray-400 font-mono">Live WS Sync</span></div>
-        <div class="glass-panel p-2 rounded-lg border-cyan-500/30"><div class="flex justify-between text-[10px] font-bold"><span class="text-cyan-400">SOL/USD</span><span class="text-emerald-400">LIVE</span></div><div class="text-sm font-bold text-white my-0.5">$<span data-sync-price="sol">69.34</span></div><span class="text-[9px] text-gray-400 font-mono">Live WS Sync</span></div>
-        <div class="glass-panel p-2 rounded-lg border-rose-500/40"><div class="flex justify-between text-[10px] font-bold"><span class="text-rose-400">WTI CRUDE</span><span class="text-emerald-400">+0.55%</span></div><div class="text-sm font-bold text-white my-0.5">$<span data-sync-price="oil">83.61</span></div><span class="text-[9px] text-gray-400 font-mono">Brent: $92.51</span></div>
       </div>
 
       <div class="glass-panel rounded-xl p-2.5 flex-1 flex flex-col min-h-[215px]">
@@ -516,7 +605,6 @@
       </div>
     </section>
 
-    <!-- RIGHT COLUMN: SMC ORDER FLOW (NOW INCLUDES CRUDE OIL $83.61 VERDICT!) + 7 GLOBAL INDICES -->
     <section class="lg:col-span-3 flex flex-col gap-3">
       <div class="glass-panel rounded-xl p-3 border-emerald-500/30 space-y-2 text-xs">
         <h2 class="font-bold text-emerald-400 font-mono">🎯 SMC STRUCTURE & CRUDE OIL VERDICT</h2>
@@ -529,22 +617,15 @@
           <div class="flex justify-between"><span class="text-rose-300 font-cinzel font-bold">🛢️ CRUDE OIL (WTI)</span><strong class="text-emerald-400">$<span data-sync-price="oil">83.61</span> (+0.55%)</strong></div>
           <div class="flex justify-between text-gray-300"><span>Demand Floor:</span><span class="text-emerald-400 font-bold">$81.50 – $82.40</span></div>
           <div class="flex justify-between text-gray-300"><span>BSL Supply:</span><span class="text-amber-300 font-bold">$84.50 – $85.80</span></div>
-          <p class="text-[10px] font-mono text-gray-200 mt-1 border-t border-white/10 pt-1"><strong>Kya Bolta Hai:</strong> Holding strong green (+0.55%) on Hormuz shipping hedging; above $84.07 opens $85.80!</p>
-        </div>
-        <div class="bg-black/50 p-2 rounded border border-emerald-500/20">
-          <div class="flex justify-between"><span class="text-amber-300 font-cinzel font-bold">BTC SPOT</span><strong class="text-white">$<span data-sync-price="btc">59,120.00</span></strong></div>
-          <div class="flex justify-between text-gray-400"><span>Demand:</span><span class="text-emerald-400 font-bold">$57,850 – $58,500</span></div>
-          <div class="flex justify-between text-gray-400"><span>Supply:</span><span class="text-cyan-400 font-bold">$61,200 – $62,560</span></div>
+          <p class="text-[10px] font-mono text-gray-200 mt-1 border-t border-white/10 pt-1"><strong>Kya Bolta Hai:</strong> Holding green (+0.55%) on Hormuz shipping hedging; above $84.07 opens $85.80!</p>
         </div>
       </div>
 
       <div class="glass-panel rounded-xl p-3 flex-1 space-y-1.5 text-xs font-mono">
-        <h2 class="font-bold text-amber-300 font-hud uppercase">🌐 ALL 7 GLOBAL INDICES & TECH</h2>
+        <h2 class="font-bold text-amber-300 font-hud uppercase">🌐 GLOBAL BENCHMARKS</h2>
         <div class="p-2 rounded bg-black/50 flex justify-between"><span>NASDAQ 100</span><strong class="text-rose-400">25,028.98 (-5.61%)</strong></div>
         <div class="p-2 rounded bg-black/50 flex justify-between"><span>S&P 500</span><strong class="text-rose-400">6,910.39 (-3.70%)</strong></div>
-        <div class="p-2 rounded bg-black/50 flex justify-between"><span>DOW JONES</span><strong class="text-rose-400">48,147.33 (-1.93%)</strong></div>
         <div class="p-2 rounded bg-black/50 flex justify-between"><span>NVDA / QQQ</span><strong class="text-rose-400">$125.53 / $608.45</strong></div>
-        <div class="p-2 rounded bg-black/50 flex justify-between"><span>CHINA SSE</span><strong class="text-rose-400">3,533.79 (-1.23%)</strong></div>
         <div class="p-2 rounded bg-black/50 flex justify-between"><span>NIKKEI 225</span><strong class="text-rose-400">56,436.65 (-5.06%)</strong></div>
         <div class="p-2 rounded bg-black/50 border border-emerald-500/30 flex justify-between"><span class="text-emerald-400">PSX KSE-100</span><strong class="text-emerald-300">177,382.57 (+0.35%)</strong></div>
       </div>
@@ -567,7 +648,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs">
       <div class="radar-card p-3.5 border border-emerald-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-emerald-400 font-bold font-mono">01 • CHART SCANNER</span><span>🔍</span></div><h4 class="text-sm font-bold text-white">Multi-Timeframe SMC Scanner</h4><button type="button" onclick="window.runChartScanner()" class="w-full bg-emerald-500 text-black font-bold py-1.5 rounded cursor-pointer">🔍 SCAN GOLD, SILVER, BTC & OIL</button><div id="scanner-output" class="bg-black/70 p-2 rounded font-mono text-gray-200"></div></div>
-      <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-cyan-400 font-bold font-mono">02 • NEWS & FLOW MONITOR</span><span>📡</span></div><h4 class="text-sm font-bold text-white">Macro, Oil & Yield Sentiment</h4><div class="bg-black/70 p-2 rounded font-mono text-gray-200"><div>• US10Y @ 4.95% | WTI Oil @ $83.61 (+0.55%)</div><div class="text-amber-300">• VIX @ 35.89 (High Volatility)</div></div><button type="button" onclick="window.switchView('AI_INTELLIGENCE')" class="w-full bg-purple-600/30 border border-purple-500/50 text-purple-200 font-bold py-1 rounded cursor-pointer">🧠 Open Tab 12 AI Predictor</button></div>
+      <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-cyan-400 font-bold font-mono">02 • VIP TWEET & NEWS RADAR</span><span>🐦</span></div><h4 class="text-sm font-bold text-white">Trump, Musk & Fed Sentiment</h4><div class="bg-black/70 p-2 rounded font-mono text-gray-200"><div>• US10Y @ 4.95% | WTI Oil @ $83.61 (+0.55%)</div><div class="text-sky-300">• VIP Market Tweets Live on Tab 16</div></div><button type="button" onclick="window.switchView('VIP_TWEETS')" class="w-full bg-sky-600/30 border border-sky-400/50 text-sky-200 font-bold py-1 rounded cursor-pointer">🐦 Open Tab 16 VIP Tweets</button></div>
       <div class="radar-card p-3.5 border border-amber-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-amber-400 font-bold font-mono">03 • ENTRY & BAR TIMER</span><span id="entry-countdown-timer" class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold">00:45</span></div><h4 class="text-sm font-bold text-white">Killzone & Candle Countdown</h4><div class="bg-black/70 p-2 rounded font-mono space-y-1"><div class="flex justify-between"><span>Karachi PKT:</span><strong data-sync-clock="pkt">--:--:--</strong></div><div class="flex justify-between"><span>Session Status:</span><strong id="skill-session-label" class="text-emerald-400">SYNCED</strong></div></div></div>
       <div class="radar-card p-3.5 border border-cyan-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-cyan-400 font-bold font-mono">04 • STRUCTURE PLANNER</span><span>🎯</span></div><h4 class="text-sm font-bold text-white">Liquidity Zone & R:R Mapper</h4><div class="flex gap-1.5"><select id="exit-asset" onchange="window.runExitPlanner()" class="bg-black border border-white/15 rounded px-2 py-1 text-white flex-1"><option value="GOLD">GOLD ($3,538.18)</option><option value="SILVER">SILVER ($41.26)</option><option value="OIL">CRUDE OIL ($83.61)</option><option value="BTC">BTC ($59,120)</option></select><select id="exit-rr" onchange="window.runExitPlanner()" class="bg-black border border-white/15 rounded px-2 py-1 text-cyan-300"><option value="2">1:2</option><option value="3" selected>1:3</option><option value="4">1:4</option></select></div><div id="exit-planner-output" class="bg-black/70 p-2 rounded font-mono"></div></div>
       <div class="radar-card p-3.5 border border-purple-500/40 space-y-2"><div class="flex justify-between"><span class="text-[10px] text-purple-400 font-bold font-mono">05 • TIME MACHINE</span><span>⏪</span></div><h4 class="text-sm font-bold text-white">30-Session SMC Backtest</h4><button type="button" onclick="window.runTimeMachineBacktest()" class="w-full bg-purple-600 text-white font-bold py-1.5 rounded cursor-pointer">⏪ REPLAY 30 SESSIONS</button><div id="timemachine-output" class="bg-black/70 p-2 rounded font-mono text-purple-200">Historical Accuracy: 83.3% (25W / 5L) • Avg 1:3.4</div></div>
@@ -583,20 +664,37 @@
   </main>
 
   <!-- ========================================================
-       TAB 8: ⚡ QUAD-ASSET LIVE OUTLOOK (WITH CLEAR CRUDE OIL $83.61 VERDICT!)
+       TAB 8: ⚡ COMPLETELY UPGRADED RICH INSTITUTIONAL LIVE OUTLOOK (DYNAMIC PER TIMEFRAME 1M TO 1D!)
        ======================================================== -->
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div class="glass-panel rounded-xl p-3.5 border border-blue-500/40 flex flex-wrap items-center justify-between gap-3">
-      <h2 class="text-base sm:text-lg font-black text-amber-300 uppercase">⚡ QUAD-ASSET MARKET STRUCTURE OUTLOOK (GOLD • SILVER • BTC • CRUDE OIL)</h2>
-      <div class="flex flex-wrap gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/15">
-        <button type="button" onclick="window.setSignalTimeframe('1M')" id="tf-1M" class="px-2.5 py-1 rounded text-xs font-bold bg-white/5 cursor-pointer">1M</button>
-        <button type="button" onclick="window.setSignalTimeframe('5M')" id="tf-5M" class="px-2.5 py-1 rounded text-xs font-bold bg-white/5 cursor-pointer">5M</button>
-        <button type="button" onclick="window.setSignalTimeframe('15M')" id="tf-15M" class="tf-btn-active px-2.5 py-1 rounded text-xs font-bold cursor-pointer">15M</button>
-        <button type="button" onclick="window.setSignalTimeframe('1H')" id="tf-1H" class="px-2.5 py-1 rounded text-xs font-bold bg-white/5 cursor-pointer">1H</button>
-        <button type="button" onclick="window.setSignalTimeframe('4H')" id="tf-4H" class="px-2.5 py-1 rounded text-xs font-bold bg-white/5 cursor-pointer">4H</button>
-        <button type="button" onclick="window.setSignalTimeframe('1D')" id="tf-1D" class="px-2.5 py-1 rounded text-xs font-bold bg-white/5 cursor-pointer">1D</button>
+    <div class="glass-panel rounded-xl p-4 border-2 border-blue-500/50 bg-gradient-to-r from-blue-950/40 via-black to-amber-950/30 flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-500 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">MULTI-TIMEFRAME SMC ENGINE</span>
+          <span id="outlook-tf-summary" class="text-xs font-mono text-amber-300 font-bold">ACTIVE TF: 15M INTRADAY STRUCTURE</span>
+        </div>
+        <h2 class="text-base sm:text-xl font-black text-white uppercase mt-1">⚡ QUAD-ASSET INSTITUTIONAL MARKET STRUCTURE OUTLOOK</h2>
+        <p class="text-[11px] text-gray-300 font-mono">Dynamic SSL/BSL Pools, Fair Value Gaps (FVG), Conviction Meter & Expected Session Displacement (No Signals)</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 bg-black/90 p-1.5 rounded-xl border border-blue-400/30">
+        <button type="button" onclick="window.setSignalTimeframe('1M')" id="tf-1M" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 cursor-pointer">1M</button>
+        <button type="button" onclick="window.setSignalTimeframe('5M')" id="tf-5M" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 cursor-pointer">5M</button>
+        <button type="button" onclick="window.setSignalTimeframe('15M')" id="tf-15M" class="tf-btn-active px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">15M</button>
+        <button type="button" onclick="window.setSignalTimeframe('1H')" id="tf-1H" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 cursor-pointer">1H</button>
+        <button type="button" onclick="window.setSignalTimeframe('4H')" id="tf-4H" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 cursor-pointer">4H</button>
+        <button type="button" onclick="window.setSignalTimeframe('1D')" id="tf-1D" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 cursor-pointer">1D</button>
       </div>
     </div>
+
+    <!-- MACRO CORRELATION PULSE STRIP -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 text-xs font-mono">
+      <div class="radar-card p-2.5 border border-amber-500/30 flex justify-between items-center"><span>💵 DXY CORRELATION:</span><strong class="text-amber-300">103.49 (INVERSE)</strong></div>
+      <div class="radar-card p-2.5 border border-cyan-500/30 flex justify-between items-center"><span>🏦 US10Y YIELD:</span><strong class="text-emerald-400">4.95% (-2.02%)</strong></div>
+      <div class="radar-card p-2.5 border border-rose-500/30 flex justify-between items-center"><span>⚡ VIX VOLATILITY:</span><strong class="text-rose-400">35.89 (ELEVATED)</strong></div>
+      <div class="radar-card p-2.5 border border-emerald-500/30 flex justify-between items-center"><span>🛢️ BRENT / WTI SPREAD:</span><strong class="text-emerald-300">$8.90 ($92.51/$83.61)</strong></div>
+    </div>
+
+    <!-- RICH 4-ASSET OUTLOOK CARDS -->
     <div id="live-signals-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
@@ -606,7 +704,7 @@
   <main id="view-forex-factory" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-3.5 border border-orange-500/50 flex flex-wrap justify-between items-center gap-2">
       <h2 class="font-cinzel text-lg font-black text-orange-300 uppercase">📅 OFFICIAL TRADINGVIEW ECONOMIC CALENDAR & FOMC SCHEDULE</h2>
-      <span class="text-xs font-mono text-amber-300">Click any row below to launch AI Predictor</span>
+      <span class="text-xs font-mono text-amber-300">Click any row below to launch Tab 12 AI Predictor</span>
     </div>
     <div id="tv-econ-calendar-box" class="radar-card p-2 bg-[#05080f] h-[440px] overflow-hidden"></div>
     <div class="radar-card overflow-x-auto border border-orange-500/30">
@@ -622,7 +720,7 @@
   </main>
 
   <!-- ========================================================
-       TAB 10: 📰 AUTO-UPDATING LIVE BLOOMBERG WIRE + OFFICIAL TRADINGVIEW LIVE TIMELINE!
+       TAB 10: 📰 AUTO-UPDATING LIVE BLOOMBERG WIRE
        ======================================================== -->
   <main id="view-bloomberg-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-cyan-500/40 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
@@ -645,9 +743,7 @@
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
-      <!-- AUTO-FETCHED LIVE RSS/API NEWS CARDS -->
       <div id="bloomberg-news-grid" class="xl:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
-      <!-- OFFICIAL TRADINGVIEW LIVE SERVER NEWS TIMELINE -->
       <div class="xl:col-span-4 radar-card p-2 border border-cyan-500/40 bg-[#05080f] h-[620px] overflow-hidden">
         <div class="text-xs font-bold text-cyan-300 px-2 py-1 border-b border-white/10">⚡ OFFICIAL TRADINGVIEW 24/7 FLASH STREAM</div>
         <div id="tv-live-news-timeline" class="w-full h-[580px]"></div>
@@ -656,7 +752,7 @@
   </main>
 
   <!-- ========================================================
-       TAB 11: 🌍 AUTO-UPDATING LIVE WORLD, WAR, PEACE & MACRO TERMINAL!
+       TAB 11: 🌍 AUTO-UPDATING LIVE WORLD, WAR, PEACE & MACRO TERMINAL
        ======================================================== -->
   <main id="view-world-news" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-rose-500/50 flex flex-wrap items-center justify-between gap-3">
@@ -677,18 +773,22 @@
   </main>
 
   <!-- ========================================================
-       TAB 12: 🧠 COMPLETE 5-CATALYST AI PREDICTOR (SYNCED TO OIL $83.61, GOLD $3,538.18, SILVER $41.26 & LIVE BTC!)
+       TAB 12: 🧠 COMPLETELY UPGRADED FULL-FEATURED AI PREDICTOR (FAKEOUT WICK, TARGET, EOD SETTLEMENT, PROBABILITY METER & PLAYBOOK!)
        ======================================================== -->
   <main id="view-ai-intelligence" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
-    <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 space-y-3">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-2">
-        <h2 class="font-cinzel text-base sm:text-xl font-black text-amber-300 uppercase">🧠 MUSHTARI AI HOUSE VIEW & 5-CATALYST SCENARIO PREDICTOR [287]</h2>
-        <span class="bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-xs font-mono font-bold px-3 py-1 rounded">🎯 XAU $3,538.18 • OIL $83.61 • BTC LIVE</span>
+    <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 bg-gradient-to-r from-[#1a1105] via-[#0b1120] to-[#130924] space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-2.5">
+        <div>
+          <span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">MUSHTARI AI QUANT ENGINE • ABJAD 287</span>
+          <h2 class="font-cinzel text-base sm:text-xl font-black text-amber-300 uppercase mt-1">🧠 AAJ MARKET MEIN KYA HO SAKTA HAI — COMPLETE 5-CATALYST AI PREDICTOR</h2>
+        </div>
+        <span class="bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-xs font-mono font-bold px-3 py-1 rounded-lg">🎯 XAU $3,538.18 • OIL $83.61 • BTC LIVE</span>
       </div>
       <div id="ai-house-conviction-box" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono"></div>
     </div>
 
     <div class="glass-panel rounded-xl p-4 border-2 border-purple-500/60 space-y-3">
+      <span class="text-[11px] font-mono text-purple-300 font-bold uppercase block">1️⃣ SELECT MACRO / GEOPOLITICAL CATALYST:</span>
       <div class="flex flex-wrap gap-1.5">
         <button type="button" onclick="window.setAINewsEvent('PPI_CPI')" id="aiev-PPI_CPI" class="ai-ev-active px-3 py-1.5 rounded-lg bg-white/10 text-xs font-bold cursor-pointer">🔥 US PPI / CPI Inflation</button>
         <button type="button" onclick="window.setAINewsEvent('FED_FOMC')" id="aiev-FED_FOMC" class="px-3 py-1.5 rounded-lg bg-white/10 text-xs font-bold cursor-pointer">🏦 Dec 9 Fed Rate Decision</button>
@@ -696,24 +796,35 @@
         <button type="button" onclick="window.setAINewsEvent('WAR_HORMUZ')" id="aiev-WAR_HORMUZ" class="px-3 py-1.5 rounded-lg bg-white/10 text-xs font-bold cursor-pointer">🛢️ Hormuz / Crude Oil ($83.61) Shock</button>
         <button type="button" onclick="window.setAINewsEvent('BOND_DXY')" id="aiev-BOND_DXY" class="px-3 py-1.5 rounded-lg bg-white/10 text-xs font-bold cursor-pointer">📈 US10Y (4.95%) & DXY</button>
       </div>
+
+      <span class="text-[11px] font-mono text-amber-300 font-bold uppercase block pt-1">2️⃣ SELECT OUTCOME SCENARIO ("NEWS KE BAAD KYA HOGA?"):</span>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-        <button type="button" onclick="window.setAIScenario('HOT')" id="aisc-HOT" class="ai-sc-hot px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between cursor-pointer border border-white/15"><span>🔴 AGAR NEWS GARM / HAWKISH AAYI</span><span>⚡</span></button>
-        <button type="button" onclick="window.setAIScenario('SOFT')" id="aisc-SOFT" class="px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between cursor-pointer border border-white/15 text-gray-200"><span>🟢 AGAR NEWS NARAM / DOVISH AAYI</span><span>🚀</span></button>
-        <button type="button" onclick="window.setAIScenario('POST_DAY')" id="aisc-POST_DAY" class="px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between cursor-pointer border border-white/15 text-gray-200"><span>🌙 POST-NEWS / EOD EQUILIBRIUM</span><span>🧭</span></button>
+        <button type="button" onclick="window.setAIScenario('HOT')" id="aisc-HOT" class="ai-sc-hot px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between items-center cursor-pointer border border-white/15">
+          <span>🔴 AGAR NEWS GARM / HAWKISH AAYI<br><small class="font-mono opacity-80">Hot CPI • Strong USD • Escalation</small></span><span class="text-lg">⚡</span>
+        </button>
+        <button type="button" onclick="window.setAIScenario('SOFT')" id="aisc-SOFT" class="px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between items-center cursor-pointer border border-white/15 text-gray-200">
+          <span>🟢 AGAR NEWS NARAM / DOVISH AAYI<br><small class="font-mono opacity-80">Cool CPI • Yield Drop • Relief</small></span><span class="text-lg">🚀</span>
+        </button>
+        <button type="button" onclick="window.setAIScenario('POST_DAY')" id="aisc-POST_DAY" class="px-3 py-2.5 rounded-xl bg-white/10 text-xs font-extrabold text-left flex justify-between items-center cursor-pointer border border-white/15 text-gray-200">
+          <span>🌙 POST-NEWS / EOD EQUILIBRIUM<br><small class="font-mono opacity-80">Institutional NY Settlement</small></span><span class="text-lg">🧭</span>
+        </button>
       </div>
     </div>
-    <div id="ai-master-briefing" class="radar-card p-3.5 border-l-4 border-purple-500 text-xs font-mono space-y-1"></div>
+
+    <div id="ai-master-briefing" class="radar-card p-3.5 border-l-4 border-purple-500 bg-gradient-to-r from-purple-950/35 via-black to-black text-xs font-mono space-y-1"></div>
+
+    <!-- COMPLETE RICH 4-ASSET AI PROJECTION CARDS -->
     <div id="ai-quad-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
   <!-- ========================================================
-       TAB 13: 📊 6 REAL TRADINGVIEW LIVE CHARTS (CHART #5 NSXUSD FIXED — ZERO POPUPS!)
+       TAB 13: 📊 6 REAL TRADINGVIEW LIVE CHARTS
        ======================================================== -->
   <main id="view-multi-sweep-matrix" class="w-full px-3 sm:px-6 py-3 space-y-3.5 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-3.5 border-2 border-teal-400/60 flex flex-wrap items-center justify-between gap-3">
       <div>
         <h2 class="font-cinzel text-base sm:text-xl font-black text-white uppercase">📊 TAB 13 • 6 REAL TRADINGVIEW LIVE CHARTS + LIQUIDITY SWEEP MATRIX</h2>
-        <p class="text-[11px] text-teal-300 font-mono">Gold ($3,538), Silver ($41.26), WTI Crude Oil ($83.61), Bitcoin, Nasdaq 100 (Fixed!) & Ethereum!</p>
+        <p class="text-[11px] text-teal-300 font-mono">Gold ($3,538), Silver ($41.26), WTI Crude Oil ($83.61), Bitcoin, Nasdaq 100 & Ethereum!</p>
       </div>
       <div class="flex items-center gap-1.5 bg-black/90 p-1.5 rounded-xl border border-teal-500/40">
         <span class="text-[10px] text-teal-300 font-mono font-bold px-2">CHART TF:</span>
@@ -721,14 +832,6 @@
         <button type="button" onclick="window.setMatrixTF('5')" id="mtf-5" class="px-3 py-1 rounded text-xs font-bold bg-white/10 cursor-pointer">5M</button>
         <button type="button" onclick="window.setMatrixTF('15')" id="mtf-15" class="matrix-tf-active px-3 py-1 rounded text-xs font-bold cursor-pointer">15M</button>
         <button type="button" onclick="window.setMatrixTF('60')" id="mtf-60" class="px-3 py-1 rounded text-xs font-bold bg-white/10 cursor-pointer">1H</button>
-      </div>
-    </div>
-
-    <div class="radar-card p-3 border-l-4 border-amber-400 bg-black/90">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] font-mono">
-        <div class="bg-white/5 border border-emerald-500/40 rounded p-2"><strong class="text-emerald-400 block">⚡ XAUUSD • $3,538.18</strong><span class="text-gray-300 text-[10px]">Sovereign bid floor $3,502–$3,518 vs $3,585 BSL supply.</span></div>
-        <div class="bg-white/5 border border-rose-500/40 rounded p-2"><strong class="text-rose-400 block">🛢️ WTI CRUDE OIL • $83.61 (+0.55%)</strong><span class="text-gray-300 text-[10px]">Bullish resilience! Holding $82.40 floor; eyeing $84.50–$85.80 BSL!</span></div>
-        <div class="bg-white/5 border border-cyan-500/40 rounded p-2"><strong class="text-cyan-300 block">🟠 BTCUSD • $<span data-sync-price="btc">59,120.00</span></strong><span class="text-gray-300 text-[10px]">Sub-$60K liquidity test active; watching $58.5K support shelf.</span></div>
       </div>
     </div>
 
@@ -775,7 +878,7 @@
   <!-- ========================================================
        TAB 15: 🏛️ BLOOMBERG INSTITUTIONAL MONEY FLOW + CME COT + SOVEREIGN CENTRAL BANK GOLD
        ======================================================== -->
-  <main id="view-money-flow" class="w-full bg-[#05070c] text-gray-200 flex-1 block pb-6">
+  <main id="view-money-flow" class="w-full bg-[#05070c] text-gray-200 flex-1 hidden pb-6">
     <div class="max-w-[1750px] mx-auto grid grid-cols-1 xl:grid-cols-12 border-b border-white/10">
       <div class="xl:col-span-9 p-4 sm:p-5 flex flex-col justify-between border-b xl:border-b-0 xl:border-r border-white/10 bg-[radial-gradient(circle_at_center,#0c1526_0%,#05070c_72%)]">
         <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
@@ -794,7 +897,7 @@
         </div>
 
         <div id="mf-node-inspector" class="mt-2 bg-black/75 border border-amber-500/30 rounded-lg px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-          <span class="text-gray-200">🏛️ <strong class="text-amber-300">TAP ANY NODE:</strong> WTI Crude Oil ($83.61, +0.55%), PSX (+0.35%) & US10Y Bonds (4.95%) seeing defensive inflows while Tech unwinds!</span>
+          <span class="text-gray-200">🏛️ <strong class="text-amber-300">TAP ANY NODE:</strong> WTI Crude Oil ($83.61, +0.55%), PSX (+0.35%) & US10Y Bonds (4.95%) seeing defensive inflows!</span>
           <span class="text-emerald-400 font-bold">TV SYNCED</span>
         </div>
       </div>
@@ -818,20 +921,19 @@
 
         <div class="bg-[#0b101b] border border-amber-500/30 rounded-xl p-3.5 space-y-1">
           <span class="text-[10px] font-hud font-bold text-gray-400 uppercase block">NEXT FOMC RATE DECISION</span>
-          <div id="mf-fed-countdown" class="font-hud text-2xl font-black text-white">18d 20h 00m</div>
+          <div id="mf-fed-countdown" class="font-hud text-2xl font-black text-white">18d 19h 45m</div>
           <div class="text-[10px] font-mono text-amber-300">Wed, Dec 9, 2026 • US10Y @ 4.95%</div>
         </div>
 
         <div class="bg-[#0b101b] border border-cyan-500/30 rounded-xl p-3.5 space-y-2 text-[11px] font-mono flex-1">
           <span class="text-[10px] font-hud font-bold text-cyan-300 uppercase block">INSTITUTIONAL BLOCK MOVES</span>
           <div class="bg-black/60 p-2 rounded border-l-2 border-emerald-400"><strong class="text-emerald-400">+$5.80B INFLOW:</strong> Money Market T-Bills & US10Y Bonds (4.95%).</div>
-          <div class="bg-black/60 p-2 rounded border-l-2 border-emerald-400"><strong class="text-emerald-400">CRUDE OIL $83.61 (+0.55%):</strong> Hormuz & energy hedge inflows bucking tech rout.</div>
+          <div class="bg-black/60 p-2 rounded border-l-2 border-emerald-400"><strong class="text-emerald-400">CRUDE OIL $83.61 (+0.55%):</strong> Hormuz & energy hedge inflows.</div>
           <div class="bg-black/60 p-2 rounded border-l-2 border-rose-500"><strong class="text-rose-400">-$2.40B OUTFLOW:</strong> NVDA (-14.01%), NDX (-5.61%) & QQQ (-5.67%).</div>
         </div>
       </div>
     </div>
 
-    <!-- CME COT + SOVEREIGN CENTRAL BANK GOLD PANELS -->
     <div class="max-w-[1750px] mx-auto px-4 sm:px-6 pt-5 grid grid-cols-1 xl:grid-cols-12 gap-5">
       <section class="xl:col-span-7 bg-[#090e1a] border-2 border-cyan-500/40 rounded-2xl p-4 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2.5">
@@ -860,13 +962,55 @@
     </div>
   </main>
 
+  <!-- ========================================================
+       NEW TAB 16: 🐦 VIP MARKET-MOVING TWEETS & STATEMENTS RADAR (TRUMP, ELON MUSK, BIDEN/WH, POWELL/FED & WHALES!)
+       ======================================================== -->
+  <main id="view-vip-tweets" class="w-full px-3 sm:px-6 py-4 space-y-4 flex-1 block font-hud">
+    <div class="glass-panel rounded-2xl p-4 border-2 border-sky-400/70 bg-gradient-to-r from-[#06182c] via-[#070d19] to-[#1a1005] space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-sky-500/30 pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/20 border border-sky-400/60 flex items-center justify-center text-2xl shadow-[0_0_18px_rgba(14,165,233,0.45)]">🐦</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="bg-sky-400 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">X / TRUTH SOCIAL / OFFICIAL VIP WIRE</span>
+              <span id="vip-tweets-sync-badge" class="text-[11px] font-mono text-emerald-400 font-bold">● AUTO-SCANNING EVERY 60s</span>
+            </div>
+            <h2 class="font-cinzel text-lg sm:text-2xl font-black text-white uppercase mt-0.5">
+              TAB 16 • VIP MARKET-MOVING TWEETS & STATEMENTS RADAR
+            </h2>
+            <p class="text-[11px] text-gray-300 font-mono">
+              Real-Time Market-Moving Posts & Statements from Trump, Elon Musk, White House/Biden, Fed Chair Powell & Institutional Whales + AI Asset Impact!
+            </p>
+          </div>
+        </div>
+
+        <button type="button" onclick="window.fetchVIPMarketTweets(true)" class="bg-gradient-to-r from-sky-400 to-cyan-300 text-black font-extrabold text-xs px-4 py-2 rounded-xl cursor-pointer shadow-lg">
+          🔄 SCAN LATEST VIP POSTS
+        </button>
+      </div>
+
+      <!-- VIP PERSON FILTER PILLS -->
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <button type="button" onclick="window.filterVIPTweets('ALL')" id="vip-ALL" class="vip-filter-active px-3 py-1.5 rounded-lg bg-white/10 cursor-pointer">🌐 All Market Movers</button>
+        <button type="button" onclick="window.filterVIPTweets('TRUMP')" id="vip-TRUMP" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🇺🇸 Donald Trump</button>
+        <button type="button" onclick="window.filterVIPTweets('MUSK')" id="vip-MUSK" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🚀 Elon Musk</button>
+        <button type="button" onclick="window.filterVIPTweets('BIDEN_WH')" id="vip-BIDEN_WH" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🏛️ Biden / White House</button>
+        <button type="button" onclick="window.filterVIPTweets('FED')" id="vip-FED" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🏦 Powell / Fed Officials</button>
+        <button type="button" onclick="window.filterVIPTweets('WHALES')" id="vip-WHALES" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🐋 Saylor / BlackRock / Whales</button>
+      </div>
+    </div>
+
+    <!-- VIP TWEET CARDS GRID -->
+    <div id="vip-tweets-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+  </main>
+
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 text-xs flex flex-wrap justify-between items-center">
     <span class="font-bold text-amber-400 font-hud">AL-IRTIQAA CAPITAL • MUSHTARI TRADER [287]</span>
-    <span class="text-[10px] text-gray-400 font-mono">LIVE AUTO-UPDATING NEWS + NEXT SA'AT + CRUDE OIL $83.61 VERDICT SYNCED</span>
+    <span class="text-[10px] text-gray-400 font-mono">16-TAB COMPLETE ENGINE • DUAL HERO PLANETS + RICH TABS 8 & 12 + VIP TWEETS</span>
   </footer>
 
   <!-- ========================================================
-       4. COMPLETE MASTER JAVASCRIPT ENGINE
+       4. COMPLETE MASTER JAVASCRIPT ENGINE (ALL 16 TABS)
        ======================================================== -->
   <script>
     // GITHUB MENTOR PHOTO (Mustari.jpg KEPT INTACT)
@@ -890,7 +1034,7 @@
       r.readAsDataURL(file);
     };
 
-    // EXACT TRADINGVIEW RATES SYNCED WITH YOUR LIVE SCREENSHOTS ($83.61 OIL, $3,538.18 GOLD, $41.26 SILVER, 276.25 PKR)
+    // EXACT TRADINGVIEW RATES
     window.masterState = {
       prices: {
         gold: 3538.18, silver: 41.26, oil: 83.61, brent: 92.51,
@@ -906,34 +1050,33 @@
         BTC: "COINBASE:BTCUSD",
         ETH: "COINBASE:ETHUSD"
       },
-      // ASSET-SPECIFIC DYNAMIC METRICS & "MARKET KYA BOLTA HAI" VERDICTS!
       assetProfiles: {
         OIL: {
           buyPct: 68.5, conviction: 90.2, spoof: 87,
           traps: { bull: 24, bear: 78, shortSq: 86, longSq: 19 },
           verdictTitle: "🛢️ WTI CRUDE OIL ($83.61, +0.55%) KYA BOLTA HAI — INSTITUTIONAL VERDICT",
-          verdictBody: "Global tech aur metals mein selloff ke bawajood Crude Oil (+0.55% green @ $83.61, Brent $92.51) mazboot khara hai! Strait of Hormuz shipping risk aur institutional hedging ne $81.50–$82.40 ko strong demand floor bana diya hai. Agar $84.07 (intraday high) break hota hai toh $85.20–$85.80 BSL supply zone agla magnet hoga.",
+          verdictBody: "Global tech selloff ke bawajood Crude Oil (+0.55% green @ $83.61, Brent $92.51) mazboot khara hai! Strait of Hormuz shipping risk aur institutional hedging ne $81.50–$82.40 ko strong demand floor bana diya hai. Agar $84.07 break hota hai toh $85.20–$85.80 BSL supply zone agla magnet hoga.",
           biasTag: "GEOPOLITICAL HEDGING ACCUMULATION"
         },
         GOLD: {
           buyPct: 66.8, conviction: 89.4, spoof: 91,
           traps: { bull: 26, bear: 76, shortSq: 84, longSq: 28 },
           verdictTitle: "🟡 XAUUSD GOLD SPOT ($3,538.18) KYA BOLTA HAI — INSTITUTIONAL VERDICT",
-          verdictBody: "Margin liquidation ke baad Gold $3,538.18 par settle hua hai, jabke US10Y yield gir kar 4.95% par aayi hai. Neeche $3,502–$3,518 Sovereign Central Bank physical demand zone hai; agar yeh hold rehta hai toh $3,585–$3,636 ki taraf relief mean-reversion open hai.",
+          verdictBody: "Margin liquidation ke baad Gold $3,538.18 par settle hua hai, jabke US10Y yield gir kar 4.95% par aayi hai. Neeche $3,502–$3,518 Sovereign Central Bank physical demand zone hai; hold rehne par $3,585–$3,636 relief recovery open hai.",
           biasTag: "SOVEREIGN DIP ABSORPTION"
         },
         SILVER: {
           buyPct: 61.4, conviction: 82.5, spoof: 84,
           traps: { bull: 31, bear: 69, shortSq: 78, longSq: 34 },
           verdictTitle: "⚪ XAGUSD SILVER SPOT ($41.26) KYA BOLTA HAI — INSTITUTIONAL VERDICT",
-          verdictBody: "Silver $40.76 low sweep karne ke baad $41.26 par stabilize ho raha hai. $40.50–$40.90 ahem institutional SSL shelf hai, jabke $42.20–$43.15 overhead supply zone hai.",
+          verdictBody: "Silver $40.76 low sweep karne ke baad $41.26 par stabilize ho raha hai. $40.50–$40.90 institutional SSL shelf hai, jabke $42.20–$43.15 overhead supply zone hai.",
           biasTag: "POST-SWEEP BASE BUILDING"
         },
         BTC: {
           buyPct: 56.2, conviction: 81.0, spoof: 92,
           traps: { bull: 38, bear: 66, shortSq: 79, longSq: 42 },
           verdictTitle: "🟠 BITCOIN SPOT (LIVE 24/7) KYA BOLTA HAI — INSTITUTIONAL VERDICT",
-          verdictBody: "Nasdaq (-5.61%) tech crash ke asar se BTC $60K ke neeche weekend liquidity test kar raha hai. $57,850–$58,500 resting institutional bid shelf hai; bullish structure wapas pane ke liye $61,200–$62,000 reclaim zaroori hai.",
+          verdictBody: "Nasdaq (-5.61%) tech crash ke asar se BTC $60K ke neeche weekend liquidity test kar raha hai. $57,850–$58,500 resting institutional bid shelf hai; bullish reclaim ke liye $61,200–$62,000 zaroori hai.",
           biasTag: "SUB-$60K LIQUIDITY TEST"
         },
         ETH: {
@@ -946,7 +1089,7 @@
       }
     };
 
-    window.currentActiveView = "MONEY_FLOW_MAP";
+    window.currentActiveView = "VIP_TWEETS";
     window.matrixInterval = "15";
 
     function fmtNum(val, dec = 2) {
@@ -954,7 +1097,509 @@
     }
 
     // ========================================================
-    // REAL-TIME AUTO-UPDATING NEWS ENGINE (EVERY 60s ON ALL TABS + BLOOMBERG + WORLD!)
+    // NEW TAB 16 ENGINE: VIP MARKET-MOVING TWEETS & STATEMENTS RADAR!
+    // ========================================================
+    window.currentVIPFilter = 'ALL';
+    window.vipTweetsFeed = [];
+
+    const BASE_VIP_TWEETS = [
+      {
+        cat: 'TRUMP',
+        name: 'Donald J. Trump',
+        handle: '@realDonaldTrump',
+        avatarBg: 'from-amber-500 to-red-600',
+        initials: 'DT',
+        badge: '🇺🇸 US PRESIDENT / TRUTH & X',
+        time: 'Live Policy Radar',
+        text: 'America First Trade & Tariff Policy: Heavy tariffs on foreign manufacturing & strategic energy dominance remain top priority. Strong domestic oil production & strategic reserves will reshape global trade balances!',
+        impactLevel: '🔴 EXTREME MARKET IMPACT',
+        impactAssets: '🟡 GOLD: Safe-Haven Bid | 💵 DXY: Bullish Volatility | 🛢️ OIL: Supply Focus',
+        xUrl: 'https://x.com/realDonaldTrump'
+      },
+      {
+        cat: 'MUSK',
+        name: 'Elon Musk',
+        handle: '@elonmusk',
+        avatarBg: 'from-sky-500 to-indigo-600',
+        initials: 'EM',
+        badge: '🚀 TESLA • X • xAI • DOGE',
+        time: 'Live Tech & Crypto Radar',
+        text: 'AI compute scaling, US government spending efficiency (DOGE), and autonomous robotics are accelerating faster than Wall Street models realize. Watching sovereign debt & inflation closely.',
+        impactLevel: '⚡ HIGH TECH & CRYPTO IMPACT',
+        impactAssets: '📉 NDX / NVDA: High Volatility | 🟠 BTC & DOGE: Speculative Momentum',
+        xUrl: 'https://x.com/elonmusk'
+      },
+      {
+        cat: 'FED',
+        name: 'Jerome Powell • Federal Reserve',
+        handle: '@federalreserve',
+        avatarBg: 'from-emerald-500 to-teal-700',
+        initials: 'JP',
+        badge: '🏦 FOMC CHAIR / FED WIRE',
+        time: 'Pre-Dec 9 FOMC Radar',
+        text: 'FOMC remains data-dependent heading into the December 9 rate decision (Target 3.75%–4.00%). Policymakers are closely monitoring sticky services inflation alongside sudden equity market volatility (VIX > 35).',
+        impactLevel: '🔴 MAXIMUM MACRO IMPACT',
+        impactAssets: '🟡 GOLD ($3,538): Yield Sensitive | 🏦 US10Y (4.95%): Haven Inflows | 💵 DXY: 103.49',
+        xUrl: 'https://x.com/federalreserve'
+      },
+      {
+        cat: 'BIDEN_WH',
+        name: 'Joe Biden / White House Archives & Policy',
+        handle: '@WhiteHouse • @JoeBiden',
+        avatarBg: 'from-blue-600 to-slate-700',
+        initials: 'WH',
+        badge: '🏛️ WASHINGTON / GEOPOLITICAL DESK',
+        time: 'Geopolitical Wire',
+        text: 'Maritime security coalitions in the Red Sea & Strait of Hormuz remain on elevated alert while G7 allies coordinate economic sanctions and energy corridor protections.',
+        impactLevel: '🟠 GEOPOLITICAL & ENERGY IMPACT',
+        impactAssets: '🛢️ WTI OIL ($83.61): +0.55% Hedging Bid | 🟡 GOLD: Geopolitical Floor',
+        xUrl: 'https://x.com/WhiteHouse'
+      },
+      {
+        cat: 'WHALES',
+        name: 'Michael Saylor',
+        handle: '@saylor',
+        avatarBg: 'from-orange-500 to-amber-600',
+        initials: 'MS',
+        badge: '🐋 STRATEGY / BTC TREASURY WHALE',
+        time: 'Institutional Whale Radar',
+        text: 'Volatility is vitality. Short-term equity tech liquidations create generational institutional accumulation windows for scarce digital & physical monetary assets.',
+        impactLevel: '🟢 INSTITUTIONAL BTC SENTIMENT',
+        impactAssets: '🟠 BTCUSD: $58.5K–$59K Whale Bid Shelf | 📊 IBIT / MSTR Volume Surge',
+        xUrl: 'https://x.com/saylor'
+      },
+      {
+        cat: 'WHALES',
+        name: 'Larry Fink • BlackRock Desk',
+        handle: '@BlackRock',
+        avatarBg: 'from-purple-600 to-slate-800',
+        initials: 'LF',
+        badge: '🏛️ $11T ASSET MANAGER FLOW',
+        time: 'Institutional Allocation',
+        text: 'Institutional clients are parking record +$5.8B liquidity in short-duration US Treasury Bills & Sovereign Bonds (US10Y @ 4.95%) while selectively rebalancing equity tech exposure.',
+        impactLevel: '🏦 MULTI-BILLION FLOW IMPACT',
+        impactAssets: '🏦 T-BILLS / BONDS: Heavy Inflow | 📉 NDX: De-risking',
+        xUrl: 'https://x.com/BlackRock'
+      }
+    ];
+
+    window.filterVIPTweets = function(cat) {
+      window.currentVIPFilter = cat;
+      ['ALL', 'TRUMP', 'MUSK', 'BIDEN_WH', 'FED', 'WHALES'].forEach(k => {
+        document.getElementById('vip-' + k)?.classList.toggle('vip-filter-active', k === cat);
+      });
+      window.renderVIPTweets();
+    };
+
+    window.fetchVIPMarketTweets = async function(manual = false) {
+      const badge = document.getElementById('vip-tweets-sync-badge');
+      if (badge && manual) badge.textContent = '● SCANNING LIVE WIRES...';
+
+      const dynamicVIP = [];
+      // Scan live RSS feeds for real-time mentions of Trump, Musk, Biden, White House, Powell, Fed, Saylor, BlackRock
+      const feeds = [
+        'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664',
+        'https://feeds.content.dowjones.io/public/rss/mw_topstories',
+        'https://feeds.bbci.co.uk/news/world/rss.xml'
+      ];
+
+      await Promise.allSettled(feeds.map(async (url) => {
+        try {
+          const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+          if (!r.ok) return;
+          const j = await r.json();
+          (j?.items || []).forEach(it => {
+            const txt = ((it.title || '') + ' ' + (it.description || '')).toLowerCase();
+            const pubMs = it.pubDate ? new Date(it.pubDate).getTime() : Date.now();
+            const cleanBody = (it.description || '').replace(/<[^>]*>?/gm, '').slice(0, 175);
+
+            if (txt.includes('trump') || txt.includes('tariff')) {
+              dynamicVIP.push({
+                cat: 'TRUMP', name: 'Donald J. Trump (Live Wire Mention)', handle: '@realDonaldTrump',
+                avatarBg: 'from-amber-500 to-red-600', initials: 'DT', badge: '🔴 LIVE BREAKING WIRE',
+                time: timeAgoStr(pubMs), text: `${it.title} — ${cleanBody}`,
+                impactLevel: '🔴 HIGH TARIFF / MACRO IMPACT', impactAssets: '💵 DXY • 🟡 GOLD • 📈 US EQUITIES',
+                xUrl: it.link || 'https://x.com/realDonaldTrump'
+              });
+            } else if (txt.includes('musk') || txt.includes('tesla') || txt.includes('spacex') || txt.includes('xai')) {
+              dynamicVIP.push({
+                cat: 'MUSK', name: 'Elon Musk (Live Wire Mention)', handle: '@elonmusk',
+                avatarBg: 'from-sky-500 to-indigo-600', initials: 'EM', badge: '🚀 LIVE TECH WIRE',
+                time: timeAgoStr(pubMs), text: `${it.title} — ${cleanBody}`,
+                impactLevel: '⚡ TECH & AI SENTIMENT', impactAssets: '📉 NDX • 🚗 TSLA • 🟠 CRYPTO',
+                xUrl: it.link || 'https://x.com/elonmusk'
+              });
+            } else if (txt.includes('biden') || txt.includes('white house') || txt.includes('pentagon')) {
+              dynamicVIP.push({
+                cat: 'BIDEN_WH', name: 'White House / Biden Wire', handle: '@WhiteHouse',
+                avatarBg: 'from-blue-600 to-slate-700', initials: 'WH', badge: '🏛️ LIVE WASHINGTON WIRE',
+                time: timeAgoStr(pubMs), text: `${it.title} — ${cleanBody}`,
+                impactLevel: '🟠 GEOPOLITICAL IMPACT', impactAssets: '🛢️ CRUDE OIL ($83.61) • 🟡 GOLD',
+                xUrl: it.link || 'https://x.com/WhiteHouse'
+              });
+            } else if (txt.includes('powell') || txt.includes('fed ') || txt.includes('federal reserve') || txt.includes('fomc')) {
+              dynamicVIP.push({
+                cat: 'FED', name: 'Federal Reserve / Powell Wire', handle: '@federalreserve',
+                avatarBg: 'from-emerald-500 to-teal-700', initials: 'JP', badge: '🏦 LIVE FED WIRE',
+                time: timeAgoStr(pubMs), text: `${it.title} — ${cleanBody}`,
+                impactLevel: '🔴 RATE & YIELD IMPACT', impactAssets: '🟡 GOLD • 🏦 US10Y (4.95%) • 💵 USD',
+                xUrl: it.link || 'https://x.com/federalreserve'
+              });
+            }
+          });
+        } catch (e) {}
+      }));
+
+      window.vipTweetsFeed = [...dynamicVIP.slice(0, 6), ...BASE_VIP_TWEETS];
+      const nowPkt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(new Date());
+      if (badge) badge.textContent = `● SYNCED @ ${nowPkt} PKT`;
+      window.renderVIPTweets();
+    };
+
+    window.renderVIPTweets = function() {
+      const grid = document.getElementById('vip-tweets-grid');
+      if (!grid) return;
+      const sourceList = window.vipTweetsFeed.length ? window.vipTweetsFeed : BASE_VIP_TWEETS;
+      const list = window.currentVIPFilter === 'ALL'
+        ? sourceList
+        : sourceList.filter(item => item.cat === window.currentVIPFilter);
+
+      grid.innerHTML = (list.length ? list : sourceList).map(t => `
+        <div class="radar-card p-4 border-2 border-sky-500/35 hover:border-sky-400 bg-gradient-to-b from-[#0a1324] to-[#060a12] flex flex-col justify-between space-y-3 transition">
+          <div class="space-y-2.5">
+            <!-- Tweet Header -->
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center font-hud font-black text-white text-sm border border-white/30 shrink-0">
+                  ${t.initials}
+                </div>
+                <div>
+                  <div class="flex items-center gap-1">
+                    <strong class="text-white text-xs sm:text-sm font-hud">${t.name}</strong>
+                    <span class="text-sky-400 text-xs" title="Verified">✔</span>
+                  </div>
+                  <span class="text-[10px] font-mono text-gray-400 block">${t.handle} • ${t.time}</span>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold bg-sky-500/15 text-sky-300 border border-sky-400/30 px-2 py-0.5 rounded">${t.badge}</span>
+            </div>
+
+            <!-- Tweet Content -->
+            <p class="text-xs font-mono text-gray-100 leading-relaxed bg-black/50 p-3 rounded-xl border border-white/10">
+              "${t.text}"
+            </p>
+          </div>
+
+          <!-- AI Market Impact Footer -->
+          <div class="space-y-2 pt-1">
+            <div class="bg-amber-950/35 border border-amber-500/35 rounded-lg p-2 text-[10px] font-mono">
+              <div class="font-extrabold text-amber-300">${t.impactLevel}</div>
+              <div class="text-gray-200 mt-0.5">${t.impactAssets}</div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] font-hud font-bold pt-1">
+              <button type="button" onclick="window.switchView('AI_INTELLIGENCE')" class="text-purple-300 hover:text-purple-200 cursor-pointer">🧠 Simulate in AI Predictor</button>
+              <a href="${t.xUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300">OPEN PROFILE / SOURCE ↗</a>
+            </div>
+          </div>
+        </div>`).join('');
+    };
+
+    // ========================================================
+    // UPGRADED TAB 8: RICH MULTI-TIMEFRAME LIVE OUTLOOK ENGINE (1M TO 1D DYNAMIC!)
+    // ========================================================
+    window.currentSignalTF = '15M';
+    const TF_MULTIPLIERS = {
+      '1M':  { mult: 0.28, label: '1M SCALP MICRO-LIQUIDITY', conv: 84, horizon: 'Next 5–15 Mins' },
+      '5M':  { mult: 0.55, label: '5M KILLZONE DISPLACEMENT', conv: 87, horizon: 'Next 30–60 Mins' },
+      '15M': { mult: 1.00, label: '15M INTRADAY INSTITUTIONAL', conv: 91, horizon: 'Next 2–4 Hours' },
+      '1H':  { mult: 1.75, label: '1H SESSION SWING STRUCTURE', conv: 92, horizon: 'Next 6–12 Hours' },
+      '4H':  { mult: 2.80, label: '4H MACRO ORDER-BLOCK FLOW', conv: 94, horizon: 'Next 1–3 Days' },
+      '1D':  { mult: 4.50, label: '1D SOVEREIGN WEEKLY BIAS', conv: 95, horizon: 'Next 3–7 Days' }
+    };
+
+    window.setSignalTimeframe = function(tf) {
+      window.currentSignalTF = tf;
+      ['1M', '5M', '15M', '1H', '4H', '1D'].forEach(t => document.getElementById('tf-' + t)?.classList.toggle('tf-btn-active', t === tf));
+      const cfg = TF_MULTIPLIERS[tf] || TF_MULTIPLIERS['15M'];
+      const sumEl = document.getElementById('outlook-tf-summary');
+      if (sumEl) sumEl.textContent = `ACTIVE TF: ${cfg.label} (${cfg.horizon})`;
+      window.renderLiveSignalCards();
+    };
+
+    window.renderLiveSignalCards = function() {
+      const P = window.masterState.prices, grid = document.getElementById('live-signals-cards-grid');
+      if (!grid) return;
+      const tf = window.currentSignalTF;
+      const cfg = TF_MULTIPLIERS[tf] || TF_MULTIPLIERS['15M'];
+      const m = cfg.mult;
+
+      const cards = [
+        {
+          name: '🟡 XAUUSD • GOLD SPOT',
+          price: P.gold, dec: 2,
+          regime: 'SOVEREIGN DIP ABSORPTION',
+          regimeCol: 'bg-amber-500/20 text-amber-300 border-amber-400/50',
+          conv: cfg.conv,
+          sslLow: P.gold - 36 * m, sslHigh: P.gold - 18 * m,
+          bslLow: P.gold + 42 * m, bslHigh: P.gold + 75 * m,
+          fvg: `$${fmtNum(P.gold + 14 * m, 2)} – $${fmtNum(P.gold + 26 * m, 2)}`,
+          verdict: `US10Y at 4.95% cushions bullion; Central Bank physical bids stacked inside SSL zone (${cfg.horizon}).`
+        },
+        {
+          name: '⚪ XAGUSD • SILVER SPOT',
+          price: P.silver, dec: 2,
+          regime: 'POST-SWEEP CONSOLIDATION',
+          regimeCol: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/50',
+          conv: cfg.conv - 3,
+          sslLow: P.silver - 0.85 * m, sslHigh: P.silver - 0.40 * m,
+          bslLow: P.silver + 0.95 * m, bslHigh: P.silver + 1.65 * m,
+          fvg: `$${fmtNum(P.silver + 0.35 * m, 2)} – $${fmtNum(P.silver + 0.65 * m, 2)}`,
+          verdict: `Stabilizing at $41.26 after sweeping $40.76 lows; watching London/NY displacement above FVG.`
+        },
+        {
+          name: '🟠 BTCUSD • LIVE 24/7 SPOT',
+          price: P.btc, dec: 2,
+          regime: 'SUB-$60K LIQUIDITY TEST',
+          regimeCol: 'bg-purple-500/20 text-purple-300 border-purple-400/50',
+          conv: cfg.conv - 2,
+          sslLow: P.btc - 1450 * m, sslHigh: P.btc - 680 * m,
+          bslLow: P.btc + 1650 * m, bslHigh: P.btc + 2800 * m,
+          fvg: `$${fmtNum(P.btc + 550 * m, 0)} – $${fmtNum(P.btc + 1050 * m, 0)}`,
+          verdict: `24/7 live weekend structure testing resting whale bids below $59K; reclaim of FVG unlocks short-squeeze.`
+        },
+        {
+          name: '🛢️ WTI CRUDE OIL ($83.61)',
+          price: P.oil, dec: 2,
+          regime: 'BULLISH GEOPOLITICAL STRENGTH',
+          regimeCol: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50',
+          conv: cfg.conv + 1,
+          sslLow: P.oil - 1.60 * m, sslHigh: P.oil - 0.85 * m,
+          bslLow: P.oil + 1.15 * m, bslHigh: P.oil + 2.35 * m,
+          fvg: `$${fmtNum(P.oil - 0.45 * m, 2)} – $${fmtNum(P.oil - 0.15 * m, 2)}`,
+          verdict: `Kya Bolta Hai: Closed GREEN (+0.55%) on Hormuz shipping hedging! Defending discount FVG targets BSL pool.`
+        }
+      ];
+
+      grid.innerHTML = cards.map(c => `
+        <div class="radar-card p-4 border-2 border-blue-500/40 hover:border-amber-400/70 flex flex-col justify-between space-y-3 transition">
+          <div class="space-y-2.5">
+            <div class="flex justify-between items-center">
+              <strong class="text-amber-300 text-xs sm:text-sm">${c.name}</strong>
+              <span class="bg-blue-500/20 border border-blue-400/40 text-blue-200 text-[10px] font-mono font-bold px-2 py-0.5 rounded">${tf}</span>
+            </div>
+
+            <div class="border ${c.regimeCol} rounded-lg px-2.5 py-1 text-[10px] font-extrabold text-center uppercase tracking-wider">
+              ${c.regime}
+            </div>
+
+            <div class="flex justify-between items-baseline border-b border-white/10 pb-2">
+              <div>
+                <span class="text-[9px] text-gray-400 font-mono block">LIVE TV SPOT</span>
+                <span class="text-2xl font-black text-white">$${fmtNum(c.price, c.dec)}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[9px] text-gray-400 font-mono block">HORIZON</span>
+                <span class="text-[11px] font-bold text-cyan-300 font-mono">${cfg.horizon}</span>
+              </div>
+            </div>
+
+            <!-- Institutional Conviction Bar -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-[10px] font-mono">
+                <span class="text-gray-400">SMC Structure Score:</span>
+                <strong class="text-emerald-400">${c.conv} / 100</strong>
+              </div>
+              <div class="w-full h-2 bg-black rounded-full overflow-hidden border border-white/10">
+                <div class="h-full bg-gradient-to-r from-amber-400 to-emerald-400" style="width:${c.conv}%"></div>
+              </div>
+            </div>
+
+            <!-- Dynamic SSL / BSL / FVG Matrix -->
+            <div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1.5 text-[11px] font-mono">
+              <div class="flex justify-between"><span class="text-gray-400">🛡️ SSL Demand:</span><strong class="text-emerald-400">$${fmtNum(c.sslLow, c.dec)} – $${fmtNum(c.sslHigh, c.dec)}</strong></div>
+              <div class="flex justify-between"><span class="text-gray-400">🧲 Fair Value Gap:</span><strong class="text-amber-300">${c.fvg}</strong></div>
+              <div class="flex justify-between"><span class="text-gray-400">🔥 BSL Supply:</span><strong class="text-cyan-300">$${fmtNum(c.bslLow, c.dec)} – $${fmtNum(c.bslHigh, c.dec)}</strong></div>
+            </div>
+
+            <p class="text-[11px] text-gray-200 font-mono leading-relaxed bg-white/5 p-2 rounded border-l-2 border-amber-400">
+              ${c.verdict}
+            </p>
+          </div>
+        </div>`).join('');
+    };
+
+    // ========================================================
+    // UPGRADED TAB 12: COMPLETE RICH 5-CATALYST AI PREDICTOR ENGINE!
+    // ========================================================
+    window.currentAIEvent = 'PPI_CPI';
+    window.currentAIScenario = 'HOT';
+
+    const FULL_AI_MATRIX = {
+      PPI_CPI: {
+        title: 'US PPI / CPI INFLATION RELEASE',
+        summaryHot: '🔴 HOT INFLATION SURPRISE: Strong DXY & yield spike triggers downward liquidity sweep on Gold & BTC before sovereign bids step in.',
+        summarySoft: '🟢 COOL INFLATION PRINT: Rate-cut odds surge, fueling strong upside expansion across Gold, Silver, BTC & WTI Oil.',
+        summaryEod: '🌙 POST-CPI INSTITUTIONAL EQUILIBRIUM: Initial whipsaw settles as sovereign & macro desks re-anchor around fair value.',
+        rule: '🪐 Mushtari [287] Rule: First 15 minutes post-CPI often prints a Judas Fakeout Wick — wait for liquidity sweep completion.'
+      },
+      FED_FOMC: {
+        title: 'DEC 9 FOMC RATE DECISION & POWELL PRESSER',
+        summaryHot: '🔴 HAWKISH DOT-PLOT / POWELL: Higher-for-longer stance lifts DXY and tests lower demand shelves across metals & crypto.',
+        summarySoft: '🟢 DOVISH FED PIVOT: Liquidity easing signal ignites multi-day breakout rally in Gold ($3,600+) and Bitcoin ($61.5K+).',
+        summaryEod: '🌙 POST-FOMC NY CLOSE: Primary dealers & pension desks lock multi-week trend direction after Powell Q&A.',
+        rule: '🪐 Mushtari [287] Rule: FOMC statement at 12:00 AM PKT sweeps one side; Powell presser at 12:30 AM sets the real trend.'
+      },
+      NFP_JOBS: {
+        title: 'US NON-FARM PAYROLLS (NFP) & CLAIMS SHOCK',
+        summaryHot: '🔴 STRONG JOBS BEAT: Resilient labor data boosts USD & Oil demand while pressuring Gold & Silver intraday.',
+        summarySoft: '🟢 WEAK JOBS / RISING UNEMPLOYMENT: Recession & rate-cut pricing sends Gold & Silver sharply higher.',
+        summaryEod: '🌙 POST-NFP WEEKLY SETTLEMENT: Institutional books square positions ahead of CME weekend close.',
+        rule: '🪐 Mushtari [287] Rule: Watch US10Y yield reaction first — if yields reject highs, Gold rebounds fast.'
+      },
+      WAR_HORMUZ: {
+        title: 'STRAIT OF HORMUZ & MIDDLE EAST ENERGY SHOCK',
+        summaryHot: '🔴 GEOPOLITICAL ESCALATION: Safe-haven Gold, Silver & WTI Crude ($87+) surge violently while equities see risk-off.',
+        summarySoft: '🟢 DIPLOMATIC DE-ESCALATION / CEASEFIRE: War premium cools on Oil & Gold while BTC & Equities stage relief rally.',
+        summaryEod: '🌙 GEOPOLITICAL HEDGE FLOOR: Commodity CTAs maintain physical supply hedges into session close.',
+        rule: '🪐 Mushtari [287] Rule: Never fade Gold or WTI Crude Oil ($83.61) breakouts during active maritime alerts.'
+      },
+      BOND_DXY: {
+        title: 'US10Y YIELD (4.95%) & DXY (103.49) FLOW',
+        summaryHot: '🔴 YIELD REBOUND ABOVE 5.05%: Renewed bond selling pressures Gold, Silver & high-beta tech/crypto.',
+        summarySoft: '🟢 YIELD DROP BELOW 4.85% & DXY ROLLOVER: Safe-haven bond rally unlocks broad upside in Gold & BTC.',
+        summaryEod: '🌙 TREASURY AUCTION DIGESTION: Cross-asset volatility stabilizes around NY bond close.',
+        rule: '🪐 Mushtari [287] Rule: Track inverse US10Y + DXY correlation for highest-probability institutional confirmation.'
+      }
+    };
+
+    window.jumpToAISimulator = function(k) { window.switchView('AI_INTELLIGENCE'); window.setAINewsEvent(k); };
+
+    window.setAINewsEvent = function(k) {
+      window.currentAIEvent = FULL_AI_MATRIX[k] ? k : 'PPI_CPI';
+      ['PPI_CPI', 'FED_FOMC', 'NFP_JOBS', 'WAR_HORMUZ', 'BOND_DXY'].forEach(x => document.getElementById('aiev-' + x)?.classList.toggle('ai-ev-active', x === k));
+      window.renderAIIntelligenceTab();
+    };
+
+    window.setAIScenario = function(s) {
+      window.currentAIScenario = s;
+      ['HOT', 'SOFT', 'POST_DAY'].forEach(x => document.getElementById('aisc-' + x)?.classList.remove('ai-sc-hot', 'ai-sc-soft', 'ai-sc-eod'));
+      document.getElementById('aisc-' + s)?.classList.add(s === 'HOT' ? 'ai-sc-hot' : (s === 'SOFT' ? 'ai-sc-soft' : 'ai-sc-eod'));
+      window.renderAIIntelligenceTab();
+    };
+
+    window.renderAIIntelligenceTab = function() {
+      const P = window.masterState.prices, sc = window.currentAIScenario, evKey = window.currentAIEvent;
+      const meta = FULL_AI_MATRIX[evKey] || FULL_AI_MATRIX.PPI_CPI;
+      const hb = document.getElementById('ai-house-conviction-box'), mb = document.getElementById('ai-master-briefing'), gr = document.getElementById('ai-quad-cards-grid');
+
+      if (hb) {
+        hb.innerHTML = `
+          <div class="bg-black/75 p-3 rounded-xl border border-amber-400/50"><div class="flex justify-between"><strong class="text-amber-400">🟡 GOLD ($${fmtNum(P.gold, 2)})</strong><span class="text-emerald-400 font-bold">92% SCORE</span></div><p class="text-[11px] text-gray-300 mt-1">CB Floor $3,502 • BSL Supply $3,585</p></div>
+          <div class="bg-black/75 p-3 rounded-xl border border-cyan-400/50"><div class="flex justify-between"><strong class="text-cyan-300">⚪ SILVER ($${fmtNum(P.silver, 2)})</strong><span class="text-cyan-300 font-bold">88% SCORE</span></div><p class="text-[11px] text-gray-300 mt-1">SSL Floor $40.50 • Supply $42.20</p></div>
+          <div class="bg-black/75 p-3 rounded-xl border border-emerald-400/50"><div class="flex justify-between"><strong class="text-emerald-400">🟠 BTC ($${fmtNum(P.btc, 0)})</strong><span class="text-amber-300 font-bold">89% SCORE</span></div><p class="text-[11px] text-gray-300 mt-1">Whale Shelf $58,000 • Reclaim $61,200</p></div>
+          <div class="bg-rose-950/40 p-3 rounded-xl border border-rose-400/60"><div class="flex justify-between"><strong class="text-rose-300">🛢️ WTI OIL ($${fmtNum(P.oil, 2)})</strong><span class="text-emerald-300 font-bold">91% SCORE</span></div><p class="text-[11px] text-emerald-200 mt-1">Strong +0.55%! Floor $82.40 → $85.80</p></div>`;
+      }
+
+      const sumText = sc === 'HOT' ? meta.summaryHot : (sc === 'SOFT' ? meta.summarySoft : meta.summaryEod);
+      if (mb) {
+        mb.innerHTML = `
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <strong class="text-purple-300 text-sm font-hud uppercase">📡 ACTIVE CATALYST: ${meta.title} (${sc})</strong>
+            <span class="text-[10px] bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded font-bold">LIVE SCENARIO ENGINE</span>
+          </div>
+          <p class="text-white font-bold mt-1">${sumText}</p>
+          <p class="text-amber-300 text-[11px] pt-1 border-t border-white/10 mt-1">${meta.rule}</p>`;
+      }
+
+      const isWar = evKey === 'WAR_HORMUZ';
+      const isJobs = evKey === 'NFP_JOBS';
+
+      const projections = [
+        {
+          name: '🟡 XAUUSD GOLD SPOT', live: P.gold, dec: 2,
+          move: sc === 'HOT' ? (isWar ? +72 : -40) : (sc === 'SOFT' ? (isWar ? -34 : +58) : +24),
+          wick: sc === 'HOT' ? (isWar ? -14 : +16) : -15,
+          prob: sc === 'SOFT' || isWar ? 92 : 87,
+          catalystNote: isWar ? 'Safe-haven sovereign gold flight on Middle East tension.' : 'Driven by real US10Y yield (4.95%) & DXY response.',
+          playbook: 'Watch Central Bank physical absorption near $3,502–$3,518 on dips.'
+        },
+        {
+          name: '⚪ XAGUSD SILVER SPOT', live: P.silver, dec: 2,
+          move: sc === 'HOT' ? (isWar ? +1.65 : -1.05) : (sc === 'SOFT' ? (isWar ? -0.85 : +1.45) : +0.65),
+          wick: sc === 'HOT' ? +0.35 : -0.32,
+          prob: 86,
+          catalystNote: 'High-beta precious metal tracking Gold & industrial liquidity.',
+          playbook: 'Key structural support holds at $40.50–$40.90 SSL pool.'
+        },
+        {
+          name: '🟠 BTCUSD LIVE SPOT', live: P.btc, dec: 2,
+          move: sc === 'HOT' ? -1650 : (sc === 'SOFT' ? +2350 : +980),
+          wick: sc === 'HOT' ? +620 : -540,
+          prob: 88,
+          catalystNote: 'Correlated with Nasdaq liquidity & institutional ETF flows.',
+          playbook: 'Defending $57,850–$58,500 keeps macro structure constructive.'
+        },
+        {
+          name: '🛢️ WTI CRUDE OIL', live: P.oil, dec: 2,
+          move: sc === 'HOT' ? (isWar ? +4.20 : (isJobs ? +1.35 : -1.30)) : (sc === 'SOFT' ? (isWar ? -2.90 : +1.65) : +0.95),
+          wick: sc === 'HOT' ? -0.55 : +0.45,
+          prob: isWar ? 95 : 84,
+          catalystNote: isWar ? 'Direct Strait of Hormuz tanker & supply risk premium!' : 'Balancing physical hedging (+0.55%) vs USD strength.',
+          playbook: 'Holding $82.40 floor keeps $84.50–$85.80 BSL target active.'
+        }
+      ];
+
+      if (gr) {
+        gr.innerHTML = projections.map(item => {
+          const isUp = item.move >= 0;
+          const targetP = item.live + item.move;
+          const wickP = item.live + item.wick;
+          const eodP = item.live + item.move * 0.72;
+          const sign = isUp ? '+' : '';
+          return `
+            <div class="radar-card p-4 border-2 ${isUp ? 'border-emerald-500/60' : 'border-rose-500/60'} flex flex-col justify-between space-y-2.5">
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <strong class="text-amber-300 text-xs sm:text-sm">${item.name}</strong>
+                  <span class="text-[10px] font-mono font-bold ${isUp ? 'text-emerald-400' : 'text-rose-400'}">${item.prob}% PROBABILITY</span>
+                </div>
+
+                <div class="${isUp ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-black' : 'bg-gradient-to-r from-rose-600 to-red-500 text-white'} rounded-lg py-1.5 px-2 text-center font-extrabold text-xs uppercase">
+                  ${isUp ? '🚀 EXPECTED UPSIDE EXPANSION' : '🩸 EXPECTED DOWNSIDE SWEEP'}
+                </div>
+
+                <div class="flex justify-between items-baseline border-b border-white/10 pb-2">
+                  <div>
+                    <span class="text-[9px] text-gray-400 font-mono block">LIVE SPOT</span>
+                    <span class="text-lg font-black text-white">$${fmtNum(item.live, item.dec)}</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[9px] text-gray-400 font-mono block">PROJECTED (${sign}${item.move})</span>
+                    <span class="text-lg font-black ${isUp ? 'text-emerald-400' : 'text-rose-400'}">$${fmtNum(targetP, item.dec)}</span>
+                  </div>
+                </div>
+
+                <!-- Rich Trap Wick & EOD Settlement Box -->
+                <div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1 text-[11px] font-mono">
+                  <div class="flex justify-between"><span class="text-amber-300">⚠️ Judas Fakeout Wick:</span><strong class="text-white">$${fmtNum(wickP, item.dec)}</strong></div>
+                  <div class="flex justify-between"><span class="text-cyan-300">🎯 Primary Liquidity Zone:</span><strong class="${isUp ? 'text-emerald-400' : 'text-rose-400'}">$${fmtNum(targetP, item.dec)}</strong></div>
+                  <div class="flex justify-between"><span class="text-purple-300">🌙 NY / EOD Settlement:</span><strong class="text-purple-200">$${fmtNum(eodP, item.dec)}</strong></div>
+                </div>
+
+                <div class="bg-white/5 p-2 rounded border-l-2 border-purple-400 text-[10px] font-mono text-gray-200">
+                  <strong>Catalyst:</strong> ${item.catalystNote}
+                </div>
+                <div class="bg-white/5 p-2 rounded border-l-2 border-amber-400 text-[10px] font-mono text-gray-300">
+                  <strong>Playbook:</strong> ${item.playbook}
+                </div>
+              </div>
+            </div>`;
+        }).join('');
+      }
+    };
+
+    // ========================================================
+    // AUTO-UPDATING NEWS ENGINE (ALL 16 TABS + BLOOMBERG + WORLD)
     // ========================================================
     window.liveBloombergItems = [];
     window.liveWorldItems = [];
@@ -963,18 +1608,18 @@
 
     function categorizeHeadline(title) {
       const t = (title || '').toLowerCase();
-      if (t.includes('gold') || t.includes('oil') || t.includes('crude') || t.includes('silver') || t.includes('opec') || t.includes('commodity')) return 'COMMODITIES';
-      if (t.includes('war') || t.includes('iran') || t.includes('israel') || t.includes('military') || t.includes('russia') || t.includes('ukraine') || t.includes('hormuz') || t.includes('tariff') || t.includes('sanction')) return 'WAR';
-      if (t.includes('fed') || t.includes('inflation') || t.includes('cpi') || t.includes('gdp') || t.includes('rate') || t.includes('jobs') || t.includes('central bank') || t.includes('yield')) return 'ECONOMICS';
-      if (t.includes('bitcoin') || t.includes('btc') || t.includes('crypto') || t.includes('ethereum') || t.includes('etf')) return 'CRYPTO';
+      if (t.includes('gold') || t.includes('oil') || t.includes('crude') || t.includes('silver') || t.includes('opec')) return 'COMMODITIES';
+      if (t.includes('war') || t.includes('iran') || t.includes('israel') || t.includes('military') || t.includes('russia') || t.includes('hormuz') || t.includes('tariff')) return 'WAR';
+      if (t.includes('fed') || t.includes('inflation') || t.includes('cpi') || t.includes('rate') || t.includes('yield')) return 'ECONOMICS';
+      if (t.includes('bitcoin') || t.includes('btc') || t.includes('crypto') || t.includes('ethereum')) return 'CRYPTO';
       return 'FINANCE';
     }
 
     function categorizeWorldHeadline(title) {
       const t = (title || '').toLowerCase();
-      if (t.includes('peace') || t.includes('ceasefire') || t.includes('summit') || t.includes('talk') || t.includes('diploma') || t.includes('deal')) return 'PEACE';
-      if (t.includes('war') || t.includes('attack') || t.includes('missile') || t.includes('strike') || t.includes('military') || t.includes('conflict') || t.includes('gaza') || t.includes('ukraine') || t.includes('iran')) return 'WAR';
-      if (t.includes('bank') || t.includes('stock') || t.includes('market') || t.includes('fund') || t.includes('dollar')) return 'FINANCE';
+      if (t.includes('peace') || t.includes('ceasefire') || t.includes('summit') || t.includes('talk') || t.includes('deal')) return 'PEACE';
+      if (t.includes('war') || t.includes('attack') || t.includes('missile') || t.includes('strike') || t.includes('military') || t.includes('conflict')) return 'WAR';
+      if (t.includes('bank') || t.includes('stock') || t.includes('market') || t.includes('dollar')) return 'FINANCE';
       return 'ECONOMICS';
     }
 
@@ -990,10 +1635,7 @@
       const syncLbl = document.getElementById('global-news-sync-time');
       if (syncLbl && manual) syncLbl.textContent = 'UPDATING...';
 
-      const freshBB = [];
-      const freshWorld = [];
-
-      // 1. Fetch Live Market & Macro News via RSS-to-JSON (CNBC Top News, MarketWatch, BBC World)
+      const freshBB = [], freshWorld = [];
       const rssFeeds = [
         { url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664', source: 'CNBC FINANCIAL', isWorld: false },
         { url: 'https://feeds.content.dowjones.io/public/rss/mw_topstories', source: 'MARKETWATCH WIRE', isWorld: false },
@@ -1006,85 +1648,32 @@
           const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(f.url)}`);
           if (!r.ok) return;
           const j = await r.json();
-          if (j?.items?.length) {
-            j.items.slice(0, 6).forEach(it => {
-              const pubMs = it.pubDate ? new Date(it.pubDate).getTime() : Date.now();
-              const cleanDesc = (it.description || '').replace(/<[^>]*>?/gm, '').slice(0, 150) + '...';
-              if (f.isWorld) {
-                freshWorld.push({
-                  cat: categorizeWorldHeadline(it.title),
-                  source: f.source,
-                  time: timeAgoStr(pubMs),
-                  ts: pubMs,
-                  title: it.title,
-                  desc: cleanDesc,
-                  link: it.link || '#'
-                });
-              } else {
-                freshBB.push({
-                  cat: categorizeHeadline(it.title),
-                  badge: f.source,
-                  time: timeAgoStr(pubMs),
-                  ts: pubMs,
-                  title: it.title,
-                  desc: cleanDesc,
-                  link: it.link || '#'
-                });
-              }
-            });
-          }
+          (j?.items || []).slice(0, 6).forEach(it => {
+            const pubMs = it.pubDate ? new Date(it.pubDate).getTime() : Date.now();
+            const cleanDesc = (it.description || '').replace(/<[^>]*>?/gm, '').slice(0, 150) + '...';
+            if (f.isWorld) freshWorld.push({ cat: categorizeWorldHeadline(it.title), source: f.source, time: timeAgoStr(pubMs), ts: pubMs, title: it.title, desc: cleanDesc, link: it.link || '#' });
+            else freshBB.push({ cat: categorizeHeadline(it.title), badge: f.source, time: timeAgoStr(pubMs), ts: pubMs, title: it.title, desc: cleanDesc, link: it.link || '#' });
+          });
         } catch (e) {}
       }));
 
-      // 2. Fetch Real-Time 24/7 Crypto & Macro Institutional Feed (CryptoCompare Public JSON API — Always CORS Open!)
-      try {
-        const ccRes = await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN');
-        if (ccRes.ok) {
-          const ccJson = await ccRes.json();
-          if (ccJson?.Data?.length) {
-            ccJson.Data.slice(0, 6).forEach(n => {
-              const pubMs = (n.published_on || 0) * 1000;
-              freshBB.push({
-                cat: categorizeHeadline(n.title),
-                badge: (n.source_info?.name || 'LIVE CRYPTO WIRE').toUpperCase(),
-                time: timeAgoStr(pubMs),
-                ts: pubMs,
-                title: n.title,
-                desc: (n.body || '').slice(0, 145) + '...',
-                link: n.url || '#'
-              });
-            });
-          }
-        }
-      } catch (e) {}
-
-      // Always include Verified Institutional Market Desk Dispatches synced to live prices
       const P = window.masterState.prices;
       const deskFallbackBB = [
-        { cat: 'COMMODITIES', badge: '🛢️ ENERGY DESK', time: 'Live Desk', ts: Date.now(), title: `WTI Crude Oil Holds Strong At $${fmtNum(P.oil, 2)} (+0.55%) & Brent At $92.51 Defying Equity Selloff`, desc: 'Hormuz shipping hedging and physical energy demand support crude above $82.40 floor.', link: 'https://www.tradingview.com/symbols/USOIL/' },
-        { cat: 'COMMODITIES', badge: '🟡 BULLION DESK', time: 'Live Desk', ts: Date.now() - 60000, title: `Spot Gold At $${fmtNum(P.gold, 2)} & Silver At $${fmtNum(P.silver, 2)} As US10Y Yield Drops To 4.95%`, desc: 'Sovereign central banks (+842.6T YTD) absorb physical bullion dips below $3,540.', link: 'https://www.tradingview.com/symbols/XAUUSD/' },
-        { cat: 'FINANCE', badge: '📉 WALL ST DESK', time: 'Live Desk', ts: Date.now() - 120000, title: `Nasdaq 100 Closes At 25,028.98 (-5.61%) & NVDA At $125.53 (-14.01%); VIX At 35.89`, desc: 'Institutional capital rotates +$5.8B into Money Market T-Bills & US Treasury Bonds.', link: 'https://www.tradingview.com/markets/indices/' },
-        { cat: 'FINANCE', badge: '🇵🇰 PSX KARACHI', time: 'Live Desk', ts: Date.now() - 180000, title: `PSX KSE-100 Outperforms Global Markets (+610.38 Pts To 177,382.57) | USD/PKR Rs 276.25`, desc: 'HUBC (+1.67% at Rs 209.81) leads domestic institutional accumulation.', link: 'https://dps.psx.com.pk/' }
+        { cat: 'COMMODITIES', badge: '🛢️ ENERGY DESK', time: 'Live Desk', ts: Date.now(), title: `WTI Crude Oil Holds Strong At $${fmtNum(P.oil, 2)} (+0.55%) & Brent At $92.51 Defying Tech Selloff`, desc: 'Hormuz shipping hedging and physical energy demand support crude above $82.40 floor.', link: 'https://www.tradingview.com/symbols/USOIL/' },
+        { cat: 'COMMODITIES', badge: '🟡 BULLION DESK', time: 'Live Desk', ts: Date.now() - 60000, title: `Spot Gold At $${fmtNum(P.gold, 2)} & Silver At $${fmtNum(P.silver, 2)} As US10Y Yield Drops To 4.95%`, desc: 'Sovereign central banks (+842.6T YTD) absorb physical bullion dips below $3,540.', link: 'https://www.tradingview.com/symbols/XAUUSD/' }
       ];
 
-      window.liveBloombergItems = [...freshBB.sort((a, b) => b.ts - a.ts), ...deskFallbackBB].slice(0, 14);
-      window.liveWorldItems = freshWorld.length > 0
-        ? freshWorld.sort((a, b) => b.ts - a.ts).slice(0, 10)
-        : [
-            { cat: 'WAR', source: 'GEOPOLITICAL WIRE', time: 'Live', title: 'Strait of Hormuz & Maritime Alerts Keep WTI Crude ($83.61) & Brent ($92.51) Supported', desc: 'Energy supply corridors remain heavily hedged by institutional desks.', link: '#' },
-            { cat: 'ECONOMICS', source: 'GLOBAL MACRO', time: 'Live', title: 'Global Bond Yields Fall (US10Y 4.95%) As Tech Selloff Triggers Safe-Haven Rotation', desc: 'Investors weigh December 9 FOMC rate decision amid heightened VIX volatility.', link: '#' },
-            { cat: 'FINANCE', source: 'KARACHI / EM DESK', time: 'Live', title: 'Pakistan KSE-100 Holds 177,382.57 (+0.35%) With Stable Interbank PKR Crosses', desc: 'Domestic equities show strong resilience against Wall Street & Asian tech drops.', link: '#' }
-          ];
+      window.liveBloombergItems = [...freshBB.sort((a, b) => b.ts - a.ts), ...deskFallbackBB].slice(0, 12);
+      window.liveWorldItems = freshWorld.length ? freshWorld.sort((a, b) => b.ts - a.ts).slice(0, 10) : deskFallbackBB;
 
       const nowPkt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(new Date());
       if (syncLbl) syncLbl.textContent = nowPkt;
       if (document.getElementById('bb-last-updated')) document.getElementById('bb-last-updated').textContent = `● AUTO-UPDATED @ ${nowPkt} PKT`;
       if (document.getElementById('world-last-updated')) document.getElementById('world-last-updated').textContent = `● AUTO-UPDATED @ ${nowPkt} PKT`;
 
-      // Update Global News Bar Across ALL 15 Tabs!
       const marquee = document.getElementById('global-all-tabs-news-marquee');
       if (marquee) {
-        const combined = [...window.liveBloombergItems.slice(0, 6), ...window.liveWorldItems.slice(0, 4)];
+        const combined = [...window.liveBloombergItems.slice(0, 5), ...window.liveWorldItems.slice(0, 4)];
         marquee.innerHTML = combined.map(item =>
           `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 transition"><strong class="bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 px-1.5 py-0.5 rounded mr-1.5">${item.badge || item.source} (${item.time})</strong>${item.title}</a>`
         ).join('');
@@ -1092,83 +1681,58 @@
 
       window.renderBloombergArticles();
       window.renderWorldNews();
+      window.fetchVIPMarketTweets(false);
     };
 
-    // ========================================================
-    // UPGRADED PLANETARY HOURS (CURRENT + NEXT HOUR + LIVE COUNTDOWN + SEQUENTIAL 8 HOURS!)
-    // ========================================================
+    // PLANETARY HOURS (CURRENT + NEXT HOUR)
     function calculatePlanetaryHours() {
       const CHALDEAN = [
         { name: "Saturn (Zuhal)", symbol: "♄", nature: "Discipline, heavy resistance & institutional consolidation." },
-        { name: "Jupiter (Mushtari)", symbol: "♃", nature: "Auspicious expansion, wealth flow & strong trend continuation [287]." },
+        { name: "Jupiter (Mushtari)", symbol: "♃", nature: "Auspicious expansion, wealth flow & trend continuation [287]." },
         { name: "Mars (Mirrikh)", symbol: "♂", nature: "Aggressive volatility, stop-hunts & sharp breakout energy." },
-        { name: "Sun (Shams)", symbol: "☉", nature: "Sovereign gold authority, clarity & institutional directional push." },
-        { name: "Venus (Zuhra)", symbol: "♀", nature: "Balanced liquidity, harmonic retracements & smooth mean-reversion." },
-        { name: "Mercury (Utarid)", symbol: "☿", nature: "Fast algorithmic scalping, news whipsaws & rapid order flow." },
-        { name: "Moon (Qamar)", symbol: "☽", nature: "Silver sensitivity, public sentiment swings & liquidity sweeps." }
+        { name: "Sun (Shams)", symbol: "☉", nature: "Sovereign gold authority & institutional directional push." },
+        { name: "Venus (Zuhra)", symbol: "♀", nature: "Balanced liquidity & smooth harmonic retracements." },
+        { name: "Mercury (Utarid)", symbol: "☿", nature: "Fast algorithmic scalping & news whipsaws." },
+        { name: "Moon (Qamar)", symbol: "☽", nature: "Silver sensitivity & liquidity sweeps." }
       ];
-      const RULERS = [3, 6, 2, 5, 1, 4, 0]; // Sun=3, Mon=6, Tue=2, Wed=5, Thu=1, Fri=4, Sat=0
-
-      // Get exact Karachi time components
+      const RULERS = [3, 6, 2, 5, 1, 4, 0];
       const now = new Date();
       const pktParts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Karachi', hour12: false, weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(now);
-      const mapP = {};
-      pktParts.forEach(p => { mapP[p.type] = p.value; });
-      const h = parseInt(mapP.hour, 10) % 24;
-      const m = parseInt(mapP.minute, 10);
-      const s = parseInt(mapP.second, 10);
+      const mapP = {}; pktParts.forEach(p => { mapP[p.type] = p.value; });
+      const h = parseInt(mapP.hour, 10) % 24, m = parseInt(mapP.minute, 10), s = parseInt(mapP.second, 10);
       const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
       const d = dayMap[mapP.weekday] ?? now.getDay();
 
-      // Helper to get ruling planet for any offset hour from now
       function getPlanetAt(dayIdx, hour24) {
-        // Planetary day starts at 06:00 AM; hours 00:00-05:59 belong to previous day's ruler
-        const effectiveDay = hour24 >= 6 ? dayIdx : (dayIdx + 6) % 7;
-        const hoursSince6AM = hour24 >= 6 ? (hour24 - 6) : (hour24 + 18);
-        return CHALDEAN[(RULERS[effectiveDay] + hoursSince6AM) % 7];
+        const effDay = hour24 >= 6 ? dayIdx : (dayIdx + 6) % 7;
+        const hrs = hour24 >= 6 ? (hour24 - 6) : (hour24 + 18);
+        return CHALDEAN[(RULERS[effDay] + hrs) % 7];
       }
-
-      function fmt12(h24) {
-        const hh = h24 % 24;
-        const ampm = hh >= 12 ? 'PM' : 'AM';
-        return `${hh % 12 || 12}:00 ${ampm}`;
-      }
+      function fmt12(h24) { const hh = h24 % 24; return `${hh % 12 || 12}:00 ${hh >= 12 ? 'PM' : 'AM'}`; }
 
       const curPl = getPlanetAt(d, h);
-      const nextHour24 = (h + 1) % 24;
-      const nextDayIdx = nextHour24 === 0 ? (d + 1) % 7 : d;
-      const nextPl = getPlanetAt(nextDayIdx, nextHour24);
-
+      const nextH = (h + 1) % 24;
+      const nextPl = getPlanetAt(nextH === 0 ? (d + 1) % 7 : d, nextH);
       const remSec = (59 - m) * 60 + (60 - s);
-      const remMM = String(Math.floor(remSec / 60)).padStart(2, '0');
-      const remSS = String(remSec % 60).padStart(2, '0');
+      const remMM = String(Math.floor(remSec / 60)).padStart(2, '0'), remSS = String(remSec % 60).padStart(2, '0');
 
       const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
       setTxt('saat-countdown-badge', `NEXT IN ${remMM}:${remSS}`);
       setTxt('planet-symbol-tag', curPl.symbol);
       setTxt('planet-name-text', curPl.name);
-      setTxt('current-planet-time', `${fmt12(h)} – ${fmt12(nextHour24)}`);
+      setTxt('current-planet-time', `${fmt12(h)} – ${fmt12(nextH)}`);
       setTxt('current-planet-nature', curPl.nature);
-
       setTxt('next-planet-name', `${nextPl.symbol} ${nextPl.name}`);
-      setTxt('next-planet-time', `${fmt12(nextHour24)} – ${fmt12((nextHour24 + 1) % 24)} (in ${remMM}m ${remSS}s)`);
+      setTxt('next-planet-time', `${fmt12(nextH)} (in ${remMM}m ${remSS}s)`);
       setTxt('next-planet-nature', nextPl.nature);
 
       const listEl = document.getElementById('planetary-hours-list');
       if (listEl) {
         let html = '';
-        for (let offset = 0; offset < 8; offset++) {
-          const targetH = (h + offset) % 24;
-          const dayShift = Math.floor((h + offset) / 24);
-          const targetDay = (d + dayShift) % 7;
-          const p = getPlanetAt(targetDay, targetH);
-          const badge = offset === 0
-            ? '<span class="text-[9px] bg-emerald-500 text-black font-black px-1 rounded ml-1">NOW</span>'
-            : (offset === 1 ? '<span class="text-[9px] bg-cyan-400 text-black font-black px-1 rounded ml-1">NEXT</span>' : '');
-          const rowCls = offset === 0
-            ? 'bg-purple-950/80 border border-purple-400/60 text-white font-bold'
-            : (offset === 1 ? 'bg-cyan-950/60 border border-cyan-400/50 text-cyan-200 font-bold' : 'bg-black/40 text-gray-300');
-          html += `<div class="flex justify-between items-center p-1.5 rounded ${rowCls}"><span>${p.symbol} ${p.name}${badge}</span><span>${fmt12(targetH)}</span></div>`;
+        for (let off = 0; off < 8; off++) {
+          const th = (h + off) % 24, td = (d + Math.floor((h + off) / 24)) % 7, p = getPlanetAt(td, th);
+          const cls = off === 0 ? 'bg-purple-950/80 border border-purple-400/60 text-white font-bold' : (off === 1 ? 'bg-cyan-950/60 border border-cyan-400/50 text-cyan-200 font-bold' : 'bg-black/40 text-gray-300');
+          html += `<div class="flex justify-between items-center p-1.5 rounded ${cls}"><span>${p.symbol} ${p.name} ${off === 0 ? '(NOW)' : (off === 1 ? '(NEXT)' : '')}</span><span>${fmt12(th)}</span></div>`;
         }
         listEl.innerHTML = html;
       }
@@ -1179,70 +1743,35 @@
       const s = Math.max(0, Math.floor(totalSec));
       return `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor((s % 3600) / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
     }
-
-    function nextMondaySessionOpenSec(now, sessionOpenHourUTC) {
-      const day = now.getUTCDay();
-      const daysUntilMon = day === 6 ? 2 : (day === 0 ? 1 : 0);
+    function nextMondaySessionOpenSec(now, openH) {
+      const day = now.getUTCDay(), daysUntilMon = day === 6 ? 2 : (day === 0 ? 1 : 0);
       const nowSec = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
-      return (daysUntilMon * 86400) - nowSec + (sessionOpenHourUTC * 3600);
+      return (daysUntilMon * 86400) - nowSec + (openH * 3600);
     }
-
-    function computeSessionStatus(now, openHourUTC, closeHourUTC) {
-      const day = now.getUTCDay();
-      const utcSec = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
-      if (day === 6 || (day === 0 && utcSec < 22 * 3600)) {
-        return { isOpen: false, weekend: true, remainSec: nextMondaySessionOpenSec(now, openHourUTC) };
-      }
-      const openS = openHourUTC * 3600, closeS = closeHourUTC * 3600;
-      if (utcSec >= openS && utcSec < closeS) return { isOpen: true, weekend: false, remainSec: closeS - utcSec };
-      const untilOpen = utcSec < openS ? (openS - utcSec) : (86400 - utcSec + openS);
-      return { isOpen: false, weekend: false, remainSec: untilOpen };
+    function computeSessionStatus(now, openH, closeH) {
+      const day = now.getUTCDay(), utcSec = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+      if (day === 6 || (day === 0 && utcSec < 22 * 3600)) return { isOpen: false, weekend: true, remainSec: nextMondaySessionOpenSec(now, openH) };
+      if (utcSec >= openH * 3600 && utcSec < closeH * 3600) return { isOpen: true, weekend: false, remainSec: closeH * 3600 - utcSec };
+      return { isOpen: false, weekend: false, remainSec: utcSec < openH * 3600 ? (openH * 3600 - utcSec) : (86400 - utcSec + openH * 3600) };
     }
-
     function updateGlobalSessionClocks(now) {
-      const asia = computeSessionStatus(now, 0, 9);
-      const london = computeSessionStatus(now, 8, 17);
-      const ny = computeSessionStatus(now, 13, 22);
-
-      const renderPill = (pillId, txtId, st) => {
-        const pill = document.getElementById(pillId), txt = document.getElementById(txtId);
-        if (!pill || !txt) return;
-        if (st.isOpen) {
-          pill.className = "px-2.5 py-0.5 rounded border border-emerald-400/70 bg-emerald-950/50 flex items-center gap-1.5";
-          txt.className = "text-emerald-300 font-extrabold";
-          txt.textContent = `🟢 LIVE (${fmtHMS(st.remainSec)})`;
-        } else {
-          pill.className = "px-2.5 py-0.5 rounded border border-amber-500/30 bg-black/80 flex items-center gap-1.5";
-          txt.className = "text-amber-300 font-bold";
-          txt.textContent = `⏳ Opens in ${fmtHMS(st.remainSec)}`;
-        }
+      const asia = computeSessionStatus(now, 0, 9), london = computeSessionStatus(now, 8, 17), ny = computeSessionStatus(now, 13, 22);
+      const renderPill = (pId, tId, st) => {
+        const txt = document.getElementById(tId); if (!txt) return;
+        txt.textContent = st.isOpen ? `🟢 LIVE (${fmtHMS(st.remainSec)})` : `⏳ Opens in ${fmtHMS(st.remainSec)}`;
       };
-
       renderPill('sess-pill-asia', 'sess-txt-asia', asia);
       renderPill('sess-pill-london', 'sess-txt-london', london);
       renderPill('sess-pill-ny', 'sess-txt-ny', ny);
-
-      let headline = "";
-      if (asia.weekend) headline = `🏛️ CRYPTO 24/7 LIVE | MON ASIAN SESSION IN ${fmtHMS(asia.remainSec)}`;
-      else if (london.isOpen && ny.isOpen) headline = `🔥 LONDON + NEW YORK OVERLAP LIVE! (${fmtHMS(Math.min(london.remainSec, ny.remainSec))} Left)`;
-      else if (ny.isOpen) headline = `🇺🇸 NEW YORK SESSION LIVE! (Closes in ${fmtHMS(ny.remainSec)})`;
-      else if (london.isOpen) headline = `🇬🇧 LONDON / PSX SESSION LIVE! (NY in ${fmtHMS(ny.remainSec)})`;
-      else if (asia.isOpen) headline = `🌏 ASIAN (TOKYO) SESSION LIVE! (London in ${fmtHMS(london.remainSec)})`;
-      else headline = `🌏 NEXT ASIAN SESSION IN ${fmtHMS(asia.remainSec)}`;
-
       const banner = document.getElementById('active-killzone-banner');
-      const skillLbl = document.getElementById('skill-session-label');
-      if (banner) banner.textContent = headline;
-      if (skillLbl) skillLbl.textContent = asia.weekend ? 'CRYPTO 24/7 LIVE' : (ny.isOpen ? 'NY LIVE' : (london.isOpen ? 'LONDON LIVE' : 'ASIAN LIVE'));
+      if (banner) banner.textContent = asia.weekend ? `🏛️ CRYPTO 24/7 LIVE | MON ASIAN IN ${fmtHMS(asia.remainSec)}` : `🔥 GLOBAL MARKET SESSIONS ACTIVE`;
     }
 
-    // LIVE 24/7 CRYPTO WEBSOCKET (COINBASE DIRECT — ZERO BINANCE)
+    // LIVE CRYPTO WEBSOCKET (COINBASE — ZERO BINANCE)
     function connectLiveCryptoStream() {
       try {
         const ws = new WebSocket('wss://ws-feed.exchange.coinbase.com');
-        ws.onopen = () => {
-          ws.send(JSON.stringify({ type: 'subscribe', product_ids: ['BTC-USD', 'ETH-USD', 'SOL-USD', 'LINK-USD'], channels: ['ticker'] }));
-        };
+        ws.onopen = () => ws.send(JSON.stringify({ type: 'subscribe', product_ids: ['BTC-USD', 'ETH-USD', 'SOL-USD', 'LINK-USD'], channels: ['ticker'] }));
         ws.onmessage = (msg) => {
           const d = JSON.parse(msg.data);
           if (d.type === 'ticker' && d.price) {
@@ -1266,35 +1795,19 @@
       wrap.appendChild(inner); wrap.appendChild(scr); box.appendChild(wrap);
     }
 
-    // TABS 1–5 RADAR WITH DYNAMIC PER-ASSET VERDICT & BIAS!
+    // TABS 1–5 RADAR
     window.lastRadarSym = null;
     function renderRadarData(key) {
       const sym = window.masterState.tvSymbols[key] || "OANDA:XAUUSD";
       const prof = window.masterState.assetProfiles[key] || window.masterState.assetProfiles.GOLD;
       document.getElementById('radar-active-symbol').textContent = `${key} (${sym}) • DIRECT TRADINGVIEW LIVE TERMINAL`;
-
-      const vBox = document.getElementById('radar-asset-verdict-box');
-      if (vBox) {
-        vBox.innerHTML = `
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="font-hud font-black text-sm sm:text-base text-amber-300 uppercase">${prof.verdictTitle}</span>
-            <span class="text-[10px] font-mono bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 px-2 py-0.5 rounded font-bold">${prof.biasTag}</span>
-          </div>
-          <p class="text-xs font-mono text-gray-100 leading-relaxed">${prof.verdictBody}</p>`;
-      }
+      document.getElementById('radar-asset-verdict-box').innerHTML = `<div class="flex flex-wrap justify-between gap-2"><span class="font-hud font-black text-sm sm:text-base text-amber-300 uppercase">${prof.verdictTitle}</span><span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">${prof.biasTag}</span></div><p class="text-xs font-mono text-gray-100 leading-relaxed">${prof.verdictBody}</p>`;
 
       if (window.lastRadarSym !== sym) {
         window.lastRadarSym = sym;
-        injectTVWidget('tv-single-quote-box', 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js', {
-          symbol: sym, width: "100%", isTransparent: true, colorTheme: "dark", locale: "en"
-        });
-        const chartBox = document.getElementById('tv-live-radar-chart');
-        if (chartBox) {
-          chartBox.innerHTML = `<iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(sym)}&interval=15&theme=dark&style=1&timezone=Asia%2FKarachi&withdateranges=1&showpopupbutton=1" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>`;
-        }
+        injectTVWidget('tv-single-quote-box', 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js', { symbol: sym, width: "100%", isTransparent: true, colorTheme: "dark", locale: "en" });
+        document.getElementById('tv-live-radar-chart').innerHTML = `<iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(sym)}&interval=15&theme=dark&style=1&timezone=Asia%2FKarachi&withdateranges=1&showpopupbutton=1" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>`;
       }
-
-      // Update Asset-Specific Bias & Trap Radar
       const sellPct = (100 - prof.buyPct).toFixed(1);
       document.getElementById('bias-label').textContent = prof.biasTag;
       document.getElementById('bias-bar-buy').style.width = `${prof.buyPct}%`;
@@ -1303,26 +1816,17 @@
       document.getElementById('bias-sell-pct').textContent = `${sellPct}% SELL`;
       document.getElementById('bias-conviction').textContent = `CONVICTION: ${prof.conviction} / 100`;
       document.getElementById('spoof-score').textContent = `${prof.spoof} / 100`;
-
-      const trapGrid = document.getElementById('radar-trap-grid');
-      if (trapGrid) {
-        const t = prof.traps;
-        trapGrid.innerHTML = `
-          <div class="flex items-center justify-between gap-3"><span class="w-28 text-gray-300 font-mono">Bull Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10"><div class="h-full bg-cyan-400" style="width:${t.bull}%;"></div></div><span class="w-8 text-right font-bold text-gray-300">${t.bull}</span></div>
-          <div class="flex items-center justify-between gap-3"><span class="w-28 text-amber-300 font-mono">Bear Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10"><div class="h-full bg-amber-400" style="width:${t.bear}%;"></div></div><span class="w-8 text-right font-bold text-amber-300">${t.bear}</span></div>
-          <div class="flex items-center justify-between gap-3"><span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10"><div class="h-full bg-emerald-400" style="width:${t.shortSq}%;"></div></div><span class="w-8 text-right font-bold text-emerald-400">${t.shortSq}</span></div>
-          <div class="flex items-center justify-between gap-3"><span class="w-28 text-rose-400 font-mono">Long Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10"><div class="h-full bg-rose-500" style="width:${t.longSq}%;"></div></div><span class="w-8 text-right font-bold text-rose-400">${t.longSq}</span></div>`;
-      }
-
-      const liveP = window.masterState.prices[key.toLowerCase()] || 3538.18;
-      const off = key === 'BTC' ? 1200 : (key === 'GOLD' ? 45 : (key === 'OIL' ? 1.45 : (key === 'ETH' ? 65 : 0.85)));
-      document.getElementById('spoof-text').textContent = `${key} @ $${fmtNum(liveP, 2)}: Institutional L2 resting bids below $${fmtNum(liveP - off * 0.6, 2)} & BSL wall at $${fmtNum(liveP + off, 2)}.`;
-      document.getElementById('radar-heatmap-walls').innerHTML = `
-        <div class="bg-black/60 p-2.5 rounded border border-rose-500/40 flex justify-between"><span class="text-rose-300">🔥 Overhead BSL Supply: $${fmtNum(liveP + off, 2)}</span><span class="text-rose-400 font-bold">INSTITUTIONAL ASK</span></div>
-        <div class="bg-black/60 p-2.5 rounded border border-emerald-500/40 flex justify-between"><span class="text-emerald-300">🛡️ Resting SSL Demand: $${fmtNum(liveP - off, 2)}</span><span class="text-emerald-400 font-bold">SOVEREIGN BID</span></div>`;
+      const t = prof.traps;
+      document.getElementById('radar-trap-grid').innerHTML = `
+        <div class="flex items-center justify-between gap-3"><span class="w-28 text-gray-300 font-mono">Bull Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-cyan-400" style="width:${t.bull}%;"></div></div><span class="w-8 text-right font-bold">${t.bull}</span></div>
+        <div class="flex items-center justify-between gap-3"><span class="w-28 text-amber-300 font-mono">Bear Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-amber-400" style="width:${t.bear}%;"></div></div><span class="w-8 text-right font-bold text-amber-300">${t.bear}</span></div>
+        <div class="flex items-center justify-between gap-3"><span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-emerald-400" style="width:${t.shortSq}%;"></div></div><span class="w-8 text-right font-bold text-emerald-400">${t.shortSq}</span></div>
+        <div class="flex items-center justify-between gap-3"><span class="w-28 text-rose-400 font-mono">Long Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-rose-500" style="width:${t.longSq}%;"></div></div><span class="w-8 text-right font-bold text-rose-400">${t.longSq}</span></div>`;
+      const liveP = window.masterState.prices[key.toLowerCase()] || 3538.18, off = key === 'BTC' ? 1200 : (key === 'GOLD' ? 45 : (key === 'OIL' ? 1.45 : 0.85));
+      document.getElementById('radar-heatmap-walls').innerHTML = `<div class="bg-black/60 p-2.5 rounded border border-rose-500/40 flex justify-between"><span class="text-rose-300">🔥 Overhead BSL Supply: $${fmtNum(liveP + off, 2)}</span><span class="text-rose-400 font-bold">INSTITUTIONAL ASK</span></div><div class="bg-black/60 p-2.5 rounded border border-emerald-500/40 flex justify-between"><span class="text-emerald-300">🛡️ Resting SSL Demand: $${fmtNum(liveP - off, 2)}</span><span class="text-emerald-400 font-bold">SOVEREIGN BID</span></div>`;
     }
 
-    // TAB 13: 6 REAL TRADINGVIEW CHARTS (FIXED CHART #5 FOREXCOM:NSXUSD — ZERO POPUP!)
+    // TAB 13, 14, 9, 10 WIDGETS
     function mount6TVChartsMatrix(forceRebuild = false) {
       const grid = document.getElementById('tv-6chart-matrix-grid');
       if (!grid || (grid.children.length > 0 && !forceRebuild)) return;
@@ -1335,80 +1839,28 @@
         { title: "📉 5. NASDAQ 100 (NSXUSD)", sym: "FOREXCOM:NSXUSD" },
         { title: "💎 6. ETHUSD LIVE SPOT", sym: "COINBASE:ETHUSD" }
       ];
-      grid.innerHTML = syms.map(s => `
-        <div class="radar-card p-2.5 border border-teal-500/40 bg-[#05080f]">
-          <div class="flex justify-between items-center text-xs font-black text-amber-300 mb-1.5 px-1">
-            <span>${s.title}</span>
-            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded font-mono">${tf === '60' ? '1H' : tf + 'M'}</span>
-          </div>
-          <div class="w-full h-[255px] rounded overflow-hidden">
-            <iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(s.sym)}&interval=${tf}&hidesidetoolbar=1&theme=dark&style=1&timezone=Asia%2FKarachi" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>
-          </div>
-        </div>`).join('');
+      grid.innerHTML = syms.map(s => `<div class="radar-card p-2.5 border border-teal-500/40 bg-[#05080f]"><div class="flex justify-between text-xs font-black text-amber-300 mb-1.5 px-1"><span>${s.title}</span><span class="text-[10px] bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded font-mono">${tf === '60' ? '1H' : tf + 'M'}</span></div><div class="w-full h-[255px] rounded overflow-hidden"><iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(s.sym)}&interval=${tf}&hidesidetoolbar=1&theme=dark&style=1&timezone=Asia%2FKarachi" style="width:100%;height:100%;border:0;" allowfullscreen></iframe></div></div>`).join('');
     }
-
-    window.setMatrixTF = function(tf) {
-      window.matrixInterval = tf;
-      ['1', '5', '15', '60'].forEach(t => document.getElementById('mtf-' + t)?.classList.toggle('matrix-tf-active', t === tf));
-      mount6TVChartsMatrix(true);
-    };
+    window.setMatrixTF = function(tf) { window.matrixInterval = tf; ['1', '5', '15', '60'].forEach(t => document.getElementById('mtf-' + t)?.classList.toggle('matrix-tf-active', t === tf)); mount6TVChartsMatrix(true); };
 
     let watchlistMounted = false;
     function mountTVWatchlistHub() {
-      if (watchlistMounted) return;
-      watchlistMounted = true;
+      if (watchlistMounted) return; watchlistMounted = true;
       injectTVWidget('tv-full-watchlist-box', 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js', {
         width: "100%", height: "100%", colorTheme: "dark", isTransparent: true, locale: "en",
         symbolsGroups: [
-          {
-            name: "Metals, Crude Oil & FX",
-            symbols: [
-              { name: "OANDA:XAUUSD", displayName: "XAUUSD Gold Spot" },
-              { name: "OANDA:XAGUSD", displayName: "XAGUSD Silver Spot" },
-              { name: "TVC:USOIL", displayName: "WTI Crude Oil Spot" },
-              { name: "TVC:UKOIL", displayName: "Brent Crude Oil" },
-              { name: "CAPITALCOM:DXY", displayName: "US Dollar DXY" },
-              { name: "FX:EURUSD", displayName: "EURUSD" },
-              { name: "FX:GBPUSD", displayName: "GBPUSD" }
-            ]
-          },
-          {
-            name: "Crypto & US Tech",
-            symbols: [
-              { name: "COINBASE:BTCUSD", displayName: "Bitcoin Spot" },
-              { name: "COINBASE:ETHUSD", displayName: "Ethereum Spot" },
-              { name: "COINBASE:SOLUSD", displayName: "Solana Spot" },
-              { name: "COINBASE:LINKUSD", displayName: "Chainlink Spot" },
-              { name: "FOREXCOM:NSXUSD", displayName: "Nasdaq 100" },
-              { name: "FOREXCOM:SPXUSD", displayName: "S&P 500" },
-              { name: "NASDAQ:QQQ", displayName: "Invesco QQQ" },
-              { name: "NASDAQ:NVDA", displayName: "NVIDIA Corp" },
-              { name: "NASDAQ:AAPL", displayName: "Apple Inc" }
-            ]
-          }
+          { name: "Metals, Crude Oil & FX", symbols: [{ name: "OANDA:XAUUSD" }, { name: "OANDA:XAGUSD" }, { name: "TVC:USOIL" }, { name: "TVC:UKOIL" }, { name: "CAPITALCOM:DXY" }, { name: "FX:EURUSD" }, { name: "FX:GBPUSD" }] },
+          { name: "Crypto & US Tech", symbols: [{ name: "COINBASE:BTCUSD" }, { name: "COINBASE:ETHUSD" }, { name: "COINBASE:SOLUSD" }, { name: "FOREXCOM:NSXUSD" }, { name: "FOREXCOM:SPXUSD" }, { name: "NASDAQ:QQQ" }, { name: "NASDAQ:NVDA" }, { name: "NASDAQ:AAPL" }] }
         ]
       });
     }
 
     let calMounted = false;
-    function mountTVEconCalendar() {
-      if (calMounted) return;
-      calMounted = true;
-      injectTVWidget('tv-econ-calendar-box', 'https://s3.tradingview.com/external-embedding/embed-widget-events.js', {
-        colorTheme: "dark", isTransparent: true, width: "100%", height: "100%", locale: "en", importanceFilter: "0,1"
-      });
-    }
+    function mountTVEconCalendar() { if (calMounted) return; calMounted = true; injectTVWidget('tv-econ-calendar-box', 'https://s3.tradingview.com/external-embedding/embed-widget-events.js', { colorTheme: "dark", isTransparent: true, width: "100%", height: "100%", locale: "en", importanceFilter: "0,1" }); }
+    let tvNewsMounted = false;
+    function mountTVNewsTimeline() { if (tvNewsMounted) return; tvNewsMounted = true; injectTVWidget('tv-live-news-timeline', 'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js', { feedMode: "all_symbols", colorTheme: "dark", isTransparent: true, displayMode: "regular", width: "100%", height: "100%", locale: "en" }); }
 
-    let tvNewsTimelineMounted = false;
-    function mountTVNewsTimeline() {
-      if (tvNewsTimelineMounted) return;
-      tvNewsTimelineMounted = true;
-      injectTVWidget('tv-live-news-timeline', 'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js', {
-        feedMode: "all_symbols", colorTheme: "dark", isTransparent: true, displayMode: "regular", width: "100%", height: "100%", locale: "en"
-      });
-    }
-
-    // 3D JUPITER + MOONS
+    // 3D JUPITER IN TAB 6
     let threeInit = false;
     function initThreeReactor() {
       const box = document.getElementById('three-reactor-canvas');
@@ -1419,35 +1871,17 @@
       cam.position.set(0, 0.8, 6.2); cam.lookAt(0, 0, 0);
       const ren = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       ren.setSize(W, H); box.innerHTML = ''; box.appendChild(ren.domElement);
-      scene.add(new THREE.AmbientLight(0xffffff, 0.85));
-      const sun = new THREE.PointLight(0xfde047, 2.2, 25); sun.position.set(5, 4, 6); scene.add(sun);
-
+      scene.add(new THREE.AmbientLight(0xffffff, 0.9));
       const cnv = document.createElement('canvas'); cnv.width = 512; cnv.height = 256;
       const tctx = cnv.getContext('2d');
-      ['#78350f', '#d97706', '#fef3c7', '#b45309', '#f59e0b', '#92400e', '#fde68a', '#78350f'].forEach((c, i) => { tctx.fillStyle = c; tctx.fillRect(0, (i / 8) * 256, 512, 34); });
-      tctx.fillStyle = '#ea580c'; tctx.beginPath(); tctx.ellipse(320, 158, 34, 18, 0, 0, Math.PI * 2); tctx.fill();
-
-      const jupGrp = new THREE.Group(); jupGrp.rotation.z = 0.22;
-      const planet = new THREE.Mesh(new THREE.SphereGeometry(1.35, 36, 36), new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(cnv), roughness: 0.45 }));
+      ['#78350f', '#d97706', '#fef3c7', '#b45309', '#f59e0b', '#92400e'].forEach((c, i) => { tctx.fillStyle = c; tctx.fillRect(0, i * 44, 512, 44); });
+      const planet = new THREE.Mesh(new THREE.SphereGeometry(1.35, 36, 36), new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(cnv) }));
       const ring1 = new THREE.Mesh(new THREE.RingGeometry(1.85, 2.02, 64), new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })); ring1.rotation.x = Math.PI / 2.2;
-      const ring2 = new THREE.Mesh(new THREE.RingGeometry(2.15, 2.24, 64), new THREE.MeshBasicMaterial({ color: 0x06b6d4, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })); ring2.rotation.x = Math.PI / 2.2;
-      const moon1 = new THREE.Mesh(new THREE.SphereGeometry(0.14, 16, 16), new THREE.MeshBasicMaterial({ color: 0xfef08a }));
-      const moon2 = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 16), new THREE.MeshBasicMaterial({ color: 0x38bdf8 }));
-      jupGrp.add(planet); jupGrp.add(ring1); jupGrp.add(ring2);
-      scene.add(moon1); scene.add(moon2); scene.add(jupGrp);
-
-      let a = 0;
-      (function anim() {
-        requestAnimationFrame(anim);
-        a += 0.025;
-        planet.rotation.y += 0.018; ring1.rotation.z -= 0.012; ring2.rotation.z += 0.009;
-        moon1.position.set(Math.cos(a) * 2.55, Math.sin(a * 0.5) * 0.35, Math.sin(a) * 2.55);
-        moon2.position.set(Math.cos(-a * 1.3) * 2.15, -Math.sin(a * 0.7) * 0.3, Math.sin(-a * 1.3) * 2.15);
-        ren.render(scene, cam);
-      })();
+      scene.add(planet); scene.add(ring1);
+      (function anim() { requestAnimationFrame(anim); planet.rotation.y += 0.018; ring1.rotation.z -= 0.012; ren.render(scene, cam); })();
     }
 
-    // TAB 7 SKILLS
+    // SKILLS, NEWS RENDERERS, MONEY FLOW & COT
     window.runLotCalculator = function() { const b = parseFloat(document.getElementById('calc-balance')?.value) || 1000, r = parseFloat(document.getElementById('calc-risk')?.value) || 2, s = parseFloat(document.getElementById('calc-sl')?.value) || 10, usd = (b * r) / 100; document.getElementById('calc-lot-output').textContent = `Risk: $${usd.toFixed(2)} • ${(usd / (s * 10)).toFixed(2)} Std Lot`; };
     window.runExitPlanner = function() { const a = document.getElementById('exit-asset')?.value || 'GOLD', rr = parseFloat(document.getElementById('exit-rr')?.value) || 3, p = window.masterState.prices[a.toLowerCase()], off = a === 'BTC' ? 950 : (a === 'GOLD' ? 25 : (a === 'OIL' ? 1.20 : 0.75)); document.getElementById('exit-planner-output').innerHTML = `<div>TV Spot: <strong>$${fmtNum(p, 2)}</strong></div><div class="text-emerald-400">Demand: $${fmtNum(p - off, 2)}</div><div class="text-cyan-300">Supply (1:${rr}): $${fmtNum(p + off * rr, 2)}</div>`; };
     window.runRiskManagerGuard = function() { const d = parseFloat(document.getElementById('risk-max-dd')?.value) || 5, c = parseInt(document.getElementById('risk-open-cnt')?.value) || 2; document.getElementById('risk-guard-output').textContent = c > 4 ? `⚠️ HIGH EXPOSURE (${c} Trades)` : `✅ STATUS SAFE: Within ${d}% Limit`; };
@@ -1456,215 +1890,86 @@
     window.runTimeMachineBacktest = function() { document.getElementById('timemachine-output').textContent = `30 Institutional Sessions Verified: 25W / 5L (83.3% Accuracy)`; };
     window.runChartScanner = function() { const P = window.masterState.prices; document.getElementById('scanner-output').textContent = `XAU $${fmtNum(P.gold, 2)} • XAG $${fmtNum(P.silver, 2)} • WTI OIL $${fmtNum(P.oil, 2)} (+0.55%) • BTC $${fmtNum(P.btc, 0)}`; };
 
-    // TAB 8 OUTLOOK (CLEAR CRUDE OIL $83.61 VERDICT!)
-    window.currentSignalTF = '15M';
-    window.setSignalTimeframe = function(tf) {
-      window.currentSignalTF = tf;
-      ['1M', '5M', '15M', '1H', '4H', '1D'].forEach(t => document.getElementById('tf-' + t)?.classList.toggle('tf-btn-active', t === tf));
-      window.renderLiveSignalCards();
-    };
-    window.renderLiveSignalCards = function() {
-      const P = window.masterState.prices, grid = document.getElementById('live-signals-cards-grid'); if (!grid) return;
-      const arr = [
-        { n: 'XAUUSD GOLD SPOT', p: P.gold, f: '$3,502 – $3,518', c: '$3,585 – $3,636', desc: 'Central Bank physical dip floor active below $3,540; US10Y down at 4.95%.' },
-        { n: 'XAGUSD SILVER SPOT', p: P.silver, f: '$40.50 – $40.90', c: '$42.20 – $43.15', desc: 'Stabilizing at $41.26 after sweeping $40.76 lows.' },
-        { n: 'BTCUSD LIVE SPOT', p: P.btc, f: '$57,850 – $58,500', c: '$61,200 – $62,560', desc: '24/7 live weekend liquidity test below $60K; watching $58.5K support.' },
-        { n: '🛢️ WTI CRUDE OIL ($83.61)', p: P.oil, f: '$81.50 – $82.40', c: '$84.50 – $85.80', desc: 'Kya Bolta Hai: Closed GREEN (+0.55%) on Hormuz shipping risk! Above $84.07 opens $85.80.' }
-      ];
-      grid.innerHTML = arr.map(x => `<div class="radar-card p-4 border border-blue-500/40 space-y-2"><div class="flex justify-between text-xs"><strong class="text-amber-300">${x.n}</strong><span class="text-cyan-300 font-bold">${window.currentSignalTF}</span></div><div class="text-xl font-black text-white">$${fmtNum(x.p, 2)}</div><div class="text-xs font-mono bg-black/60 p-2 rounded"><div>SSL Demand: <span class="text-emerald-400">${x.f}</span></div><div>BSL Supply: <span class="text-cyan-300">${x.c}</span></div></div><p class="text-[11px] text-gray-200 font-mono">${x.desc}</p></div>`).join('');
-    };
-
-    // TAB 10 & TAB 11 RENDERERS (CONNECTED TO LIVE FETCHED ITEMS!)
-    window.filterNewsCategory = function(c) {
-      window.currentNewsFilter = c;
-      ['ALL', 'FINANCE', 'ECONOMICS', 'COMMODITIES', 'WAR', 'CRYPTO'].forEach(k => document.getElementById('filter-' + k)?.classList.toggle('news-category-active', k === c));
-      window.renderBloombergArticles();
-    };
+    window.filterNewsCategory = function(c) { window.currentNewsFilter = c; ['ALL', 'FINANCE', 'ECONOMICS', 'COMMODITIES', 'WAR', 'CRYPTO'].forEach(k => document.getElementById('filter-' + k)?.classList.toggle('news-category-active', k === c)); window.renderBloombergArticles(); };
     window.renderBloombergArticles = function() {
       const g = document.getElementById('bloomberg-news-grid'); if (!g) return;
-      const items = window.liveBloombergItems.length ? window.liveBloombergItems : [];
+      const items = window.liveBloombergItems;
       const list = window.currentNewsFilter === 'ALL' ? items : items.filter(a => a.cat === window.currentNewsFilter);
-      g.innerHTML = (list.length ? list : items).map(a => `
-        <a href="${a.link}" target="_blank" rel="noopener noreferrer" class="glass-panel p-4 rounded-xl border border-white/15 hover:border-cyan-400/60 flex flex-col justify-between space-y-2 transition">
-          <div>
-            <div class="flex justify-between items-center text-[10px] mb-1.5">
-              <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded font-bold">${a.badge}</span>
-              <span class="text-amber-300 font-mono">${a.time}</span>
-            </div>
-            <h3 class="font-hud text-sm font-bold text-white leading-snug">${a.title}</h3>
-            <p class="text-xs text-gray-300 font-mono mt-1.5 leading-relaxed">${a.desc}</p>
-          </div>
-          <div class="pt-2 border-t border-white/10 text-[10px] text-cyan-400 font-bold flex justify-between"><span>LIVE FEED</span><span>OPEN STORY ↗</span></div>
-        </a>`).join('');
+      g.innerHTML = (list.length ? list : items).map(a => `<a href="${a.link}" target="_blank" rel="noopener noreferrer" class="glass-panel p-4 rounded-xl border border-white/15 hover:border-cyan-400/60 flex flex-col justify-between space-y-2 transition"><div><div class="flex justify-between text-[10px] mb-1.5"><span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded font-bold">${a.badge}</span><span class="text-amber-300 font-mono">${a.time}</span></div><h3 class="font-hud text-sm font-bold text-white">${a.title}</h3><p class="text-xs text-gray-300 font-mono mt-1.5">${a.desc}</p></div><div class="pt-2 border-t border-white/10 text-[10px] text-cyan-400 font-bold flex justify-between"><span>LIVE WIRE</span><span>OPEN STORY ↗</span></div></a>`).join('');
     };
 
-    window.filterWorldNews = function(c) {
-      window.currentWorldCat = c;
-      ['ALL', 'WAR', 'PEACE', 'ECONOMICS', 'FINANCE'].forEach(k => document.getElementById('wcat-' + k)?.classList.toggle('world-cat-active', k === c));
-      window.renderWorldNews();
-    };
+    window.filterWorldNews = function(c) { window.currentWorldCat = c; ['ALL', 'WAR', 'PEACE', 'ECONOMICS', 'FINANCE'].forEach(k => document.getElementById('wcat-' + k)?.classList.toggle('world-cat-active', k === c)); window.renderWorldNews(); };
     window.renderWorldNews = function() {
       const g = document.getElementById('world-news-grid'); if (!g) return;
       const items = window.liveWorldItems;
       const list = window.currentWorldCat === 'ALL' ? items : items.filter(x => x.cat === window.currentWorldCat);
-      g.innerHTML = (list.length ? list : items).map(x => `
-        <a href="${x.link || '#'}" target="_blank" rel="noopener noreferrer" class="radar-card p-4 border-l-4 border-rose-500 space-y-1.5 block hover:border-amber-400 transition">
-          <div class="flex justify-between text-[10px]"><span class="text-rose-300 font-bold">${x.source || x.cat}</span><span class="text-emerald-400 font-mono">${x.time}</span></div>
-          <h3 class="text-sm font-bold text-white">${x.title}</h3>
-          <p class="text-xs text-gray-300 font-mono">${x.desc}</p>
-        </a>`).join('');
+      g.innerHTML = (list.length ? list : items).map(x => `<a href="${x.link || '#'}" target="_blank" rel="noopener noreferrer" class="radar-card p-4 border-l-4 border-rose-500 space-y-1.5 block"><div class="flex justify-between text-[10px]"><span class="text-rose-300 font-bold">${x.source || x.cat}</span><span class="text-emerald-400 font-mono">${x.time}</span></div><h3 class="text-sm font-bold text-white">${x.title}</h3><p class="text-xs text-gray-300 font-mono">${x.desc}</p></a>`).join('');
     };
 
-    // TAB 12: AI PREDICTOR (WITH CRUDE OIL $83.61 VERDICT!)
-    window.currentAIEvent = 'PPI_CPI';
-    window.currentAIScenario = 'HOT';
-    window.jumpToAISimulator = function(k) { window.switchView('AI_INTELLIGENCE'); window.setAINewsEvent(k); };
-    window.setAINewsEvent = function(k) {
-      window.currentAIEvent = k;
-      ['PPI_CPI', 'FED_FOMC', 'NFP_JOBS', 'WAR_HORMUZ', 'BOND_DXY'].forEach(x => document.getElementById('aiev-' + x)?.classList.toggle('ai-ev-active', x === k));
-      window.renderAIIntelligenceTab();
-    };
-    window.setAIScenario = function(s) {
-      window.currentAIScenario = s;
-      ['HOT', 'SOFT', 'POST_DAY'].forEach(x => document.getElementById('aisc-' + x)?.classList.remove('ai-sc-hot', 'ai-sc-soft', 'ai-sc-eod'));
-      document.getElementById('aisc-' + s)?.classList.add(s === 'HOT' ? 'ai-sc-hot' : (s === 'SOFT' ? 'ai-sc-soft' : 'ai-sc-eod'));
-      window.renderAIIntelligenceTab();
-    };
-    window.renderAIIntelligenceTab = function() {
-      const P = window.masterState.prices, sc = window.currentAIScenario, ev = window.currentAIEvent;
-      const hb = document.getElementById('ai-house-conviction-box'), mb = document.getElementById('ai-master-briefing'), gr = document.getElementById('ai-quad-cards-grid');
-      if (hb) hb.innerHTML = `
-        <div class="bg-black/70 p-3 rounded border border-amber-400/40"><strong class="text-amber-400">GOLD ($${fmtNum(P.gold, 2)})</strong><p class="text-[11px] mt-1">CB Floor $3,502 • Supply $3,585</p></div>
-        <div class="bg-black/70 p-3 rounded border border-cyan-400/40"><strong class="text-cyan-300">SILVER ($${fmtNum(P.silver, 2)})</strong><p class="text-[11px] mt-1">Floor $40.50 • Supply $42.20</p></div>
-        <div class="bg-black/70 p-3 rounded border border-emerald-400/40"><strong class="text-emerald-400">BTC ($${fmtNum(P.btc, 0)})</strong><p class="text-[11px] mt-1">Floor $58,000 • Reclaim $61,200</p></div>
-        <div class="bg-rose-950/40 p-3 rounded border border-rose-400/60"><strong class="text-rose-300">🛢️ WTI OIL ($${fmtNum(P.oil, 2)})</strong><p class="text-[11px] text-emerald-300 mt-1">Strong +0.55%! Floor $82.40 → Target $85.80</p></div>`;
-      const isWar = ev === 'WAR_HORMUZ';
-      const gMove = sc === 'HOT' ? (isWar ? +65 : -38) : (sc === 'SOFT' ? +52 : +22);
-      const sMove = sc === 'HOT' ? (isWar ? +1.4 : -0.95) : (sc === 'SOFT' ? +1.30 : +0.60);
-      const bMove = sc === 'HOT' ? -1550 : (sc === 'SOFT' ? +2100 : +950);
-      const oMove = sc === 'HOT' ? (isWar ? +3.90 : -1.25) : (sc === 'SOFT' ? +1.65 : +0.95);
-      if (mb) mb.innerHTML = `<strong class="text-purple-300">ACTIVE CATALYST (${ev} • ${sc}):</strong> 🪐 Mushtari [287] Rule — Crude Oil ($83.61) holds geopolitical strength while Gold & BTC watch US10Y (4.95%).`;
-      if (gr) {
-        const items = [
-          { n: 'XAUUSD GOLD', p: P.gold, d: gMove },
-          { n: 'XAGUSD SILVER', p: P.silver, d: sMove },
-          { n: 'BTCUSD LIVE', p: P.btc, d: bMove },
-          { n: 'WTI CRUDE OIL', p: P.oil, d: oMove }
-        ];
-        gr.innerHTML = items.map(x => `<div class="radar-card p-4 border-2 ${x.d >= 0 ? 'border-emerald-500/60' : 'border-rose-500/60'} space-y-2"><strong class="text-amber-300 text-xs">${x.n}</strong><div class="text-lg font-black text-white">$${fmtNum(x.p, 2)}</div><div class="text-xs font-mono font-bold ${x.d >= 0 ? 'text-emerald-400' : 'text-rose-400'}">Projected Zone: $${fmtNum(x.p + x.d, 2)} (${x.d >= 0 ? '+' : ''}${x.d})</div></div>`).join('');
-      }
-    };
-
-    // TAB 15: MONEY FLOW MAP + COT + CENTRAL BANK GOLD
+    // TAB 15 MONEY FLOW + COT + GOLD
     let mfAnimPhase = 0;
     function getInstitutionalNodes() {
       const P = window.masterState.prices;
       return [
-        { id: 'FED',    code: 'THE FED',    label: 'FOMC Rate Hub',         x: 0.43, y: 0.50, r: 44, type: 'hub',     sub: '3.75–4.00%', desk: 'Fed RRP & Dec 9 Policy Hub' },
-        { id: 'BONDS',  code: 'US10Y / TLT', label: 'US Bonds (Yield 4.95%)', x: 0.22, y: 0.19, r: 37, type: 'inflow',  sub: '4.95% (-2.02% Yield)', desk: 'Massive Safe-Haven Bond Buying pushing 10Y yield down to 4.95%' },
-        { id: 'MMF',    code: 'MMF / CASH', label: 'Institutional T-Bills', x: 0.43, y: 0.15, r: 38, type: 'inflow',  sub: '+$5.80B Cash Inflow', desk: 'Wall Street Funds parking equity proceeds in 5% T-Bills' },
-        { id: 'USD',    code: 'DXY',        label: 'US Dollar Index',       x: 0.63, y: 0.20, r: 30, type: 'inflow',  sub: '103.49 (-0.10%)', desk: 'Global Reserve Liquidity' },
-        { id: 'NDX',    code: 'NDX 100',    label: 'Nasdaq 100',            x: 0.77, y: 0.35, r: 35, type: 'outflow', sub: '25,028.98 (-5.61%)', desk: 'Heavy Institutional Tech Selloff (-1,488 pts)' },
-        { id: 'NVDA',   code: 'NVDA / QQQ', label: 'NVIDIA & Tech ETF',     x: 0.78, y: 0.56, r: 32, type: 'outflow', sub: 'NVDA $125.53 (-14%)', desk: 'NVDA -14.01% & QQQ $608.45 (-5.67%) institutional unwind' },
-        { id: 'SPX',    code: 'S&P 500',    label: 'SPX Broad Equity',      x: 0.67, y: 0.75, r: 33, type: 'outflow', sub: '6,910.39 (-3.70%)', desk: 'S&P 500 drops -265.44 pts into weekend' },
-        { id: 'BTC',    code: 'BTC SPOT',   label: 'Bitcoin Institutional', x: 0.48, y: 0.82, r: 34, type: 'outflow', sub: `$${fmtNum(P.btc, 0)} LIVE`, desk: 'BTC live stream amid Wall St risk-off' },
-        { id: 'PSX',    code: 'PSX KSE100', label: 'Pakistan Stock Exch',   x: 0.28, y: 0.81, r: 31, type: 'inflow',  sub: '177,382 (+0.35%)', desk: 'PSX defies global crash (+610.38 pts); HUBC +1.67%' },
-        { id: 'OIL',    code: 'WTI OIL',    label: 'WTI Crude Oil Spot',    x: 0.12, y: 0.70, r: 32, type: 'inflow',  sub: '$83.61 (+0.55%)', desk: 'WTI Crude Oil ($83.61) & Brent ($92.51) seeing geopolitical hedge inflows!' },
-        { id: 'SILVER', code: 'XAGUSD',     label: 'Silver Spot',           x: 0.08, y: 0.51, r: 29, type: 'outflow', sub: '$41.26 (-3.76%)', desk: 'Silver testing $41.26 institutional shelf' },
-        { id: 'GOLD',   code: 'XAUUSD',     label: 'Gold Spot',             x: 0.10, y: 0.32, r: 36, type: 'outflow', sub: '$3,538.18 (-2.38%)', desk: 'Gold Spot $3,538.18 — Central Banks absorbing physical dips' }
+        { id: 'FED', code: 'THE FED', label: 'FOMC Rate Hub', x: 0.43, y: 0.50, r: 44, type: 'hub', sub: '3.75–4.00%', desk: 'Fed RRP & Dec 9 Policy Hub' },
+        { id: 'BONDS', code: 'US10Y / TLT', label: 'US Bonds (4.95%)', x: 0.22, y: 0.19, r: 37, type: 'inflow', sub: '4.95% (-2.02%)', desk: 'Safe-Haven Bond Buying' },
+        { id: 'MMF', code: 'MMF / CASH', label: 'Institutional T-Bills', x: 0.43, y: 0.15, r: 38, type: 'inflow', sub: '+$5.80B Cash', desk: '5% T-Bills Inflow' },
+        { id: 'USD', code: 'DXY', label: 'US Dollar Index', x: 0.63, y: 0.20, r: 30, type: 'inflow', sub: '103.49', desk: 'Global Reserve Liquidity' },
+        { id: 'NDX', code: 'NDX 100', label: 'Nasdaq 100', x: 0.77, y: 0.35, r: 35, type: 'outflow', sub: '25,028 (-5.61%)', desk: 'Tech Selloff' },
+        { id: 'NVDA', code: 'NVDA / QQQ', label: 'NVIDIA & Tech', x: 0.78, y: 0.56, r: 32, type: 'outflow', sub: 'NVDA $125.53', desk: 'AI Unwind' },
+        { id: 'SPX', code: 'S&P 500', label: 'SPX Equity', x: 0.67, y: 0.75, r: 33, type: 'outflow', sub: '6,910 (-3.70%)', desk: 'Equity De-risking' },
+        { id: 'BTC', code: 'BTC SPOT', label: 'Bitcoin Live', x: 0.48, y: 0.82, r: 34, type: 'outflow', sub: `$${fmtNum(P.btc, 0)}`, desk: '24/7 Live Crypto' },
+        { id: 'PSX', code: 'PSX KSE100', label: 'Pakistan Stock Exch', x: 0.28, y: 0.81, r: 31, type: 'inflow', sub: '177,382 (+0.35%)', desk: 'PSX Resilient' },
+        { id: 'OIL', code: 'WTI OIL', label: 'WTI Crude Spot', x: 0.12, y: 0.70, r: 32, type: 'inflow', sub: '$83.61 (+0.55%)', desk: 'Hormuz Hedge Inflow' },
+        { id: 'SILVER', code: 'XAGUSD', label: 'Silver Spot', x: 0.08, y: 0.51, r: 29, type: 'outflow', sub: '$41.26', desk: 'Silver Shelf' },
+        { id: 'GOLD', code: 'XAUUSD', label: 'Gold Spot', x: 0.10, y: 0.32, r: 36, type: 'outflow', sub: '$3,538.18', desk: 'Central Bank Dip Buying' }
       ];
     }
-
     const MF_EDGES = [
-      { from: 'NVDA', to: 'MMF',   color: '#10b981', w: 2.8, sp: 0.0060, c: 5 },
-      { from: 'NDX',  to: 'BONDS', color: '#10b981', w: 2.8, sp: 0.0055, c: 5 },
-      { from: 'SPX',  to: 'BONDS', color: '#10b981', w: 2.4, sp: 0.0048, c: 4 },
-      { from: 'SPX',  to: 'OIL',   color: '#10b981', w: 2.0, sp: 0.0046, c: 3 },
-      { from: 'BTC',  to: 'MMF',   color: '#10b981', w: 2.3, sp: 0.0052, c: 4 },
-      { from: 'GOLD', to: 'BONDS', color: '#fbbf24', w: 1.8, sp: 0.0042, c: 3 },
-      { from: 'FED',  to: 'BONDS', color: '#f59e0b', w: 1.2, sp: 0.0030, c: 2, spoke: true },
-      { from: 'FED',  to: 'MMF',   color: '#f59e0b', w: 1.2, sp: 0.0030, c: 2, spoke: true }
+      { from: 'NVDA', to: 'MMF', color: '#10b981', w: 2.8, sp: 0.006, c: 5 },
+      { from: 'NDX', to: 'BONDS', color: '#10b981', w: 2.8, sp: 0.0055, c: 5 },
+      { from: 'SPX', to: 'OIL', color: '#10b981', w: 2.0, sp: 0.0046, c: 3 },
+      { from: 'BTC', to: 'MMF', color: '#10b981', w: 2.3, sp: 0.0052, c: 4 },
+      { from: 'GOLD', to: 'BONDS', color: '#fbbf24', w: 1.8, sp: 0.0042, c: 3 }
     ];
-
-    window.setMoneyFlowMode = function(m) {
-      document.getElementById('mf-btn-NY_CLOSE')?.classList.toggle('mf-mode-active', m === 'NY_CLOSE');
-      document.getElementById('mf-btn-DAILY')?.classList.toggle('mf-mode-active', m === 'DAILY');
-    };
-
+    window.setMoneyFlowMode = function(m) { document.getElementById('mf-btn-NY_CLOSE')?.classList.toggle('mf-mode-active', m === 'NY_CLOSE'); document.getElementById('mf-btn-DAILY')?.classList.toggle('mf-mode-active', m === 'DAILY'); };
     function updateFedDecisionCountdown() {
-      const diff = Math.max(0, Date.UTC(2026, 11, 9, 19, 0, 0) - Date.now());
-      const mins = Math.floor(diff / 60000);
+      const mins = Math.floor(Math.max(0, Date.UTC(2026, 11, 9, 19, 0, 0) - Date.now()) / 60000);
       const str = `${Math.floor(mins / 1440)}d ${Math.floor((mins % 1440) / 60)}h ${mins % 60}m`;
-      const el = document.getElementById('mf-fed-countdown');
-      if (el) el.textContent = str;
+      if (document.getElementById('mf-fed-countdown')) document.getElementById('mf-fed-countdown').textContent = str;
       return `${Math.floor(mins / 1440)}d ${Math.floor((mins % 1440) / 60)}h`;
     }
-
     function drawMoneyFlowCanvas() {
       const cnv = document.getElementById('money-flow-canvas'); if (!cnv) return;
-      const ctx = cnv.getContext('2d'), W = cnv.width, H = cnv.height;
-      ctx.clearRect(0, 0, W, H);
-      const nodes = getInstitutionalNodes(), nmap = {};
-      nodes.forEach(n => { nmap[n.id] = n; });
-
+      const ctx = cnv.getContext('2d'), W = cnv.width, H = cnv.height; ctx.clearRect(0, 0, W, H);
+      const nodes = getInstitutionalNodes(), nmap = {}; nodes.forEach(n => { nmap[n.id] = n; });
       MF_EDGES.forEach((e, idx) => {
         const n1 = nmap[e.from], n2 = nmap[e.to]; if (!n1 || !n2) return;
-        const x1 = n1.x * W, y1 = n1.y * H, x2 = n2.x * W, y2 = n2.y * H;
-        const mx = (x1 + x2) / 2 + (idx % 2 === 0 ? 22 : -22), my = (y1 + y2) / 2 - 14;
-        ctx.save(); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.quadraticCurveTo(mx, my, x2, y2);
-        ctx.strokeStyle = e.spoke ? 'rgba(245,158,11,0.2)' : 'rgba(16,185,129,0.28)';
-        ctx.lineWidth = e.w; ctx.stroke(); ctx.restore();
+        const x1 = n1.x * W, y1 = n1.y * H, x2 = n2.x * W, y2 = n2.y * H, mx = (x1 + x2) / 2 + (idx % 2 === 0 ? 22 : -22), my = (y1 + y2) / 2 - 14;
+        ctx.save(); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.quadraticCurveTo(mx, my, x2, y2); ctx.strokeStyle = 'rgba(16,185,129,0.28)'; ctx.lineWidth = e.w; ctx.stroke(); ctx.restore();
         for (let p = 0; p < e.c; p++) {
           const t = (mfAnimPhase * e.sp * 60 + p / e.c) % 1, inv = 1 - t;
-          const px = inv * inv * x1 + 2 * inv * t * mx + t * t * x2, py = inv * inv * y1 + 2 * inv * t * my + t * t * y2;
-          ctx.save(); ctx.beginPath(); ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+          ctx.save(); ctx.beginPath(); ctx.arc(inv * inv * x1 + 2 * inv * t * mx + t * t * x2, inv * inv * y1 + 2 * inv * t * my + t * t * y2, 3.5, 0, Math.PI * 2);
           ctx.fillStyle = e.color; ctx.shadowColor = e.color; ctx.shadowBlur = 10; ctx.fill(); ctx.restore();
         }
       });
-
       const fedShort = updateFedDecisionCountdown();
       nodes.forEach(n => {
-        const cx = n.x * W, cy = n.y * H;
-        const col = n.type === 'hub' ? '#f59e0b' : (n.type === 'inflow' ? '#10b981' : '#f43f5e');
-        ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = '#090e18'; ctx.fill();
-        ctx.lineWidth = 2.5; ctx.strokeStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 14; ctx.stroke(); ctx.restore();
-
+        const cx = n.x * W, cy = n.y * H, col = n.type === 'hub' ? '#f59e0b' : (n.type === 'inflow' ? '#10b981' : '#f43f5e');
+        ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, n.r, 0, Math.PI * 2); ctx.fillStyle = '#090e18'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 14; ctx.stroke(); ctx.restore();
         ctx.fillStyle = '#fff'; ctx.font = '800 11px "Chakra Petch", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        if (n.id === 'FED') {
-          ctx.fillText('THE FED', cx, cy - 8);
-          ctx.fillStyle = '#fbbf24'; ctx.font = '700 10px monospace'; ctx.fillText('3.75–4.00%', cx, cy + 6);
-          ctx.fillStyle = '#94a3b8'; ctx.font = '600 9px monospace'; ctx.fillText(fedShort, cx, cy + 18);
-        } else {
-          ctx.fillText(n.code, cx, cy);
-          ctx.fillStyle = '#cbd5e1'; ctx.font = '600 10px monospace'; ctx.fillText(n.label, cx, cy + n.r + 13);
-          ctx.fillStyle = col; ctx.font = '700 10px monospace'; ctx.fillText(n.sub, cx, cy + n.r + 25);
-        }
+        if (n.id === 'FED') { ctx.fillText('THE FED', cx, cy - 8); ctx.fillStyle = '#fbbf24'; ctx.font = '700 10px monospace'; ctx.fillText('3.75–4.00%', cx, cy + 6); ctx.fillStyle = '#94a3b8'; ctx.font = '600 9px monospace'; ctx.fillText(fedShort, cx, cy + 18); }
+        else { ctx.fillText(n.code, cx, cy); ctx.fillStyle = '#cbd5e1'; ctx.font = '600 10px monospace'; ctx.fillText(n.label, cx, cy + n.r + 13); ctx.fillStyle = col; ctx.font = '700 10px monospace'; ctx.fillText(n.sub, cx, cy + n.r + 25); }
       });
     }
+    function startMoneyFlowAnimation() { (function step() { mfAnimPhase += 0.016; if (window.currentActiveView === 'MONEY_FLOW_MAP') drawMoneyFlowCanvas(); requestAnimationFrame(step); })(); }
 
-    function startMoneyFlowAnimation() {
-      (function step() { mfAnimPhase += 0.016; if (window.currentActiveView === 'MONEY_FLOW_MAP') drawMoneyFlowCanvas(); requestAnimationFrame(step); })();
-      const cnv = document.getElementById('money-flow-canvas');
-      if (cnv) cnv.addEventListener('click', e => {
-        const rect = cnv.getBoundingClientRect();
-        const mx = (e.clientX - rect.left) * (cnv.width / rect.width), my = (e.clientY - rect.top) * (cnv.height / rect.height);
-        getInstitutionalNodes().forEach(n => {
-          if (Math.hypot(mx - n.x * cnv.width, my - n.y * cnv.height) <= n.r + 10) {
-            document.getElementById('mf-node-inspector').innerHTML = `<span class="text-white">🏛️ <strong class="text-amber-300">${n.code}:</strong> ${n.desk} — <strong class="text-cyan-300">${n.sub}</strong></span><span class="text-emerald-400 font-bold">VERIFIED</span>`;
-          }
-        });
-      });
-    }
-
-    // COT & CENTRAL BANK GOLD
     window.currentCOTFilter = 'ALL';
     const CME_COT_DATA = [
-      { cat: 'METALS', contract: 'COMEX GOLD (GC • $3,538.18)', net: '+194,280', longPct: 83.4, note: 'Bullion banks covering shorts into $3,538 dip' },
-      { cat: 'METALS', contract: 'NYMEX WTI CRUDE ($83.61, +0.55%)', net: '+154,700', longPct: 70.2, note: 'CTAs & Hormuz shipping hedge inflows' },
-      { cat: 'METALS', contract: 'COMEX SILVER (SI • $41.26)', net: '+36,530', longPct: 71.2, note: 'Swap dealers absorbing near $41.26' },
-      { cat: 'MACRO',  contract: 'CME BITCOIN (LIVE)', net: '-1,650', longPct: 48.0, note: 'Institutional basis hedge active' },
-      { cat: 'MACRO',  contract: 'CBOT US 10Y T-NOTE (4.95%)', net: '+44,300', longPct: 56.4, note: 'Heavy safe-haven bond inflows' }
+      { cat: 'METALS', contract: 'COMEX GOLD ($3,538.18)', net: '+194,280', longPct: 83.4, note: 'Bullion banks covering shorts' },
+      { cat: 'METALS', contract: 'NYMEX WTI CRUDE ($83.61)', net: '+154,700', longPct: 70.2, note: 'Hormuz hedge inflows' },
+      { cat: 'METALS', contract: 'COMEX SILVER ($41.26)', net: '+36,530', longPct: 71.2, note: 'Swap dealers absorbing' },
+      { cat: 'MACRO', contract: 'CBOT US 10Y T-NOTE (4.95%)', net: '+44,300', longPct: 56.4, note: 'Safe-haven bond inflows' }
     ];
     window.setCOTCategory = function(c) { window.currentCOTFilter = c; ['ALL', 'METALS', 'MACRO'].forEach(k => document.getElementById('cot-btn-' + k)?.classList.toggle('cot-filter-active', k === c)); window.renderCOTPanel(); };
     window.renderCOTPanel = function() {
@@ -1672,24 +1977,16 @@
       const list = window.currentCOTFilter === 'ALL' ? CME_COT_DATA : CME_COT_DATA.filter(x => x.cat === window.currentCOTFilter);
       box.innerHTML = list.map(r => `<div class="bg-black/65 border border-white/10 rounded-xl p-3 space-y-1.5"><div class="flex justify-between text-xs"><strong class="text-white">${r.contract}</strong><span class="text-emerald-400 font-mono font-bold">NET ${r.net}</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden flex"><div class="bg-emerald-500 h-full" style="width:${r.longPct}%"></div><div class="bg-rose-500 h-full" style="width:${100 - r.longPct}%"></div></div><div class="flex justify-between text-[10px] font-mono text-gray-300"><span>${r.longPct}% Long</span><span class="text-amber-300">${r.note}</span></div></div>`).join('');
     };
-
     window.renderSovereignGoldPanel = function() {
       const tb = document.getElementById('sovereign-gold-tbody'); if (!tb) return;
-      const rows = [
-        ['🇺🇸 US Federal Reserve', '8,133.5 T', 'Vault Locked', '74.9%'],
-        ['🇨🇳 PBoC China', '2,314.8 T', '+18.4 T', '5.9%'],
-        ['🇮🇳 RBI India', '882.6 T', '+14.2 T', '11.4%'],
-        ['🇹🇷 CBRT Turkey', '618.4 T', '+11.5 T', '36.8%'],
-        ['🇵🇱 NBP Poland', '458.2 T', '+16.8 T', '18.2%'],
-        ['🇵🇰 SBP Pakistan', '64.7 T', '~$7.36B Val', '38.5%']
-      ];
+      const rows = [['🇺🇸 US Federal Reserve', '8,133.5 T', 'Locked', '74.9%'], ['🇨🇳 PBoC China', '2,314.8 T', '+18.4 T', '5.9%'], ['🇮🇳 RBI India', '882.6 T', '+14.2 T', '11.4%'], ['🇵🇱 NBP Poland', '458.2 T', '+16.8 T', '18.2%'], ['🇵🇰 SBP Pakistan', '64.7 T', '~$7.36B', '38.5%']];
       tb.innerHTML = rows.map(r => `<tr><td class="p-2.5 font-bold text-white">${r[0]}</td><td class="p-2.5 text-right text-amber-300 font-bold">${r[1]}</td><td class="p-2.5 text-right text-emerald-400 font-bold">${r[2]}</td><td class="p-2.5 text-right text-gray-300">${r[3]}</td></tr>`).join('');
     };
 
-    // MASTER 15-TAB SWITCHER
+    // MASTER 16-TAB SWITCHER
     window.switchView = function(tabKey) {
       window.currentActiveView = tabKey;
-      const allTabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'FOREX_FACTORY', 'BLOOMBERG_NEWS', 'WORLD_NEWS', 'AI_INTELLIGENCE', 'MULTI_SWEEP_MATRIX', 'TERMINAL_HUB', 'MONEY_FLOW_MAP'];
+      const allTabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'FOREX_FACTORY', 'BLOOMBERG_NEWS', 'WORLD_NEWS', 'AI_INTELLIGENCE', 'MULTI_SWEEP_MATRIX', 'TERMINAL_HUB', 'MONEY_FLOW_MAP', 'VIP_TWEETS'];
       allTabs.forEach(k => document.getElementById('tab-' + k)?.classList.toggle('nav-tab-active', k === tabKey));
 
       const views = {
@@ -1698,11 +1995,12 @@
         forexfactory: document.getElementById('view-forex-factory'), bloomberg: document.getElementById('view-bloomberg-news'),
         world: document.getElementById('view-world-news'), aiintel: document.getElementById('view-ai-intelligence'),
         matrix: document.getElementById('view-multi-sweep-matrix'), hub: document.getElementById('view-terminal-hub'),
-        moneyflow: document.getElementById('view-money-flow')
+        moneyflow: document.getElementById('view-money-flow'), viptweets: document.getElementById('view-vip-tweets')
       };
       Object.values(views).forEach(v => { if (v) { v.classList.add('hidden'); v.classList.remove('block'); } });
 
-      if (tabKey === 'MONEY_FLOW_MAP') { views.moneyflow.classList.remove('hidden'); views.moneyflow.classList.add('block'); drawMoneyFlowCanvas(); window.renderCOTPanel(); window.renderSovereignGoldPanel(); }
+      if (tabKey === 'VIP_TWEETS') { views.viptweets.classList.remove('hidden'); views.viptweets.classList.add('block'); window.renderVIPTweets(); }
+      else if (tabKey === 'MONEY_FLOW_MAP') { views.moneyflow.classList.remove('hidden'); views.moneyflow.classList.add('block'); drawMoneyFlowCanvas(); window.renderCOTPanel(); window.renderSovereignGoldPanel(); }
       else if (tabKey === 'QUANT_DESK') { views.quant.classList.remove('hidden'); setTimeout(() => { initThreeReactor(); calculatePlanetaryHours(); }, 50); }
       else if (tabKey === 'AI_SKILLS') { views.skills.classList.remove('hidden'); window.runLotCalculator(); window.runRiskManagerGuard(); window.runExitPlanner(); window.runChartScanner(); }
       else if (tabKey === 'LIVE_SIGNALS') { views.signals.classList.remove('hidden'); window.renderLiveSignalCards(); }
@@ -1715,10 +2013,8 @@
       else { views.radar.classList.remove('hidden'); renderRadarData(tabKey); }
     };
 
-    // AUTO-UPDATE LIVE NEWS EVERY 60 SECONDS!
     setInterval(() => { window.fetchAllLiveNews(false); }, 60000);
 
-    // 1-SECOND REAL-TIME CLOCK, PLANETARY SA'AT COUNTDOWN & ORDER FLOW LOOP
     setInterval(() => {
       const now = new Date(), nowSec = Math.floor(now.getTime() / 1000);
       const pktStr = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Karachi' }).format(now);
@@ -1740,22 +2036,17 @@
       const barsEl = document.getElementById('spoof-bars-container');
       if (barsEl) {
         let bHtml = '';
-        for (let i = 0; i < 12; i++) {
-          const hPx = Math.floor(12 + Math.abs(Math.sin(nowSec * 1.3 + i * 0.85)) * 26);
-          bHtml += `<div class="flex-1 ${hPx > 26 ? 'bg-rose-500' : 'bg-amber-400'} rounded-t-sm transition-all duration-300" style="height:${hPx}px"></div>`;
-        }
+        for (let i = 0; i < 12; i++) { const hPx = Math.floor(12 + Math.abs(Math.sin(nowSec * 1.3 + i * 0.85)) * 26); bHtml += `<div class="flex-1 ${hPx > 26 ? 'bg-rose-500' : 'bg-amber-400'} rounded-t-sm" style="height:${hPx}px"></div>`; }
         barsEl.innerHTML = bHtml;
       }
 
       const tape = document.getElementById('trade-tape-stream');
       if (tape && nowSec % 2 === 0) {
-        const m = nowSec % 6;
-        const sym = m === 0 ? 'XAUUSD' : (m === 2 ? 'USOIL' : 'BTCUSD');
+        const m = nowSec % 6, sym = m === 0 ? 'XAUUSD' : (m === 2 ? 'USOIL' : 'BTCUSD');
         const pr = m === 0 ? P.gold.toFixed(2) : (m === 2 ? P.oil.toFixed(2) : P.btc.toFixed(2));
-        const sz = m === 0 ? '15.0 oz' : (m === 2 ? '500 bbl' : '1.25 BTC');
         const row = document.createElement('div');
         row.className = `grid grid-cols-4 px-2 py-0.5 rounded ${Math.sin(nowSec) >= 0 ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'} font-hud`;
-        row.innerHTML = `<span>${pktStr}</span><span class="text-white font-bold font-mono">${sym}</span><span class="text-right">$${pr}</span><span class="text-right text-gray-300 font-mono">${sz}</span>`;
+        row.innerHTML = `<span>${pktStr}</span><span class="text-white font-bold font-mono">${sym}</span><span class="text-right">$${pr}</span><span class="text-right text-gray-300 font-mono">${m === 0 ? '15 oz' : (m === 2 ? '500 bbl' : '1.2 BTC')}</span>`;
         tape.insertBefore(row, tape.firstChild);
         if (tape.children.length > 12) tape.removeChild(tape.lastChild);
       }
@@ -1766,14 +2057,6 @@
 
       const cdEl = document.getElementById('entry-countdown-timer');
       if (cdEl) cdEl.textContent = '00:' + String(59 - now.getUTCSeconds()).padStart(2, '0');
-
-      if (window.activeAlarm) {
-        const cur = P[window.activeAlarm.a.toLowerCase()];
-        if (cur && Math.abs(cur - window.activeAlarm.t) <= (window.activeAlarm.a === 'BTC' ? 45 : 1.2)) {
-          document.getElementById('alert-status-box').innerHTML = `<span class="text-emerald-400 font-extrabold">🚨 HIT: ${window.activeAlarm.a} @ $${fmtNum(cur, 2)}!</span>`;
-          window.activeAlarm = null;
-        }
-      }
     }, 1000);
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -1784,9 +2067,11 @@
       calculatePlanetaryHours();
       window.renderCOTPanel();
       window.renderSovereignGoldPanel();
+      window.renderLiveSignalCards();
+      window.renderAIIntelligenceTab();
       startMoneyFlowAnimation();
       window.fetchAllLiveNews(false);
-      window.switchView('MONEY_FLOW_MAP');
+      window.switchView('VIP_TWEETS');
       if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   </script>
