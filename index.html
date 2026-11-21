@@ -51,102 +51,126 @@
     }
 
     /* ==========================================================
-       HERO DUAL ROTATING PLANETS (LEFT & RIGHT OF MENTOR PHOTO!)
+       UPGRADED LARGER & CENTERED HERO DUAL ROTATING PLANETS!
        ========================================================== */
+    .planet-side-wing {
+      flex: 1 1 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 95px;
+    }
+
     .planet-stage {
       position: relative;
-      width: 78px;
-      height: 78px;
+      width: 112px;
+      height: 112px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
     @media (min-width: 640px) {
-      .planet-stage { width: 96px; height: 96px; }
+      .planet-stage { width: 136px; height: 136px; }
     }
 
     .jupiter-sphere {
-      width: 48px;
-      height: 48px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       background: repeating-linear-gradient(
         -18deg,
         #78350f 0px,
-        #d97706 6px,
-        #fef3c7 11px,
-        #b45309 16px,
-        #f59e0b 22px
+        #d97706 8px,
+        #fef3c7 14px,
+        #b45309 21px,
+        #f59e0b 28px
       );
-      box-shadow: inset -8px -6px 14px rgba(0,0,0,0.85), 0 0 22px rgba(245, 158, 11, 0.65);
+      box-shadow: inset -10px -8px 18px rgba(0,0,0,0.88), 0 0 30px rgba(245, 158, 11, 0.75);
       animation: planetFloat 4s ease-in-out infinite alternate, jupiterBandShift 8s linear infinite;
       position: relative;
       z-index: 2;
     }
+    @media (min-width: 640px) {
+      .jupiter-sphere { width: 80px; height: 80px; }
+    }
 
     .saturn-sphere {
-      width: 46px;
-      height: 46px;
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
       background: radial-gradient(circle at 32% 30%, #a5f3fc, #06b6d4 45%, #0f172a 90%);
-      box-shadow: inset -7px -6px 14px rgba(0,0,0,0.85), 0 0 22px rgba(6, 182, 212, 0.65);
+      box-shadow: inset -10px -8px 18px rgba(0,0,0,0.88), 0 0 30px rgba(6, 182, 212, 0.75);
       animation: planetFloat 4.5s ease-in-out infinite alternate-reverse;
       position: relative;
       z-index: 2;
     }
+    @media (min-width: 640px) {
+      .saturn-sphere { width: 78px; height: 78px; }
+    }
 
     .orbit-ring-gold {
       position: absolute;
-      width: 74px;
-      height: 74px;
+      width: 106px;
+      height: 106px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(251, 191, 36, 0.65);
+      border: 2px dashed rgba(251, 191, 36, 0.75);
       animation: spinCW 10s linear infinite;
       z-index: 1;
+    }
+    @media (min-width: 640px) {
+      .orbit-ring-gold { width: 128px; height: 128px; }
     }
     .orbit-ring-gold::after {
       content: '';
       position: absolute;
-      top: -4px;
+      top: -5px;
       left: 50%;
-      width: 8px;
-      height: 8px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: #fde047;
-      box-shadow: 0 0 10px #f59e0b;
+      box-shadow: 0 0 14px #f59e0b;
     }
 
     .orbit-ring-cyan {
       position: absolute;
-      width: 74px;
-      height: 74px;
+      width: 106px;
+      height: 106px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(34, 211, 238, 0.65);
+      border: 2px dashed rgba(34, 211, 238, 0.75);
       animation: spinCCW 9s linear infinite;
       z-index: 1;
+    }
+    @media (min-width: 640px) {
+      .orbit-ring-cyan { width: 128px; height: 128px; }
     }
     .orbit-ring-cyan::after {
       content: '';
       position: absolute;
-      bottom: -4px;
+      bottom: -5px;
       left: 50%;
-      width: 8px;
-      height: 8px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: #22d3ee;
-      box-shadow: 0 0 10px #06b6d4;
+      box-shadow: 0 0 14px #06b6d4;
     }
 
     .tilted-halo {
       position: absolute;
-      width: 82px;
-      height: 24px;
+      width: 114px;
+      height: 34px;
       border-radius: 50%;
-      border: 2.5px solid rgba(245, 158, 11, 0.75);
+      border: 3px solid rgba(245, 158, 11, 0.85);
       transform: rotate(-22deg);
       z-index: 3;
       pointer-events: none;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.45);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.55);
+    }
+    @media (min-width: 640px) {
+      .tilted-halo { width: 136px; height: 40px; }
     }
 
     @keyframes planetFloat {
@@ -155,7 +179,7 @@
     }
     @keyframes jupiterBandShift {
       0% { background-position: 0 0; }
-      100% { background-position: 48px 0; }
+      100% { background-position: 64px 0; }
     }
 
     /* ==========================================================
@@ -304,32 +328,32 @@
   </div>
 
   <!-- ========================================================
-       2. UPGRADED HERO BANNER: ROTATING JUPITER (LEFT) + YOUR GITHUB PICTURE (CENTER) + ROTATING BULLION ORB (RIGHT) + 3 LIVE TV CHARTS!
+       2. HERO BANNER: BIGGER & PERFECTLY CENTERED DUAL ORBITING PLANETS IN THE BLACK WINGS AROUND YOUR PHOTO!
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-2 sm:px-6 shadow-2xl relative overflow-hidden">
     <div class="max-w-[1740px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
 
-      <!-- HERO MENTOR ROW WITH DUAL ORBITING PLANETS FILLING BOTH SIDES! -->
-      <div class="lg:col-span-5 flex items-center justify-between gap-2 bg-black/55 p-2 rounded-2xl border border-amber-500/35 shadow-[0_0_30px_rgba(245,158,11,0.18)]">
+      <!-- HERO MENTOR ROW: LEFT CENTERED BIG PLANET + PHOTO + RIGHT CENTERED BIG PLANET -->
+      <div class="lg:col-span-5 flex items-center justify-center w-full bg-black/65 py-3 px-2 rounded-2xl border border-amber-500/40 shadow-[0_0_32px_rgba(245,158,11,0.22)]">
 
-        <!-- LEFT ROTATING PLANET: MUSHTARI (JUPITER) 287 -->
-        <div class="flex flex-col items-center justify-center px-1 text-center">
+        <!-- LEFT BLACK SPACE WING: PERFECTLY CENTERED & BIGGER MUSHTARI (JUPITER) -->
+        <div class="planet-side-wing">
           <div class="planet-stage">
             <div class="orbit-ring-gold"></div>
             <div class="jupiter-sphere"></div>
             <div class="tilted-halo"></div>
           </div>
-          <span class="font-hud font-black text-[9px] sm:text-[10px] text-amber-300 tracking-wider mt-1 uppercase">♃ MUSHTARI</span>
-          <span class="font-mono text-[8px] text-yellow-200 bg-amber-500/20 border border-amber-400/40 px-1.5 rounded">ABJAD 287</span>
+          <span class="font-hud font-black text-[10px] sm:text-xs text-amber-300 tracking-wider mt-1.5 uppercase">♃ MUSHTARI</span>
+          <span class="font-mono text-[9px] text-yellow-200 bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 rounded mt-0.5">ABJAD 287</span>
         </div>
 
         <!-- CENTER: YOUR GITHUB PICTURE (Mustari.jpg) 100% INTACT -->
-        <div class="relative flex-1 max-w-[300px] rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.45)] bg-[#120b07]">
+        <div class="relative w-[44%] max-w-[265px] shrink-0 rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.45)] bg-[#120b07]">
           <img
             id="hero-mentor-photo"
             src="Mustari.jpg"
             alt="Mushtari Trader • Institutional Mentor Desk"
-            class="w-full h-[165px] sm:h-[190px] object-cover object-center block brightness-110 contrast-125 saturate-110"
+            class="w-full h-[165px] sm:h-[192px] object-cover object-center block brightness-110 contrast-125 saturate-110"
             onerror="window.handleMentorImgError(this)"
           />
           <div id="hero-mentor-fallback" class="hidden w-full h-[180px] bg-gradient-to-br from-[#2a0f14] via-[#121826] to-[#090d16] p-3 flex flex-col items-center justify-between text-center">
@@ -343,15 +367,15 @@
           </div>
         </div>
 
-        <!-- RIGHT ROTATING PLANET: SOVEREIGN QUANTUM ORB -->
-        <div class="flex flex-col items-center justify-center px-1 text-center">
+        <!-- RIGHT BLACK SPACE WING: PERFECTLY CENTERED & BIGGER QUANTUM ORB -->
+        <div class="planet-side-wing">
           <div class="planet-stage">
             <div class="orbit-ring-cyan"></div>
             <div class="saturn-sphere"></div>
-            <div class="tilted-halo" style="border-color: rgba(34,211,238,0.75); transform: rotate(24deg);"></div>
+            <div class="tilted-halo" style="border-color: rgba(34,211,238,0.85); transform: rotate(24deg); box-shadow: 0 0 16px rgba(6,182,212,0.55);"></div>
           </div>
-          <span class="font-hud font-black text-[9px] sm:text-[10px] text-cyan-300 tracking-wider mt-1 uppercase">🪐 AL-IRTIQAA</span>
-          <span class="font-mono text-[8px] text-cyan-200 bg-cyan-500/20 border border-cyan-400/40 px-1.5 rounded">QUANT ORB</span>
+          <span class="font-hud font-black text-[10px] sm:text-xs text-cyan-300 tracking-wider mt-1.5 uppercase">🪐 AL-IRTIQAA</span>
+          <span class="font-mono text-[9px] text-cyan-200 bg-cyan-500/20 border border-cyan-400/40 px-2 py-0.5 rounded mt-0.5">QUANT ORB</span>
         </div>
 
       </div>
@@ -401,12 +425,12 @@
   </div>
 
   <!-- ========================================================
-       3. STRICT HORIZONTAL COLORFUL 16-TAB SWIPEABLE BAR (WITH NEW TAB 16 VIP TWEETS!)
+       3. STRICT HORIZONTAL COLORFUL 16-TAB SWIPEABLE BAR
        ======================================================== -->
   <div class="w-full bg-[#090d16] border-b border-amber-500/40 z-40 shadow-xl">
     <div class="px-3 pt-1.5 flex items-center justify-between text-[10px] font-mono text-amber-300">
       <span>👉 SWIPE LEFT / RIGHT & TAP ANY OF YOUR 16 COLORFUL TABS:</span>
-      <span class="text-sky-400 font-bold">● NEW TAB 16 VIP TWEETS ADDED!</span>
+      <span class="text-sky-400 font-bold">● ALL 16 TABS ACTIVE</span>
     </div>
     <nav class="horizontal-tabs-rail">
       <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn tcol-btc">🟠 1•BTC</button>
@@ -498,7 +522,7 @@
   </main>
 
   <!-- ========================================================
-       TAB 6: COMPLETE 3D QUANT DESK (CURRENT + NEXT PLANETARY SA'AT + 3D JUPITER + ORDER TAPE)
+       TAB 6: COMPLETE 3D QUANT DESK
        ======================================================== -->
   <main id="view-quant-desk" class="w-full px-3 sm:px-6 py-3 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 hidden font-hud">
     <section class="lg:col-span-3 flex flex-col gap-3">
@@ -664,7 +688,7 @@
   </main>
 
   <!-- ========================================================
-       TAB 8: ⚡ COMPLETELY UPGRADED RICH INSTITUTIONAL LIVE OUTLOOK (DYNAMIC PER TIMEFRAME 1M TO 1D!)
+       TAB 8: ⚡ RICH INSTITUTIONAL LIVE OUTLOOK
        ======================================================== -->
   <main id="view-live-signals" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-blue-500/50 bg-gradient-to-r from-blue-950/40 via-black to-amber-950/30 flex flex-wrap items-center justify-between gap-3">
@@ -686,7 +710,6 @@
       </div>
     </div>
 
-    <!-- MACRO CORRELATION PULSE STRIP -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 text-xs font-mono">
       <div class="radar-card p-2.5 border border-amber-500/30 flex justify-between items-center"><span>💵 DXY CORRELATION:</span><strong class="text-amber-300">103.49 (INVERSE)</strong></div>
       <div class="radar-card p-2.5 border border-cyan-500/30 flex justify-between items-center"><span>🏦 US10Y YIELD:</span><strong class="text-emerald-400">4.95% (-2.02%)</strong></div>
@@ -694,7 +717,6 @@
       <div class="radar-card p-2.5 border border-emerald-500/30 flex justify-between items-center"><span>🛢️ BRENT / WTI SPREAD:</span><strong class="text-emerald-300">$8.90 ($92.51/$83.61)</strong></div>
     </div>
 
-    <!-- RICH 4-ASSET OUTLOOK CARDS -->
     <div id="live-signals-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
@@ -773,7 +795,7 @@
   </main>
 
   <!-- ========================================================
-       TAB 12: 🧠 COMPLETELY UPGRADED FULL-FEATURED AI PREDICTOR (FAKEOUT WICK, TARGET, EOD SETTLEMENT, PROBABILITY METER & PLAYBOOK!)
+       TAB 12: 🧠 COMPLETE 5-CATALYST AI PREDICTOR
        ======================================================== -->
   <main id="view-ai-intelligence" class="w-full px-3 sm:px-6 py-3 space-y-4 flex-1 hidden font-hud">
     <div class="glass-panel rounded-xl p-4 border-2 border-amber-400/80 bg-gradient-to-r from-[#1a1105] via-[#0b1120] to-[#130924] space-y-3">
@@ -812,8 +834,6 @@
     </div>
 
     <div id="ai-master-briefing" class="radar-card p-3.5 border-l-4 border-purple-500 bg-gradient-to-r from-purple-950/35 via-black to-black text-xs font-mono space-y-1"></div>
-
-    <!-- COMPLETE RICH 4-ASSET AI PROJECTION CARDS -->
     <div id="ai-quad-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"></div>
   </main>
 
@@ -921,7 +941,7 @@
 
         <div class="bg-[#0b101b] border border-amber-500/30 rounded-xl p-3.5 space-y-1">
           <span class="text-[10px] font-hud font-bold text-gray-400 uppercase block">NEXT FOMC RATE DECISION</span>
-          <div id="mf-fed-countdown" class="font-hud text-2xl font-black text-white">18d 19h 45m</div>
+          <div id="mf-fed-countdown" class="font-hud text-2xl font-black text-white">18d 19h 25m</div>
           <div class="text-[10px] font-mono text-amber-300">Wed, Dec 9, 2026 • US10Y @ 4.95%</div>
         </div>
 
@@ -963,7 +983,7 @@
   </main>
 
   <!-- ========================================================
-       NEW TAB 16: 🐦 VIP MARKET-MOVING TWEETS & STATEMENTS RADAR (TRUMP, ELON MUSK, BIDEN/WH, POWELL/FED & WHALES!)
+       TAB 16: 🐦 VIP MARKET-MOVING TWEETS & STATEMENTS RADAR
        ======================================================== -->
   <main id="view-vip-tweets" class="w-full px-3 sm:px-6 py-4 space-y-4 flex-1 block font-hud">
     <div class="glass-panel rounded-2xl p-4 border-2 border-sky-400/70 bg-gradient-to-r from-[#06182c] via-[#070d19] to-[#1a1005] space-y-3">
@@ -989,7 +1009,6 @@
         </button>
       </div>
 
-      <!-- VIP PERSON FILTER PILLS -->
       <div class="flex flex-wrap items-center gap-2 text-xs">
         <button type="button" onclick="window.filterVIPTweets('ALL')" id="vip-ALL" class="vip-filter-active px-3 py-1.5 rounded-lg bg-white/10 cursor-pointer">🌐 All Market Movers</button>
         <button type="button" onclick="window.filterVIPTweets('TRUMP')" id="vip-TRUMP" class="px-3 py-1.5 rounded-lg bg-white/10 text-gray-200 cursor-pointer">🇺🇸 Donald Trump</button>
@@ -1000,13 +1019,12 @@
       </div>
     </div>
 
-    <!-- VIP TWEET CARDS GRID -->
     <div id="vip-tweets-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
   </main>
 
   <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 text-xs flex flex-wrap justify-between items-center">
     <span class="font-bold text-amber-400 font-hud">AL-IRTIQAA CAPITAL • MUSHTARI TRADER [287]</span>
-    <span class="text-[10px] text-gray-400 font-mono">16-TAB COMPLETE ENGINE • DUAL HERO PLANETS + RICH TABS 8 & 12 + VIP TWEETS</span>
+    <span class="text-[10px] text-gray-400 font-mono">16-TAB COMPLETE ENGINE • CENTERED BIG DUAL PLANETS + VIP TWEETS</span>
   </footer>
 
   <!-- ========================================================
@@ -1034,7 +1052,6 @@
       r.readAsDataURL(file);
     };
 
-    // EXACT TRADINGVIEW RATES
     window.masterState = {
       prices: {
         gold: 3538.18, silver: 41.26, oil: 83.61, brent: 92.51,
@@ -1096,9 +1113,7 @@
       return Number(val).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
     }
 
-    // ========================================================
-    // NEW TAB 16 ENGINE: VIP MARKET-MOVING TWEETS & STATEMENTS RADAR!
-    // ========================================================
+    // TAB 16: VIP MARKET-MOVING TWEETS & STATEMENTS RADAR
     window.currentVIPFilter = 'ALL';
     window.vipTweetsFeed = [];
 
@@ -1196,7 +1211,6 @@
       if (badge && manual) badge.textContent = '● SCANNING LIVE WIRES...';
 
       const dynamicVIP = [];
-      // Scan live RSS feeds for real-time mentions of Trump, Musk, Biden, White House, Powell, Fed, Saylor, BlackRock
       const feeds = [
         'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664',
         'https://feeds.content.dowjones.io/public/rss/mw_topstories',
@@ -1267,7 +1281,6 @@
       grid.innerHTML = (list.length ? list : sourceList).map(t => `
         <div class="radar-card p-4 border-2 border-sky-500/35 hover:border-sky-400 bg-gradient-to-b from-[#0a1324] to-[#060a12] flex flex-col justify-between space-y-3 transition">
           <div class="space-y-2.5">
-            <!-- Tweet Header -->
             <div class="flex items-center justify-between gap-2">
               <div class="flex items-center gap-2.5">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center font-hud font-black text-white text-sm border border-white/30 shrink-0">
@@ -1284,13 +1297,11 @@
               <span class="text-[9px] font-mono font-bold bg-sky-500/15 text-sky-300 border border-sky-400/30 px-2 py-0.5 rounded">${t.badge}</span>
             </div>
 
-            <!-- Tweet Content -->
             <p class="text-xs font-mono text-gray-100 leading-relaxed bg-black/50 p-3 rounded-xl border border-white/10">
               "${t.text}"
             </p>
           </div>
 
-          <!-- AI Market Impact Footer -->
           <div class="space-y-2 pt-1">
             <div class="bg-amber-950/35 border border-amber-500/35 rounded-lg p-2 text-[10px] font-mono">
               <div class="font-extrabold text-amber-300">${t.impactLevel}</div>
@@ -1304,9 +1315,7 @@
         </div>`).join('');
     };
 
-    // ========================================================
-    // UPGRADED TAB 8: RICH MULTI-TIMEFRAME LIVE OUTLOOK ENGINE (1M TO 1D DYNAMIC!)
-    // ========================================================
+    // TAB 8: RICH MULTI-TIMEFRAME LIVE OUTLOOK ENGINE
     window.currentSignalTF = '15M';
     const TF_MULTIPLIERS = {
       '1M':  { mult: 0.28, label: '1M SCALP MICRO-LIQUIDITY', conv: 84, horizon: 'Next 5–15 Mins' },
@@ -1403,7 +1412,6 @@
               </div>
             </div>
 
-            <!-- Institutional Conviction Bar -->
             <div class="space-y-1">
               <div class="flex justify-between text-[10px] font-mono">
                 <span class="text-gray-400">SMC Structure Score:</span>
@@ -1414,7 +1422,6 @@
               </div>
             </div>
 
-            <!-- Dynamic SSL / BSL / FVG Matrix -->
             <div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1.5 text-[11px] font-mono">
               <div class="flex justify-between"><span class="text-gray-400">🛡️ SSL Demand:</span><strong class="text-emerald-400">$${fmtNum(c.sslLow, c.dec)} – $${fmtNum(c.sslHigh, c.dec)}</strong></div>
               <div class="flex justify-between"><span class="text-gray-400">🧲 Fair Value Gap:</span><strong class="text-amber-300">${c.fvg}</strong></div>
@@ -1428,9 +1435,7 @@
         </div>`).join('');
     };
 
-    // ========================================================
-    // UPGRADED TAB 12: COMPLETE RICH 5-CATALYST AI PREDICTOR ENGINE!
-    // ========================================================
+    // TAB 12: COMPLETE RICH 5-CATALYST AI PREDICTOR ENGINE
     window.currentAIEvent = 'PPI_CPI';
     window.currentAIScenario = 'HOT';
 
@@ -1579,7 +1584,6 @@
                   </div>
                 </div>
 
-                <!-- Rich Trap Wick & EOD Settlement Box -->
                 <div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1 text-[11px] font-mono">
                   <div class="flex justify-between"><span class="text-amber-300">⚠️ Judas Fakeout Wick:</span><strong class="text-white">$${fmtNum(wickP, item.dec)}</strong></div>
                   <div class="flex justify-between"><span class="text-cyan-300">🎯 Primary Liquidity Zone:</span><strong class="${isUp ? 'text-emerald-400' : 'text-rose-400'}">$${fmtNum(targetP, item.dec)}</strong></div>
@@ -1598,9 +1602,7 @@
       }
     };
 
-    // ========================================================
-    // AUTO-UPDATING NEWS ENGINE (ALL 16 TABS + BLOOMBERG + WORLD)
-    // ========================================================
+    // AUTO-UPDATING NEWS ENGINE
     window.liveBloombergItems = [];
     window.liveWorldItems = [];
     window.currentNewsFilter = 'ALL';
@@ -1684,7 +1686,7 @@
       window.fetchVIPMarketTweets(false);
     };
 
-    // PLANETARY HOURS (CURRENT + NEXT HOUR)
+    // PLANETARY HOURS
     function calculatePlanetaryHours() {
       const CHALDEAN = [
         { name: "Saturn (Zuhal)", symbol: "♄", nature: "Discipline, heavy resistance & institutional consolidation." },
@@ -1767,7 +1769,6 @@
       if (banner) banner.textContent = asia.weekend ? `🏛️ CRYPTO 24/7 LIVE | MON ASIAN IN ${fmtHMS(asia.remainSec)}` : `🔥 GLOBAL MARKET SESSIONS ACTIVE`;
     }
 
-    // LIVE CRYPTO WEBSOCKET (COINBASE — ZERO BINANCE)
     function connectLiveCryptoStream() {
       try {
         const ws = new WebSocket('wss://ws-feed.exchange.coinbase.com');
@@ -1795,7 +1796,6 @@
       wrap.appendChild(inner); wrap.appendChild(scr); box.appendChild(wrap);
     }
 
-    // TABS 1–5 RADAR
     window.lastRadarSym = null;
     function renderRadarData(key) {
       const sym = window.masterState.tvSymbols[key] || "OANDA:XAUUSD";
@@ -1826,7 +1826,6 @@
       document.getElementById('radar-heatmap-walls').innerHTML = `<div class="bg-black/60 p-2.5 rounded border border-rose-500/40 flex justify-between"><span class="text-rose-300">🔥 Overhead BSL Supply: $${fmtNum(liveP + off, 2)}</span><span class="text-rose-400 font-bold">INSTITUTIONAL ASK</span></div><div class="bg-black/60 p-2.5 rounded border border-emerald-500/40 flex justify-between"><span class="text-emerald-300">🛡️ Resting SSL Demand: $${fmtNum(liveP - off, 2)}</span><span class="text-emerald-400 font-bold">SOVEREIGN BID</span></div>`;
     }
 
-    // TAB 13, 14, 9, 10 WIDGETS
     function mount6TVChartsMatrix(forceRebuild = false) {
       const grid = document.getElementById('tv-6chart-matrix-grid');
       if (!grid || (grid.children.length > 0 && !forceRebuild)) return;
@@ -1860,7 +1859,6 @@
     let tvNewsMounted = false;
     function mountTVNewsTimeline() { if (tvNewsMounted) return; tvNewsMounted = true; injectTVWidget('tv-live-news-timeline', 'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js', { feedMode: "all_symbols", colorTheme: "dark", isTransparent: true, displayMode: "regular", width: "100%", height: "100%", locale: "en" }); }
 
-    // 3D JUPITER IN TAB 6
     let threeInit = false;
     function initThreeReactor() {
       const box = document.getElementById('three-reactor-canvas');
@@ -1881,7 +1879,6 @@
       (function anim() { requestAnimationFrame(anim); planet.rotation.y += 0.018; ring1.rotation.z -= 0.012; ren.render(scene, cam); })();
     }
 
-    // SKILLS, NEWS RENDERERS, MONEY FLOW & COT
     window.runLotCalculator = function() { const b = parseFloat(document.getElementById('calc-balance')?.value) || 1000, r = parseFloat(document.getElementById('calc-risk')?.value) || 2, s = parseFloat(document.getElementById('calc-sl')?.value) || 10, usd = (b * r) / 100; document.getElementById('calc-lot-output').textContent = `Risk: $${usd.toFixed(2)} • ${(usd / (s * 10)).toFixed(2)} Std Lot`; };
     window.runExitPlanner = function() { const a = document.getElementById('exit-asset')?.value || 'GOLD', rr = parseFloat(document.getElementById('exit-rr')?.value) || 3, p = window.masterState.prices[a.toLowerCase()], off = a === 'BTC' ? 950 : (a === 'GOLD' ? 25 : (a === 'OIL' ? 1.20 : 0.75)); document.getElementById('exit-planner-output').innerHTML = `<div>TV Spot: <strong>$${fmtNum(p, 2)}</strong></div><div class="text-emerald-400">Demand: $${fmtNum(p - off, 2)}</div><div class="text-cyan-300">Supply (1:${rr}): $${fmtNum(p + off * rr, 2)}</div>`; };
     window.runRiskManagerGuard = function() { const d = parseFloat(document.getElementById('risk-max-dd')?.value) || 5, c = parseInt(document.getElementById('risk-open-cnt')?.value) || 2; document.getElementById('risk-guard-output').textContent = c > 4 ? `⚠️ HIGH EXPOSURE (${c} Trades)` : `✅ STATUS SAFE: Within ${d}% Limit`; };
@@ -1906,7 +1903,6 @@
       g.innerHTML = (list.length ? list : items).map(x => `<a href="${x.link || '#'}" target="_blank" rel="noopener noreferrer" class="radar-card p-4 border-l-4 border-rose-500 space-y-1.5 block"><div class="flex justify-between text-[10px]"><span class="text-rose-300 font-bold">${x.source || x.cat}</span><span class="text-emerald-400 font-mono">${x.time}</span></div><h3 class="text-sm font-bold text-white">${x.title}</h3><p class="text-xs text-gray-300 font-mono">${x.desc}</p></a>`).join('');
     };
 
-    // TAB 15 MONEY FLOW + COT + GOLD
     let mfAnimPhase = 0;
     function getInstitutionalNodes() {
       const P = window.masterState.prices;
