@@ -301,6 +301,30 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black w-full">
 
   <!-- ========================================================
+       QR CODE FULL-SIZE POPUP MODAL (IF USER TAPS MINI QR TO SCAN EASILY OR COPY LINK)
+       ======================================================== -->
+  <div id="social-qr-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-[999] hidden items-center justify-center p-4" onclick="window.closeSocialQRModal(event)">
+    <div class="bg-[#0b1220] border-2 border-amber-400 rounded-2xl p-5 max-w-[350px] w-full text-center space-y-3 shadow-[0_0_45px_rgba(245,158,11,0.45)]" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between border-b border-white/10 pb-2">
+        <span id="qr-modal-title" class="font-hud font-black text-sm text-amber-300 uppercase">SCAN OR TAP TO JOIN</span>
+        <button type="button" onclick="window.closeSocialQRModal()" class="text-gray-400 hover:text-white text-lg font-bold px-2 cursor-pointer">✕</button>
+      </div>
+      <div class="bg-white p-3.5 rounded-xl inline-block mx-auto shadow-lg">
+        <img id="qr-modal-img" src="" alt="Social QR Code" class="w-52 h-52 object-contain mx-auto block" />
+      </div>
+      <div id="qr-modal-handle" class="font-hud font-black text-base text-white tracking-wider">@MUSHTARITRADER</div>
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <a id="qr-modal-open-btn" href="#" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-amber-500 to-yellow-400 text-black font-hud font-black text-xs py-2.5 rounded-xl uppercase block">
+          🚀 OPEN NOW
+        </a>
+        <button type="button" id="qr-modal-copy-btn" onclick="window.copyActiveSocialLink()" class="bg-white/10 hover:bg-white/20 border border-white/20 text-cyan-300 font-hud font-bold text-xs py-2.5 rounded-xl uppercase cursor-pointer">
+          📋 COPY LINK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
        1. STICKY TOP DISCLAIMER + TRADINGVIEW LIVE TICKER + SESSION COUNTDOWNS
        ======================================================== -->
   <div class="w-full bg-[#070b13] border-b border-amber-500/50 px-2 pt-1.5 pb-1.5 text-center shadow-2xl sticky top-0 z-50">
@@ -358,7 +382,7 @@
   </div>
 
   <!-- ========================================================
-       2. HERO BANNER: BIGGER & PERFECTLY CENTERED DUAL ORBITING PLANETS AROUND YOUR PHOTO + 3 LIVE TV CHARTS!
+       2. HERO BANNER: DUAL ORBITING PLANETS + YOUR PHOTO + WORKING INSTAGRAM/TELEGRAM BUTTONS WITH MINI SCANNABLE QR BARCODES!
        ======================================================== -->
   <div class="w-full bg-gradient-to-r from-[#130b06] via-[#0b1322] to-[#070c17] border-b-2 border-amber-500/70 py-3 px-2 sm:px-6 shadow-2xl relative overflow-hidden">
     <div class="max-w-[1740px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
@@ -405,7 +429,7 @@
       </div>
 
       <div class="lg:col-span-7 flex flex-col justify-between space-y-2.5">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-1.5">
+        <div class="flex flex-wrap items-center justify-between gap-2.5 border-b border-amber-500/30 pb-2">
           <div>
             <div class="flex items-center gap-2">
               <span class="text-xl">🦅</span>
@@ -414,9 +438,64 @@
             </div>
             <h2 class="font-hud font-black text-base sm:text-xl text-white uppercase">MUSHTARI TRADER • COMPLETE 17-TAB INSTITUTIONAL TERMINAL</h2>
           </div>
-          <div class="flex items-center gap-2">
-            <a href="https://instagram.com/mushtritrader" target="_blank" rel="noopener noreferrer" class="bg-pink-950/50 border border-pink-500/40 text-pink-300 px-2.5 py-1 rounded text-[11px] font-hud font-bold">Instagram</a>
-            <a href="https://t.me/mushtritrader" target="_blank" rel="noopener noreferrer" class="bg-sky-950/50 border border-sky-400/40 text-sky-300 px-2.5 py-1 rounded text-[11px] font-hud font-bold">Telegram</a>
+
+          <!-- UPGRADED WORKING INSTAGRAM & TELEGRAM BUTTONS + MINI SCANNABLE QR BARCODES! -->
+          <div class="flex flex-wrap items-center gap-2.5 relative z-30">
+
+            <!-- INSTAGRAM (@MUSHTARITRADER) BUTTON + MINI QR -->
+            <div class="flex items-center gap-1.5 bg-gradient-to-r from-[#2b0b1e] to-[#121a2b] border-2 border-pink-500/70 hover:border-pink-400 rounded-xl p-1.5 shadow-[0_0_16px_rgba(236,72,153,0.3)] transition">
+              <a
+                href="https://www.instagram.com/mushtaritrader?dmpr=bW81dDl2N2lkdHhl"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="window.openExternalSocial('https://www.instagram.com/mushtaritrader?dmpr=bW81dDl2N2lkdHhl', event)"
+                class="flex flex-col px-2 py-0.5 cursor-pointer text-left"
+              >
+                <span class="font-hud font-black text-[11px] sm:text-xs text-pink-300 flex items-center gap-1 uppercase">📸 Instagram ↗</span>
+                <span class="font-mono text-[9px] text-white font-bold">@mushtaritrader</span>
+                <span class="font-mono text-[8px] text-pink-200/80">Tap to Follow</span>
+              </a>
+              <button
+                type="button"
+                onclick="window.openSocialQRModal('IG')"
+                title="Scan or Enlarge Instagram QR"
+                class="bg-white p-1 rounded-lg shrink-0 cursor-pointer hover:scale-105 transition shadow"
+              >
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data=https%3A%2F%2Fwww.instagram.com%2Fmushtaritrader%3Fdmpr%3DbW81dDl2N2lkdHhl"
+                  alt="Instagram QR @mushtaritrader"
+                  class="w-11 h-11 sm:w-12 sm:h-12 block rounded-sm"
+                />
+              </button>
+            </div>
+
+            <!-- TELEGRAM (@MUSHTARITRADERR) BUTTON + MINI QR -->
+            <div class="flex items-center gap-1.5 bg-gradient-to-r from-[#082032] to-[#0f172a] border-2 border-sky-400/80 hover:border-cyan-300 rounded-xl p-1.5 shadow-[0_0_16px_rgba(56,189,248,0.3)] transition">
+              <a
+                href="https://t.me/mushtaritraderr"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="window.openExternalSocial('https://t.me/mushtaritraderr', event)"
+                class="flex flex-col px-2 py-0.5 cursor-pointer text-left"
+              >
+                <span class="font-hud font-black text-[11px] sm:text-xs text-sky-300 flex items-center gap-1 uppercase">✈️ Join Telegram ↗</span>
+                <span class="font-mono text-[9px] text-white font-bold">@mushtaritraderr</span>
+                <span class="font-mono text-[8px] text-sky-200/80">Tap to Join</span>
+              </a>
+              <button
+                type="button"
+                onclick="window.openSocialQRModal('TG')"
+                title="Scan or Enlarge Telegram QR"
+                class="bg-white p-1 rounded-lg shrink-0 cursor-pointer hover:scale-105 transition shadow"
+              >
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data=https%3A%2F%2Ft.me%2Fmushtaritraderr"
+                  alt="Telegram QR @mushtaritraderr"
+                  class="w-11 h-11 sm:w-12 sm:h-12 block rounded-sm"
+                />
+              </button>
+            </div>
+
           </div>
         </div>
 
@@ -448,12 +527,12 @@
   </div>
 
   <!-- ========================================================
-       3. STRICT HORIZONTAL COLORFUL 17-TAB SWIPEABLE BAR (WITH NEW TAB 17 BIO-SPIRITUAL RESET!)
+       3. STRICT HORIZONTAL COLORFUL 17-TAB SWIPEABLE BAR
        ======================================================== -->
   <div class="w-full bg-[#090d16] border-b border-amber-500/40 z-40 shadow-xl">
     <div class="px-3 pt-1.5 flex items-center justify-between text-[10px] font-mono text-amber-300">
       <span>👉 SWIPE LEFT / RIGHT & TAP ANY OF YOUR 17 COLORFUL TABS:</span>
-      <span class="text-teal-300 font-bold">● NEW TAB 17 BIO-SPIRITUAL RESET ADDED!</span>
+      <span class="text-teal-300 font-bold">● QR CODES & LINKS SYNCED</span>
     </div>
     <nav class="horizontal-tabs-rail">
       <button type="button" onclick="window.switchView('BTC')" id="tab-BTC" class="nav-tab-btn tcol-btc">🟠 1•BTC</button>
@@ -1036,14 +1115,12 @@
   </main>
 
   <!-- ========================================================
-       NEW TAB 17: ✨ BIO-SPIRITUAL HACKING • NEURO RESET CONSOLE (432 Hz GOLDEN RATIO + BINAURAL BEATS + MISHARY ALAFASY QURAN + ISLAMIC STAR MANDALA + BREATHING)
+       TAB 17: ✨ BIO-SPIRITUAL HACKING • NEURO RESET CONSOLE (100% INTACT)
        ======================================================== -->
   <main id="view-bio-spiritual" class="w-full bg-gradient-to-b from-[#071824] via-[#06131d] to-[#040a11] text-gray-100 flex-1 block relative overflow-hidden pb-8">
 
     <!-- MODE A: CONSOLE SELECTION & PRESET BRIEFING VIEW -->
     <div id="bio-console-setup" class="max-w-[1380px] mx-auto px-3 sm:px-6 py-6 space-y-6">
-
-      <!-- TOP GOLDEN RATIO HEADER -->
       <div class="text-center space-y-2 py-2">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-amber-400/40 bg-amber-500/10 text-[11px] font-mono text-amber-300 tracking-widest uppercase">
           <span>✦ GOLDEN RATIO 432 · BISMILLAH · ABJAD 287</span>
@@ -1056,7 +1133,6 @@
         </p>
       </div>
 
-      <!-- NEURO RESET CONSOLE BOX -->
       <div class="rounded-2xl border border-cyan-400/30 bg-[#071521]/90 shadow-[0_12px_45px_rgba(0,0,0,0.75)] p-4 sm:p-6 space-y-5">
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/20 pb-3">
           <div class="flex items-center gap-2 font-hud text-sm sm:text-base font-bold tracking-widest text-cyan-300 uppercase">
@@ -1067,18 +1143,12 @@
 
         <div>
           <span class="text-[11px] font-mono tracking-[0.18em] text-gray-400 uppercase block mb-3">WHAT DO YOU NEED?</span>
-
-          <!-- FEATURED FULL-WIDTH PRESET #1: TRADING CALM & COOL -->
           <div id="bio-featured-preset" class="mb-3"></div>
-
-          <!-- 9 OTHER SPIRITUAL & NEURO PRESETS GRID -->
           <div id="bio-presets-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
         </div>
 
-        <!-- SELECTED PRESET DETAILED SPECIFICATION TABLE (EXACT VIDEO LAYOUT!) -->
         <div id="bio-spec-panel" class="rounded-xl border border-amber-400/30 bg-[#040d16]/95 p-4 sm:p-5 space-y-3 text-xs font-mono"></div>
 
-        <!-- LAUNCH FULL-SCREEN IMMERSIVE MANDALA SESSION BUTTON -->
         <div class="pt-1">
           <button
             type="button"
@@ -1094,10 +1164,8 @@
       </div>
     </div>
 
-    <!-- MODE B: ACTIVE IMMERSIVE SACRED ISLAMIC GEOMETRIC STAR MANDALA + BREATHING + AUDIO HUD (EXACT VIDEO SCREEN!) -->
+    <!-- MODE B: ACTIVE IMMERSIVE SACRED ISLAMIC GEOMETRIC STAR MANDALA + BREATHING + AUDIO HUD -->
     <div id="bio-active-session" class="hidden w-full min-h-[690px] flex-col items-center justify-between py-4 px-3 relative bg-[radial-gradient(circle_at_center,#1b4658_0%,#0b2534_48%,#051019_100%)]">
-
-      <!-- TOP ACTIVE GOAL HEADER -->
       <div class="text-center z-10 space-y-1">
         <div class="text-[10px] sm:text-xs font-mono tracking-[0.22em] text-amber-300 uppercase">✦ GOLDEN RATIO 432 · BISMILLAH</div>
         <div id="bio-active-goal-line" class="text-xs sm:text-sm font-hud font-bold text-amber-100 bg-black/45 border border-amber-400/30 px-4 py-1 rounded-full">
@@ -1105,7 +1173,6 @@
         </div>
       </div>
 
-      <!-- CENTER ANIMATED SACRED ISLAMIC STAR MANDALA + BREATHE IN 4 / BREATHE OUT 6 -->
       <div class="relative flex items-center justify-center my-2 w-full max-w-[620px] aspect-square max-h-[470px]">
         <canvas id="bio-mandala-canvas" width="640" height="640" class="w-full h-full"></canvas>
         <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center px-4">
@@ -1116,16 +1183,12 @@
         </div>
       </div>
 
-      <!-- BOTTOM AYAH PILL + FREQUENCY READOUT + VOLUME SLIDERS + END SESSION -->
       <div class="w-full max-w-[780px] z-10 flex flex-col items-center space-y-2.5">
-
-        <!-- LIVE ARABIC / AYAH STATUS PILL -->
         <div class="bg-[#040b12]/90 border border-amber-400/45 rounded-full px-5 py-2 shadow-[0_0_25px_rgba(0,0,0,0.85)] text-center max-w-full">
           <div id="bio-ayah-arabic" class="font-arabic text-lg sm:text-2xl text-amber-200 leading-relaxed">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
           <div id="bio-ayah-meta" class="text-[11px] font-mono text-cyan-300 mt-0.5">Opening Protection · Golden Ratio 432 Hz Chord</div>
         </div>
 
-        <!-- FREQUENCY TELEMETRY BAR (LEFT EAR / RIGHT EAR / BEAT / OPENING) -->
         <div class="w-full bg-[#040a11]/92 border border-white/15 rounded-2xl p-3 space-y-2.5 shadow-2xl">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[10px] border-b border-white/10 pb-2">
             <div><span class="text-gray-400 block text-[9px]">LEFT EAR</span><strong id="bio-hud-left" class="text-white text-xs">432.00 Hz</strong></div>
@@ -1134,7 +1197,6 @@
             <div><span class="text-gray-400 block text-[9px]">✦ OPENING</span><strong class="text-amber-300 text-xs">432 · 576 · 699 Hz</strong></div>
           </div>
 
-          <!-- LIVE CONTROLS: QURAN VOLUME, FREQUENCY VOLUME & END SESSION -->
           <div class="flex flex-wrap items-center justify-center gap-3 pt-0.5 text-xs font-mono">
             <div class="flex items-center gap-2 bg-white/5 border border-white/15 rounded-lg px-3 py-1.5">
               <span class="text-amber-300 font-bold">📖 Quran</span>
@@ -1152,19 +1214,75 @@
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
-  <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 text-xs flex flex-wrap justify-between items-center">
+  <footer class="w-full bg-[#0b0f18] border-t border-amber-500/20 px-4 py-3 text-xs flex flex-wrap justify-between items-center gap-2">
     <span class="font-bold text-amber-400 font-hud">AL-IRTIQAA CAPITAL • MUSHTARI TRADER [287]</span>
-    <span class="text-[10px] text-gray-400 font-mono">17-TAB COMPLETE ENGINE • BIO-SPIRITUAL 432Hz QURAN RESET + VIP TWEETS + LIVE TV</span>
+    <div class="flex items-center gap-3 text-[11px] font-mono">
+      <a href="https://www.instagram.com/mushtaritrader?dmpr=bW81dDl2N2lkdHhl" target="_blank" rel="noopener noreferrer" class="text-pink-300 hover:underline">📸 @mushtaritrader</a>
+      <a href="https://t.me/mushtaritraderr" target="_blank" rel="noopener noreferrer" class="text-sky-300 hover:underline">✈️ t.me/mushtaritraderr</a>
+    </div>
   </footer>
 
   <!-- ========================================================
-       4. COMPLETE MASTER JAVASCRIPT ENGINE (ALL 17 TABS)
+       4. COMPLETE MASTER JAVASCRIPT ENGINE (ALL 17 TABS + SOCIAL QR MODAL & DEEP-LINK HANDLERS)
        ======================================================== -->
   <script>
+    // ========================================================
+    // EXACT VERIFIED INSTAGRAM & TELEGRAM LINKS + QR MODAL HANDLER
+    // ========================================================
+    window.SOCIAL_CONFIG = {
+      IG: {
+        title: 'INSTAGRAM • @MUSHTARITRADER',
+        handle: '@MUSHTARITRADER',
+        url: 'https://www.instagram.com/mushtaritrader?dmpr=bW81dDl2N2lkdHhl',
+        qr: 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=6&data=https%3A%2F%2Fwww.instagram.com%2Fmushtaritrader%3Fdmpr%3DbW81dDl2N2lkdHhl'
+      },
+      TG: {
+        title: 'TELEGRAM • @MUSHTARITRADERR',
+        handle: '@MUSHTARITRADERR',
+        url: 'https://t.me/mushtaritraderr',
+        qr: 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=6&data=https%3A%2F%2Ft.me%2Fmushtaritraderr'
+      }
+    };
+    window.activeModalSocialUrl = '';
+
+    window.openExternalSocial = function(url, ev) {
+      // Force reliable open across in-app browsers, Android Chrome & iOS Safari
+      try {
+        const w = window.open(url, '_blank', 'noopener,noreferrer');
+        if (!w) window.location.href = url;
+      } catch (err) {
+        window.location.href = url;
+      }
+    };
+
+    window.openSocialQRModal = function(type) {
+      const cfg = window.SOCIAL_CONFIG[type] || window.SOCIAL_CONFIG.IG;
+      window.activeModalSocialUrl = cfg.url;
+      document.getElementById('qr-modal-title').textContent = cfg.title;
+      document.getElementById('qr-modal-handle').textContent = cfg.handle;
+      document.getElementById('qr-modal-img').src = cfg.qr;
+      document.getElementById('qr-modal-open-btn').href = cfg.url;
+      document.getElementById('qr-modal-copy-btn').textContent = '📋 COPY LINK';
+      const modal = document.getElementById('social-qr-modal');
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    };
+
+    window.closeSocialQRModal = function() {
+      const modal = document.getElementById('social-qr-modal');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+    };
+
+    window.copyActiveSocialLink = function() {
+      if (!window.activeModalSocialUrl) return;
+      navigator.clipboard?.writeText(window.activeModalSocialUrl).then(() => {
+        const btn = document.getElementById('qr-modal-copy-btn');
+        if (btn) btn.textContent = '✅ COPIED!';
+      }).catch(() => {});
+    };
+
     // GITHUB MENTOR PHOTO (Mustari.jpg KEPT INTACT)
     window.mentorAltPaths = ['1000437621.jpg', 'mentor.jpg', '1000433001.jpg'];
     window.mentorTryIdx = 0;
@@ -1186,7 +1304,7 @@
       r.readAsDataURL(file);
     };
 
-    // LATEST VERIFIED MONDAY NY RATES
+    // LATEST VERIFIED SPOT RATES
     window.masterState = {
       prices: {
         gold: 3666.73, silver: 43.60, oil: 81.88, brent: 89.40,
@@ -1249,7 +1367,7 @@
     }
 
     // =========================================================================
-    // NEW TAB 17 ENGINE: BIO-SPIRITUAL HACKING (WEB AUDIO 432Hz + MISHARY QURAN + MANDALA + BREATHING)
+    // TAB 17 ENGINE: BIO-SPIRITUAL HACKING (432Hz + MISHARY QURAN + MANDALA + BREATHING)
     // =========================================================================
     const BIO_PRESETS = [
       {
@@ -1282,257 +1400,65 @@
           ]}
         ]
       },
-      {
-        id: 'MIND_RESET',
-        icon: '🧠',
-        title: 'Mind Reset',
-        arabicTag: 'الرحمن',
-        band: 'Alpha',
-        carrierHz: 432,
-        beatHz: 10,
-        surahLabel: 'Surah Ar-Rahman (#55 · Opening Ayahs · Mishary Alafasy)',
-        forText: 'Clear mental clutter, overthinking, and screen fatigue between trading sessions.',
-        whyText: 'Surah Ar-Rahman’s rhythmic cadence restores emotional gratitude and resets prefrontal focus.',
-        surahNum: 55, surahName: 'Ar-Rahman · الرحمن', ayahCount: 13
-      },
-      {
-        id: 'JEALOUSY_HASAD',
-        icon: '🧿',
-        title: 'Jealousy · Hasad',
-        arabicTag: 'حسد',
-        band: 'Theta',
-        carrierHz: 432,
-        beatHz: 6,
-        surahLabel: 'Surah Al-Falaq (#113 · Full Loop · Mishary Alafasy)',
-        forText: 'Shield against evil eye (Nazar), external envy, and comparing your P&L with others.',
-        whyText: 'Direct Quranic refuge from "hasidin idha hasad" — neutralizing envy both incoming and internal.',
-        surahNum: 113, surahName: 'Al-Falaq · الفلق', ayahCount: 5
-      },
-      {
-        id: 'GHEEBAH',
-        icon: '🗣️',
-        title: 'Gheebah · Backbiting',
-        arabicTag: 'الغيبة',
-        band: 'Alpha',
-        carrierHz: 432,
-        beatHz: 10,
-        surahLabel: 'Surah Al-Hujurat (#49 · Ayah 10–12 · Mishary Alafasy)',
-        forText: 'Purify speech, social-media noise, and heart distractions that drain barakah.',
-        whyText: 'Surah Al-Hujurat establishes spiritual discipline of the tongue and inner brotherhood.',
-        surahNum: 49, surahName: 'Al-Hujurat · الحجرات', startAyah: 10, ayahCount: 3
-      },
-      {
-        id: 'MOTIVATION',
-        icon: '⚡',
-        title: 'Motivation & Energy',
-        arabicTag: 'الانشراح',
-        band: 'Beta',
-        carrierHz: 432,
-        beatHz: 14,
-        surahLabel: 'Surah Ash-Sharh (#94 · Full Loop · Mishary Alafasy)',
-        forText: 'Rebuild drive, confidence, and disciplined execution after a drawdown.',
-        whyText: '"Verily, with every difficulty comes ease" — awakens calm alertness without anxiety.',
-        surahNum: 94, surahName: 'Ash-Sharh · الشرح', ayahCount: 8
-      },
-      {
-        id: 'FOCUS_STUDY',
-        icon: '📚',
-        title: 'Focus & Study',
-        arabicTag: 'العلق',
-        band: 'Gamma',
-        carrierHz: 432,
-        beatHz: 40,
-        surahLabel: 'Surah Al-\'Alaq (#96 · Ayah 1–5 · Mishary Alafasy)',
-        forText: 'Deep chart research, macro study, and quantitative concentration.',
-        whyText: '40 Hz Gamma cognitive binding paired with the very first revelation of knowledge ("Iqra").',
-        surahNum: 96, surahName: 'Al-\'Alaq · العلق', ayahCount: 5
-      },
-      {
-        id: 'ANXIETY_CALM',
-        icon: '🌊',
-        title: 'Anxiety & Calm',
-        arabicTag: 'الشرح',
-        band: 'Theta',
-        carrierHz: 432,
-        beatHz: 6,
-        surahLabel: 'Surah Ash-Sharh (#94 · Full Loop · Mishary Alafasy)',
-        forText: 'Dissolve chest tightness, market fear, and high-volatility stress.',
-        whyText: 'Theta 6 Hz slows racing beta thoughts while Surah Ash-Sharh expands the chest.',
-        surahNum: 94, surahName: 'Ash-Sharh · الشرح', ayahCount: 8
-      },
-      {
-        id: 'DEEP_SLEEP',
-        icon: '🌙',
-        title: 'Deep Sleep',
-        arabicTag: 'الملك',
-        band: 'Delta',
-        carrierHz: 432,
-        beatHz: 2,
-        surahLabel: 'Surah Al-Mulk (#67 · Ayah 1–5 · Mishary Alafasy)',
-        forText: 'Unwind after New York close for restorative sleep without chart anxiety.',
-        whyText: 'Prophetic nightly Sunnah protection paired with 2 Hz Delta slow-wave relaxation.',
-        surahNum: 67, surahName: 'Al-Mulk · الملك', ayahCount: 5
-      },
-      {
-        id: 'DHIKR_MEDITATION',
-        icon: '📿',
-        title: 'Dhikr & Meditation',
-        arabicTag: 'المزمل',
-        band: 'Theta',
-        carrierHz: 432,
-        beatHz: 4,
-        surahLabel: 'Surah Al-Muzzammil (#73 · Ayah 1–8 · Mishary Alafasy)',
-        forText: 'Quiet solitary reflection, Muraqabah, and spiritual alignment [Abjad 287].',
-        whyText: 'Surah Al-Muzzammil anchors night stillness and wholehearted remembrance.',
-        surahNum: 73, surahName: 'Al-Muzzammil · المزمل', ayahCount: 8
-      },
-      {
-        id: 'HEALING_SHIFA',
-        icon: '💚',
-        title: 'Healing & Shifa',
-        arabicTag: 'الفاتحة',
-        band: 'Schumann',
-        carrierHz: 432,
-        beatHz: 7.83,
-        surahLabel: 'Surah Al-Fatiha (#1 · Full Loop · Mishary Alafasy)',
-        forText: 'Complete spiritual & physical rejuvenation (Ash-Shafiyah) over Earth’s 7.83 Hz resonance.',
-        whyText: 'Surah Al-Fatiha is the ultimate Quranic Ruqyah and Shifa for heart, mind, and body.',
-        surahNum: 1, surahName: 'Al-Fatiha · الفاتحة', startAyah: 2, ayahCount: 6
-      }
+      { id: 'MIND_RESET', icon: '🧠', title: 'Mind Reset', arabicTag: 'الرحمن', band: 'Alpha', carrierHz: 432, beatHz: 10, surahLabel: 'Surah Ar-Rahman (#55 · Opening Ayahs · Mishary Alafasy)', forText: 'Clear mental clutter, overthinking, and screen fatigue between trading sessions.', whyText: 'Surah Ar-Rahman’s rhythmic cadence restores emotional gratitude and resets prefrontal focus.', surahNum: 55, surahName: 'Ar-Rahman · الرحمن', ayahCount: 13 },
+      { id: 'JEALOUSY_HASAD', icon: '🧿', title: 'Jealousy · Hasad', arabicTag: 'حسد', band: 'Theta', carrierHz: 432, beatHz: 6, surahLabel: 'Surah Al-Falaq (#113 · Full Loop · Mishary Alafasy)', forText: 'Shield against evil eye (Nazar), external envy, and comparing your P&L with others.', whyText: 'Direct Quranic refuge from "hasidin idha hasad" — neutralizing envy both incoming and internal.', surahNum: 113, surahName: 'Al-Falaq · الفلق', ayahCount: 5 },
+      { id: 'GHEEBAH', icon: '🗣️', title: 'Gheebah · Backbiting', arabicTag: 'الغيبة', band: 'Alpha', carrierHz: 432, beatHz: 10, surahLabel: 'Surah Al-Hujurat (#49 · Ayah 10–12 · Mishary Alafasy)', forText: 'Purify speech, social-media noise, and heart distractions that drain barakah.', whyText: 'Surah Al-Hujurat establishes spiritual discipline of the tongue and inner brotherhood.', surahNum: 49, surahName: 'Al-Hujurat · الحجرات', startAyah: 10, ayahCount: 3 },
+      { id: 'MOTIVATION', icon: '⚡', title: 'Motivation & Energy', arabicTag: 'الانشراح', band: 'Beta', carrierHz: 432, beatHz: 14, surahLabel: 'Surah Ash-Sharh (#94 · Full Loop · Mishary Alafasy)', forText: 'Rebuild drive, confidence, and disciplined execution after a drawdown.', whyText: '"Verily, with every difficulty comes ease" — awakens calm alertness without anxiety.', surahNum: 94, surahName: 'Ash-Sharh · الشرح', ayahCount: 8 },
+      { id: 'FOCUS_STUDY', icon: '📚', title: 'Focus & Study', arabicTag: 'العلق', band: 'Gamma', carrierHz: 432, beatHz: 40, surahLabel: 'Surah Al-\'Alaq (#96 · Ayah 1–5 · Mishary Alafasy)', forText: 'Deep chart research, macro study, and quantitative concentration.', whyText: '40 Hz Gamma cognitive binding paired with the very first revelation of knowledge ("Iqra").', surahNum: 96, surahName: 'Al-\'Alaq · العلق', ayahCount: 5 },
+      { id: 'ANXIETY_CALM', icon: '🌊', title: 'Anxiety & Calm', arabicTag: 'الشرح', band: 'Theta', carrierHz: 432, beatHz: 6, surahLabel: 'Surah Ash-Sharh (#94 · Full Loop · Mishary Alafasy)', forText: 'Dissolve chest tightness, market fear, and high-volatility stress.', whyText: 'Theta 6 Hz slows racing beta thoughts while Surah Ash-Sharh expands the chest.', surahNum: 94, surahName: 'Ash-Sharh · الشرح', ayahCount: 8 },
+      { id: 'DEEP_SLEEP', icon: '🌙', title: 'Deep Sleep', arabicTag: 'الملك', band: 'Delta', carrierHz: 432, beatHz: 2, surahLabel: 'Surah Al-Mulk (#67 · Ayah 1–5 · Mishary Alafasy)', forText: 'Unwind after New York close for restorative sleep without chart anxiety.', whyText: 'Prophetic nightly Sunnah protection paired with 2 Hz Delta slow-wave relaxation.', surahNum: 67, surahName: 'Al-Mulk · الملك', ayahCount: 5 },
+      { id: 'DHIKR_MEDITATION', icon: '📿', title: 'Dhikr & Meditation', arabicTag: 'المزمل', band: 'Theta', carrierHz: 432, beatHz: 4, surahLabel: 'Surah Al-Muzzammil (#73 · Ayah 1–8 · Mishary Alafasy)', forText: 'Quiet solitary reflection, Muraqabah, and spiritual alignment [Abjad 287].', whyText: 'Surah Al-Muzzammil anchors night stillness and wholehearted remembrance.', surahNum: 73, surahName: 'Al-Muzzammil · المزمل', ayahCount: 8 },
+      { id: 'HEALING_SHIFA', icon: '💚', title: 'Healing & Shifa', arabicTag: 'الفاتحة', band: 'Schumann', carrierHz: 432, beatHz: 7.83, surahLabel: 'Surah Al-Fatiha (#1 · Full Loop · Mishary Alafasy)', forText: 'Complete spiritual & physical rejuvenation (Ash-Shafiyah) over Earth’s 7.83 Hz resonance.', whyText: 'Surah Al-Fatiha is the ultimate Quranic Ruqyah and Shifa for heart, mind, and body.', surahNum: 1, surahName: 'Al-Fatiha · الفاتحة', startAyah: 2, ayahCount: 6 }
     ];
 
     window.selectedBioPresetId = 'TRADING_CALM';
     window.bioSessionState = {
-      active: false,
-      audioCtx: null,
-      leftOsc: null,
-      rightOsc: null,
-      freqMasterGain: null,
-      quranAudio: null,
-      queue: [],
-      queueIdx: 0,
-      mandalaPhase: 0,
-      sessionStartMs: 0
+      active: false, audioCtx: null, leftOsc: null, rightOsc: null,
+      freqMasterGain: null, quranAudio: null, queue: [], queueIdx: 0, mandalaPhase: 0, sessionStartMs: 0
     };
 
     function pad3(n) { return String(n).padStart(3, '0'); }
 
     function buildAudioQueueForPreset(preset) {
-      const q = [];
-      // Opening Ta'awwudh
-      q.push({
-        ar: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
-        meta: 'Opening Refuge · Golden Ratio 432 · 576 · 699 Hz',
-        url: 'https://everyayah.com/data/Alafasy_128kbps/000001.mp3'
-      });
-
+      const q = [{ ar: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ', meta: 'Opening Refuge · Golden Ratio 432 · 576 · 699 Hz', url: 'https://everyayah.com/data/Alafasy_128kbps/000001.mp3' }];
       if (preset.playlist) {
         preset.playlist.forEach(sur => {
-          q.push({
-            ar: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-            meta: `${sur.name} · Bismillah`,
-            url: 'https://everyayah.com/data/Alafasy_128kbps/001001.mp3'
-          });
-          sur.ayahs.forEach(a => {
-            q.push({
-              ar: a.ar,
-              meta: `${sur.name} · ayah ${a.n}/${sur.total}`,
-              url: a.url
-            });
-          });
+          q.push({ ar: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', meta: `${sur.name} · Bismillah`, url: 'https://everyayah.com/data/Alafasy_128kbps/001001.mp3' });
+          sur.ayahs.forEach(a => q.push({ ar: a.ar, meta: `${sur.name} · ayah ${a.n}/${sur.total}`, url: a.url }));
         });
       } else {
-        q.push({
-          ar: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-          meta: `${preset.surahName} · Bismillah`,
-          url: 'https://everyayah.com/data/Alafasy_128kbps/001001.mp3'
-        });
+        q.push({ ar: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', meta: `${preset.surahName} · Bismillah`, url: 'https://everyayah.com/data/Alafasy_128kbps/001001.mp3' });
         const start = preset.startAyah || 1;
         for (let i = 0; i < preset.ayahCount; i++) {
           const ayNum = start + i;
-          q.push({
-            ar: `${preset.surahName} — الآية ${ayNum}`,
-            meta: `${preset.surahName} · ayah ${i + 1}/${preset.ayahCount}`,
-            url: `https://everyayah.com/data/Alafasy_128kbps/${pad3(preset.surahNum)}${pad3(ayNum)}.mp3`
-          });
+          q.push({ ar: `${preset.surahName} — الآية ${ayNum}`, meta: `${preset.surahName} · ayah ${i + 1}/${preset.ayahCount}`, url: `https://everyayah.com/data/Alafasy_128kbps/${pad3(preset.surahNum)}${pad3(ayNum)}.mp3` });
         }
       }
       return q;
     }
 
-    window.selectBioPreset = function(id) {
-      window.selectedBioPresetId = id;
-      window.renderBioConsole();
-    };
+    window.selectBioPreset = function(id) { window.selectedBioPresetId = id; window.renderBioConsole(); };
 
     window.renderBioConsole = function() {
-      const featBox = document.getElementById('bio-featured-preset');
-      const gridBox = document.getElementById('bio-presets-grid');
-      const specBox = document.getElementById('bio-spec-panel');
+      const featBox = document.getElementById('bio-featured-preset'), gridBox = document.getElementById('bio-presets-grid'), specBox = document.getElementById('bio-spec-panel');
       if (!featBox || !gridBox || !specBox) return;
+      const feat = BIO_PRESETS[0], others = BIO_PRESETS.slice(1), cur = BIO_PRESETS.find(p => p.id === window.selectedBioPresetId) || feat;
 
-      const feat = BIO_PRESETS[0];
-      const others = BIO_PRESETS.slice(1);
-      const cur = BIO_PRESETS.find(p => p.id === window.selectedBioPresetId) || feat;
-
-      featBox.innerHTML = `
-        <div onclick="window.selectBioPreset('${feat.id}')" class="bio-preset-card ${cur.id === feat.id ? 'bio-preset-active' : ''} w-full flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <div class="font-hud font-extrabold text-sm sm:text-base text-amber-300 flex items-center gap-2">
-              <span>${feat.icon}</span><span>${feat.title}</span>
-            </div>
-            <div class="text-xs font-mono text-gray-300 mt-0.5">${feat.band} · ${feat.beatHz} Hz · <span class="font-arabic text-amber-200 text-sm">${feat.arabicTag}</span> · Al-Falaq + An-Nas</div>
-          </div>
-          <span class="text-[10px] font-mono bg-amber-500/20 border border-amber-400/50 text-amber-200 px-2.5 py-1 rounded font-bold uppercase">★ TRADER RECOMMENDED</span>
-        </div>`;
-
-      gridBox.innerHTML = others.map(p => `
-        <div onclick="window.selectBioPreset('${p.id}')" class="bio-preset-card ${cur.id === p.id ? 'bio-preset-active' : ''} flex flex-col justify-between space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-hud font-bold text-xs sm:text-sm text-white">${p.icon} ${p.title}</span>
-            <span class="font-arabic text-amber-300 text-sm">${p.arabicTag}</span>
-          </div>
-          <div class="text-[11px] font-mono text-cyan-300">${p.band} · ${p.beatHz} Hz · ${p.surahName.split('·')[0]}</div>
-        </div>`).join('');
-
-      specBox.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5">
-          <span class="md:col-span-2 text-gray-400 uppercase font-bold">FOR</span>
-          <span class="md:col-span-10 text-white font-semibold">${cur.forText}</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5">
-          <span class="md:col-span-2 text-gray-400 uppercase font-bold">FREQUENCY</span>
-          <span class="md:col-span-10 text-cyan-300 font-bold">${cur.carrierHz} Hz carrier · ${cur.band} · ${cur.beatHz} Hz binaural beat (Left ${cur.carrierHz.toFixed(2)} Hz / Right ${(cur.carrierHz + cur.beatHz).toFixed(2)} Hz — headphones)</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5">
-          <span class="md:col-span-2 text-gray-400 uppercase font-bold">OPENING</span>
-          <span class="md:col-span-10 text-amber-200">A'udhu billah + Bismillah over a golden-ratio 432 Hz chord (432 · 576 · 699 Hz = 1 · 4/3 · φ), before every surah</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5">
-          <span class="md:col-span-2 text-gray-400 uppercase font-bold">SURAH</span>
-          <span class="md:col-span-10 text-emerald-300 font-bold">${cur.surahLabel}</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2">
-          <span class="md:col-span-2 text-gray-400 uppercase font-bold">WHY THIS SURAH</span>
-          <span class="md:col-span-10 text-gray-300 leading-relaxed">${cur.whyText}</span>
-        </div>`;
+      featBox.innerHTML = `<div onclick="window.selectBioPreset('${feat.id}')" class="bio-preset-card ${cur.id === feat.id ? 'bio-preset-active' : ''} w-full flex flex-wrap items-center justify-between gap-2"><div><div class="font-hud font-extrabold text-sm sm:text-base text-amber-300 flex items-center gap-2"><span>${feat.icon}</span><span>${feat.title}</span></div><div class="text-xs font-mono text-gray-300 mt-0.5">${feat.band} · ${feat.beatHz} Hz · <span class="font-arabic text-amber-200 text-sm">${feat.arabicTag}</span> · Al-Falaq + An-Nas</div></div><span class="text-[10px] font-mono bg-amber-500/20 border border-amber-400/50 text-amber-200 px-2.5 py-1 rounded font-bold uppercase">★ TRADER RECOMMENDED</span></div>`;
+      gridBox.innerHTML = others.map(p => `<div onclick="window.selectBioPreset('${p.id}')" class="bio-preset-card ${cur.id === p.id ? 'bio-preset-active' : ''} flex flex-col justify-between space-y-1.5"><div class="flex items-center justify-between"><span class="font-hud font-bold text-xs sm:text-sm text-white">${p.icon} ${p.title}</span><span class="font-arabic text-amber-300 text-sm">${p.arabicTag}</span></div><div class="text-[11px] font-mono text-cyan-300">${p.band} · ${p.beatHz} Hz · ${p.surahName.split('·')[0]}</div></div>`).join('');
+      specBox.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5"><span class="md:col-span-2 text-gray-400 uppercase font-bold">FOR</span><span class="md:col-span-10 text-white font-semibold">${cur.forText}</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5"><span class="md:col-span-2 text-gray-400 uppercase font-bold">FREQUENCY</span><span class="md:col-span-10 text-cyan-300 font-bold">${cur.carrierHz} Hz carrier · ${cur.band} · ${cur.beatHz} Hz binaural beat (Left ${cur.carrierHz.toFixed(2)} Hz / Right ${(cur.carrierHz + cur.beatHz).toFixed(2)} Hz — headphones)</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5"><span class="md:col-span-2 text-gray-400 uppercase font-bold">OPENING</span><span class="md:col-span-10 text-amber-200">A'udhu billah + Bismillah over a golden-ratio 432 Hz chord (432 · 576 · 699 Hz = 1 · 4/3 · φ), before every surah</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-2 border-b border-white/10 pb-2.5"><span class="md:col-span-2 text-gray-400 uppercase font-bold">SURAH</span><span class="md:col-span-10 text-emerald-300 font-bold">${cur.surahLabel}</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-2"><span class="md:col-span-2 text-gray-400 uppercase font-bold">WHY THIS SURAH</span><span class="md:col-span-10 text-gray-300 leading-relaxed">${cur.whyText}</span></div>`;
     };
 
     function playGoldenRatioOpeningChord(ctx) {
-      // Softly strike 432 Hz, 576 Hz (4/3), and 699 Hz (Golden Ratio phi) bell harmonics
       const now = ctx.currentTime;
       [432, 576, 699].forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const g = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
+        const osc = ctx.createOscillator(), g = ctx.createGain();
+        osc.type = 'sine'; osc.frequency.setValueAtTime(freq, now);
         g.gain.setValueAtTime(0.0001, now);
         g.gain.exponentialRampToValueAtTime(0.045 / (i + 1), now + 0.8);
         g.gain.exponentialRampToValueAtTime(0.0001, now + 5.5);
-        osc.connect(g);
-        g.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 5.8);
+        osc.connect(g); g.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 5.8);
       });
     }
 
@@ -1540,42 +1466,22 @@
       const st = window.bioSessionState;
       if (!st.active || !st.queue.length) return;
       const item = st.queue[st.queueIdx % st.queue.length];
+      if (document.getElementById('bio-ayah-arabic')) document.getElementById('bio-ayah-arabic').textContent = item.ar;
+      if (document.getElementById('bio-ayah-meta')) document.getElementById('bio-ayah-meta').textContent = item.meta;
+      if (item.meta.includes('Bismillah') && st.audioCtx) playGoldenRatioOpeningChord(st.audioCtx);
 
-      const arEl = document.getElementById('bio-ayah-arabic');
-      const metaEl = document.getElementById('bio-ayah-meta');
-      if (arEl) arEl.textContent = item.ar;
-      if (metaEl) metaEl.textContent = item.meta;
-
-      // Strike soft golden-ratio chime whenever Bismillah starts a surah
-      if (item.meta.includes('Bismillah') && st.audioCtx) {
-        playGoldenRatioOpeningChord(st.audioCtx);
-      }
-
-      if (!st.quranAudio) {
-        st.quranAudio = new Audio();
-        st.quranAudio.crossOrigin = 'anonymous';
-      }
-      const qVol = (parseFloat(document.getElementById('bio-quran-vol')?.value) ?? 88) / 100;
-      st.quranAudio.volume = qVol;
+      if (!st.quranAudio) { st.quranAudio = new Audio(); st.quranAudio.crossOrigin = 'anonymous'; }
+      st.quranAudio.volume = (parseFloat(document.getElementById('bio-quran-vol')?.value) ?? 88) / 100;
       st.quranAudio.src = item.url;
-      st.quranAudio.onended = () => {
-        if (!st.active) return;
-        st.queueIdx = (st.queueIdx + 1) % st.queue.length;
-        setTimeout(playNextBioQueueItem, 350);
-      };
-      st.quranAudio.onerror = () => {
-        if (!st.active) return;
-        st.queueIdx = (st.queueIdx + 1) % st.queue.length;
-        setTimeout(playNextBioQueueItem, 600);
-      };
+      st.quranAudio.onended = () => { if (!st.active) return; st.queueIdx = (st.queueIdx + 1) % st.queue.length; setTimeout(playNextBioQueueItem, 350); };
+      st.quranAudio.onerror = () => { if (!st.active) return; st.queueIdx = (st.queueIdx + 1) % st.queue.length; setTimeout(playNextBioQueueItem, 600); };
       st.quranAudio.play().catch(() => {});
     }
 
     window.startBioSpiritualSession = function() {
-      window.stopBioSpiritualSession(); // Clean any old audio first
+      window.stopBioSpiritualSession();
       const preset = BIO_PRESETS.find(p => p.id === window.selectedBioPresetId) || BIO_PRESETS[0];
       const st = window.bioSessionState;
-
       document.getElementById('bio-console-setup')?.classList.add('hidden');
       const activeBox = document.getElementById('bio-active-session');
       if (activeBox) { activeBox.classList.remove('hidden'); activeBox.classList.add('flex'); }
@@ -1586,43 +1492,27 @@
       document.getElementById('bio-hud-right').textContent = `${rightHz.toFixed(2)} Hz`;
       document.getElementById('bio-hud-beat').textContent = `${preset.beatHz.toFixed(2)} Hz · ${preset.band}`;
 
-      // Initialize Stereo Web Audio Binaural Synthesizer
       const AudioContextCls = window.AudioContext || window.webkitAudioContext;
       const ctx = new AudioContextCls();
       if (ctx.state === 'suspended') ctx.resume();
 
-      const merger = ctx.createChannelMerger(2);
-      const masterGain = ctx.createGain();
+      const merger = ctx.createChannelMerger(2), masterGain = ctx.createGain();
       const fVol = (parseFloat(document.getElementById('bio-freq-vol')?.value) ?? 28) / 100;
       masterGain.gain.setValueAtTime(0.001, ctx.currentTime);
       masterGain.gain.linearRampToValueAtTime(fVol * 0.22, ctx.currentTime + 2.0);
 
-      const leftOsc = ctx.createOscillator();
-      const rightOsc = ctx.createOscillator();
-      leftOsc.type = 'sine';
-      rightOsc.type = 'sine';
+      const leftOsc = ctx.createOscillator(), rightOsc = ctx.createOscillator();
+      leftOsc.type = 'sine'; rightOsc.type = 'sine';
       leftOsc.frequency.setValueAtTime(preset.carrierHz, ctx.currentTime);
       rightOsc.frequency.setValueAtTime(rightHz, ctx.currentTime);
-
-      leftOsc.connect(merger, 0, 0);  // Left ear pure 432 Hz
-      rightOsc.connect(merger, 0, 1); // Right ear 432 + Beat Hz
-      merger.connect(masterGain);
-      masterGain.connect(ctx.destination);
-
-      leftOsc.start();
-      rightOsc.start();
+      leftOsc.connect(merger, 0, 0); rightOsc.connect(merger, 0, 1);
+      merger.connect(masterGain); masterGain.connect(ctx.destination);
+      leftOsc.start(); rightOsc.start();
       playGoldenRatioOpeningChord(ctx);
 
-      st.active = true;
-      st.audioCtx = ctx;
-      st.leftOsc = leftOsc;
-      st.rightOsc = rightOsc;
-      st.freqMasterGain = masterGain;
-      st.queue = buildAudioQueueForPreset(preset);
-      st.queueIdx = 0;
-      st.sessionStartMs = Date.now();
-
-      // Start Quran Recitation after 1.4s Golden Ratio Chord Opening
+      st.active = true; st.audioCtx = ctx; st.leftOsc = leftOsc; st.rightOsc = rightOsc;
+      st.freqMasterGain = masterGain; st.queue = buildAudioQueueForPreset(preset);
+      st.queueIdx = 0; st.sessionStartMs = Date.now();
       setTimeout(() => { if (st.active) playNextBioQueueItem(); }, 1400);
     };
 
@@ -1631,42 +1521,29 @@
       const qVol = (parseFloat(document.getElementById('bio-quran-vol')?.value) ?? 88) / 100;
       const fVol = (parseFloat(document.getElementById('bio-freq-vol')?.value) ?? 28) / 100;
       if (st.quranAudio) st.quranAudio.volume = qVol;
-      if (st.freqMasterGain && st.audioCtx) {
-        st.freqMasterGain.gain.setTargetAtTime(fVol * 0.22, st.audioCtx.currentTime, 0.15);
-      }
+      if (st.freqMasterGain && st.audioCtx) st.freqMasterGain.gain.setTargetAtTime(fVol * 0.22, st.audioCtx.currentTime, 0.15);
     };
 
     window.stopBioSpiritualSession = function() {
       const st = window.bioSessionState;
       st.active = false;
-      if (st.quranAudio) {
-        try { st.quranAudio.pause(); st.quranAudio.src = ''; } catch (e) {}
-      }
+      if (st.quranAudio) { try { st.quranAudio.pause(); st.quranAudio.src = ''; } catch (e) {} }
       if (st.leftOsc) { try { st.leftOsc.stop(); } catch (e) {} st.leftOsc = null; }
       if (st.rightOsc) { try { st.rightOsc.stop(); } catch (e) {} st.rightOsc = null; }
       if (st.audioCtx) { try { st.audioCtx.close(); } catch (e) {} st.audioCtx = null; }
-
       const activeBox = document.getElementById('bio-active-session');
       if (activeBox) { activeBox.classList.add('hidden'); activeBox.classList.remove('flex'); }
       document.getElementById('bio-console-setup')?.classList.remove('hidden');
     };
 
-    // SACRED ISLAMIC 12-STAR GEOMETRIC MANDALA + 4s INHALE / 6s EXHALE ANIMATION (EXACT VIDEO VISUALS!)
     function drawSacredStar(ctx, cx, cy, outerR, innerR, points, fillStyle, rotOffset = 0) {
-      ctx.save();
-      ctx.translate(cx, cy);
-      ctx.rotate(rotOffset);
-      ctx.beginPath();
+      ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotOffset); ctx.beginPath();
       for (let i = 0; i < points * 2; i++) {
-        const r = i % 2 === 0 ? outerR : innerR;
-        const a = (i * Math.PI) / points;
+        const r = i % 2 === 0 ? outerR : innerR, a = (i * Math.PI) / points;
         if (i === 0) ctx.moveTo(Math.cos(a) * r, Math.sin(a) * r);
         else ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
       }
-      ctx.closePath();
-      ctx.fillStyle = fillStyle;
-      ctx.fill();
-      ctx.restore();
+      ctx.closePath(); ctx.fillStyle = fillStyle; ctx.fill(); ctx.restore();
     }
 
     function animateBioMandala() {
@@ -1674,112 +1551,42 @@
       if (st.active && window.currentActiveView === 'BIO_SPIRITUAL') {
         const cnv = document.getElementById('bio-mandala-canvas');
         if (cnv) {
-          const ctx = cnv.getContext('2d');
-          const W = cnv.width, H = cnv.height, cx = W / 2, cy = H / 2;
+          const ctx = cnv.getContext('2d'), W = cnv.width, H = cnv.height, cx = W / 2, cy = H / 2;
           ctx.clearRect(0, 0, W, H);
-
-          // 10-second respiratory cycle: 4s Breathe in -> 6s Breathe out (Exact Video Pacing!)
-          const elapsedSec = (Date.now() - st.sessionStartMs) / 1000;
-          const cyclePos = elapsedSec % 10;
+          const elapsedSec = (Date.now() - st.sessionStartMs) / 1000, cyclePos = elapsedSec % 10;
           let breathScale = 1.0;
           const breathEl = document.getElementById('bio-breath-text');
-
           if (cyclePos < 4) {
-            const p = cyclePos / 4; // 0 -> 1 expanding
-            breathScale = 0.86 + 0.22 * Math.sin((p * Math.PI) / 2);
-            const countLeft = Math.max(1, Math.ceil(4 - cyclePos));
-            if (breathEl) breathEl.textContent = `Breathe in... ${countLeft}`;
+            breathScale = 0.86 + 0.22 * Math.sin(((cyclePos / 4) * Math.PI) / 2);
+            if (breathEl) breathEl.textContent = `Breathe in... ${Math.max(1, Math.ceil(4 - cyclePos))}`;
           } else {
-            const p = (cyclePos - 4) / 6; // 0 -> 1 contracting softly
-            breathScale = 1.08 - 0.22 * Math.sin((p * Math.PI) / 2);
-            const countLeft = Math.max(1, Math.ceil(10 - cyclePos));
-            if (breathEl) breathEl.textContent = `Breathe out... ${countLeft}`;
+            breathScale = 1.08 - 0.22 * Math.sin((((cyclePos - 4) / 6) * Math.PI) / 2);
+            if (breathEl) breathEl.textContent = `Breathe out... ${Math.max(1, Math.ceil(10 - cyclePos))}`;
           }
-
           st.mandalaPhase += 0.0045;
-
-          // Radiant Central Breathing Aura
-          const glowR = 195 * breathScale;
-          const grad = ctx.createRadialGradient(cx, cy, 8, cx, cy, glowR);
+          const glowR = 195 * breathScale, grad = ctx.createRadialGradient(cx, cy, 8, cx, cy, glowR);
           grad.addColorStop(0, 'rgba(255, 250, 225, 0.82)');
           grad.addColorStop(0.45, 'rgba(186, 230, 253, 0.28)');
           grad.addColorStop(1, 'rgba(11, 37, 52, 0)');
-          ctx.fillStyle = grad;
+          ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(cx, cy, glowR, 0, Math.PI * 2); ctx.fill();
+
+          [92, 165, 245, 295].forEach(r => { ctx.beginPath(); ctx.arc(cx, cy, r * breathScale, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(253, 230, 138, 0.22)'; ctx.lineWidth = 1.1; ctx.stroke(); });
+
+          ctx.save(); ctx.translate(cx, cy); ctx.rotate(st.mandalaPhase * 0.4);
+          for (let i = 0; i < 12; i++) { const a = (i * Math.PI) / 6; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(Math.cos(a) * 300 * breathScale, Math.sin(a) * 300 * breathScale); ctx.strokeStyle = 'rgba(253, 230, 138, 0.16)'; ctx.stroke(); }
           ctx.beginPath();
-          ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
-          ctx.fill();
+          for (let i = 0; i < 12; i++) { const a1 = (i * Math.PI) / 6, a2 = ((i + 5) * Math.PI) / 6; ctx.moveTo(Math.cos(a1) * 245 * breathScale, Math.sin(a1) * 245 * breathScale); ctx.lineTo(Math.cos(a2) * 245 * breathScale, Math.sin(a2) * 245 * breathScale); }
+          ctx.strokeStyle = 'rgba(251, 191, 36, 0.28)'; ctx.stroke(); ctx.restore();
 
-          // Concentric Sacred Geometric Circles & 12 Radial Spokes
-          [92, 165, 245, 295].forEach(r => {
-            ctx.beginPath();
-            ctx.arc(cx, cy, r * breathScale, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(253, 230, 138, 0.22)';
-            ctx.lineWidth = 1.1;
-            ctx.stroke();
-          });
-
-          ctx.save();
-          ctx.translate(cx, cy);
-          ctx.rotate(st.mandalaPhase * 0.4);
-          for (let i = 0; i < 12; i++) {
-            const a = (i * Math.PI) / 6;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(Math.cos(a) * 300 * breathScale, Math.sin(a) * 300 * breathScale);
-            ctx.strokeStyle = 'rgba(253, 230, 138, 0.16)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-
-          // Interlaced 12-Pointed Geometric Rosette Lines
-          ctx.beginPath();
-          for (let i = 0; i < 12; i++) {
-            const a1 = (i * Math.PI) / 6;
-            const a2 = ((i + 5) * Math.PI) / 6;
-            ctx.moveTo(Math.cos(a1) * 245 * breathScale, Math.sin(a1) * 245 * breathScale);
-            ctx.lineTo(Math.cos(a2) * 245 * breathScale, Math.sin(a2) * 245 * breathScale);
-          }
-          ctx.strokeStyle = 'rgba(251, 191, 36, 0.28)';
-          ctx.lineWidth = 1.15;
-          ctx.stroke();
-          ctx.restore();
-
-          // Outer Ring of Alternating Gold & Cyan 10-Pointed Islamic Stars (Clockwise)
-          const outerRingR = 245 * breathScale;
-          for (let i = 0; i < 12; i++) {
-            const ang = st.mandalaPhase + (i * Math.PI) / 6;
-            const sx = cx + Math.cos(ang) * outerRingR;
-            const sy = cy + Math.sin(ang) * outerRingR;
-            const col = i % 2 === 0 ? 'rgba(253, 224, 71, 0.92)' : 'rgba(103, 232, 249, 0.92)';
-            drawSacredStar(ctx, sx, sy, 24, 11, 10, col, -st.mandalaPhase * 2);
-          }
-
-          // Middle Ring of Stars (Counter-Clockwise)
-          const midRingR = 165 * breathScale;
-          for (let i = 0; i < 12; i++) {
-            const ang = -st.mandalaPhase * 1.3 + (i * Math.PI) / 6;
-            const sx = cx + Math.cos(ang) * midRingR;
-            const sy = cy + Math.sin(ang) * midRingR;
-            const col = i % 2 === 0 ? 'rgba(254, 215, 170, 0.88)' : 'rgba(125, 211, 252, 0.88)';
-            drawSacredStar(ctx, sx, sy, 15, 7, 10, col, st.mandalaPhase * 2);
-          }
-
-          // Inner Ring of Delicate Stars
-          const innerRingR = 92 * breathScale;
-          for (let i = 0; i < 12; i++) {
-            const ang = st.mandalaPhase * 1.6 + (i * Math.PI) / 6;
-            const sx = cx + Math.cos(ang) * innerRingR;
-            const sy = cy + Math.sin(ang) * innerRingR;
-            drawSacredStar(ctx, sx, sy, 8, 3.8, 8, 'rgba(254, 240, 138, 0.85)', ang);
-          }
+          for (let i = 0; i < 12; i++) { const ang = st.mandalaPhase + (i * Math.PI) / 6; drawSacredStar(ctx, cx + Math.cos(ang) * 245 * breathScale, cy + Math.sin(ang) * 245 * breathScale, 24, 11, 10, i % 2 === 0 ? 'rgba(253, 224, 71, 0.92)' : 'rgba(103, 232, 249, 0.92)', -st.mandalaPhase * 2); }
+          for (let i = 0; i < 12; i++) { const ang = -st.mandalaPhase * 1.3 + (i * Math.PI) / 6; drawSacredStar(ctx, cx + Math.cos(ang) * 165 * breathScale, cy + Math.sin(ang) * 165 * breathScale, 15, 7, 10, i % 2 === 0 ? 'rgba(254, 215, 170, 0.88)' : 'rgba(125, 211, 252, 0.88)', st.mandalaPhase * 2); }
+          for (let i = 0; i < 12; i++) { const ang = st.mandalaPhase * 1.6 + (i * Math.PI) / 6; drawSacredStar(ctx, cx + Math.cos(ang) * 92 * breathScale, cy + Math.sin(ang) * 92 * breathScale, 8, 3.8, 8, 'rgba(254, 240, 138, 0.85)', ang); }
         }
       }
       requestAnimationFrame(animateBioMandala);
     }
 
-    // ========================================================
     // TAB 16: VIP TWEETS
-    // ========================================================
     window.currentVIPFilter = 'ALL';
     window.vipTweetsFeed = [];
     const BASE_VIP_TWEETS = [
@@ -1800,26 +1607,10 @@
       const grid = document.getElementById('vip-tweets-grid'); if (!grid) return;
       const src = window.vipTweetsFeed.length ? window.vipTweetsFeed : BASE_VIP_TWEETS;
       const list = window.currentVIPFilter === 'ALL' ? src : src.filter(x => x.cat === window.currentVIPFilter);
-      grid.innerHTML = (list.length ? list : src).map(t => `
-        <div class="radar-card p-4 border-2 border-sky-500/35 bg-gradient-to-b from-[#0a1324] to-[#060a12] flex flex-col justify-between space-y-3">
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between gap-2">
-              <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center font-hud font-black text-white text-sm">${t.initials}</div>
-                <div><strong class="text-white text-xs sm:text-sm font-hud">${t.name} ✔</strong><span class="text-[10px] font-mono text-gray-400 block">${t.handle} • ${t.time}</span></div>
-              </div>
-              <span class="text-[9px] font-mono font-bold bg-sky-500/15 text-sky-300 px-2 py-0.5 rounded">${t.badge}</span>
-            </div>
-            <p class="text-xs font-mono text-gray-100 leading-relaxed bg-black/50 p-3 rounded-xl border border-white/10">"${t.text}"</p>
-          </div>
-          <div class="space-y-2">
-            <div class="bg-amber-950/35 border border-amber-500/35 rounded-lg p-2 text-[10px] font-mono"><div class="font-extrabold text-amber-300">${t.impactLevel}</div><div class="text-gray-200 mt-0.5">${t.impactAssets}</div></div>
-            <div class="flex justify-between text-[10px] font-hud font-bold"><button type="button" onclick="window.switchView('AI_INTELLIGENCE')" class="text-purple-300 cursor-pointer">🧠 Simulate in AI Predictor</button><a href="${t.xUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400">OPEN SOURCE ↗</a></div>
-          </div>
-        </div>`).join('');
+      grid.innerHTML = (list.length ? list : src).map(t => `<div class="radar-card p-4 border-2 border-sky-500/35 bg-gradient-to-b from-[#0a1324] to-[#060a12] flex flex-col justify-between space-y-3"><div class="space-y-2.5"><div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2.5"><div class="w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center font-hud font-black text-white text-sm">${t.initials}</div><div><strong class="text-white text-xs sm:text-sm font-hud">${t.name} ✔</strong><span class="text-[10px] font-mono text-gray-400 block">${t.handle} • ${t.time}</span></div></div><span class="text-[9px] font-mono font-bold bg-sky-500/15 text-sky-300 px-2 py-0.5 rounded">${t.badge}</span></div><p class="text-xs font-mono text-gray-100 leading-relaxed bg-black/50 p-3 rounded-xl border border-white/10">"${t.text}"</p></div><div class="space-y-2"><div class="bg-amber-950/35 border border-amber-500/35 rounded-lg p-2 text-[10px] font-mono"><div class="font-extrabold text-amber-300">${t.impactLevel}</div><div class="text-gray-200 mt-0.5">${t.impactAssets}</div></div><div class="flex justify-between text-[10px] font-hud font-bold"><button type="button" onclick="window.switchView('AI_INTELLIGENCE')" class="text-purple-300 cursor-pointer">🧠 Simulate in AI Predictor</button><a href="${t.xUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400">OPEN SOURCE ↗</a></div></div></div>`).join('');
     };
 
-    // TAB 8: MULTI-TIMEFRAME OUTLOOK
+    // TAB 8, 12, NEWS, SA'AT, CLOCKS & CHARTS
     window.currentSignalTF = '15M';
     const TF_MULTIPLIERS = {
       '1M': { mult: 0.28, label: '1M SCALP MICRO-LIQUIDITY', conv: 86, horizon: 'Next 5–15 Mins' },
@@ -1845,34 +1636,17 @@
         { name: '🟠 BTCUSD • LIVE SPOT', price: P.btc, dec: 2, regime: 'WALL ST RISK-ON SQUEEZE', regimeCol: 'bg-purple-500/20 text-purple-300 border-purple-400/50', conv: cfg.conv - 1, sslLow: P.btc - 1800 * m, sslHigh: P.btc - 900 * m, bslLow: P.btc + 1400 * m, bslHigh: P.btc + 2600 * m, fvg: `$${fmtNum(P.btc - 850 * m, 0)} – $${fmtNum(P.btc - 350 * m, 0)}`, verdict: `Reclaimed $64,425 alongside NVDA (+31.4%); watching $65.5K liquidity pool.` },
         { name: '🛢️ WTI CRUDE OIL', price: P.oil, dec: 2, regime: 'SUPPLY PULLBACK TEST', regimeCol: 'bg-amber-500/20 text-amber-300 border-amber-400/50', conv: cfg.conv - 4, sslLow: P.oil - 1.40 * m, sslHigh: P.oil - 0.70 * m, bslLow: P.oil + 1.25 * m, bslHigh: P.oil + 2.20 * m, fvg: `$${fmtNum(P.oil + 0.40 * m, 2)} – $${fmtNum(P.oil + 0.85 * m, 2)}`, verdict: `Testing $81.88 support on Middle East supply news; $81.20 is key demand floor.` }
       ];
-      grid.innerHTML = cards.map(c => `
-        <div class="radar-card p-4 border-2 border-blue-500/40 space-y-3">
-          <div class="flex justify-between items-center"><strong class="text-amber-300 text-xs sm:text-sm">${c.name}</strong><span class="bg-blue-500/20 text-blue-200 text-[10px] font-mono font-bold px-2 py-0.5 rounded">${window.currentSignalTF}</span></div>
-          <div class="border ${c.regimeCol} rounded-lg px-2.5 py-1 text-[10px] font-extrabold text-center uppercase">${c.regime}</div>
-          <div class="flex justify-between items-baseline border-b border-white/10 pb-2"><div><span class="text-[9px] text-gray-400 font-mono block">LIVE SPOT</span><span class="text-2xl font-black text-white">$${fmtNum(c.price, c.dec)}</span></div><div class="text-right"><span class="text-[9px] text-gray-400 font-mono block">SCORE</span><span class="text-xs font-bold text-emerald-400">${c.conv}/100</span></div></div>
-          <div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1.5 text-[11px] font-mono">
-            <div class="flex justify-between"><span class="text-gray-400">🛡️ SSL Demand:</span><strong class="text-emerald-400">$${fmtNum(c.sslLow, c.dec)} – $${fmtNum(c.sslHigh, c.dec)}</strong></div>
-            <div class="flex justify-between"><span class="text-gray-400">🧲 FVG Zone:</span><strong class="text-amber-300">${c.fvg}</strong></div>
-            <div class="flex justify-between"><span class="text-gray-400">🔥 BSL Supply:</span><strong class="text-cyan-300">$${fmtNum(c.bslLow, c.dec)} – $${fmtNum(c.bslHigh, c.dec)}</strong></div>
-          </div>
-          <p class="text-[11px] text-gray-200 font-mono bg-white/5 p-2 rounded border-l-2 border-amber-400">${c.verdict}</p>
-        </div>`).join('');
+      grid.innerHTML = cards.map(c => `<div class="radar-card p-4 border-2 border-blue-500/40 space-y-3"><div class="flex justify-between items-center"><strong class="text-amber-300 text-xs sm:text-sm">${c.name}</strong><span class="bg-blue-500/20 text-blue-200 text-[10px] font-mono font-bold px-2 py-0.5 rounded">${window.currentSignalTF}</span></div><div class="border ${c.regimeCol} rounded-lg px-2.5 py-1 text-[10px] font-extrabold text-center uppercase">${c.regime}</div><div class="flex justify-between items-baseline border-b border-white/10 pb-2"><div><span class="text-[9px] text-gray-400 font-mono block">LIVE SPOT</span><span class="text-2xl font-black text-white">$${fmtNum(c.price, c.dec)}</span></div><div class="text-right"><span class="text-[9px] text-gray-400 font-mono block">SCORE</span><span class="text-xs font-bold text-emerald-400">${c.conv}/100</span></div></div><div class="bg-black/75 p-2.5 rounded-xl border border-white/10 space-y-1.5 text-[11px] font-mono"><div class="flex justify-between"><span class="text-gray-400">🛡️ SSL Demand:</span><strong class="text-emerald-400">$${fmtNum(c.sslLow, c.dec)} – $${fmtNum(c.sslHigh, c.dec)}</strong></div><div class="flex justify-between"><span class="text-gray-400">🧲 FVG Zone:</span><strong class="text-amber-300">${c.fvg}</strong></div><div class="flex justify-between"><span class="text-gray-400">🔥 BSL Supply:</span><strong class="text-cyan-300">$${fmtNum(c.bslLow, c.dec)} – $${fmtNum(c.bslHigh, c.dec)}</strong></div></div><p class="text-[11px] text-gray-200 font-mono bg-white/5 p-2 rounded border-l-2 border-amber-400">${c.verdict}</p></div>`).join('');
     };
 
-    // TAB 12: AI PREDICTOR
-    window.currentAIEvent = 'PPI_CPI';
-    window.currentAIScenario = 'HOT';
+    window.currentAIEvent = 'PPI_CPI'; window.currentAIScenario = 'HOT';
     window.jumpToAISimulator = function(k) { window.switchView('AI_INTELLIGENCE'); window.setAINewsEvent(k); };
     window.setAINewsEvent = function(k) { window.currentAIEvent = k; ['PPI_CPI', 'FED_FOMC', 'NFP_JOBS', 'WAR_HORMUZ', 'BOND_DXY'].forEach(x => document.getElementById('aiev-' + x)?.classList.toggle('ai-ev-active', x === k)); window.renderAIIntelligenceTab(); };
     window.setAIScenario = function(s) { window.currentAIScenario = s; ['HOT', 'SOFT', 'POST_DAY'].forEach(x => document.getElementById('aisc-' + x)?.classList.remove('ai-sc-hot', 'ai-sc-soft', 'ai-sc-eod')); document.getElementById('aisc-' + s)?.classList.add(s === 'HOT' ? 'ai-sc-hot' : (s === 'SOFT' ? 'ai-sc-soft' : 'ai-sc-eod')); window.renderAIIntelligenceTab(); };
     window.renderAIIntelligenceTab = function() {
       const P = window.masterState.prices, sc = window.currentAIScenario, isWar = window.currentAIEvent === 'WAR_HORMUZ';
       const hb = document.getElementById('ai-house-conviction-box'), mb = document.getElementById('ai-master-briefing'), gr = document.getElementById('ai-quad-cards-grid');
-      if (hb) hb.innerHTML = `
-        <div class="bg-black/75 p-3 rounded-xl border border-amber-400/50"><strong class="text-amber-400">🟡 GOLD ($${fmtNum(P.gold, 2)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $3,620 • Target $3,700+</p></div>
-        <div class="bg-black/75 p-3 rounded-xl border border-cyan-400/50"><strong class="text-cyan-300">⚪ SILVER ($${fmtNum(P.silver, 2)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $42.50 • Target $44.80</p></div>
-        <div class="bg-black/75 p-3 rounded-xl border border-emerald-400/50"><strong class="text-emerald-400">🟠 BTC ($${fmtNum(P.btc, 0)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $62,000 • Target $65,500</p></div>
-        <div class="bg-rose-950/40 p-3 rounded-xl border border-rose-400/60"><strong class="text-rose-300">🛢️ WTI OIL ($${fmtNum(P.oil, 2)})</strong><p class="text-[11px] text-gray-200 mt-1">Floor $80.80 • Supply $83.60</p></div>`;
+      if (hb) hb.innerHTML = `<div class="bg-black/75 p-3 rounded-xl border border-amber-400/50"><strong class="text-amber-400">🟡 GOLD ($${fmtNum(P.gold, 2)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $3,620 • Target $3,700+</p></div><div class="bg-black/75 p-3 rounded-xl border border-cyan-400/50"><strong class="text-cyan-300">⚪ SILVER ($${fmtNum(P.silver, 2)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $42.50 • Target $44.80</p></div><div class="bg-black/75 p-3 rounded-xl border border-emerald-400/50"><strong class="text-emerald-400">🟠 BTC ($${fmtNum(P.btc, 0)})</strong><p class="text-[11px] text-gray-300 mt-1">Shelf $62,000 • Target $65,500</p></div><div class="bg-rose-950/40 p-3 rounded-xl border border-rose-400/60"><strong class="text-rose-300">🛢️ WTI OIL ($${fmtNum(P.oil, 2)})</strong><p class="text-[11px] text-gray-200 mt-1">Floor $80.80 • Supply $83.60</p></div>`;
       if (mb) mb.innerHTML = `<strong class="text-purple-300">📡 ACTIVE CATALYST (${window.currentAIEvent} • ${sc}):</strong> 🪐 Mushtari [287] Rule — Wait for initial 15-minute Judas fakeout sweep before institutional continuation.`;
       if (gr) {
         const projections = [
@@ -1888,12 +1662,7 @@
       }
     };
 
-    // NEWS ENGINE, PLANETARY SA'AT, SESSION CLOCKS, CRYPTO WS & CHARTS
-    window.liveBloombergItems = [];
-    window.liveWorldItems = [];
-    window.currentNewsFilter = 'ALL';
-    window.currentWorldCat = 'ALL';
-
+    window.liveBloombergItems = []; window.liveWorldItems = []; window.currentNewsFilter = 'ALL'; window.currentWorldCat = 'ALL';
     window.fetchAllLiveNews = async function() {
       const P = window.masterState.prices;
       const fallback = [
@@ -1908,19 +1677,14 @@
       if (document.getElementById('global-news-sync-time')) document.getElementById('global-news-sync-time').textContent = nowPkt;
       const marquee = document.getElementById('global-all-tabs-news-marquee');
       if (marquee) marquee.innerHTML = fallback.map(item => `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300"><strong class="bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded mr-1.5">${item.badge}</strong>${item.title}</a>`).join('');
-      window.renderBloombergArticles();
-      window.renderWorldNews();
-      window.fetchVIPMarketTweets();
+      window.renderBloombergArticles(); window.renderWorldNews(); window.fetchVIPMarketTweets();
     };
-
     window.filterNewsCategory = function(c) { window.currentNewsFilter = c; window.renderBloombergArticles(); };
     window.renderBloombergArticles = function() {
       const g = document.getElementById('bloomberg-news-grid'); if (!g) return;
-      const items = window.liveBloombergItems;
-      const list = window.currentNewsFilter === 'ALL' ? items : items.filter(a => a.cat === window.currentNewsFilter);
+      const items = window.liveBloombergItems, list = window.currentNewsFilter === 'ALL' ? items : items.filter(a => a.cat === window.currentNewsFilter);
       g.innerHTML = (list.length ? list : items).map(a => `<a href="${a.link}" target="_blank" rel="noopener noreferrer" class="glass-panel p-4 rounded-xl border border-white/15 space-y-2 block"><div class="flex justify-between text-[10px]"><span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded font-bold">${a.badge}</span><span class="text-amber-300">${a.time}</span></div><h3 class="font-hud text-sm font-bold text-white">${a.title}</h3><p class="text-xs text-gray-300 font-mono">${a.desc}</p></a>`).join('');
     };
-
     window.filterWorldNews = function(c) { window.currentWorldCat = c; window.renderWorldNews(); };
     window.renderWorldNews = function() {
       const g = document.getElementById('world-news-grid'); if (!g) return;
@@ -1948,7 +1712,6 @@
 
       const curPl = getPlanetAt(d, h), nextH = (h + 1) % 24, nextPl = getPlanetAt(nextH === 0 ? (d + 1) % 7 : d, nextH);
       const remSec = (59 - m) * 60 + (60 - s), remMM = String(Math.floor(remSec / 60)).padStart(2, '0'), remSS = String(remSec % 60).padStart(2, '0');
-
       const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
       setTxt('saat-countdown-badge', `NEXT IN ${remMM}:${remSS}`);
       setTxt('planet-symbol-tag', curPl.symbol);
@@ -1977,10 +1740,7 @@
     }
     function computeSessionStatus(now, openH, closeH) {
       const day = now.getUTCDay(), utcSec = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
-      if (day === 6 || (day === 0 && utcSec < 22 * 3600)) {
-        const daysUntilMon = day === 6 ? 2 : 1;
-        return { isOpen: false, weekend: true, remainSec: (daysUntilMon * 86400) - utcSec + (openH * 3600) };
-      }
+      if (day === 6 || (day === 0 && utcSec < 22 * 3600)) return { isOpen: false, weekend: true, remainSec: ((day === 6 ? 2 : 1) * 86400) - utcSec + (openH * 3600) };
       if (utcSec >= openH * 3600 && utcSec < closeH * 3600) return { isOpen: true, weekend: false, remainSec: closeH * 3600 - utcSec };
       return { isOpen: false, weekend: false, remainSec: utcSec < openH * 3600 ? (openH * 3600 - utcSec) : (86400 - utcSec + openH * 3600) };
     }
@@ -2039,11 +1799,7 @@
       document.getElementById('bias-conviction').textContent = `CONVICTION: ${prof.conviction} / 100`;
       document.getElementById('spoof-score').textContent = `${prof.spoof} / 100`;
       const t = prof.traps;
-      document.getElementById('radar-trap-grid').innerHTML = `
-        <div class="flex items-center justify-between gap-3"><span class="w-28 text-gray-300 font-mono">Bull Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-cyan-400" style="width:${t.bull}%;"></div></div><span class="w-8 text-right font-bold">${t.bull}</span></div>
-        <div class="flex items-center justify-between gap-3"><span class="w-28 text-amber-300 font-mono">Bear Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-amber-400" style="width:${t.bear}%;"></div></div><span class="w-8 text-right font-bold text-amber-300">${t.bear}</span></div>
-        <div class="flex items-center justify-between gap-3"><span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-emerald-400" style="width:${t.shortSq}%;"></div></div><span class="w-8 text-right font-bold text-emerald-400">${t.shortSq}</span></div>
-        <div class="flex items-center justify-between gap-3"><span class="w-28 text-rose-400 font-mono">Long Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-rose-500" style="width:${t.longSq}%;"></div></div><span class="w-8 text-right font-bold text-rose-400">${t.longSq}</span></div>`;
+      document.getElementById('radar-trap-grid').innerHTML = `<div class="flex items-center justify-between gap-3"><span class="w-28 text-gray-300 font-mono">Bull Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-cyan-400" style="width:${t.bull}%;"></div></div><span class="w-8 text-right font-bold">${t.bull}</span></div><div class="flex items-center justify-between gap-3"><span class="w-28 text-amber-300 font-mono">Bear Trap</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-amber-400" style="width:${t.bear}%;"></div></div><span class="w-8 text-right font-bold text-amber-300">${t.bear}</span></div><div class="flex items-center justify-between gap-3"><span class="w-28 text-emerald-400 font-bold font-mono">Short Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-emerald-400" style="width:${t.shortSq}%;"></div></div><span class="w-8 text-right font-bold text-emerald-400">${t.shortSq}</span></div><div class="flex items-center justify-between gap-3"><span class="w-28 text-rose-400 font-mono">Long Squeeze</span><div class="flex-1 h-2.5 bg-black/60 rounded-full overflow-hidden"><div class="h-full bg-rose-500" style="width:${t.longSq}%;"></div></div><span class="w-8 text-right font-bold text-rose-400">${t.longSq}</span></div>`;
       const liveP = window.masterState.prices[key.toLowerCase()] || 3666.73, off = key === 'BTC' ? 1200 : (key === 'GOLD' ? 45 : (key === 'OIL' ? 1.45 : 0.85));
       document.getElementById('radar-heatmap-walls').innerHTML = `<div class="bg-black/60 p-2.5 rounded border border-rose-500/40 flex justify-between"><span class="text-rose-300">🔥 Overhead BSL Supply: $${fmtNum(liveP + off, 2)}</span><span class="text-rose-400 font-bold">INSTITUTIONAL ASK</span></div><div class="bg-black/60 p-2.5 rounded border border-emerald-500/40 flex justify-between"><span class="text-emerald-300">🛡️ Resting SSL Demand: $${fmtNum(liveP - off, 2)}</span><span class="text-emerald-400 font-bold">SOVEREIGN BID</span></div>`;
     }
@@ -2186,9 +1942,7 @@
       tb.innerHTML = rows.map(r => `<tr><td class="p-2.5 font-bold text-white">${r[0]}</td><td class="p-2.5 text-right text-amber-300 font-bold">${r[1]}</td><td class="p-2.5 text-right text-emerald-400 font-bold">${r[2]}</td><td class="p-2.5 text-right text-gray-300">${r[3]}</td></tr>`).join('');
     };
 
-    // ========================================================
     // MASTER 17-TAB SWITCHER
-    // ========================================================
     window.switchView = function(tabKey) {
       window.currentActiveView = tabKey;
       const allTabs = ['BTC', 'ETH', 'GOLD', 'SILVER', 'OIL', 'QUANT_DESK', 'AI_SKILLS', 'LIVE_SIGNALS', 'FOREX_FACTORY', 'BLOOMBERG_NEWS', 'WORLD_NEWS', 'AI_INTELLIGENCE', 'MULTI_SWEEP_MATRIX', 'TERMINAL_HUB', 'MONEY_FLOW_MAP', 'VIP_TWEETS', 'BIO_SPIRITUAL'];
